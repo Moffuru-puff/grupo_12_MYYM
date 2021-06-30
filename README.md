@@ -17,9 +17,9 @@ Somos un equipo de desarrolladores de software, orientado a la creación y dise�
 
 Nuestro quipo esta conformado por:
 
-*Yamila Vera,22 años.
-*Martin Salgado,38 años.
-*Maximiliano Arebalo,21 años.
-*Yesica Do Campo, 32 años.
+* **Yamila Vera,22 años.**
+* **Martin Salgado,38 años.**
+* **Maximo Arebalo,21 años.**
+* **Yesica Do Campo, 32 años.**
 
 
