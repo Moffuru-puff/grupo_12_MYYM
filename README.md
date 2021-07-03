@@ -3,7 +3,7 @@
 ## Nuestro Proyecto
 
 ## Logo
-! [Logo] (/public/img/Logo.png)
+![Logo](/public/img/Logo.png)
 
 La compañía MYYM nos contrato para desarrollar un ecommerce, que mejore la experiencia en la búsqueda, compra y envíos de sus productos. Haciendo especial enfasis en la seguridad informática y las opiniones de los usuarios.
 La empresa se dedica a la venta de una gran variedad de artículos de videojuegos, entre los que se destacan:
@@ -27,25 +27,25 @@ Somos un equipo de desarrolladores de software, orientado a la creación y dise�
 * **Yesica Do Campo, 32 años, desarrolladora, estudiante de Digital House, con conocimiento en Marketing Digital.**
 
 Utilizamos las siguientes paginas web como referencia para realizar nuestro proyecto:
-* - https://www.puppis.com.ar/  
+* https://www.puppis.com.ar/  
    * La funcionalidad de los desplegables del nav.
 
-* - https://www.mercadolibre.com.ar/ 
+* https://www.mercadolibre.com.ar/ 
    * El footer.
    * El detalle del producto.
    * Valoracion y comentarios de usuarios.
 
-* - https://www.fravega.com
+* https://www.fravega.com
    * La funcionalidad del carrito de compras.
 
-* - https://www.electronicthings.com.ar/
+* https://www.electronicthings.com.ar/
    * La funcionalidad del carrito de compras.
    * La funcionalidad de los desplegables del nav.
 
-* - https://es-la.facebook.com
+* https://es-la.facebook.com
   * Formato del registro de usuario.
 
-* - https://ar.pinterest.com
+* https://ar.pinterest.com
   * Imagenes
   * Slider
   
