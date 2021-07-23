@@ -1,0 +1,23 @@
+{
+  "name": "grupo_12_myym",
+  "version": "1.0.0",
+  "description": "![Logo](/public/img/Logo.png)",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YesiDC8/grupo_12_MYYM.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YesiDC8/grupo_12_MYYM/issues"
+  },
+  "homepage": "https://github.com/YesiDC8/grupo_12_MYYM#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
