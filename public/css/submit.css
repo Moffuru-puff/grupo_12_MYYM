@@ -1,0 +1,22 @@
+.content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content2 {
+    /* background: linear-gradient(0deg, #C3A6F6 0%, #AA84EA 0.01%, #6A2ECC 100%); */
+    background: rgba(25, 31, 32, 0.15);
+    border-radius: 45px;
+    margin: 0 auto;
+    width: 100%;
+    height: fit-content;
+    height: -moz-fit-content;
+    padding: 1rem;
+    max-width: 375px;
+}
+
+.help {
+    margin: 2rem;
+    text-align: center;
+}

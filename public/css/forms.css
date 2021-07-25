@@ -1,0 +1,93 @@
+@import url('register.css');
+@import url('login.css');
+@import url('variants.css');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+h2,
+h3 {
+    text-align: center;
+}
+
+
+body {
+    background-color: transparent;
+    height: 100%;
+    padding: 6rem 1rem;
+    font-family: var(--font-roboto);
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+}
+
+a {
+    color: #000AFF; 
+    text-decoration: none;
+}
+
+
+ 
+/* Form input */
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-content {
+    /* background: linear-gradient(0deg, #C3A6F6 0%, #AA84EA 0.01%, #6A2ECC 100%); */
+    background: rgba(25, 31, 32, 0.15);
+    border-radius: 45px;
+    margin: 0 auto;
+    width: 100%;
+    height: fit-content;
+    height: -moz-fit-content;
+    padding: 1rem;
+    max-width: 375px;
+}
+
+input.input-style {
+        color: grey;
+        border: none;
+        border-radius: 1rem;
+        height: 32px;
+        width: 311px;
+        margin: 0.4rem;
+        border-radius: 19px;
+        padding: 0.5rem;
+}
+
+input.input-style::placeholder {
+    color: var(--grey);
+    font-size: 16px;
+}
+
+.iniciar {
+    margin: 0.4rem;
+    line-height: 25px;
+}
+
+.old {
+    font-size: 20px;
+    text-align: center;
+}
+
+ /*  Botones*/
+
+ button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 26px;
+    width: 233px;
+    height: 42px;
+    margin: 0 auto;
+    font-size: 24px;
+    color: white;
+    background-color: black;
+    text-align: center;
+}
