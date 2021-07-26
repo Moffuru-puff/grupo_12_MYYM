@@ -2,7 +2,7 @@
 
 /* header */
 header {
-    background: linear-gradient(103deg, rgba(0,0,0,1) 0%, rgba(55,4,96,1) 100%); 
+    background: linear-gradient(103deg, rgba(0, 0, 0, 1) 0%, rgba(55, 4, 96, 1) 100%);
     padding: 10px;
     display: flex;
     justify-content: space-around;
@@ -12,7 +12,7 @@ header {
 
 li {
     list-style: none;
- }
+}
 
 header .nav {
     position: relative;
@@ -22,8 +22,8 @@ header .nav {
 header nav.menu {
     display: none;
     position: absolute;
-    background: rgb(195,166,246);
-    background: linear-gradient(180deg, rgba(195,166,246,1) 0%, rgba(106,46,204,1) 100%); 
+    background: rgb(195, 166, 246);
+    background: linear-gradient(180deg, rgba(195, 166, 246, 1) 0%, rgba(106, 46, 204, 1) 100%);
     min-width: 180px;
     left: -20px;
     padding: 0 10px;
@@ -40,6 +40,7 @@ header nav.menu a:hover {
     background-color: var(--purple);
     opacity: 0.5;
 }
+
 header nav.menu li.menu-item {
     border-bottom: solid 1px var(--cream);
     font-family: var(--font-poppins);
@@ -54,7 +55,7 @@ header nav.menu li.menu-item ul.sub-menu {
     display: none;
 }
 
-header nav.menu li.menu-item:hover ul.sub-menu{
+header nav.menu li.menu-item:hover ul.sub-menu {
     display: inline;
 }
 
@@ -65,7 +66,7 @@ header nav.menu li.menu-item:hover ul.sub-menu{
 .burguer-menu {
     color: var(--grey);
     background-color: rgba(196, 196, 196, 0.25);
-    border: solid 1px var(--grey); 
+    border: solid 1px var(--grey);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -84,28 +85,28 @@ header nav.menu li.menu-item:hover ul.sub-menu{
     border: solid 1px var(--ligthBlue);
 }
 
-div.logo img{
+div.logo img {
     border-radius: 45%;
     max-width: 30vw;
     max-height: 22vh;
-    
+
 }
 
 .search {
- display: none;
+    display: none;
 }
 
 .btn-search {
-   color: var(--grey); 
-   background-color: rgba(196, 196, 196, 0.25);
-   border: solid 1px var(--grey);
-   border-radius: 20px;
-   font-size: 1.2em;
-   width: 36px;
-   height: 34px;
-   display: flex;
-   justify-content: center;
-   align-items: center;
+    color: var(--grey);
+    background-color: rgba(196, 196, 196, 0.25);
+    border: solid 1px var(--grey);
+    border-radius: 20px;
+    font-size: 1.2em;
+    width: 36px;
+    height: 34px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .btn-search:hover {
@@ -118,7 +119,7 @@ div.account {
 }
 
 .cart {
-    color: var(--grey); 
+    color: var(--grey);
     background-color: rgba(196, 196, 196, 0.25);
     border: solid 1px var(--grey);
     border-radius: 20px;
@@ -139,36 +140,110 @@ div.shopping-cart i,
 .total,
 .btn-cart {
     display: none;
-} 
+}
 
 hr {
     display: none;
 }
 
 @media screen and (min-width: 481px) {
-    
- .burguer-menu {
-    display: none;
- }
 
- header .nav {
-    display: block;
-    order: 2;
-}
+    .burguer-menu {
+        display: none;
+    }
 
- header nav.menu {
-     background: none;
-     display: flex;
-     width:100%;
-     flex-direction: row;
-     align-content: flex-end;
- }
 
- header nav.menu ul {
-     display: flex;
- }
+    hr {
+        display: none;
+    }
 
- /*  display: none;
+    header .nav {
+        display: block;
+    }
+
+    header nav.menu {
+        background: none;
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        /* position: absolute; */
+        margin-top: 37px;
+
+    }
+
+    header nav.menu ul {
+        display: flex;
+    }
+
+    header nav.menu li.menu-item {
+        border-bottom: none;
+        font-weight: lighter;
+        margin-bottom: 5px;
+        flex-wrap: nowrap;
+    }
+
+    form {
+        display: flex;
+        position: relative;
+        width: 180px;
+
+    }
+
+    .search {
+        display: block;
+        background-color: rgba(196, 196, 196, 0.25);
+        height: 34px;
+        border-radius: 8px;
+        border: solid 1px var(--grey);
+        width: 100%;
+    }
+
+    .search::placeholder {
+        color: var(--cream);
+        flex-wrap: wrap;
+        font-family: var(--font-poppins);
+        font-weight: lighter;
+        font-size: 12px;
+        padding: 5px;
+    }
+
+    .btn-search {
+        border-radius: 10px;
+        position: absolute;
+        right: 0;
+    }
+
+    div.account {
+        display: block;
+    }
+
+    div.account .btn-account {
+        display: none;
+    }
+    div.account .avatar {
+        display: block;
+        color: var(--grey);
+        background-color: rgba(196, 196, 196, 0.25);
+        border: solid 1px var(--grey);
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.5em;
+        width: 36px;
+        height: 34px;
+    }
+
+    div.account .avatar:hover {
+        color: var(--ligthBlue);
+        border: solid 1px var(--ligthBlue);
+    }
+
+    .cart {
+        border-radius: 10px;
+    }
+
+    /*  display: none;
     position: absolute;
     background: rgb(195,166,246);
     background: linear-gradient(180deg, rgba(195,166,246,1) 0%, rgba(106,46,204,1) 100%); 
