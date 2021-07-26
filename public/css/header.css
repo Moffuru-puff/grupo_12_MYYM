@@ -144,3 +144,35 @@ div.shopping-cart i,
 hr {
     display: none;
 }
+
+@media screen and (min-width: 481px) {
+    
+ .burguer-menu {
+    display: none;
+ }
+
+ header .nav {
+    display: block;
+    order: 2;
+}
+
+ header nav.menu {
+     background: none;
+     display: flex;
+     width:100%;
+     flex-direction: row;
+     align-content: flex-end;
+ }
+
+ header nav.menu ul {
+     display: flex;
+ }
+
+ /*  display: none;
+    position: absolute;
+    background: rgb(195,166,246);
+    background: linear-gradient(180deg, rgba(195,166,246,1) 0%, rgba(106,46,204,1) 100%); 
+    min-width: 180px;
+    left: -20px;
+    padding: 0 10px; */
+}
