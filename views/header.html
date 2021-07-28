@@ -13,17 +13,16 @@
   </head>
   <body>
     <header>
-      <div class="nav">
-        <button class="burguer-menu">
-          <i class="open fas fa-bars"></i>
+      <div class="container-menu">
+        <input type="checkbox" id="burguer-menu">
+        <label for="burguer-menu" class="burguer-menu"><i class="open fas fa-bars"></i></label>     
           <i class="close fas fa-times"></i>
-        </button>
-        <hr />
         <nav class="menu">
           <ul>
             <li class="menu-item">
-              <a href="#">Mi cuenta</a>
-              <ul class="sub-menu">
+              <input type="checkbox" id="menu-item">
+              <label for="menu-item" class="menu-item">Mi cuenta</label>
+              <ul class="sub-menu x">
                 <li><a href="">Regitrarse</a></li>
                 <li><a href="">Iniciar sesión</a></li>
                 <li><a href="">Favoritos</a></li>
@@ -31,8 +30,9 @@
               </ul>
             </li>
             <li class="menu-item">
-              <a href="#">Categorías</a>
-              <ul class="sub-menu">
+              <input type="checkbox" id="menu-item1">
+              <label for="menu-item1" class="menu-item">Categorías</label>
+              <ul class="sub-menu y">
                 <li><a href="">Todo</a></li>
                 <li><a href="">Consolas</a></li>
                 <li><a href="">Videojuegos</a></li>
@@ -78,6 +78,25 @@
         </div>
       </div>
     </header>
+      <nav class="navbar">
+        <ul class="container-principal">
+          <li class="item"><a href=""></a>Categorías
+             <div class="categorias">
+               <ul class="sub-item">
+                  <li><a href="">Todo</a></li>
+                  <li><a href="">Consolas</a></li>
+                  <li><a href="">Videojuegos</a></li>
+                  <li><a href="">Accesorios</a></li>
+                  <li><a href="">Zona retro</a></li>
+               </ul>
+             </div>
+         </li>
+          <li class="item"><a href=""></a>Marcas</li>
+          <li class="item"><a href=""></a>Ofertas</li>
+          <li class="item"><a href=""></a>Zona Retro</li>
+        </ul>
+     </nav>
+    
     <main></main>
     <footer></footer>
   </body>
