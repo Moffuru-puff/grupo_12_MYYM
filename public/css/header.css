@@ -168,22 +168,17 @@ div.shopping-cart i,
     display: none;
 }
 
-hr {
+nav.navbar {
     display: none;
 }
 
-nav.navbar {
+.hidden {
     display: none;
 }
 
 @media screen and (min-width: 481px) {
 
     label.burguer-menu {
-        display: none;
-    }
-
-
-    hr {
         display: none;
     }
 
@@ -294,7 +289,6 @@ nav.navbar {
     }
 
     nav.navbar ul.container-principal li.item {
-
         transition: all 1s ease;
     }
 
@@ -304,53 +298,132 @@ nav.navbar {
         border-image: linear-gradient(to left, rgb(252, 176, 69) 0%, rgb(253, 29, 29) 50%, rgb(131, 58, 180) 100%) 100% 0 100% 0/0px 0 3px 0 stretch;
     }
   
-    nav.navbar ul.container-principal li.item div.categorias {
-        display: none;
+    /* Desplegable de Categorias -Tablet */
+
+    nav.navbar ul.container-principal li.item-categoria div.general {
+        display: flex;
         position: absolute;
+        margin-top: 15px;
     }
 
-    nav.navbar ul.container-principal li.item div.categorias ul.sub-item {
+    nav.navbar ul.container-principal li.item-categoria div.general div.sub-category {   
+        transition: all 0.5s ease-in; 
+    }
+
+    nav.navbar ul.container-principal li.item-categoria div.general div.sub-category li{
         background-color: white;
         border: solid 1px var(--purple);
         border-radius:5px;
+        color: var(--purple);
         margin: 2px;
         text-align: center;
         padding: 3PX;    
         width: 9rem;  
         transition: all 0.5s ease-in; 
+        user-select: none;
     }
 
-    nav.navbar ul.container-principal li.item div.categorias ul.sub-item:hover{
+    nav.navbar ul.container-principal li.item-categoria div.general div.sub-category li:hover{
         background-color: var(--purple);
-    }
-
-    nav.navbar ul.container-principal li.item div.categorias ul.sub-item li a {
-        display: block;
-        color: var(--purple);
-        text-decoration: none;
-        font-family: var(--font-inter);
-        transition: all 0.5s ease;
-    } 
-
-    nav.navbar ul.container-principal li.item div.categorias ul.sub-item li a:hover {
         color: var(--cream);
-    } 
-   
-    div.todo {
-        display: none;
     }
 
-    div.todo ul.dropdown-rigth {
+    nav.navbar ul.container-principal li.item-categoria div.general div.dropdown-rigth {
         display: flex;
-        width: 200px;
-        height: 100vh;
+        flex-direction: column;
+        width: 70%;
+        position: relative;
+        left: -5px;
     }
 
-    /*  display: none;
-    position: absolute;
-    background: rgb(195,166,246);
-    background: linear-gradient(180deg, rgba(195,166,246,1) 0%, rgba(106,46,204,1) 100%); 
-    min-width: 180px;
-    left: -20px;
-    padding: 0 10px; */
+    nav.navbar ul.container-principal li.item-categoria div.general div.dropdown-rigth div.todo,
+    .consolas,
+    .videojuegos,
+    .accesorios,
+    .zonaRetro {
+        background: rgb(55,4,96);
+        background: linear-gradient(90deg, rgba(55,4,96,1) 0%, rgba(255,163,0,1) 100%); 
+        background: -moz-linear-gradient(90deg, rgba(55,4,96,1) 0%, rgba(255,163,0,1) 100%); 
+        padding: 0 10px;
+        border-radius: 2px;
+    }
+
+    nav.navbar ul.container-principal li.item-categoria div.general div.dropdown-rigth .row {
+        padding: 1rem;
+        border-bottom: solid 1px;
+    }
+    
+    nav.navbar ul.container-principal li.item-categoria div.general div.dropdown-rigth .row h4 a{
+        font-family: var(--font-poppins);
+        font-size: 13px;
+        font-weight: bold;
+        color: var(--cream);
+    }
+    
+    nav.navbar ul.container-principal li.item-categoria div.general div.dropdown-rigth .row h4 a i{
+        margin-left: 5rem;
+    }
+
+    nav.navbar ul.container-principal li.item-categoria div.general div.dropdown-rigth .row ul li a,
+    .column ul li a{
+        font-family: var(--font-poppins);
+        font-size: 13px;
+        font-weight: lighter;
+        color: var(--cream);
+        text-decoration: none;
+    }
+
+    
+    /* Desplegable de Marcas-Tablet */
+
+    nav.navbar ul.container-principal li.item-marcas div.general {
+        position: absolute;
+        display: flex;
+        margin-top: 15px;
+    }
+
+    nav.navbar ul.container-principal li.item-marcas div.general .sub-category {
+        background-color: var(--purple);
+        width: max-content;
+        height: max-content;
+        border-radius: 10px 0 0 10px;
+    }
+
+    nav.navbar ul.container-principal li.item-marcas div.general .sub-category ul.sub-item {
+        display: inline-flex;
+        flex-wrap: wrap;
+        width: 10rem;
+        height: 15rem;
+        padding: 1rem;
+    }
+
+    nav.navbar ul.container-principal li.item-marcas div.general .sub-category ul.sub-item li{
+        width: 25px;
+        height: 25px;
+        font-size: larger;
+        text-align: center;
+    }
+
+    nav.navbar ul.container-principal li.item-marcas div.dropdown-rigth {
+        background-color: var(--blue);
+    }
+
+    nav.navbar ul.container-principal li.item-marcas div.dropdown-rigth .column {
+        padding: 1rem;
+    }
+
+    nav.navbar ul.container-principal li.item-marcas div.dropdown-rigth .column h4 a{
+        background-color: var(--lilac1);
+        color: var(--cream);
+        display: block;
+        text-decoration: none;
+        font-size: larger;   
+        border-radius: 5px;
+        padding-left: 5px; 
+    }
+
+    nav.navbar ul.container-principal li.item-marcas div.dropdown-rigth .column ul li {
+        padding: 3px 5px;
+    }
+
 }
