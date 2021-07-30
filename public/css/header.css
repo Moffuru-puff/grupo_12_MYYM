@@ -1,16 +1,23 @@
 @import url(variants.css);
 
 /* header */
-header {
+ header {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+header .main-header {
     background: linear-gradient(103deg, rgba(0, 0, 0, 1) 0%, rgba(55, 4, 96, 1) 100%);
     padding: 10px;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: 22vh;
+    flex-wrap: wrap;
 }
 
-input{
+/* Boton haburguesa */
+input {
     display: none;
 }
 
@@ -41,11 +48,6 @@ label.burguer-menu:hover {
 li {
     list-style: none;
 }
-
-/* header .nav {
-    position: relative;
-    display: inline-block;
-} */
 
 header nav.menu {
     opacity: 0;
@@ -111,6 +113,7 @@ header nav.menu li.menu-item:hover ul.sub-menu {
     display: block;
 }
 
+/* Logo */
 div.logo img {
     border-radius: 45%;
     max-width: 30vw;
@@ -118,9 +121,7 @@ div.logo img {
 
 }
 
-.search {
-    display: none;
-}
+/* Buscador */
 
 .btn-search {
     color: var(--grey);
@@ -140,9 +141,52 @@ div.logo img {
     border: solid 1px var(--ligthBlue);
 }
 
+form {
+    display: flex;
+    position: relative;
+    width: 250px;
+    order: 3;
+
+}
+
+form:focus-within {
+    outline: none;
+}
+
+.search {
+    display: none;
+    background-color: rgba(196, 196, 196, 0.25);
+    height: 34px;
+    border-radius: 8px;
+    border: solid 1px var(--grey);
+    width: 100%;
+    padding-left: 10px;
+}
+
+.search::placeholder {
+    color: var(--cream);
+    flex-wrap: wrap;
+    font-family: var(--font-poppins);
+    font-weight: lighter;
+    font-size: 12px;
+    padding: 5px;
+}
+
+form button.btn-search {
+    border-radius: 10px;
+    position: absolute;
+    right: 0;
+}
+
+
+
+/* Cuenta */
+
 div.account {
     display: none;
 }
+
+/* Carrito de compras */
 
 .cart {
     color: var(--grey);
@@ -168,6 +212,7 @@ div.shopping-cart i,
     display: none;
 }
 
+/* Nav para tablet y desktop */
 nav.navbar {
     display: none;
 }
@@ -207,37 +252,25 @@ nav.navbar {
         flex-wrap: nowrap;
     }
 
-    form {
-        display: flex;
-        position: relative;
-        width: 250px;
+    /* Buscador */
 
+    form {
+        order: 0;
     }
 
     .search {
         display: block;
-        background-color: rgba(196, 196, 196, 0.25);
-        height: 34px;
-        border-radius: 8px;
-        border: solid 1px var(--grey);
-        width: 100%;
-    }
-
-    .search::placeholder {
-        color: var(--cream);
-        flex-wrap: wrap;
-        font-family: var(--font-poppins);
-        font-weight: lighter;
-        font-size: 12px;
-        padding: 5px;
     }
 
     .btn-search {
-        border-radius: 10px;
-        position: absolute;
-        right: 0;
+        display: none;
     }
 
+    form button.btn-search {
+        display: block;
+    }
+
+    /* Cuenta */
     div.account {
         display: block;
     }
@@ -245,6 +278,7 @@ nav.navbar {
     div.account .btn-account {
         display: none;
     }
+
     div.account .avatar {
         display: block;
         color: var(--grey);
@@ -264,16 +298,21 @@ nav.navbar {
         border: solid 1px var(--ligthBlue);
     }
 
+    div.account i.arrow {
+        display: none;
+    }
+
+    /* carrito */
     .cart {
         border-radius: 10px;
     }
 
+    /* Navbar */
     nav.navbar {
-        background: linear-gradient(103deg, rgba(0, 0, 0, 1) 0%, rgba(55, 4, 96, 1) 100%); 
+        background: linear-gradient(103deg, rgba(0, 0, 0, 1) 0%, rgba(55, 4, 96, 1) 100%);
         display: flex;
         width: 100%;
         justify-content: center;
-        padding: 5px 0 1px;
         height: 10vh;
     }
 
@@ -286,6 +325,8 @@ nav.navbar {
         width: 90%;
         border-top: solid 1px var(--grey);
         padding-top: 5px;
+        cursor: pointer;
+        user-select: none;
     }
 
     nav.navbar ul.container-principal li.item {
@@ -297,7 +338,7 @@ nav.navbar {
         border-width: 3px;
         border-image: linear-gradient(to left, rgb(252, 176, 69) 0%, rgb(253, 29, 29) 50%, rgb(131, 58, 180) 100%) 100% 0 100% 0/0px 0 3px 0 stretch;
     }
-  
+
     /* Desplegable de Categorias -Tablet */
 
     nav.navbar ul.container-principal li.item-categoria div.general {
@@ -306,24 +347,24 @@ nav.navbar {
         margin-top: 15px;
     }
 
-    nav.navbar ul.container-principal li.item-categoria div.general div.sub-category {   
-        transition: all 0.5s ease-in; 
+    nav.navbar ul.container-principal li.item-categoria div.general div.sub-category {
+        transition: all 0.5s ease-in;
     }
 
-    nav.navbar ul.container-principal li.item-categoria div.general div.sub-category li{
+    nav.navbar ul.container-principal li.item-categoria div.general div.sub-category li {
         background-color: white;
         border: solid 1px var(--purple);
-        border-radius:5px;
+        border-radius: 5px;
         color: var(--purple);
         margin: 2px;
         text-align: center;
-        padding: 3PX;    
-        width: 9rem;  
-        transition: all 0.5s ease-in; 
+        padding: 3PX;
+        width: 9rem;
+        transition: all 0.5s ease-in;
         user-select: none;
     }
 
-    nav.navbar ul.container-principal li.item-categoria div.general div.sub-category li:hover{
+    nav.navbar ul.container-principal li.item-categoria div.general div.sub-category li:hover {
         background-color: var(--purple);
         color: var(--cream);
     }
@@ -341,9 +382,9 @@ nav.navbar {
     .videojuegos,
     .accesorios,
     .zonaRetro {
-        background: rgb(55,4,96);
-        background: linear-gradient(90deg, rgba(55,4,96,1) 0%, rgba(255,163,0,1) 100%); 
-        background: -moz-linear-gradient(90deg, rgba(55,4,96,1) 0%, rgba(255,163,0,1) 100%); 
+        background: rgb(55, 4, 96);
+        background: linear-gradient(90deg, rgba(55, 4, 96, 1) 0%, rgba(255, 163, 0, 1) 100%);
+        background: -moz-linear-gradient(90deg, rgba(55, 4, 96, 1) 0%, rgba(255, 163, 0, 1) 100%);
         padding: 0 10px;
         border-radius: 2px;
     }
@@ -352,20 +393,20 @@ nav.navbar {
         padding: 1rem;
         border-bottom: solid 1px;
     }
-    
-    nav.navbar ul.container-principal li.item-categoria div.general div.dropdown-rigth .row h4 a{
+
+    nav.navbar ul.container-principal li.item-categoria div.general div.dropdown-rigth .row h4 a {
         font-family: var(--font-poppins);
         font-size: 13px;
         font-weight: bold;
         color: var(--cream);
     }
-    
-    nav.navbar ul.container-principal li.item-categoria div.general div.dropdown-rigth .row h4 a i{
+
+    nav.navbar ul.container-principal li.item-categoria div.general div.dropdown-rigth .row h4 a i {
         margin-left: 5rem;
     }
 
     nav.navbar ul.container-principal li.item-categoria div.general div.dropdown-rigth .row ul li a,
-    .column ul li a{
+    .column ul li a {
         font-family: var(--font-poppins);
         font-size: 13px;
         font-weight: lighter;
@@ -373,13 +414,14 @@ nav.navbar {
         text-decoration: none;
     }
 
-    
+
     /* Desplegable de Marcas-Tablet */
 
     nav.navbar ul.container-principal li.item-marcas div.general {
         position: absolute;
         display: flex;
         margin-top: 15px;
+        display: none;
     }
 
     nav.navbar ul.container-principal li.item-marcas div.general .sub-category {
@@ -392,38 +434,127 @@ nav.navbar {
     nav.navbar ul.container-principal li.item-marcas div.general .sub-category ul.sub-item {
         display: inline-flex;
         flex-wrap: wrap;
-        width: 10rem;
+        width: 9rem;
         height: 15rem;
         padding: 1rem;
     }
 
-    nav.navbar ul.container-principal li.item-marcas div.general .sub-category ul.sub-item li{
+    nav.navbar ul.container-principal li.item-marcas div.general .sub-category ul.sub-item li {
         width: 25px;
         height: 25px;
         font-size: larger;
         text-align: center;
+        user-select: none;
+        cursor: pointer;
+    }
+
+    nav.navbar ul.container-principal li.item-marcas div.general .sub-category ul.sub-item li a {
+        color: var(--cream);
+        text-decoration: none;
     }
 
     nav.navbar ul.container-principal li.item-marcas div.dropdown-rigth {
         background-color: var(--blue);
+        height: 15rem;
+        overflow: auto;
     }
 
     nav.navbar ul.container-principal li.item-marcas div.dropdown-rigth .column {
         padding: 1rem;
     }
 
-    nav.navbar ul.container-principal li.item-marcas div.dropdown-rigth .column h4 a{
+    nav.navbar ul.container-principal li.item-marcas div.dropdown-rigth .column h4 a {
         background-color: var(--lilac1);
         color: var(--cream);
         display: block;
         text-decoration: none;
-        font-size: larger;   
+        font-size: larger;
         border-radius: 5px;
-        padding-left: 5px; 
+        padding-left: 5px;
     }
 
     nav.navbar ul.container-principal li.item-marcas div.dropdown-rigth .column ul li {
         padding: 3px 5px;
     }
+
+}
+
+@media screen and (min-width: 769px) {
+
+    form button.btn-search{
+        background-color: rgba(196, 196, 196, 0.0);
+    }
+
+    /* Cuenta */
+    div.account {
+        min-width: 150px;
+        border-radius: solid 1px var(--grey);
+        display: flex;
+        justify-content: space-around;
+        background-color: rgba(196, 196, 196, 0.25);
+        border-radius: 10px;
+    }
+
+    div.account .avatar {
+        background-color: rgba(196, 196, 196, 0);
+        border: none;
+    }
+
+    div.account .btn-account {
+        color: var(--cream);
+        font-family: var(--font-poppins);
+        font-weight: lighter;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        width: inherit;
+        user-select: none;
+    }
+
+    div.account i.arrow {
+        color: var(--grey);
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 30px;
+        cursor: pointer;
+    }
+
+    /* Carrito */
+    div.shoppingCart {
+        min-width: 100px;
+        border-radius: solid 1px var(--grey);
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        background-color: rgba(196, 196, 196, 0.25);
+        border-radius: 10px;
+    }
+
+    .cart {
+        background-color: rgba(196, 196, 196, 0);
+        border: none; 
+    }
+
+    div.shoppingCart h4.total {
+        display: block;
+        color: var(--cream);
+        font-family: var(--font-inter);
+        font-weight: normal;
+        user-select: none;
+    }
+
+    div.shoppingCart .btn-cart{
+        color: var(--grey);
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 30px;
+        cursor: pointer;
+    }
+    
+    /* Desplegables del navBar */
+    
 
 }
