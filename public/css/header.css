@@ -255,6 +255,7 @@ nav.navbar {
     /* Buscador */
 
     form {
+        width: 55%;
         order: 0;
     }
 
