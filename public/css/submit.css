@@ -6,7 +6,8 @@
 
 .content2 {
     /* background: linear-gradient(0deg, #C3A6F6 0%, #AA84EA 0.01%, #6A2ECC 100%); */
-    background: rgba(25, 31, 32, 0.15);
+    background-color: var(--grey);
+    background-image: url(/img/form-container.jpg);
     border-radius: 45px;
     margin: 0 auto;
     width: 100%;

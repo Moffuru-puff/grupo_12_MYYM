@@ -1,0 +1,22 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+h2{
+    text-align: center;
+}
+
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div .michi {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+}
