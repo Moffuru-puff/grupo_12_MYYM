@@ -9,7 +9,6 @@
 
 header .main-header {
     background: linear-gradient(103deg, rgba(0, 0, 0, 1) 0%, rgba(55, 4, 96, 1) 100%);
-    padding: 10px;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -117,7 +116,7 @@ header nav.menu li.menu-item:hover ul.sub-menu {
 div.logo img {
     border-radius: 45%;
     max-width: 30vw;
-    max-height: 22vh;
+    max-height: 18vh;
 
 }
 
@@ -314,7 +313,7 @@ nav.navbar {
         display: flex;
         width: 100%;
         justify-content: center;
-        height: 10vh;
+        height: 7vh;
     }
 
     nav.navbar ul.container-principal {
