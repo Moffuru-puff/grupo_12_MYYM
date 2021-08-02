@@ -68,6 +68,11 @@ main section.container-products div.products {
     grid-auto-flow: dense;
 }
 
+main section.container-products div.products a {
+    text-decoration: none;
+    color: inherit;
+}
+
 main section.container-products div.products article {
     padding: 1rem;
     background-color: white;
