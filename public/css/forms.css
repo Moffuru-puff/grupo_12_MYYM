@@ -1,0 +1,118 @@
+@import url('register.css');
+@import url('login.css');
+@import url('variants.css');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+h2,
+h3 {
+    text-align: center;
+}
+
+
+body {
+    background-size: cover;
+    height: 100%;
+    padding: 6rem 1rem;
+    font-family: var(--font-roboto);
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+}
+
+a {
+    color: #e79dff;; 
+    text-decoration: none;
+}
+
+
+ 
+/* Form input */
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-container {
+    /* background: linear-gradient(0deg, #C3A6F6 0%, #AA84EA 0.01%, #6A2ECC 100%); */
+    /* background: rgba(25, 31, 32); */
+    background-image: url(/img/form-container.jpg);
+    border-radius: 45px;
+    border: 1px solid black;
+    margin: 0 auto;
+    width: 100%;
+    height: fit-content;
+    height: -moz-fit-content;
+    padding: 1rem;
+    min-width: 375px;
+    max-width: 400px;
+}
+
+input.input-style {
+        color: grey;
+        border-radius: 1rem;
+        border: 2px solid #51068f;
+        height: 32px;
+        width: 311px;
+        margin: 0.2rem;
+        border-radius: 19px;
+        padding: 0.5rem;
+}
+
+.input-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+input.input-style:focus {
+    outline: none;
+}
+
+input.input-style::placeholder {
+    color: var(--grey);
+    font-size: 16px;
+}
+
+span.error-message {
+    color: rgb(0, 255, 234);
+    font-size: 1rem;
+    margin: 0px auto 10px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+
+}
+
+.iniciar {
+    margin: 0.4rem;
+    line-height: 25px;
+}
+
+.old {
+    font-size: 20px;
+    text-align: center;
+}
+
+ /*  Botones*/
+
+ button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 26px;
+    width: 233px;
+    height: 42px;
+    margin: 0 auto;
+    font-size: 24px;
+    color: white;
+    background-color: black;
+    text-align: center;
+}
