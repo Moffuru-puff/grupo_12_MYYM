@@ -207,4 +207,12 @@ div.social-icon {
         width: 2rem;
         margin: 5px;
     }
+
+    footer .social-footer .container-social .social-icon a,
+    footer .social-footer .container-social .social-icon img {
+        text-decoration: none;
+        color: var(--grey);
+        font-size: 2rem;
+        width: 3rem;
+    }
 }

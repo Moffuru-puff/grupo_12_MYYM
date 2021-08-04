@@ -137,88 +137,9 @@ section.carousel-desktop {
 
 @media screen and (min-width: 769px) {
 
-    .carousel-container {
-        display: none;
-    }
-
     /* Carousel container */
-    /* .carousel-container {
+    .carousel-container {
         margin: 20px auto 50px;
-    } */
-
-    section.carousel-desktop {
-        display: block;
-        width: 100%;
-        height: 25rem;
-        margin: 0 auto;
-        position: relative;
-        background-color: var(--grey);       
     }
-
-    section.carousel-desktop div.container-carousel{
-        width: 100vh;
-        height: auto;
-        margin: 0 auto;
-        padding: 30px;
-    }
-
-    section.carousel-desktop li {
-        width: 500px;
-        height: 281px;
-        background: #333;
-        display: inline-block;
-        -webkit-transition: all .3s ease-in-out;
-        -moz-transition: all .3s ease-in-out;
-        transition: all .3s ease-in-out;
-        overflow: hidden;
-    }
-
-    section.carousel-desktop li img {
-        width: 100%;
-        height: 100%;
-    }
-
-    section.carousel-desktop .items {
-        position: absolute;
-    }
-
-    section.carousel-desktop .main-pos {
-        z-index: 3;
-    }
-
-    section.carousel-desktop .left-pos {
-        opacity: 0.5;
-        margin-left: -10rem !important;
-        z-index: 1;
-        -webkit-transform: scale(.75);
-        -moz-transform: scale(.75);
-        transform: scale(.75);
-    }
-
-    section.carousel-desktop .back-pos {
-        margin-left: 2rem !important;
-        opacity: 0.3;
-        -webkit-transform: scale(.5);
-        -moz-transform: scale(.5);
-        transform: scale(.5);
-    }
-
-    section.carousel-desktop .right-pos {
-        opacity: 0.5;
-        margin-left: 10rem !important;
-        z-index: 1;
-        -webkit-transform: scale(.75);
-        -moz-transform: scale(.75);
-        transform: scale(.75);
-    }
-
-    section.carousel-desktop span {
-        position: relative;
-        margin: 0 auto;
-        left: 17rem;
-        top: 20rem;
-    }
-
-
 
 }

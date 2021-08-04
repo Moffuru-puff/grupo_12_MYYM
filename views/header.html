@@ -13,8 +13,8 @@
   <!-- FONT AWESOME -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
 
-   <!-- Scripts Locales -->
-   <script src="/js/header.js" defer></script>
+  <!-- Scripts Locales -->
+  <script src="/js/header.js" defer></script>
 
 </head>
 
@@ -23,27 +23,36 @@
     <div class="main-header">
       <!-- Menu hamburguesa -->
       <div class="container-menu">
-        <input type="checkbox" id="burguer-menu">
-        <label for="burguer-menu" class="burguer-menu"><i class="open fas fa-bars" onclick="dropMenu()"></i></label>
-        <i class="close fas fa-times"></i>
+
+        <div class="btn-hamburguesa" onclick="dropMenu()">
+          <svg class="bars" viewBox="0 0 100 100" onclick="this.classList.toggle('active')">
+            <path class="line top"
+              d="m 30,33 h 40 c 13.100415,0 14.380204,31.80258 6.899646,33.421777 -24.612039,5.327373 9.016154,-52.337577 -12.75751,-30.563913 l -28.284272,28.284272">
+            </path>
+            <path class="line middle"
+              d="m 70,50 c 0,0 -32.213436,0 -40,0 -7.786564,0 -6.428571,-4.640244 -6.428571,-8.571429 0,-5.895471 6.073743,-11.783399 12.286435,-5.570707 6.212692,6.212692 28.284272,28.284272 28.284272,28.284272">
+            </path>
+            <path class="line bottom"
+              d="m 69.575405,67.073826 h -40 c -13.100415,0 -14.380204,-31.80258 -6.899646,-33.421777 24.612039,-5.327373 -9.016154,52.337577 12.75751,30.563913 l 28.284272,-28.284272">
+            </path>
+          </svg>
+        </div>
 
         <!-- desplegable para mobile -->
         <nav class="menu" id="navigation-bar-mobile">
-          <ul>
-            <li class="menu-item">
-              <input type="checkbox" id="menu-item">
-              <label for="menu-item" class="menu-item">Mi cuenta</label>
-              <ul class="sub-menu x">
+          <ul class="menu-ul">
+            <li class="menu-item" onclick="dropSubCategoryMenu(`account`)">
+              <a href="#">Mi cuenta</a>
+              <ul class="sub-menu" id="account">
                 <li><a href="">Regitrarse</a></li>
                 <li><a href="">Iniciar sesión</a></li>
                 <li><a href="">Favoritos</a></li>
                 <li><a href="">Mis compras</a></li>
               </ul>
             </li>
-            <li class="menu-item">
-              <input type="checkbox" id="menu-item1">
-              <label for="menu-item1" class="menu-item">Categorías</label>
-              <ul class="sub-menu y">
+            <li class="menu-item" onclick="dropSubCategoryMenu(`category`)">
+              <a href="#"> Categorías</a>
+              <ul class="sub-menu" id="category">
                 <li><a href="">Todo</a></li>
                 <li><a href="">Consolas</a></li>
                 <li><a href="">Videojuegos</a></li>
@@ -71,13 +80,13 @@
       </div>
 
       <!-- barra de busqueda -->
-      <form action="">
+      <form action="#" id="search">
         <input class="search" type="search" name="busqueda" placeholder="Buscar productos, marcas y más" />
-        <button type="submit" class="btn-search hidden"><i class="fas fa-search"></i></button>
+        <button type="submit" class="btn-search"><i class="fas fa-search"></i></button>
       </form>
 
       <!-- boton de mi cuenta -->
-      <div class="account">
+      <div class="account" id="account" onclick="document.getElementsByClassName('drop-account').className += 'show'">
         <div class="avatar">
           <i class="fas fa-user-circle"></i>
         </div>
@@ -85,6 +94,15 @@
           <p>Mi cuenta</p>
         </div>
         <i class="arrow fas fa-chevron-down"></i>
+          <!-- Desplegable de botón mi cuenta -->
+        <div class="drop-account"> 
+            <ul>
+              <li><a href="">Registrarse</a></li>
+              <li><a href="">Iniciar seción</a></li>
+              <li><a href="">Mis favoritos</a></li>
+              <li><a href="">Mis compras</a></li>
+            </ul>
+        </div>
       </div>
 
       <!-- Botón Carrito -->
@@ -95,23 +113,24 @@
         <h4 class="total">$0,00</h4>
       </div>
     </div>
+
     <!-- comienzo del nav para tablet y desktop -->
-    <nav class="navbar">
+    <nav class="navbar" id="navigation-bar-mobile">
       <ul id="list-menu" class="container-principal">
         <li class="item-categoria item">
-          <a href=""></a>Categorías
-          <div class="general hidden">
-            <div class="sub-category hidden">
+          <a href="">Categorías</a>
+          <div class="general">
+            <div class="sub-category">
               <ul class="sub-item">
-                <li>Todo</li>
-                <li>Consolas</li>
-                <li>Videojuegos</li>
-                <li>Accesorios</li>
-                <li>Zona retro</li>
+                <li><a href="#todo">Todo</a></li>
+                <li><a href="#consolas">Consolas</a></li>
+                <li><a href="#videojuegos">Videojuegos</a></li>
+                <li><a href="#accesorios">Accesorios</a> </li>
+                <li><a href="#zonaRetro">Zona retro</a></li>
               </ul>
             </div>
-            <div class="dropdown-rigth hidden">
-              <div class="todo hidden">
+            <div class="dropdown-rigth">
+              <div class="todo" id="todo">
                 <div class="row">
                   <h4><a href="">Consolas <i class="fas fa-chevron-down"></i></a></h4>
                   <ul class="hidden">
@@ -123,7 +142,7 @@
                 </div>
                 <div class="row">
                   <h4><a href="">Videojuegos<i class="fas fa-chevron-down"></i></a></h4>
-                  <ul class="hidden">
+                  <ul class="hidden"   onclick="this.classList.toggle('show')">
                     <li><a href="">FIFA 21 Standard Edition Electronic Arts</a></li>
                     <li><a href="">God of War (2018) Standard Edition</a></li>
                     <li><a href="">Gta V Grand Thelf Auto 5 Premium</a></li>
@@ -133,7 +152,7 @@
                 </div>
                 <div class="row">
                   <h4><a href="">Accesorios <i class="fas fa-chevron-down"></i></a></h4>
-                  <ul class="hidden">
+                  <ul class="hidden"  onclick="mostrar()">
                     <li><a href="">Figuras de acción</a></li>
                     <li><a href="">Josticks</a></li>
                     <li><a href="">Remeras</a></li>
@@ -153,7 +172,7 @@
                 </div>
                 <div class="row img"></div>
               </div>
-              <div class="consolas hidden">
+              <div class="consolas" id="consolas">
                 <div class="row">
                   <h4><a href="">Consolas</a></h4>
                   <ul>
@@ -168,7 +187,7 @@
                   </ul>
                 </div>
               </div>
-              <div class="videojuegos hidden">
+              <div class="videojuegos" id="videojuegos">
                 <div class="row">
                   <h4><a href="">Videojuegos</a></h4>
                   <ul>
@@ -188,7 +207,7 @@
                   </ul>
                 </div>
               </div>
-              <div class="accesorios hidden">
+              <div class="accesorios" id="accesorios">
                 <div class="row">
                   <h4><a href="">Accesorios</a></h4>
                   <ul>
@@ -204,7 +223,7 @@
                   </ul>
                 </div>
               </div>
-              <div class="zonaRetro hidden">
+              <div class="zonaRetro" id="zonaRetro">
                 <div class="row">
                   <h4><a href="">Zona retro</a></h4>
                   <ul>
@@ -226,8 +245,8 @@
             </div>
           </div>
         </li>
-        <li class="item-marcas item"><a href=""></a>Marcas
-          <div class="general hidden">
+        <li class="item-marcas item"><a href="#">Marcas</a>
+          <div class="general">
             <div class="sub-category">
               <ul class="sub-item">
                 <li><a href="#A">A</a></li>
@@ -506,8 +525,8 @@
               </div>
             </div>
         </li>
-        <li class="item-ofertas item"><a href=""></a>Ofertas</li>
-        <li class="item-zonaRetro item"><a href=""></a>Zona Retro</li>
+        <li class="item-ofertas item"><a href="#">Ofertas</a></li>
+        <li class="item-zonaRetro item"><a href="#">Zona Retro</a></li>
       </ul>
     </nav>
   </header>
