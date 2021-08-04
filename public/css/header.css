@@ -16,32 +16,44 @@ header .main-header {
 }
 
 /* Boton haburguesa */
-input {
-    display: none;
-}
-
-label.burguer-menu {
-    color: var(--grey);
+.btn-hamburguesa {
     background-color: rgba(196, 196, 196, 0.25);
-    border: solid 1px var(--grey);
+    border: 1px solid var(--grey);
+    border-radius: 15px;
     display: inline-block;
     text-align: center;
-    padding-top: 8px;
-    font-size: 1.5em;
     width: 45px;
     height: 45px;
-    border-radius: 15px;
-    user-select: none;
-    transition: all 0.5s ease;
 }
 
-i.close {
-    display: none;
+.bars {
+  width: 40px;
+  cursor: pointer;
 }
-
-label.burguer-menu:hover {
-    color: var(--ligthBlue);
-    border: solid 1px var(--ligthBlue);
+.bars .line {
+  fill: none;
+  stroke: var(--grey);
+  stroke-width: 4;
+  stroke-linecap: square;
+  transition: stroke-dasharray 1s,  stroke-dashoffset 1s;
+}
+.bars .line.top {
+  stroke-dasharray: 40 172;
+}
+.bars .line.middle {
+  stroke-dasharray: 40 111;
+}
+.bars .line.bottom {
+  stroke-dasharray: 40 172;
+}
+.bars.active .top {
+  stroke-dashoffset: -132px;
+}
+.bars.active .middle {
+  stroke-dashoffset: -71px;
+}
+.bars.active .bottom {
+  stroke-dashoffset: -132px;
 }
 
 li {
@@ -49,7 +61,7 @@ li {
 }
 
 header nav.menu {
-    opacity: 0;
+    display: none;  
     position: absolute;
     background: rgb(195, 166, 246);
     background: linear-gradient(180deg, rgba(195, 166, 246, 1) 0%, rgba(106, 46, 204, 1) 100%);
@@ -59,10 +71,11 @@ header nav.menu {
     transition: all 1s ease;
 }
 
-input:checked~nav.menu {
-    opacity: 1;
-    width: 50%;
+header nav.menu.show {
+    display: block;
+   
 }
+
 
 header nav.menu a {
     color: var(--cream);
@@ -92,16 +105,8 @@ header nav.menu li.menu-item ul.sub-menu {
     display: none;
 }
 
-input.menu-item1:checked~ul.y {
-    display: inline;
-}
-
-label.menu-item {
-    color: var(--cream);
-    padding: 12px 16px;
-    text-decoration: none;
+header nav.menu li.menu-item ul.sub-menu.show {
     display: block;
-    transition: all 1s ease;
 }
 
 header nav.menu li.menu-item:hover ul.sub-menu {
@@ -124,7 +129,7 @@ div.logo img {
 
 .btn-search {
     color: var(--grey);
-    background-color: rgba(196, 196, 196, 0.25);
+    background-color: rgba(196, 196, 196, 0.1);
     border: solid 1px var(--grey);
     border-radius: 20px;
     font-size: 1.2em;
@@ -140,20 +145,20 @@ div.logo img {
     border: solid 1px var(--ligthBlue);
 }
 
-form {
-    display: flex;
+header form {
+    display: none;
     position: relative;
     width: 250px;
     order: 3;
 
 }
 
-form:focus-within {
+header form input:focus {
     outline: none;
 }
 
 .search {
-    display: none;
+    display: block;
     background-color: rgba(196, 196, 196, 0.25);
     height: 34px;
     border-radius: 8px;
@@ -161,6 +166,7 @@ form:focus-within {
     width: 100%;
     padding-left: 10px;
 }
+
 
 .search::placeholder {
     color: var(--cream);
@@ -171,7 +177,7 @@ form:focus-within {
     padding: 5px;
 }
 
-form button.btn-search {
+header form button.btn-search {
     border-radius: 10px;
     position: absolute;
     right: 0;
@@ -220,9 +226,14 @@ nav.navbar {
     display: none;
 }
 
+.show {
+    display: block;
+}
+
 @media screen and (min-width: 481px) {
 
-    label.burguer-menu {
+    /* botón hamburguesa */
+    .btn-hamburguesa {
         display: none;
     }
 
@@ -253,20 +264,21 @@ nav.navbar {
 
     /* Buscador */
 
-    form {
+    header form {
+        display: flex;
         width: 55%;
         order: 0;
     }
 
-    .search {
+    header .search {
         display: block;
     }
 
-    .btn-search {
+    header .btn-search {
         display: none;
     }
 
-    form button.btn-search {
+    header form button.btn-search {
         display: block;
     }
 
@@ -274,6 +286,14 @@ nav.navbar {
     div.account {
         display: block;
     }
+
+    div.account:hover > div.drop-account {
+        display: block;
+    }
+
+  /*   div.account:hover > div.drop-account.show {
+        display: block;
+    } */
 
     div.account .btn-account {
         display: none;
@@ -293,13 +313,43 @@ nav.navbar {
         height: 34px;
     }
 
-    div.account .avatar:hover {
+    div.account .avatar:hover{
         color: var(--ligthBlue);
         border: solid 1px var(--ligthBlue);
     }
 
     div.account i.arrow {
         display: none;
+    }
+
+    /* Desplegable de mi cuenta */
+    div.drop-account{
+        display: none; 
+        position: absolute;
+        background: rgb(195, 166, 246);
+        background: linear-gradient(180deg, rgba(195, 166, 246, 1) 0%, rgba(106, 46, 204, 1) 100%);
+        padding: 30px;
+        border-radius: 15px;
+        text-align: center;
+        right: 10px;
+        margin-top: 2px;
+        transition: all 1s ease;
+        order: 3;
+    }
+
+    div.drop-account.show{
+        display: inline-flex;
+    }
+
+    div.drop-account li{  
+       margin: 5px;
+    }
+
+    div.drop-account a{
+        text-decoration: none;
+        color: var(--cream);
+        padding: 5px;
+        font-family: var(--font-poppins);
     }
 
     /* carrito */
@@ -318,7 +368,7 @@ nav.navbar {
 
     nav.navbar ul.container-principal {
         display: flex;
-        color: var(--cream);
+      /*   color: var(--cream); */
         font-family: var(--font-poppins);
         font-weight: lighter;
         justify-content: space-evenly;
@@ -333,6 +383,12 @@ nav.navbar {
         transition: all 1s ease;
     }
 
+    nav.navbar ul.container-principal li.item a{
+        text-decoration: none;
+        color: var(--cream);
+        transition: all 1s ease;
+    }
+
     nav.navbar ul.container-principal li.item:hover {
         border-style: solid;
         border-width: 3px;
@@ -342,31 +398,48 @@ nav.navbar {
     /* Desplegable de Categorias -Tablet */
 
     nav.navbar ul.container-principal li.item-categoria div.general {
-        display: flex;
+        display: none;
         position: absolute;
-        margin-top: 15px;
+    }
+
+    nav.navbar ul.container-principal li.item-categoria:hover > div.general {
+        display: flex;
+    }
+
+    nav.navbar ul.container-principal li.item-categoria div.general.show {
+        display: flex;
     }
 
     nav.navbar ul.container-principal li.item-categoria div.general div.sub-category {
         transition: all 0.5s ease-in;
     }
 
-    nav.navbar ul.container-principal li.item-categoria div.general div.sub-category li {
+    nav.navbar ul.container-principal li.item-categoria div.general div.sub-category li, nav.navbar ul.container-principal li.item-categoria div.general div.sub-category li
+    {
         background-color: white;
         border: solid 1px var(--purple);
         border-radius: 5px;
         color: var(--purple);
         margin: 2px;
-        text-align: center;
-        padding: 3PX;
+        text-align: center;  
         width: 9rem;
         transition: all 0.5s ease-in;
         user-select: none;
     }
 
-    nav.navbar ul.container-principal li.item-categoria div.general div.sub-category li:hover {
+    nav.navbar ul.container-principal li.item-categoria div.general div.sub-category li a{
+        color: var(--purple);
+        display: block;
+        padding: 3PX;
+    }
+
+    nav.navbar ul.container-principal li.item-categoria div.general div.sub-category li:hover , nav.navbar ul.container-principal li.item-categoria div.general div.sub-category li a:hover{
         background-color: var(--purple);
         color: var(--cream);
+    }
+
+    nav.navbar ul.container-principal li.item-categoria div.general div.sub-category li #todo:hover ~ .dropdown-rigth .todo {
+        display: block;
     }
 
     nav.navbar ul.container-principal li.item-categoria div.general div.dropdown-rigth {
@@ -375,6 +448,8 @@ nav.navbar {
         width: 70%;
         position: relative;
         left: -5px;
+        height: 15rem;
+        overflow: auto;
     }
 
     nav.navbar ul.container-principal li.item-categoria div.general div.dropdown-rigth div.todo,
@@ -420,9 +495,13 @@ nav.navbar {
     nav.navbar ul.container-principal li.item-marcas div.general {
         position: absolute;
         display: flex;
-        margin-top: 15px;
+        margin-top: 2px;
         display: none;
     }
+
+    nav.navbar ul.container-principal li.item-marcas:hover > div.general {
+        display: flex;
+    } 
 
     nav.navbar ul.container-principal li.item-marcas div.general .sub-category {
         background-color: var(--purple);
