@@ -68,7 +68,14 @@ main section.container-products div.products {
     grid-auto-flow: dense;
 }
 
-main section.container-products div.products article {
+main section.container-products div.products a {
+    text-decoration: none;
+    color: inherit;
+}
+
+main section.container-products div.products article,
+.cajasmini article
+ {
     padding: 1rem;
     background-color: white;
     border-radius: 5px;
@@ -79,7 +86,8 @@ main section.container-products div.products article {
     margin: 2px 10px;
 }
 
-main section.container-products div.products article div.star {
+main section.container-products div.products article div.star,
+.cajasmini article div.star {
     display: inline-block;
     position: absolute;
     right: 1rem;
@@ -87,39 +95,45 @@ main section.container-products div.products article div.star {
     height: 35px;
 }
 
-main section.container-products div.products article div.star img {
+main section.container-products div.products article div.star img,
+.cajasmini article .star img {
     width: 35px;
     height: 35px;
 }
 
-main section.container-products div.products article div.img-producto {
+main section.container-products div.products article div.img-producto,
+cajasmini article div.img-producto {
     width: fit-content;
-    height: 10rem;
 }
 
-main section.container-products div.products article div.img-producto img {
+main section.container-products div.products article div.img-producto img,
+.cajasmini article {
     width: 100%;
     height: inherit;
 }
 
 /* puntuación */
 
-main section.container-products div.products article div.puntuacion {
+main section.container-products div.products article div.puntuacion,
+.cajasmini article div.puntuacion {
     font-size: 11px;
     font-family: var(--font-roboto);
     display: flex;
 }
 
-main section.container-products div.products article div.puntuacion p {
+main section.container-products div.products article div.puntuacion p,
+.cajasmini article div.puntuacion p {
     padding: 10px;
 }
 
 /* Descripción de Productos */
-main section.container-products div.products article div.description-product {
+main section.container-products div.products article div.description-product,
+.cajasmini article div.description-product {
     font-family: var(--font-inter);
 }
 
-main section.container-products div.products article div.description-product h4 {
+main section.container-products div.products article div.description-product h4,
+.cajasmini article div.description-product h4 {
     font-size: 14px;
     margin: 10px 0px;
 }
@@ -129,7 +143,8 @@ main section.container-products div.products article div.description-product p {
     display: none;
 }
 
-main section.container-products div.products article div.description-product h3 {
+main section.container-products div.products article div.description-product h3,
+.cajasmini article div.description-product{
     font-weight: bold;
     font-size: 18px;
     text-align: center;
@@ -185,6 +200,7 @@ main section.container-products div.products article div.description-product h3 
     /* Tarjetitas */
 
     section div.tarjetitas {
+        margin: 10px;
         transition: all 1s ease;
     }
 

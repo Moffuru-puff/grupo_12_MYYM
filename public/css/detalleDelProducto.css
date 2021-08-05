@@ -280,6 +280,8 @@ div .opinion {
     padding: 3px;
     border-radius: 8px;
     box-shadow: 3px 3px 4px #363434;
+    font-family: var(--font-inter);
+    background-color: #000000;
     
 }
 
