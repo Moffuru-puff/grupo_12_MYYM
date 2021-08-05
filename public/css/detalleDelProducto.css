@@ -31,8 +31,8 @@ div .nombre {
     flex-direction: row;
     text-align: center;
     align-items: center;
-    background: rgb(58, 66, 180);
-    background: linear-gradient(90deg, rgba(58, 66, 180, 1) 0%, rgba(172, 29, 253, 0.9800918836140888) 50%, rgba(250, 181, 250, 1) 100%);
+    background: rgb(37, 15, 77);
+    background: linear-gradient(90deg, rgb(18, 2, 44) 0%, rgba(75, 3, 117, 0.98) 50%, rgb(243, 59, 243) 100%);
     justify-content: center;
     border-radius: 10px;
     box-shadow: 2px 2px 5px rgb(104, 101, 101);
@@ -64,6 +64,14 @@ hr {
 .estrellita {
     display: block;
     position: relative;
+    cursor: pointer;
+
+}
+#starFlotante{
+    position: absolute;
+    top: 10px;
+    right:10px;
+    
 }
 
 .fa-star:before {
@@ -179,7 +187,7 @@ div .c-principales {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: rgb(0, 21, 138);
+    background-color: rgb(38, 0, 82);
     font-family: Verdana;
     border-radius: 10px;
     box-shadow: 3px 3px 4px #363434;
@@ -220,19 +228,19 @@ div .flecha-abajo {
 .preguntas {
     flex-direction: column;
     justify-content: center;
-    background: rgb(117, 250, 255);
-    background: radial-gradient(circle, rgba(117, 250, 255, 1) 0%, rgba(50, 106, 245, 1) 100%);
+    background-color: rgb(10, 8, 48);
     border-radius: 10px;
     padding: 15px;
     display: flex;
     position: relative;
     margin-bottom: 6px;
     box-shadow: 3px 3px 4px #363434;
+    color: white;
 }
 
 #clientes {
     background: rgb(117, 250, 255);
-    background: radial-gradient(circle, rgba(117, 250, 255, 1) 0%, rgba(50, 106, 245, 1) 100%);
+    background: radial-gradient(circle, rgba(117, 250, 255, 1) 0%, rgb(1, 29, 100) 100%);
     height: 25px;
     margin-top: 10px;
     border-radius: 6px;
@@ -243,7 +251,8 @@ div .flecha-abajo {
     text-align: center;
     border-radius: 8px;
     padding: 10px;
-    background: rgb(34, 0, 102);
+    background: rgb(37, 15, 77);
+    background: linear-gradient(90deg, rgb(18, 2, 44) 0%, rgba(75, 3, 117, 0.98) 50%, rgb(243, 59, 243) 100%);
     color: white;
 }
 
@@ -309,7 +318,12 @@ div .opinion {
     flex-direction: row;
     display: block;
 }
-
+#puntosDeEstrellas{
+   
+   font-size: 20px;
+    
+ 
+}
 
 
 
