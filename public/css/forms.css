@@ -103,7 +103,7 @@ span.error-message {
 
  /*  Botones*/
 
- button {
+ #btn-submit {
     display: flex;
     align-items: center;
     justify-content: center;
