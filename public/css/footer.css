@@ -1,11 +1,8 @@
 @import url(variants.css);
 
 footer {
-    position: sticky;
     bottom: 0;
-    z-index: 999;
 }
-
 /* botón info */
 
 footer div.mas-info {
@@ -66,6 +63,10 @@ footer nav.menu li.menu-item ul.sub-menu {
     font-size: 14px;
     padding-left: 25px;
     display: none;
+}
+
+footer nav.menu li.menu-item:hover > ul.sub-menu:hover {
+    display: block;
 }
 
 footer nav.menu li.menu-item ul.sub-menu li a {
@@ -152,7 +153,7 @@ div.social-icon {
         text-decoration: none;
         color: var(--grey);
         font-size: 1.5rem;
-        width: 2rem;
+        width: 1.8rem;
     }
 }
 
@@ -213,6 +214,6 @@ div.social-icon {
         text-decoration: none;
         color: var(--grey);
         font-size: 2rem;
-        width: 3rem;
+        width: 2rem;
     }
 }
