@@ -91,6 +91,7 @@ div .foto-principal {
     box-shadow: 3px 3px 5px rgb(61, 60, 60);
 }
 
+
 .cuerpo img {
     width: 100%;
 }
@@ -151,6 +152,7 @@ div .tarjeta-envio {
     padding: 5px 15px;
 }
 
+
 .envio .fa-credit-card:before {
     color: rgb(0, 81, 255);
 }
@@ -200,6 +202,7 @@ div .c-principales {
     bottom: 49px;
     cursor: pointer;
 }
+
 
 .preguntas input {
     margin-top: 7px;
