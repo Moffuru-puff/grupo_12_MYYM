@@ -99,7 +99,6 @@ main section.container-products div.products article div.star img {
 
 main section.container-products div.products article div.img-producto {
     width: fit-content;
-    height: 10rem;
 }
 
 main section.container-products div.products article div.img-producto img {
@@ -190,6 +189,7 @@ main section.container-products div.products article div.description-product h3 
     /* Tarjetitas */
 
     section div.tarjetitas {
+        margin: 10px;
         transition: all 1s ease;
     }
 
