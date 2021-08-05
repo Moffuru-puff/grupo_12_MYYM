@@ -145,8 +145,7 @@ main section.container-products div.products article div.description-product p {
     display: none;
 }
 
-main section.container-products div.products article div.description-product h3,
-.cajasmini article div.description-product{
+main section.container-products div.products article div.description-product h3 {
     font-weight: bold;
     font-size: 18px;
     text-align: center;

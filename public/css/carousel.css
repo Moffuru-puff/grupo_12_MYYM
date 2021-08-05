@@ -18,7 +18,6 @@
 }
 
 section div.dots {
-    width: fit-content;
     display: flex;
     justify-content: center;
 }
