@@ -1,0 +1,357 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+.cuerpo {
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 15px;
+    padding: 5px;
+}
+
+.cajita-producto {
+    padding: 2px;
+    margin: 2px;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+div .nombre {
+    height: 60px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+    background: rgb(58, 66, 180);
+    background: linear-gradient(90deg, rgba(58, 66, 180, 1) 0%, rgba(172, 29, 253, 0.9800918836140888) 50%, rgba(250, 181, 250, 1) 100%);
+    justify-content: center;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgb(104, 101, 101);
+    position: relative;
+}
+
+h2 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+h4 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#precio {
+    text-align: center;
+    justify-content: center;
+    font-size: 20px;
+    padding: 5px;
+    text-shadow: 2px 2px 4px #4e4b4b;
+}
+
+hr {
+    background: linear-gradient(90deg, rgb(1, 9, 114) 0%, rgba(100, 191, 252, 0.98) 50%, rgb(240, 253, 255) 100%);
+    height: 3px;
+    margin: 12px;
+}
+
+.estrellita {
+    display: block;
+    position: relative;
+}
+
+.fa-star:before {
+    color: rgb(255, 255, 255);
+    text-align: center;
+    width: 100%;
+    height: 100%;
+}
+
+div .nombredelproducto {
+    align-items: center;
+    text-align: center;
+    width: 90%;
+    font-size: 13px;
+    text-shadow: 3px 3px 4px #000000;
+    color: white;
+}
+
+div .foto-principal {
+    background-color: rgb(255, 255, 255);
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    border-radius: 15px;
+    box-shadow: 3px 3px 5px rgb(61, 60, 60);
+}
+
+img {
+    width: 100%;
+}
+
+#boton-compra {
+    display: flex;
+    flex-direction: column;
+    height: 120px;
+    width: auto;
+}
+
+.boton-compra1 {
+    background: rgb(208, 0, 0);
+    background: linear-gradient(90deg, rgba(208, 0, 0, 1) 0%, rgba(208, 0, 96, 1) 35%, rgba(255, 163, 0, 1) 100%);
+    height: 100%;
+    width: 100%;
+    border-radius: 20px;
+    margin-bottom: 5px;
+    font-size: 18px;
+    font-weight: 600;
+    box-shadow: 3px 3px 5px rgb(61, 60, 60);
+    color: white;
+    text-shadow: 3px 3px 4px #000000;
+    border-color: rgb(208, 0, 0);
+    cursor: pointer;
+}
+
+.boton-compra1:hover {
+    font-size: 22px;
+    border-color: rgb(239, 255, 94);
+}
+
+div .boton-compra2 {
+    background: rgb(208, 0, 0);
+    background: linear-gradient(90deg, rgba(243, 8, 8, 0.7) 0%, rgba(208, 0, 96, 0.7) 35%, rgba(255, 237, 135, 0.8) 100%);
+    height: 100%;
+    width: 100%;
+    border-radius: 20px;
+    margin-bottom: 5px;
+    font-size: 18px;
+    font-weight: 600;
+    box-shadow: 3px 3px 5px rgb(61, 60, 60);
+    color: white;
+    text-shadow: 3px 3px 4px #000000;
+    border-color: rgb(255, 109, 11);
+    cursor: pointer;
+}
+
+.boton-compra2:hover {
+    font-size: 20px;
+    border-color: rgb(239, 255, 94);
+}
+
+div .tarjeta-envio {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 5px 15px;
+}
+
+.fa-credit-card:before {
+    color: rgb(0, 81, 255);
+}
+
+.fa-shipping-fast:before {
+    color: rgb(0, 81, 255);
+}
+
+div.envio {
+    display: flex;
+    padding-bottom: 3px;
+    letter-spacing: 1px;
+    font-family: sans-serif;
+}
+
+div .caracteristicas {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: rgb(36, 33, 33);
+}
+
+div .c-principales {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgb(0, 21, 138);
+    font-family: Verdana;
+    border-radius: 10px;
+    box-shadow: 3px 3px 4px #363434;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: rgb(253, 245, 245);
+    text-shadow: 3px 3px 4px #363434;
+    border-color: blue;
+}
+
+.flecha {
+    background-color: rgb(248, 155, 94);
+    display: inline;
+    border-radius: 6px;
+    border: solid 2px rgb(168, 5, 168);
+    padding: 5px 7px;
+    float: left;
+    position: absolute;
+    right: 15px;
+    bottom: 49px;
+    cursor: pointer;
+}
+
+input {
+    margin-top: 7px;
+    width: 95%;
+    height: 20px;
+}
+
+div .flecha-abajo {
+    position: absolute;
+    right: 22px;
+    bottom: 17px;
+    cursor: pointer;
+}
+
+.preguntas {
+    flex-direction: column;
+    justify-content: center;
+    background: rgb(117, 250, 255);
+    background: radial-gradient(circle, rgba(117, 250, 255, 1) 0%, rgba(50, 106, 245, 1) 100%);
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    position: relative;
+    margin-bottom: 6px;
+    box-shadow: 3px 3px 4px #363434;
+}
+
+#clientes {
+    background: rgb(117, 250, 255);
+    background: radial-gradient(circle, rgba(117, 250, 255, 1) 0%, rgba(50, 106, 245, 1) 100%);
+    height: 25px;
+    margin-top: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.calificacion {
+    text-align: center;
+    border-radius: 8px;
+    padding: 10px;
+    background: rgb(34, 0, 102);
+    color: white;
+}
+
+div .opinion {
+    color: rgb(34, 6, 59);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    width: 80%;
+    height: 30px;
+    box-shadow: 3px 3px 4px #7d7b7e;
+    border-color: rgb(34, 6, 59);
+    border-radius: 8px;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+.otrosProductos{
+    text-align: center;
+   
+    flex-direction: column;
+    
+   
+}
+.cajasmini{
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    
+
+}
+.productosInteresantes{
+    display: block;
+    cursor: pointer;
+    max-width: 200px;
+    max-height: 400px;
+    justify-content: center;
+    box-sizing: border-box;
+    margin: 2px;
+    padding: 3px;
+    border-radius: 8px;
+    box-shadow: 3px 3px 4px #363434;
+    font-family: var(--font-inter);
+    background-color: #000000;
+    
+}
+
+
+.imagenMini{
+   height: auto;
+   width: auto;
+   max-width: 100%;
+   justify-content: center;
+   box-sizing: border-box;
+}
+
+.estrellamini{
+    width: 20px;
+    height: 20px;
+    background-color: blue;
+    
+    
+}
+.tituloCajitasMini{
+   
+    flex-direction: row;
+    display: block;
+}
+
+
+
+
+
+
+
+/*TABLET*/
+
+@media (min-width: 480px) {
+   
+        
+    
+    
+    .fotoMasdetalle{
+        
+        display: flex;
+        
+    }
+    div .foto-principal{
+        width: 60%;
+    }
+    .detallesPrecio{
+        width: 40%;
+        height: auto;
+        
+        align-items: center;
+        justify-content: center;
+        padding-top: 8%;
+        
+    }
+    .calificacion {
+        
+        border-radius: 8px;
+        
+    };
+   
+    .numero{font-size: 25px;}
+    
+    div .opinion {
+        color: rgb(34, 6, 59);
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        width: 30%;
+        height: 35px;
+        
+       
+    }
+   
+}
