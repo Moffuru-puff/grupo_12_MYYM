@@ -25,6 +25,10 @@ app.get('/submit', (req, res) => {
     res.sendFile(path.join(__dirname, `/views/submit.html`))
 })
 
+app.get('/detalleDelProducto', (req, res) => {
+    res.sendFile(path.join(__dirname, `/views/detalleDelProducto.html`))
+})
+
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, `/views/error404.html`) )
 }) 

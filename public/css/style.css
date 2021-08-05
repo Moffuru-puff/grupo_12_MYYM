@@ -2,7 +2,7 @@
 @import url('header.css');
 @import url('home.css');
 @import url('carousel.css');
-
+@import url('detalleDelProducto.css');
 
 *{
     margin: 0;
