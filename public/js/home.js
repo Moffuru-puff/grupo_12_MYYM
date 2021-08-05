@@ -43,3 +43,6 @@ window.onload = () => {
     } )
 
 }
+
+/* array.splice(index, 1)
+ */
