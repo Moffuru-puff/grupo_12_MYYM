@@ -33,6 +33,18 @@ app.get('/detalleDelProducto', (req, res) => {
     res.sendFile(path.join(__dirname, `/views/detalleDelProducto.html`))
 })
 
+app.get('/shopingCart', (req, res) => {
+    res.sendFile(path.join(__dirname, `/views/shopingCart.html`) )
+}) 
+app.get('/checkout', (req, res) => {
+    res.sendFile(path.join(__dirname, `/views/checkout.html`) )
+}) 
+app.get('/shipping', (req, res) => {
+    res.sendFile(path.join(__dirname, `/views/shipping.html`) )
+}) 
+app.get('/confirm', (req, res) => {
+    res.sendFile(path.join(__dirname, `/views/confirm.html`) )
+}) 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, `/views/error404.html`) )
 }) 

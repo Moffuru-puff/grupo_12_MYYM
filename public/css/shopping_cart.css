@@ -1,0 +1,102 @@
+/*-----cart items-----*/
+
+.mi_carrito {
+display: flex;
+justify-content: space-between;
+align-items: center;
+font-size: x-large;
+margin-bottom: 0%;
+
+
+}
+
+.icon_shopcart{
+
+ color: #ff523b;
+ font-size: xx-large;
+}
+.cart-page{
+
+    margin: 80px auto;
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+
+}
+
+.cart-info{
+
+    display: flex;
+    flex-wrap: wrap;
+ 
+}
+th{
+   
+    text-align: left;
+    padding: 5px;
+    color: #fff ;
+    background-color: #0a0a2c;
+    font-weight: normal;
+
+}
+
+td{
+    padding: 10px 5px;
+  
+}
+
+td input{
+    width: 40px;
+    height: 30px;
+    padding: 5px;
+    border-radius: 15px;
+    border-style: groove;
+    border-color: rgb(176, 175, 228) ;
+
+}
+
+td a {
+    color: #ff523b;
+    font-size: 12px;
+ 
+}
+
+
+
+td img {
+    width: 135px;
+    height: 125px;
+    margin-right: 10px;
+    margin-top: 0px;
+}
+
+.total-price {
+
+    display: flex;
+    justify-content: flex-end;
+}
+.total-price table {
+
+    border-top: 3px solid #0a0a2c;;
+    width: 100%;
+    max-width: 350px;
+}
+
+td:last-child{
+    text-align:right;
+}
+
+th:last-child {
+    text-align:right;
+}
+.pay-btn{
+    width: 135px;
+    color: #fff;
+    margin-top: 10px;
+    height: 30px;
+    background-color: #9100fd;
+    border: none;
+    cursor: pointer;
+}

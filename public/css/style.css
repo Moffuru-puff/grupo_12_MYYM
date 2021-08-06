@@ -7,6 +7,11 @@
 @import url('forms.css');
 @import url('login.css');
 @import url('register.css');
+@import url('shopping_cart.css');
+@import url('style_checkout.css');
+@import url('style_shipping.css');
+@import url('confirm.css');
+
 
 *{
     margin: 0;
