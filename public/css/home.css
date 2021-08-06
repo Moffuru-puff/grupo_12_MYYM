@@ -108,10 +108,9 @@ main section.container-products div.products article div.img-producto,
     width: fit-content;
 }
 
-main section.container-products div.products article div.img-producto img,
-.cajasmini article {
+main section.container-products div.products article div.img-producto img {
     width: 100%;
-    height: inherit;
+    height: 180px;
 }
 
 /* puntuación */
@@ -202,7 +201,6 @@ main section.container-products div.products article div.description-product h3 
     /* Tarjetitas */
 
     section div.tarjetitas {
-        margin: 10px;
         transition: all 1s ease;
     }
 
