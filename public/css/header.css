@@ -1,0 +1,653 @@
+@import url(variants.css);
+
+/* header */
+ header {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+header .main-header {
+    background: linear-gradient(103deg, rgba(0, 0, 0, 1) 0%, rgba(55, 4, 96, 1) 100%);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* Boton haburguesa */
+.btn-hamburguesa {
+    background-color: rgba(196, 196, 196, 0.25);
+    border: 1px solid var(--grey);
+    border-radius: 15px;
+    display: inline-block;
+    text-align: center;
+    width: 45px;
+    height: 45px;
+}
+
+.bars {
+  width: 40px;
+  cursor: pointer;
+}
+.bars .line {
+  fill: none;
+  stroke: var(--grey);
+  stroke-width: 4;
+  stroke-linecap: square;
+  transition: stroke-dasharray 1s,  stroke-dashoffset 1s;
+}
+.bars .line.top {
+  stroke-dasharray: 40 172;
+}
+.bars .line.middle {
+  stroke-dasharray: 40 111;
+}
+.bars .line.bottom {
+  stroke-dasharray: 40 172;
+}
+.bars.active .top {
+  stroke-dashoffset: -132px;
+}
+.bars.active .middle {
+  stroke-dashoffset: -71px;
+}
+.bars.active .bottom {
+  stroke-dashoffset: -132px;
+}
+
+li {
+    list-style: none;
+}
+
+header nav.menu {
+    display: none;  
+    position: absolute;
+    background: rgb(195, 166, 246);
+    background: linear-gradient(180deg, rgba(195, 166, 246, 1) 0%, rgba(106, 46, 204, 1) 100%);
+    min-width: 200px;
+    left: -10px;
+    padding: 0 30px;
+    transition: all 1s ease;
+}
+
+header nav.menu.show {
+    display: block;
+   
+}
+
+
+header nav.menu a {
+    color: var(--cream);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: all 1s ease;
+}
+
+header nav.menu a:hover {
+    background-color: var(--purple);
+    opacity: 0.5;
+}
+
+header nav.menu li.menu-item {
+    border-bottom: solid 1px var(--cream);
+    font-family: var(--font-poppins);
+    font-weight: bold;
+    margin-bottom: 5px;
+    transition: all 3s ease;
+}
+
+header nav.menu li.menu-item ul.sub-menu {
+    font-weight: lighter;
+    font-size: 14px;
+    padding-left: 25px;
+    display: none;
+}
+
+header nav.menu li.menu-item ul.sub-menu.show {
+    display: block;
+}
+
+header nav.menu li.menu-item:hover ul.sub-menu {
+    display: inline;
+}
+
+.container-menu:hover nav.menu {
+    display: block;
+}
+
+/* Logo */
+div.logo img {
+    border-radius: 45%;
+    max-width: 30vw;
+    max-height: 18vh;
+
+}
+
+/* Buscador */
+
+.btn-search {
+    color: var(--grey);
+    background-color: rgba(196, 196, 196, 0.1);
+    border: solid 1px var(--grey);
+    border-radius: 20px;
+    font-size: 1.2em;
+    width: 36px;
+    height: 34px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-search:hover {
+    color: var(--ligthBlue);
+    border: solid 1px var(--ligthBlue);
+}
+
+header form {
+    display: none;
+    position: relative;
+    width: 250px;
+    order: 3;
+
+}
+
+header form input:focus {
+    outline: none;
+}
+
+.search {
+    display: block;
+    background-color: rgba(196, 196, 196, 0.25);
+    height: 34px;
+    border-radius: 8px;
+    border: solid 1px var(--grey);
+    width: 100%;
+    padding-left: 10px;
+}
+
+
+.search::placeholder {
+    color: var(--cream);
+    flex-wrap: wrap;
+    font-family: var(--font-poppins);
+    font-weight: lighter;
+    font-size: 12px;
+    padding: 5px;
+}
+
+header form button.btn-search {
+    border-radius: 10px;
+    position: absolute;
+    right: 0;
+}
+
+
+
+/* Cuenta */
+
+div.account {
+    display: none;
+}
+
+/* Carrito de compras */
+
+.cart {
+    color: var(--grey);
+    background-color: rgba(196, 196, 196, 0.25);
+    border: solid 1px var(--grey);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+    width: 36px;
+    height: 34px;
+}
+
+.cart:hover {
+    color: var(--ligthBlue);
+    border: solid 1px var(--ligthBlue);
+}
+
+div.shopping-cart i,
+.total,
+.btn-cart {
+    display: none;
+    text-decoration: none;
+}
+
+/* Nav para tablet y desktop */
+nav.navbar {
+    display: none;
+}
+
+.hidden {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+@media screen and (min-width: 481px) {
+
+    /* botón hamburguesa */
+    .btn-hamburguesa {
+        display: none;
+    }
+
+    header .container-menu {
+        display: block;
+    }
+
+    header nav.menu {
+        background: none;
+        display: none;
+        width: 100%;
+        flex-direction: row;
+        /* position: absolute; */
+        margin-top: 37px;
+
+    }
+
+    header nav.menu ul {
+        display: none;
+    }
+
+    header nav.menu li.menu-item {
+        border-bottom: none;
+        font-weight: lighter;
+        margin-bottom: 5px;
+        flex-wrap: nowrap;
+    }
+
+    /* Buscador */
+
+    header form {
+        display: flex;
+        width: 55%;
+        order: 0;
+    }
+
+    header .search {
+        display: block;
+    }
+
+    header .btn-search {
+        display: none;
+    }
+
+    header form button.btn-search {
+        display: block;
+    }
+
+    /* Cuenta */
+    div.account {
+        display: block;
+    }
+
+    div.account:hover > div.drop-account {
+        display: block;
+    }
+
+  /*   div.account:hover > div.drop-account.show {
+        display: block;
+    } */
+
+    div.account .btn-account {
+        display: none;
+    }
+
+    div.account .avatar {
+        display: block;
+        color: var(--grey);
+        background-color: rgba(196, 196, 196, 0.25);
+        border: solid 1px var(--grey);
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.5em;
+        width: 36px;
+        height: 34px;
+    }
+
+    div.account .avatar:hover{
+        color: var(--ligthBlue);
+        border: solid 1px var(--ligthBlue);
+    }
+
+    div.account i.arrow {
+        display: none;
+    }
+
+    /* Desplegable de mi cuenta */
+    div.drop-account{
+        display: none; 
+        position: absolute;
+        background: rgb(195, 166, 246);
+        background: linear-gradient(180deg, rgba(195, 166, 246, 1) 0%, rgba(106, 46, 204, 1) 100%);
+        padding: 30px;
+        border-radius: 15px;
+        text-align: center;
+        right: 10px;
+        margin-top: 2px;
+        transition: all 1s ease;
+        order: 3;
+    }
+
+    div.drop-account.show{
+        display: inline-flex;
+    }
+
+    div.drop-account li{  
+       margin: 5px;
+    }
+
+    div.drop-account a{
+        text-decoration: none;
+        color: var(--cream);
+        padding: 5px;
+        font-family: var(--font-poppins);
+    }
+
+    /* carrito */
+    .cart {
+        border-radius: 10px;
+    }
+
+    /* Navbar */
+    nav.navbar {
+        background: linear-gradient(103deg, rgba(0, 0, 0, 1) 0%, rgba(55, 4, 96, 1) 100%);
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        height: 7vh;
+    }
+
+    nav.navbar ul.container-principal {
+        display: flex;
+      /*   color: var(--cream); */
+        font-family: var(--font-poppins);
+        font-weight: lighter;
+        justify-content: space-evenly;
+        width: 90%;
+        border-top: solid 1px var(--grey);
+        padding-top: 5px;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    nav.navbar ul.container-principal li.item {
+        transition: all 1s ease;
+    }
+
+    nav.navbar ul.container-principal li.item a{
+        text-decoration: none;
+        color: var(--cream);
+        transition: all 1s ease;
+    }
+
+    nav.navbar ul.container-principal li.item:hover {
+        border-style: solid;
+        border-width: 3px;
+        border-image: linear-gradient(to left, rgb(252, 176, 69) 0%, rgb(253, 29, 29) 50%, rgb(131, 58, 180) 100%) 100% 0 100% 0/0px 0 3px 0 stretch;
+    }
+
+    /* Desplegable de Categorias -Tablet */
+
+    nav.navbar ul.container-principal li.item-categoria div.general {
+        display: none;
+        position: absolute;
+        padding: 10px;
+    }
+
+    nav.navbar ul.container-principal li.item-categoria:hover > div.general {
+        display: flex;
+    }
+
+    nav.navbar ul.container-principal li.item-categoria div.general.show {
+        display: flex;
+    }
+
+    nav.navbar ul.container-principal li.item-categoria div.general div.sub-category {
+        transition: all 0.5s ease-in;
+    }
+
+    nav.navbar ul.container-principal li.item-categoria div.general div.sub-category li, nav.navbar ul.container-principal li.item-categoria div.general div.sub-category li
+    {
+        background-color: white;
+        border: solid 1px var(--purple);
+        border-radius: 5px;
+        color: var(--purple);
+        margin: 2px;
+        text-align: center;  
+        width: 9rem;
+        transition: all 0.5s ease-in;
+        user-select: none;
+    }
+
+    nav.navbar ul.container-principal li.item-categoria div.general div.sub-category li a{
+        color: var(--purple);
+        display: block;
+        padding: 3PX;
+    }
+
+    nav.navbar ul.container-principal li.item-categoria div.general div.sub-category li:hover , nav.navbar ul.container-principal li.item-categoria div.general div.sub-category li a:hover{
+        background-color: var(--purple);
+        color: var(--cream);
+    }
+
+    nav.navbar ul.container-principal li.item-categoria div.general div.sub-category li #todo:hover ~ .dropdown-rigth .todo {
+        display: block;
+    }
+
+    nav.navbar ul.container-principal li.item-categoria div.general div.dropdown-rigth {
+        display: flex;
+        flex-direction: column;
+        width: 70%;
+        position: relative;
+        left: -5px;
+        height: 15rem;
+        overflow: auto;
+    }
+
+    nav.navbar ul.container-principal li.item-categoria div.general div.dropdown-rigth div.todo,
+    .consolas,
+    .videojuegos,
+    .accesorios,
+    .zonaRetro {
+        background: rgb(55, 4, 96);
+        background: linear-gradient(90deg, rgba(55, 4, 96, 1) 0%, rgba(255, 163, 0, 1) 100%);
+        background: -moz-linear-gradient(90deg, rgba(55, 4, 96, 1) 0%, rgba(255, 163, 0, 1) 100%);
+        padding: 0 10px;
+        border-radius: 2px;
+    }
+
+    nav.navbar ul.container-principal li.item-categoria div.general div.dropdown-rigth .row {
+        padding: 1rem;
+        border-bottom: solid 1px;
+    }
+
+    nav.navbar ul.container-principal li.item-categoria div.general div.dropdown-rigth .row h4 a {
+        font-family: var(--font-poppins);
+        font-size: 13px;
+        font-weight: bold;
+        color: var(--cream);
+    }
+
+    nav.navbar ul.container-principal li.item-categoria div.general div.dropdown-rigth .row h4 a i {
+        margin-left: 5rem;
+    }
+
+    nav.navbar ul.container-principal li.item-categoria div.general div.dropdown-rigth .row ul li a,
+    .column ul li a {
+        font-family: var(--font-poppins);
+        font-size: 13px;
+        font-weight: lighter;
+        color: var(--cream);
+        text-decoration: none;
+    }
+
+
+    /* Desplegable de Marcas-Tablet */
+
+    nav.navbar ul.container-principal li.item-marcas div.general {
+        position: absolute;
+        display: flex;
+        margin-top: 2px;
+        display: none;
+    }
+
+    nav.navbar ul.container-principal li.item-marcas:hover > div.general {
+        display: flex;
+    } 
+
+    nav.navbar ul.container-principal li.item-marcas div.general .sub-category {
+        background-color: var(--purple);
+        width: max-content;
+        height: max-content;
+        border-radius: 10px 0 0 10px;
+    }
+
+    nav.navbar ul.container-principal li.item-marcas div.general .sub-category ul.sub-item {
+        display: inline-flex;
+        flex-wrap: wrap;
+        width: 9rem;
+        height: 15rem;
+        padding: 1rem;
+    }
+
+    nav.navbar ul.container-principal li.item-marcas div.general .sub-category ul.sub-item li {
+        width: 25px;
+        height: 25px;
+        font-size: larger;
+        text-align: center;
+        user-select: none;
+        cursor: pointer;
+    }
+
+    nav.navbar ul.container-principal li.item-marcas div.general .sub-category ul.sub-item li a {
+        color: var(--cream);
+        text-decoration: none;
+    }
+
+    nav.navbar ul.container-principal li.item-marcas div.dropdown-rigth {
+        background-color: var(--blue);
+        height: 15rem;
+        overflow: auto;
+    }
+
+    nav.navbar ul.container-principal li.item-marcas div.dropdown-rigth .column {
+        padding: 1rem;
+    }
+
+    nav.navbar ul.container-principal li.item-marcas div.dropdown-rigth .column h4 a {
+        background-color: var(--lilac1);
+        color: var(--cream);
+        display: block;
+        text-decoration: none;
+        font-size: larger;
+        border-radius: 5px;
+        padding-left: 5px;
+    }
+
+    nav.navbar ul.container-principal li.item-marcas div.dropdown-rigth .column ul li {
+        padding: 3px 5px;
+    }
+
+}
+
+@media screen and (min-width: 769px) {
+
+    header .main-header {
+        justify-content: space-around;
+        flex-wrap: nowrap;
+    }
+
+    form button.btn-search{
+        background-color: rgba(196, 196, 196, 0.0);
+    }
+
+    /* Cuenta */
+    div.account {
+        min-width: 150px;
+        border-radius: solid 1px var(--grey);
+        display: flex;
+        justify-content: space-around;
+        background-color: rgba(196, 196, 196, 0.25);
+        border-radius: 10px;
+    }
+
+    div.account .avatar {
+        background-color: rgba(196, 196, 196, 0);
+        border: none;
+    }
+
+    div.account .btn-account {
+        color: var(--cream);
+        font-family: var(--font-poppins);
+        font-weight: lighter;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        width: inherit;
+        user-select: none;
+    }
+
+    div.account i.arrow {
+        color: var(--grey);
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 30px;
+        cursor: pointer;
+    }
+
+     /* Desplegable de mi cuenta */
+     div.drop-account{
+         right: 95px;
+        margin-top: 35px;
+    }
+
+    /* Carrito */
+    div.shoppingCart {
+        min-width: 100px;
+        border-radius: solid 1px var(--grey);
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        background-color: rgba(196, 196, 196, 0.25);
+        border-radius: 10px;
+        padding-right: 5px;
+    }
+
+    .cart {
+        background-color: rgba(196, 196, 196, 0);
+        border: none; 
+    }
+
+    div.shoppingCart h4.total {
+        display: block;
+        color: var(--cream);
+        font-family: var(--font-inter);
+        font-weight: normal;
+        user-select: none;
+    }
+
+    div.shoppingCart .btn-cart{
+        color: var(--grey);
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 30px;
+        cursor: pointer;
+    }
+    
+    /* Desplegables del navBar */
+    
+
+}

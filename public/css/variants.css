@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Poppins:wght@300;400;700;800&family=Roboto:wght@300;400;900&display=swap');
+ 
+ :root {
+     /* Colors */
+     --dark : #010006;
+     --darkBlue : #000116;
+     --blue : #010127;
+     --blueLigth : #000177;
+     --purple : #370460;
+     --violet1 : #5343c0;
+     --violet2 : #6a2ecc;
+     --lilac1 : #9c5ce6;
+     --lilac2 : #9f64d8;
+     --ligthLilac : #c3a6f6; 
+     --lyftPink : #d00060;
+     --fuchsia : #ff00fe;
+     --ligthBlue : #13a7fd;
+     --orange : #ffa300;
+     --cream : #eef1c6;
+     --grey : #909091;
+
+    /* Fonts */
+    --font-inter: 'Inter', sans-serif;
+    --font-poppins: 'Poppins', sans-serif;
+    --font-roboto: 'Roboto', sans-serif;
+ } 
