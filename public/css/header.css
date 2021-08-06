@@ -215,6 +215,7 @@ div.shopping-cart i,
 .total,
 .btn-cart {
     display: none;
+    text-decoration: none;
 }
 
 /* Nav para tablet y desktop */
@@ -560,6 +561,11 @@ nav.navbar {
 }
 
 @media screen and (min-width: 769px) {
+
+    header .main-header {
+        justify-content: space-around;
+        flex-wrap: nowrap;
+    }
 
     form button.btn-search{
         background-color: rgba(196, 196, 196, 0.0);
