@@ -540,16 +540,19 @@
       </header>
 
     <!------cart items details------->
+
+
     
     <div class="small-container cart-page">
         <div class="mi_carrito">
             <h3>Mi Carrito</h3>
-            <div class="icon_shopcart"><i class="fas fa-cart-plus"></i></div>
+    
+    <button class="btn-vaciar">Vaciar Carrito</button>
         </div>
         <table>
 
             <tr>
-                <th>Producto</th>
+                <th class="detalleproducto">Producto</th>
                 <th>Cantidad</th>
                 <th>Subtotal</th>
             </tr>
@@ -619,6 +622,7 @@
                 <td><input type="number" value="1" min="0" max="100"></td>
                 <td>$154.000</td>
             </tr>
+            
         </table>
 
         <div class="total-price">
@@ -638,23 +642,23 @@
                 </tr>
                 <tr>
                     <td>
-                        <a href="#">
-                            <button type="button" class="pay-btn">COMPRAR</button>
+                        <a href="/checkout">
+                            <button type="button" class="pay-btn-shcart">COMPRAR</button>
                         </a>
                     </td>
                     <td>
                         <a href="/shipping">
-                            <button type="button" class="pay-btn">DATOS DE ENVIO</button>
+                            <button type="button" class="pay-btn-shcart">DATOS DE ENVIO</button>
                         </a>
                     </td>
                 </tr>
+                
             </table>
 
         </div>
-
-
-
-
+        <div class="btn-seguirComprando">
+          <a href="/"><button class="btn-seguirComprando" >Seguir Comprando</button></a>
+        </div>
     </div>
 
     <footer>
