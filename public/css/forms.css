@@ -35,7 +35,7 @@ a {
     height: fit-content;
     height: -moz-fit-content;
     padding: 1rem;
-    min-width: 375px;
+    min-width: 320px;
     max-width: 400px;
     font-family: var(--font-roboto);
     font-style: normal;
