@@ -26,6 +26,14 @@ footer div.main-footer {
     background: linear-gradient(103deg, rgba(0, 0, 0, 1) 0%, rgba(55, 4, 96, 1) 100%);
 }
 
+footer section.dropdown-footer {
+    display: none;
+}
+
+footer section.dropdown-footer.show {
+    display: none;
+}
+
 /* Logo */
 footer .logo-footer img {
     display: none;
@@ -50,6 +58,14 @@ footer nav.menu a {
 
 }
 
+footer nav.menu .menu-ul {
+    display: none;
+}
+
+footer nav.menu .menu-ul.show {
+    display: block;
+}
+
 footer nav.menu li.menu-item {
     border-bottom: solid 1px var(--cream);
     font-family: var(--font-poppins);
@@ -58,14 +74,19 @@ footer nav.menu li.menu-item {
     transition: all 3s ease;
 }
 
-footer nav.menu li.menu-item ul.sub-menu {
+footer nav.menu li.menu-item a ~ ul.sub-menu {
     font-weight: lighter;
     font-size: 14px;
     padding-left: 25px;
     display: none;
 }
 
-footer nav.menu li.menu-item:hover > ul.sub-menu:hover {
+
+footer nav.menu li.menu-item a ~ ul.sub-menu.show {
+    display: block;
+}
+
+footer nav.menu li.menu-item a:hover ~ ul.sub-menu {
     display: block;
 }
 
@@ -97,6 +118,10 @@ footer .social-footer div.list-footer,
 div.tarjetas,
 div.social-icon {
     display: none;
+}
+
+.show {
+    display: block;
 }
 
 

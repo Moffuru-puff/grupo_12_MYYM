@@ -122,6 +122,7 @@ div.logo img {
     border-radius: 45%;
     max-width: 30vw;
     max-height: 18vh;
+    padding: 5px;
 
 }
 
@@ -339,7 +340,7 @@ nav.navbar {
     }
 
     div.drop-account.show{
-        display: inline-flex;
+        display: block;
     }
 
     div.drop-account li{  
@@ -358,7 +359,7 @@ nav.navbar {
         border-radius: 10px;
     }
 
-    /* Navbar */
+    /*********** Navbar *************/
     nav.navbar {
         background: linear-gradient(103deg, rgba(0, 0, 0, 1) 0%, rgba(55, 4, 96, 1) 100%);
         display: flex;
@@ -402,6 +403,8 @@ nav.navbar {
         display: none;
         position: absolute;
         padding: 10px;
+        height: 16rem;
+        width: 430px;
     }
 
     nav.navbar ul.container-principal li.item-categoria:hover > div.general {
@@ -413,6 +416,7 @@ nav.navbar {
     }
 
     nav.navbar ul.container-principal li.item-categoria div.general div.sub-category {
+        height: 16rem;
         transition: all 0.5s ease-in;
     }
 
@@ -425,6 +429,7 @@ nav.navbar {
         margin: 2px;
         text-align: center;  
         width: 9rem;
+        height: 3.8rem;
         transition: all 0.5s ease-in;
         user-select: none;
     }
@@ -432,7 +437,9 @@ nav.navbar {
     nav.navbar ul.container-principal li.item-categoria div.general div.sub-category li a{
         color: var(--purple);
         display: block;
-        padding: 3PX;
+        padding: 18px;
+        height: 3.8rem;
+
     }
 
     nav.navbar ul.container-principal li.item-categoria div.general div.sub-category li:hover , nav.navbar ul.container-principal li.item-categoria div.general div.sub-category li a:hover{
@@ -450,8 +457,19 @@ nav.navbar {
         width: 70%;
         position: relative;
         left: -5px;
-        height: 15rem;
+        height: 16rem;
         overflow: auto;
+    }
+
+    nav.navbar ul.container-principal li.item-categoria div.general div.dropdown-rigth div.img-desplegables{
+        width: 160px;
+        position: absolute;
+        right: 10px;
+        top: 115px;
+    }
+
+    nav.navbar ul.container-principal li.item-categoria div.general div.dropdown-rigth div.img-desplegables img{
+        width: 100%;       
     }
 
     nav.navbar ul.container-principal li.item-categoria div.general div.dropdown-rigth div.todo,
@@ -465,22 +483,27 @@ nav.navbar {
         padding: 0 10px;
         border-radius: 2px;
     }
+    
+    nav.navbar ul.container-principal li.item-categoria div.general div.dropdown-rigth h4 a,
+    h4#title {
+        font-family: var(--font-poppins);
+        font-size: 18px;
+        font-weight: bold;
+        color: var(--cream);
+        text-align: center;
+        padding-top: 10px;
+    }
 
     nav.navbar ul.container-principal li.item-categoria div.general div.dropdown-rigth .row {
         padding: 1rem;
         border-bottom: solid 1px;
     }
 
-    nav.navbar ul.container-principal li.item-categoria div.general div.dropdown-rigth .row h4 a {
-        font-family: var(--font-poppins);
-        font-size: 13px;
-        font-weight: bold;
-        color: var(--cream);
-    }
 
-    nav.navbar ul.container-principal li.item-categoria div.general div.dropdown-rigth .row h4 a i {
+   /*  nav.navbar ul.container-principal li.item-categoria div.general div.dropdown-rigth .row h4 a i,
+    h4#title {
         margin-left: 5rem;
-    }
+    } */
 
     nav.navbar ul.container-principal li.item-categoria div.general div.dropdown-rigth .row ul li a,
     .column ul li a {
@@ -499,6 +522,7 @@ nav.navbar {
         display: flex;
         margin-top: 2px;
         display: none;
+        padding: 5px;
     }
 
     nav.navbar ul.container-principal li.item-marcas:hover > div.general {
@@ -648,6 +672,27 @@ nav.navbar {
     }
     
     /* Desplegables del navBar */
-    
+    nav.navbar ul.container-principal li.item-categoria div.general {
+        height: 270px;
+        width: 700px;
+    }
+
+    nav.navbar ul.container-principal li.item-categoria div.general div.sub-category li, nav.navbar ul.container-principal li.item-categoria div.general div.sub-category li
+    {
+        text-align: center;  
+        width: 9rem;
+    }
+
+    nav.navbar ul.container-principal li.item-categoria div.general div.dropdown-rigth {
+        height: 16rem;
+        overflow: auto;
+    }
+
+    nav.navbar ul.container-principal li.item-categoria div.general div.dropdown-rigth div.img-desplegables {
+        width: 213px;
+        right: 40px;
+        top: 40px;
+    }
+
 
 }
