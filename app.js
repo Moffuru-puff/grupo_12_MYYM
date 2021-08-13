@@ -45,6 +45,11 @@ app.get('/shipping', (req, res) => {
 app.get('/confirm', (req, res) => {
     res.sendFile(path.join(__dirname, `/views/confirm.html`) )
 }) 
+
+app.get('/admin', (req, res) => {
+    res.sendFile(path.join(__dirname, `/views/cargaDeProductos.html`) )
+}); 
+
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, `/views/error404.html`) )
 }) 

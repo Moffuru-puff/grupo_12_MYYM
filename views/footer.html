@@ -14,7 +14,7 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
 
   <!-- Scripts locales -->
-<script src="/js/footer.js" defer></script>
+ 
 
 </head>
 
@@ -29,7 +29,7 @@
         <i class="fas fa-chevron-down"></i>
       </div>
     </div>
-    <div class="main-footer" >
+    <div class="main-footer">
       <section class="dropdown-footer" id="navBarFooter">
         <!-- Logo -->
         <div class="logo-footer">
@@ -43,7 +43,7 @@
                     <i class="fas fa-chevron-down"></i>
                   </div></a>
 
-                <ul class="sub-menu x">
+                <ul class="sub-menu" id="nosotros">
                   <li><a href="">Sobre nosotros</a></li>
                   <li><a href="">Sucursales</a></li>
                   <li><a href="">Términos y condiciones</a></li>
@@ -51,11 +51,11 @@
                   <li><a href="">Políticas de calidad</a></li>
                 </ul>
               </li>
-              <li class="menu-item" onclick="dropFooter(`tienda`)"><a href="">Tienda Online <div class="btn-info">
+              <li class="menu-item" onclick="dropFooter(`tienda`)"><a href="#">Tienda Online <div class="btn-info">
                     <i class="fas fa-chevron-down"></i>
                   </div></a>
 
-                <ul class="sub-menu y">
+                <ul class="sub-menu" id="tienda">
                   <li><a href="">Formas de pago</a></li>
                   <li><a href="">Descuentos</a></li>
                   <li><a href="">Cambios y devoluciones</a></li>
@@ -66,7 +66,7 @@
               <li class="menu-item" onclick="dropFooter(`servicios`)"><a href="#">Servicios <div class="btn-info">
                     <i class="fas fa-chevron-down"></i>
                   </div></a>
-                <ul class="sub-menu y">
+                <ul class="sub-menu" id="servicios">
                   <li><a href="">Créditos</a></li>
                   <li><a href="">Servicios</a></li>
                   <li><a href="">Ventas corporativas</a></li>
@@ -75,7 +75,7 @@
               <li class="menu-item" onclick="dropFooter(`ayuda`)"><a href="#">Ayuda <div class="btn-info">
                     <i class="fas fa-chevron-down"></i>
                   </div></a>
-                <ul class="sub-menu y">
+                <ul class="sub-menu" id="ayuda">
                   <li><a href="">Atención al cliente</a></li>
                   <li><a href="">Centro de seguridad</a></li>
                   <li><a href="">Preguntas frecuentes</a></li>
@@ -85,9 +85,9 @@
               <li class="menu-item" onclick="dropFooter(`contacto`)"><a href="#">Contacto <div class="btn-info">
                     <i class="fas fa-chevron-down"></i>
                   </div></a>
-                <ul class="sub-menu y">
+                <ul class="sub-menu" id="contacto">
                   <li><a href="">Dirección: 1234 Street Adress City Addrees, 1233.</a></li>
-                  <li><a href="">Teléfono: <span>(00) 1234 5678</span></a></li>
+                  <li><a href="tel:001234 5678">Teléfono: <span>(00) 1234 5678</span></a></li>
                   <li><a href="">Horarios de apertura: <br>
                       Lunes-Jueves: 9:00 AM - 5:30 PM <br>
                       Viernes: 9:00 AM - 6:00 PM <br>
@@ -124,15 +124,17 @@
 
           </div>
           <div class="social-icon">
-            <a href="https://www.instagram.com/?hl=es"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.facebook.com/"><i class="fab fa-facebook-square"></i></a>
-            <a href="https://twitter.com/?lang=es"><i class="fab fa-twitter-square"></i></a>
-            <a href="https://web.whatsapp.com/"><img src="/img/iconos-png/whatsapp.png" alt=""></a>
+            <a href="https://www.instagram.com/?hl=es" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-square"></i></a>
+            <a href="https://twitter.com/?lang=es" target="_blank"><i class="fab fa-twitter-square"></i></a>
+            <a href="https://web.whatsapp.com/" target="_blank"><img src="/img/iconos-png/whatsapp.png" alt=""></a>
           </div>
         </div>
       </section>
     </div>
+    <script src="/js/footer.js" defer></script>
   </footer>
+
 </body>
 
 </html>

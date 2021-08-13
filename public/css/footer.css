@@ -79,11 +79,13 @@ footer nav.menu li.menu-item a ~ ul.sub-menu {
     font-size: 14px;
     padding-left: 25px;
     display: none;
+    transition: all 2s ease;
 }
 
 
 footer nav.menu li.menu-item a ~ ul.sub-menu.show {
     display: block;
+    transition: all 2s ease;
 }
 
 footer nav.menu li.menu-item a:hover ~ ul.sub-menu {
@@ -211,6 +213,11 @@ div.social-icon {
     footer nav.menu li.menu-item ul.sub-menu {
         font-weight: lighter;
         font-size: 14px;
+        padding-left: 0px;
+        display: block;
+    }
+
+    footer nav.menu li.menu-item a ~ ul.sub-menu {
         padding-left: 0px;
         display: block;
     }

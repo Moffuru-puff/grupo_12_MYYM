@@ -8,7 +8,10 @@ function dropMenu(){
     let subcategoryMenu = document.querySelector(".show");
     if (navBar.style.display === "block"){
         navBar.style.display = "none";
-        subcategoryMenu.classList.remove("show")
+        if (subcategoryMenu !== null) {
+            subcategoryMenu.classList.remove("show")
+        }
+        
     } else {
         navBar.style.display = "block";
         searchBar.style.display = "none";
@@ -18,15 +21,20 @@ function dropMenu(){
 
 function dropSearch(){
     let btnHamburguesa = document.getElementsByClassName("bars");
+    let active = document.querySelector("svg")
     let subcategoryMenu = document.querySelector(".show");
     if (searchBar.style.display === "flex") {
         searchBar.style.display = "none";
-        subcategoryMenu.classList.remove("show")
+        if (subcategoryMenu !== null) {
+            subcategoryMenu.classList.remove("show")
+
+        }
     } else {
         searchBar.style.display = "flex";
         navBar.style.display = "none";
-        btnHamburguesa.classList.remove(".active");
-        subcategoryMenu.classList.remove("show")
+        active ? active.classList.remove("active") : "";
+        btnHamburguesa.classList.remove("active");
+        subcategoryMenu.classList.remove("show");
     }
 }
 
@@ -36,77 +44,43 @@ function dropSubCategoryMenu (id) {
     searchBar.style.display = "none"
 }
 
-function mostrar(){
+/* function mostrar(){
     let items = document.getElementsByClassName("hidden");
     if(items.style.display === "none"){
         items.classList.remove("hidden")
     }
-}
-
-function dropAccount(){
-    let account = document.getElementById("account");
-    let dropMyaccount = document.querySelector(".show");
-
-    let dropMyaccount  = document.querySelector(".show");
-    if (account.style.display === "block"){
-        account.style.display = "none";
-        dropMyaccount.classList.remove("show")
-    } else {
-        account.style.display = "block";
-       dropMyaccount ? dropMyaccount.classList.remove("show") : ""
-    }
-   /*  account.addEventListener('click', (account)=> {
-        dropMyaccount.classList.toggle("show")
-    })  */
-}
-
-
-/* const btnHamburguesa = document.getElementsByClassName("btn-hamburguesa");
-const menu = document.getElementsByClassName("menu-ul");
-btnHamburguesa.addEventListener("click", function(){
-    menu.classList.toggle("mostrar");
-}); */
-
-
-/******************* Desplegables de Tablet y desktop **********************/
-let categorias = document.getElementById('category');
-let marcas = document.getElementById('marcas');
-let general = document.getElementsByClassName("general");
-
-/* categorias.onclick = function() {
-    if (general.style.display === "flex") {
-        general.style.display = "none";
-    } else {
-        general.style.display = "flex";
-        marcas.style.display = "none";
-    
-    }
 } */
 
-/* document.addEventListener('click', (event) => {
-    funcion = false
-    try {
-        elementId = event.path[0].id
-        elementClass = event.path[0].className
-    }
-    catch {
-        elementId = event.target.id
-        elementClass = event.path[0].className
-    }
+function dropAccount(id){
+    let account = document.getElementById(`btnAccount`);
 
-    if (elementClass == '1'){
-        document.getElementById('marcas').style.display = 'none'
-        document.getElementById('categorias').style.display = 'flex'
-    }
+    if (account !== undefined) {
+        if (account.style.display === "block") {
+          account.style.display = "none";
+        } else {
+          account.style.display = "block";
+        }
+      }
+}
 
+/******************* Desplegables de Tablet y desktop **********************/
 
-    if (elementId == 'category'){
-        document.getElementsById('marcas').style.display = 'none'
-        document.getElementsByClassName('general').style.display = 'flex'
-    }
-
-})
+/* let categorias = document.getElementById('category');
+let marcas = document.getElementById('marcas');
+let general = document.getElementsByClassName("general");
  */
+function dropNav(id){
+    let drop = document.getElementById(id);
+
+    if (drop !== undefined && drop !== null) {
+        if (drop.style.display === "flex") {
+            drop.style.display = "none";
+        } else {
+            drop.style.display = "flex";
+        }
+      }
+}
+
 
 /******* Categorias ********/
 let titulo= document.getElementById('title');

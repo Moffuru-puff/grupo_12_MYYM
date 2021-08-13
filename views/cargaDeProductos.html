@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/css/style.css" />
+
+    <!-- FONT AWESOME -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <main class="main-admin">
+        <div class="cargaDeFotos">
+            <div class="volver">
+                <i class="fas fa-arrow-left"></i>
+            </div>
+            <div class="subirFoto">
+                <form action="">
+                    <label for="productPhoto">
+                        <img src="/img/iconos-png/subirFoto.png" alt="" />
+                    </label>
+                    <input type="file" name="file" accept=".jpg, .png" multiple id="productPhoto" />
+                </form>
+            </div>
+        </div>
+        <section class="charge">
+            <h2>Agregar nuevo producto</h2>
+            <div class="freight">
+                <form action="">
+                    <div class="flex">
+                        <label for="name">Nombre del producto</label>
+                        <div class="input">
+                            <input type="text" placeholder="Computadora Gamer" id="name" />
+                        </div>
+
+                        <label for="price">Precio del producto</label>
+                        <div class="input">
+                            <input type="number" min="0" placeholder="$150.000" id="price" />
+                        </div>
+
+                        <label for="brand">Marca</label>
+                        <div class="input">
+                            <input type="text" name="marca" id="brand" placeholder="Intel" />
+                        </div>
+
+                        <label for="categoria-form">Categoría</label>
+                        <div class="input">
+                            <select name="categoria" id="categoria-form">
+                                <option value="consolas">Consolas</option>
+                                <option value="videojuegos">Videojuegos</option>
+                                <option value="accesorios">Accesorios</option>
+                                <option value="zonaRetro">Zona Retro</option>
+                            </select>
+                        </div>
+
+                        <label for="subCategoria-form">Subcategoría</label>
+                        <div class="input">
+                            <input list="subCategoria-form" name="subCategoria" placeholder="Gamer" />
+                            <datalist id="subCategoria-form">
+                                <option value="modernas">Modernas</option>
+                                <option value="Retro">Retro</option>
+                                <option value="Familiar">Familiar</option>
+                                <option value="ps">Play Station</option>
+                                <option value="nintendo">Nintendo</option>
+                            </datalist>
+                        </div>
+                    </div>
+
+                    <div class="flex">
+
+                        <label for="codigo">Código de producto</label>
+                        <div class="input">
+                            <input type="number" min="0" placeholder="0000" id="codigo" />
+                        </div>
+                       
+                        <label for="stock">Stock</label>
+                        <div class="input">
+                            <input type="number" min="0" placeholder="15" id="stock" />
+                        </div>
+
+
+                        <label for="description">Descripción del producto</label>
+                        <div class="input">
+                            <textarea name="descripcion" id="description" cols="30" rows="10"
+                                placeholder="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem repudiandae nam accusamus sint eum praesentium, necessitatibus explicabo. Magnam, ab omnis."></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="btn-publish">
+                <button class="publish" type="submit">Publicar producto</button>
+            </div>
+
+        </section>
+    </main>
+</body>
+
+</html>

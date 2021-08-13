@@ -86,7 +86,7 @@
       </form>
 
       <!-- boton de mi cuenta -->
-      <div class="account" id="account" onclick="dropAccount()">
+      <div class="account" onclick="dropAccount(`btnAccount`)">
         <div class="avatar">
           <i class="fas fa-user-circle"></i>
         </div>
@@ -95,7 +95,7 @@
         </div>
         <i class="arrow fas fa-chevron-down"></i>
         <!-- Desplegable de botón mi cuenta -->
-        <div class="drop-account">
+        <div class="drop-account" id="btnAccount">
           <ul>
             <li><a href="/register">Registrarse</a></li>
             <li><a href="/login">Iniciar seción</a></li>
@@ -106,20 +106,22 @@
       </div>
 
       <!-- Botón Carrito -->
-      <div class="shoppingCart">
+      <a href="/shopingCart">
+        <div class="shoppingCart">
           <div class="cart">
-       <i class="fas fa-cart-plus"></i>
+            <i class="fas fa-cart-plus"></i>
+          </div>
+          <h4 class="total">$0,00</h4>
         </div>
-        <h4 class="total">$0,00</h4>
-      </div>
+      </a>
     </div>
 
     <!-- comienzo del nav para tablet y desktop -->
     <nav class="navbar" id="navigation-bar-mobile">
       <ul id="list-menu" class="container-principal">
         <li class="item-categoria item">
-          <a href="" id="category">Categorías</a>
-          <div class="general">
+          <a href="#" onclick="dropNav(`categ`)">Categorías</a>
+          <div class="general" id="categ">
             <div class="sub-category">
               <ul class="sub-item">
                 <li><a href="#" id="consolas">Consolas</a></li>
@@ -152,8 +154,8 @@
             </div>
           </div>
         </li>
-        <li class="item-marcas item"><a href="#" id="marcas">Marcas</a>
-          <div class="general">
+        <li class="item-marcas item"><a href="#" onclick="dropNav(`marcas`)">Marcas</a>
+          <div class="general" id="marcas">
             <div class="sub-category">
               <ul class="sub-item">
                 <li><a href="#A">A</a></li>
