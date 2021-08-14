@@ -3,11 +3,24 @@ const path = require('path');
 const app = express();
 const port = 3000;
 
+/* Enrutadores */
+
+let homeRouter = require("./routes/index");
+
+
+/* VIEWS */
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
+/* Middlewares */
 app.use(express.static('public'));
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, `/views/index.html`) )
-})
+/* Rutas */
+
+app.use('/', homeRouter);
+/* app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, `/views/index`) )
+}) */
 
 app.get('/header', (req, res) => {
     res.sendFile(path.join(__dirname, `/views/header.html`) )
