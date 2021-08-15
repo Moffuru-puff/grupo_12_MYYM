@@ -2,7 +2,7 @@ let express = require('express');
 let router = express.Router();
 let controller = require('../controllers/indexController');
 
-/* GET - Muestra todas las sucursales */
+/* GET  */
 router.get('/', controller.index)
 
 
