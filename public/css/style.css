@@ -11,7 +11,7 @@
 @import url('style_checkout.css');
 @import url('style_shipping.css');
 @import url('confirm.css');
-
+@import url('editProfile.css');
 
 *{
     margin: 0;
