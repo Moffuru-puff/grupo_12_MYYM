@@ -1,0 +1,74 @@
+.profile .form-container {
+    width: 100%;
+}
+
+.profile-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-box h4 {
+    margin-bottom: 1rem;
+}
+
+.profile .button-container {
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    gap: 10px;
+}
+
+.profile .avatar {
+    width: 10rem;
+    height: 10rem;
+    background-color: transparent;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+
+/* Media queries */
+/* Tabñet */ 
+
+@media screen and (min-width: 475px) {
+
+    .profile .form-container {
+        width: 90%;
+    }
+
+}
+
+
+/* Desktop */
+
+
+@media screen and (min-width: 992px) {
+
+    .profile .input-file-container {
+        max-width: 300px;
+    }
+
+    .profile .form-container {
+        width: 90%;
+    }
+
+    .profile-form {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .profile .button-container {
+        flex-direction: row;
+        margin-top: 2rem;
+        gap: 20px;
+        justify-content: center;
+    }
+}
