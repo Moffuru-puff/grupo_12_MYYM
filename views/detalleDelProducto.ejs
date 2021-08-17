@@ -1,20 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MYYM Gamers</title>
-  <link rel="stylesheet" href="/css/style.css">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
-
-  <script src="/js/home.js" defer></script>
-  <script src="/js/detalleDeProducto.js" defer></script>
-
-</head>
+  <%- include('./partials/head.ejs') %> 
 
 <body>
+  <!--HEADER-->
   <header>
     <div class="main-header">
       <!-- Menu hamburguesa -->
@@ -526,7 +516,9 @@
       </ul>
     </nav>
   </header>
+<!-- FIN DEL HEADER-->
 
+<!--CUERPO DETALLE DEL PRODUCTO-->
 
   <div class="cuerpo">
     <article class="cajita-producto">
@@ -770,6 +762,10 @@
     </div>
 
   </div>
+  <!-- FIN CUERPO DETALLE DEL PRODUCTO-->
+
+
+  <!--FOOTER-->
   <footer>
     <!-- Botón más info -->
     <div class="mas-info">
@@ -882,7 +878,7 @@
       </section>
     </div>
   </footer>
-
+<!-- FIN DEL FOOTER-->
 
 </body>
 
