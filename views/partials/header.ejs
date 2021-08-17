@@ -1,24 +1,3 @@
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MYYM Gamers</title>
-
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="/css/style.css" />
-
-  <!-- FONT AWESOME -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
-
-  <!-- Scripts Locales -->
-  <script src="/js/header.js" defer></script>
-
-</head>
-
-<body>
   <header>
     <div class="main-header">
       <!-- Menu hamburguesa -->
@@ -86,7 +65,7 @@
       </form>
 
       <!-- boton de mi cuenta -->
-      <div class="account" id="account" onclick="document.getElementsByClassName('drop-account').className += 'show'">
+      <div class="account" onclick="dropAccount(`btnAccount`)">
         <div class="avatar">
           <i class="fas fa-user-circle"></i>
         </div>
@@ -95,10 +74,10 @@
         </div>
         <i class="arrow fas fa-chevron-down"></i>
         <!-- Desplegable de botón mi cuenta -->
-        <div class="drop-account">
+        <div class="drop-account" id="btnAccount">
           <ul>
             <li><a href="/register">Registrarse</a></li>
-            <li><a href="/login">Iniciar seción</a></li>
+            <li><a href="/login">Iniciar sesión</a></li>
             <li><a href="">Mis favoritos</a></li>
             <li><a href="">Mis compras</a></li>
           </ul>
@@ -106,75 +85,36 @@
       </div>
 
       <!-- Botón Carrito -->
-      <div class="shoppingCart">
+      <a href="/shopingCart">
+        <div class="shoppingCart">
           <div class="cart">
-       <i class="fas fa-cart-plus"></i>
+            <i class="fas fa-cart-plus"></i>
+          </div>
+          <h4 class="total">$0,00</h4>
         </div>
-        <h4 class="total">$0,00</h4>
-      </div>
+      </a>
     </div>
 
     <!-- comienzo del nav para tablet y desktop -->
     <nav class="navbar" id="navigation-bar-mobile">
       <ul id="list-menu" class="container-principal">
         <li class="item-categoria item">
-          <a href="">Categorías</a>
-          <div class="general">
+          <a href="#" onclick="dropNav(`categ`)">Categorías</a>
+          <div class="general" id="categ">
             <div class="sub-category">
               <ul class="sub-item">
-                <li><a href="#todo">Todo</a></li>
-                <li><a href="#consolas">Consolas</a></li>
-                <li><a href="#videojuegos">Videojuegos</a></li>
-                <li><a href="#accesorios">Accesorios</a> </li>
-                <li><a href="#zonaRetro">Zona retro</a></li>
+                <li><a href="#" id="consolas">Consolas</a></li>
+                <li><a href="#" id="videojuegos">Videojuegos</a></li>
+                <li><a href="#" id="accesorios">Accesorios</a> </li>
+                <li><a href="#" id="zonaRetro">Zona retro</a></li>
               </ul>
             </div>
             <div class="dropdown-rigth">
-              <div class="todo" id="todo">
-                <div class="row">
-                  <h4><a href="">Consolas <i class="fas fa-chevron-down"></i></a></h4>
-                  <ul class="hidden">
-                    <li><a href="">Microsoft Xbox</a></li>
-                    <li><a href="">Nintendo Switch</a></li>
-                    <li><a href="">Nvidia Tegra 4 T40S</a></li>
-                    <li><a href="">PlayStation</a></li>
-                  </ul>
-                </div>
-                <div class="row">
-                  <h4><a href="">Videojuegos<i class="fas fa-chevron-down"></i></a></h4>
-                  <ul class="hidden" onclick="this.classList.toggle('show')">
-                    <li><a href="">FIFA 21 Standard Edition Electronic Arts</a></li>
-                    <li><a href="">God of War (2018) Standard Edition</a></li>
-                    <li><a href="">Gta V Grand Thelf Auto 5 Premium</a></li>
-                    <li><a href="">Minecraft Standart</a></li>
-                    <li><a href="">Mortal Kombat</a></li>
-                  </ul>
-                </div>
-                <div class="row">
-                  <h4><a href="">Accesorios <i class="fas fa-chevron-down"></i></a></h4>
-                  <ul class="hidden" onclick="mostrar()">
-                    <li><a href="">Figuras de acción</a></li>
-                    <li><a href="">Josticks</a></li>
-                    <li><a href="">Remeras</a></li>
-                    <li><a href="">Tazas</a></li>
-                    <li><a href="">Mortal Kombat</a></li>
-                  </ul>
-                </div>
-                <div class="row">
-                  <h4><a href="">Zona retro <i class="fas fa-chevron-down"></i></a> </h4>
-                  <ul class="hidden">
-                    <li><a href="">Atari XE Video Game System</a></li>
-                    <li><a href="">Apple PIPP!N</a></li>
-                    <li><a href="">Casio PV-1000</a></li>
-                    <li><a href="">Casio Loopy</a></li>
-                    <li><a href="">FM Towns Marty</a></li>
-                  </ul>
-                </div>
-                <div class="row img"></div>
-              </div>
+
               <div class="consolas" id="consolas">
-                <div class="row">
-                  <h4><a href="">Consolas</a></h4>
+                <h4 id="title"><a href="">Consolas</a></h4>
+
+                <div class="row" id="cambio">
                   <ul>
                     <li><a href="">Consolas retro</a></li>
                     <li><a href="">Nintendo Switch</a></li>
@@ -185,68 +125,16 @@
                     <li><a href="">Xbox One</a></li>
                     <li><a href="">Ver todas...</a></li>
                   </ul>
-                </div>
-              </div>
-              <div class="videojuegos" id="videojuegos">
-                <div class="row">
-                  <h4><a href="">Videojuegos</a></h4>
-                  <ul>
-                    <li><a href="">Acción</a></li>
-                    <li><a href="">Aventuras</a></li>
-                    <li><a href="">Carreras</a></li>
-                    <li><a href="">Deportes</a></li>
-                    <li><a href="">Disparos</a></li>
-                    <li><a href="">FPS</a></li>
-                    <li><a href="">Familiar</a></li>
-                    <li><a href="">Musica y Baile</a></li>
-                    <li><a href="">Pelea</a></li>
-                    <li><a href="">Plataformas</a></li>
-                    <li><a href="">RPG</a></li>
-                    <li><a href="">Simulación</a></li>
-                    <li><a href="">Ver todas...</a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="accesorios" id="accesorios">
-                <div class="row">
-                  <h4><a href="">Accesorios</a></h4>
-                  <ul>
-                    <li><a href="">Figuras de acción</a></li>
-                    <li><a href="">Funko Pop</a></li>
-                    <li><a href="">Josticks</a></li>
-                    <li><a href="">Remeras</a></li>
-                    <li><a href="">Mochilas</a></li>
-                    <li><a href="">LLaveros</a></li>
-                    <li><a href="">Lámparas</a></li>
-                    <li><a href="">Tazas</a></li>
-                    <li><a href="">Ver más...</a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="zonaRetro" id="zonaRetro">
-                <div class="row">
-                  <h4><a href="">Zona retro</a></h4>
-                  <ul>
-                    <li><a href="">Atari XE Video Game System</a></li>
-                    <li><a href="">Apple PIPP!N</a></li>
-                    <li><a href="">Casio PV-1000</a></li>
-                    <li><a href="">Casio Loopy</a></li>
-                    <li><a href="">FM Towns Marty</a></li>
-                    <li><a href="">Ubisoft</a></li>
-                    <li><a href="">Nintendo</a></li>
-                    <li><a href="">Level Up</a></li>
-                    <li><a href="">Lego</a></li>
-                    <li><a href="">Noganet</a></li>
-                    <li><a href="">Kanji</a></li>
-                    <li><a href="">Ver más...</a></li>
-                  </ul>
+                  <div class="img-desplegables">
+                    <img src="/img/iconos-png/kula.png" alt="kula">
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </li>
-        <li class="item-marcas item"><a href="#">Marcas</a>
-          <div class="general">
+        <li class="item-marcas item"><a href="#" onclick="dropNav(`marcas`)">Marcas</a>
+          <div class="general" id="marcas">
             <div class="sub-category">
               <ul class="sub-item">
                 <li><a href="#A">A</a></li>
@@ -530,8 +418,3 @@
       </ul>
     </nav>
   </header>
-  <main></main>
-  <footer></footer>
-</body>
-
-</html>

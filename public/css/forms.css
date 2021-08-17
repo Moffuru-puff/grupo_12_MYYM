@@ -3,14 +3,17 @@
 
 
 
-/* h2,
-h3 {
+div.form-container ,
+ div.iniciar h2 h3 {
     text-align: center;
-} */
+}
 
 a {
-    color: #e79dff;; 
     text-decoration: none;
+}
+
+a.a {
+    color: #e79dff; 
 }
 
 
@@ -28,7 +31,7 @@ a {
     /* background: linear-gradient(0deg, #C3A6F6 0%, #AA84EA 0.01%, #6A2ECC 100%); */
     /* background: rgba(25, 31, 32); */
     background-image: url(/img/form-container.jpg);
-    border-radius: 45px;
+/*     border-radius: 45px; */
     border: 1px solid black;
     margin: 0 auto;
     width: 100%;
@@ -44,14 +47,13 @@ a {
 }
 
 input.input-style {
-        color: grey;
-        border-radius: 1rem;
-        border: 2px solid #51068f;
-        height: 32px;
-        width: 311px;
-        margin: 0.2rem;
-        border-radius: 19px;
-        padding: 0.5rem;
+    color: grey;
+    border-radius: 1rem;
+    border: 2px solid #51068f;
+    height: 32px;
+    width: 284px;
+    border-radius: 19px;
+    padding: 0.5rem;
 }
 
 .input-container {
@@ -77,6 +79,7 @@ span.error-message {
     display: flex;
     align-content: center;
     justify-content: center;
+    text-align: center;
 
 }
 
@@ -89,6 +92,7 @@ span.error-message {
     font-size: 20px;
     text-align: center;
 }
+/* */
 
  /*  Botones*/
 
@@ -104,4 +108,20 @@ span.error-message {
     color: white;
     background-color: black;
     text-align: center;
+}
+
+/*  */
+
+/* Tablet */
+
+@media screen and (min-width: 481px) {
+    .form-container {
+        border-radius: 45px;
+        min-width: 375px;
+    }
+
+    input.input-style {
+        width: 311px;
+        margin: 0.2rem; 
+    }
 }
