@@ -185,7 +185,7 @@ span.error-message {
     }
 
     body.forms-form {
-        padding: 6rem 1rem;
+        padding: 3rem 1rem;
     }
 
     .logo-container {
@@ -201,8 +201,7 @@ span.error-message {
         width: 17rem;
         position: relative;
         animation: myym 3s infinite;;
-        /* padding: 50px; *//* 
-        top: -200px; */
+        padding: 50px;
     }
 
     .form-container {
@@ -215,6 +214,14 @@ span.error-message {
 
 /* Large Desktop */
 @media screen and (min-width: 1280px) {
+
+    .myym {
+        display: flex;
+        width: 17rem;
+        position: relative;
+        animation: myym 3s infinite;;
+        padding: 0px;
+    }
 
     .form-container {
         min-width: 60%;
