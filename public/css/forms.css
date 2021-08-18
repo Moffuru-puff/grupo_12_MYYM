@@ -13,7 +13,20 @@ a {
 }
 
 a.a {
-    color: #e79dff; 
+    color: #1f53c5; 
+}
+
+div.contain3r {
+    width: 100%;
+    height: fit-content;
+    position: relative;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
+
+body.forms-form {
+    background: linear-gradient(103deg, rgba(0, 0, 0, 1) 0%, rgba(55, 4, 96, 1) 100%);
 }
 
 
@@ -24,35 +37,56 @@ a.a {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 1rem;
     justify-content: center;
 }
 
 .form-container {
     /* background: linear-gradient(0deg, #C3A6F6 0%, #AA84EA 0.01%, #6A2ECC 100%); */
-    /* background: rgba(25, 31, 32); */
-    background-image: url(/img/form-container.jpg);
-/*     border-radius: 45px; */
-    border: 1px solid black;
+    /* background: black; */
+    /* background-image: url(/img/form-container.jpg); */
+    /* border-radius: 45px; */
     margin: 0 auto;
-    width: 100%;
+/*     width: 100%;
     height: fit-content;
-    height: -moz-fit-content;
-    padding: 1rem;
-    min-width: 320px;
-    max-width: 400px;
+    height: -moz-fit-content; */
     font-family: var(--font-roboto);
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
+    display: flex;
+    /* flex-direction: column; */
+    position: relative;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-content {
+    border: 1px solid black;
+    background-color: #24303c;
+    box-shadow: 0px 10px 30px black;
+    display: flex;
+    position: relative;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.logo-container {
+    display: none;
+}
+
+.myym {
+   display: none;
 }
 
 input.input-style {
     color: grey;
     border-radius: 1rem;
-    border: 2px solid #51068f;
+    border: 2px solid #1f53c5;
     height: 32px;
     width: 284px;
-    border-radius: 19px;
+    border-radius: 10px;
     padding: 0.5rem;
 }
 
@@ -68,12 +102,12 @@ input.input-style:focus {
 }
 
 input.input-style::placeholder {
-    color: var(--grey);
+    color: var(--dark);
     font-size: 16px;
 }
 
 span.error-message {
-    color: rgb(0, 255, 234);
+    color: rgb(255, 0, 0);
     font-size: 1rem;
     margin: 0px auto 10px;
     display: flex;
@@ -84,14 +118,20 @@ span.error-message {
 }
 
 .iniciar {
-    margin: 0.4rem;
+    color: white;
+    margin: 1.6rem;
     line-height: 25px;
 }
 
 .old {
     font-size: 20px;
     text-align: center;
+    margin: 1rem;
 }
+
+
+
+
 /* */
 
  /*  Botones*/
@@ -101,12 +141,13 @@ span.error-message {
     align-items: center;
     justify-content: center;
     border-radius: 26px;
+    border: 2px solid black;
     width: 233px;
     height: 42px;
     margin: 0 auto;
     font-size: 24px;
     color: white;
-    background-color: black;
+    background-color: #1f53c5;
     text-align: center;
 }
 
@@ -115,13 +156,117 @@ span.error-message {
 /* Tablet */
 
 @media screen and (min-width: 481px) {
+
+    input.input-style {
+        width: 330px;
+        margin: 0.2rem;
+        border-radius: 15px; 
+    }
+    
+    .form-content {
+        padding: 0px;
+        max-width: 481px;
+    }
+
+}
+
+/* Desktop */
+@media screen and (min-width: 769px) {
+
+    .form-content {
+        margin: 0px;
+        box-shadow: none;
+    }
+
+    @keyframes myym {
+        0% { opacity: 0;}
+        50% { opacity: 1; }
+        100% { opacity: 0;}
+    }
+
+    body.forms-form {
+        padding: 3rem 1rem;
+    }
+
+    .logo-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        position: relative;
+    }
+    
+    .myym {
+        display: flex;
+        width: 17rem;
+        position: relative;
+        animation: myym 3s infinite;;
+        padding: 50px;
+    }
+
     .form-container {
-        border-radius: 45px;
-        min-width: 375px;
+        background-color: var(--dark);
+        min-width: 60%;
+        display: flex;
+        box-shadow: 0px 10px 30px black;
+    }
+}
+
+/* Large Desktop */
+@media screen and (min-width: 1280px) {
+
+    .myym {
+        display: flex;
+        width: 17rem;
+        position: relative;
+        animation: myym 3s infinite;;
+        padding: 0px;
+    }
+
+    .form-container {
+        min-width: 60%;
+        display: flex;
+        box-shadow: 0px 10px 30px black;
     }
 
     input.input-style {
-        width: 311px;
-        margin: 0.2rem; 
+        height: 32px;
+        width: 284px;
+    }
+    
+    .input-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    
+    span.error-message {
+        font-size: 1.3rem;
+
+    }
+    
+    .iniciar {
+        font-size: 1rem;
+        color: white;
+        margin: 1.6rem;
+        line-height: 25px;
+    }
+    
+    .old {
+        font-size: 1.5rem;
+        text-align: center;
+        margin: 1rem;
+    }
+
+    .check {
+        font-size: 1rem;
+    }
+
+    #btn-submit {
+        width: 233px;
+        height: 42px;
+        font-size: 24px;
+
     }
 }

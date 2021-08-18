@@ -63,6 +63,10 @@ app.get('/admin', (req, res) => {
     res.sendFile(path.join(__dirname, `/views/cargaDeProductos.html`) )
 }); 
 
+app.get('/editprofile', (req, res) => {
+    res.sendFile(path.join(__dirname, `/views/editProfile.html`) )
+}) 
+
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, `/views/error404.html`) )
 }) 
