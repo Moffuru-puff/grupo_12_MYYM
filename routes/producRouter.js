@@ -3,7 +3,7 @@ let router = express.Router();
 let controller = require('../controllers/producController');
 
 /* GET  */
-router.get('/detalleDelProducto', controller.index)
+router.get('/', controller.produc)
 
 
 module.exports = router;
