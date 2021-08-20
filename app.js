@@ -7,7 +7,10 @@ const port = 3000;
 
 let homeRouter = require("./routes/index");
 let usersRouter = require("./routes/users");
+let cargaDeProductosRouter = require("./routes/cargaDeProductos");
+let arrepentimientoRouter = require("./routes/btnDeArrepentimiento");
 
+let producRouter=require('./routes/producRouter');
 
 /* VIEWS */
 app.set('views', path.join(__dirname, 'views'));
@@ -17,8 +20,10 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
 /* Rutas */
-
 app.use('/', homeRouter);
+app.use('/charge', cargaDeProductosRouter);
+app.use('/btnDeArrepentimiento', arrepentimientoRouter);
+
 /* app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, `/views/index`) )
 }) */
@@ -39,9 +44,11 @@ app.get('/submit', (req, res) => {
     res.sendFile(path.join(__dirname, `/views/submit.html`))
 })
 
-app.get('/detalleDelProducto', (req, res) => {
+
+app.use('/detalleDelProducto', producRouter);
+/*app.get('/detalleDelProducto', (req, res) => {
     res.sendFile(path.join(__dirname, `/views/detalleDelProducto.html`))
-})
+})*/
 
 app.get('/shopingCart', (req, res) => {
     res.sendFile(path.join(__dirname, `/views/shopingCart.html`) )
@@ -56,9 +63,9 @@ app.get('/confirm', (req, res) => {
     res.sendFile(path.join(__dirname, `/views/confirm.html`) )
 }) 
 
-app.get('/admin', (req, res) => {
+/* app.get('/admin', (req, res) => {
     res.sendFile(path.join(__dirname, `/views/cargaDeProductos.html`) )
-}); 
+}); */ 
 
 app.get('/editprofile', (req, res) => {
     res.sendFile(path.join(__dirname, `/views/editProfile.html`) )

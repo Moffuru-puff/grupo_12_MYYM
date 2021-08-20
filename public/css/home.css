@@ -154,6 +154,7 @@ main section.container-products div.products article div.description-product h3 
 /* Flecha ir arriba */
 .arrow-top {
     position: relative;
+    z-index: 2;
 }
 
 .arrow-top a {
