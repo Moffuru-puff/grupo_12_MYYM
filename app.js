@@ -7,6 +7,7 @@ const port = 3000;
 
 let homeRouter = require("./routes/index");
 
+let producRouter=require('./routes/producRouter');
 
 /* VIEWS */
 app.set('views', path.join(__dirname, 'views'));
@@ -42,9 +43,11 @@ app.get('/submit', (req, res) => {
     res.sendFile(path.join(__dirname, `/views/submit.html`))
 })
 
-app.get('/detalleDelProducto', (req, res) => {
+
+app.use('/detalleDelProducto', producRouter);
+/*app.get('/detalleDelProducto', (req, res) => {
     res.sendFile(path.join(__dirname, `/views/detalleDelProducto.html`))
-})
+})*/
 
 app.get('/shopingCart', (req, res) => {
     res.sendFile(path.join(__dirname, `/views/shopingCart.html`) )
