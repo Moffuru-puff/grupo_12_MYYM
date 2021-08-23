@@ -12,13 +12,13 @@
 <!--CUERPO DETALLE DEL PRODUCTO-->
 
   <div class="cuerpo">
+
     <article class="cajita-producto">
 
       <div class="nombre">
         <div class="nombredelproducto">
-          <h2>Nombre del producto</h2>
+          <h2><%- product.nombre %></h2>
         </div>
-
         <div class="estrellita">
           <img id="myImage" onclick="changeImage()" src="/img/iconos-png/star-desactivada.png">
         </div>
@@ -27,13 +27,15 @@
       </div>
       <div class="fotoMasdetalle">
         <div class="foto-principal">
-          <img src="/img/Productos Gamers/playStation5.jpg" alt="">
+          <img src="/img/Productos Gamers/<%- product.imagen %>" alt="">
         </div>
         <div class="detallesPrecio">
           <div id="detalleDePrecio">
             <div id="precio">
-              <h2>$2.000</h2>
+              <h2>$<%- product.price %></h2>
             </div>
+            
+        
             <div class="tarjeta-envio">
               <div class="envio">
                 <i class="far fa-credit-card"></i>
@@ -55,9 +57,9 @@
           </div>
         </div>
       </div>
-
-
     </article>
+
+    
     <hr>
     <div class="caracteristicas">
       <div class="c-principales">
@@ -108,7 +110,7 @@
     <!--puntuacion en estrellas-->
     <div class="calificacion">
       <div class="califico">
-        <h4>Nombre del producto</h4>
+        <h4><%- product.nombre %></h4>
       </div>
       <div class="cuatroEstrellas">
         <i class="fas fa-star"></i>

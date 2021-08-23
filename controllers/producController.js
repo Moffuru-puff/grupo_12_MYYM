@@ -1,5 +1,14 @@
+const { getProducts} = require('../db/dataBase')
+
 module.exports = {
     produc: (req, res) => {
-      res.render("detalleDelProducto");
+      let productID = +req.params.id;
+
+      let product = getProducts.find(product =>
+         product.id === productID)
+      res.render("detalleDelProducto", {
+        productos: getProducts,
+        product
+      });
     },
   };

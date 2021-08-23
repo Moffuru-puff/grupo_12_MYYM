@@ -71,10 +71,10 @@ app.get('/editprofile', (req, res) => {
     res.sendFile(path.join(__dirname, `/views/editProfile.html`) )
 }) 
 
-app.get('*', (req, res) => {
+/* app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, `/views/error404.html`) )
 }) 
-
+ */
 app.listen(port, () => {
     console.log(`Servidor corriendo en ${port}\n http://localhost:${port}`)
 })
