@@ -127,16 +127,18 @@
     <!-- Sección de productos -->
     <section class="container-products">
       <h2>Productos Destacados</h2>
+      
       <div class="products">
-
+        
+        <% for (producto of productos) { %>
         <article>
           <div class="star">
             <img id="articulo01" class="myImage" onclick="changeImage()" src="/img/iconos-png/star-desactivada.png"
               alt="botón favoritos">
           </div>
           <div class="img-producto">
-            <a href="/detalleDelProducto">
-              <img src="/img/Productos Gamers/playStation5.jpg" alt="PS5" />
+            <a href="/detalleDelProducto/<%- producto.id %>">
+              <img src="/img/Productos Gamers/<%- producto.imagen %>" alt="PS5" />
             </a>
           </div>
           <div class="puntuacion">
@@ -144,282 +146,14 @@
             <p>4.05</p>
           </div>
           <div class="description-product">
-            <h4>Lorem ipsum dolor sit amet.</h4>
+            <h4><%- producto.nombre %></h4>
             <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. A,
-              excepturi!
+              <%- producto.descripcion %>
             </p>
-            <h3>$5.000</h3>
+            <h3>$<%- producto.price %></h3>
           </div>
         </article>
-
-        <article>
-          <div class="star">
-            <img id="articulo02" class="myImage" onclick="changeImage()" src="/img/iconos-png/star-desactivada.png"
-              alt="botón favoritos">
-          </div>
-          <div class="img-producto">
-            <a href="/detalleDelProducto">
-              <img src="/img/Productos Gamers/PlayStation 3 500 GB System.jpg" alt="PS3" />
-            </a>
-          </div>
-          <div class="puntuacion">
-            <img src="/img/iconos-png/4.5.png" alt="puntuacion" />
-            <p>4.05</p>
-          </div>
-          <div class="description-product">
-            <h4>Lorem ipsum dolor sit amet.</h4>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. A,
-              excepturi!
-            </p>
-            <h3>$5.000</h3>
-          </div>
-        </article>
-
-        <article>
-          <div class="star">
-            <img class="myImage" onclick="changeImage()" src="/img/iconos-png/star-desactivada.png"
-              alt="botón favoritos">
-          </div>
-          <div class="img-producto">
-            <a href="/detalleDelProducto">
-              <img src="/img/Productos Gamers/PS2.jpg" alt="PS2" />
-            </a>
-          </div>
-          <div class="puntuacion">
-            <img src="/img/iconos-png/4.5.png" alt="puntuacion" />
-            <p>4.05</p>
-          </div>
-          <div class="description-product">
-            <h4>Lorem ipsum dolor sit amet.</h4>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. A,
-              excepturi!
-            </p>
-            <h3>$5.000</h3>
-          </div>
-        </article>
-
-        <article>
-          <div class="star">
-            <img class="myImage" onclick="changeImage()" src="/img/iconos-png/star-desactivada.png"
-              alt="botón favoritos">
-          </div>
-          <div class="img-producto">
-            <a href="/detalleDelProducto">
-              <img src="/img/Productos Gamers/Nintendo 64 Grape Purple Console for sale online .jpg "
-                alt="Nintendo reto" />
-            </a>
-          </div>
-          <div class="puntuacion">
-            <img src="/img/iconos-png/4.5.png" alt="puntuacion" />
-            <p>4.05</p>
-          </div>
-          <div class="description-product">
-            <h4>Lorem ipsum dolor sit amet.</h4>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. A,
-              excepturi!
-            </p>
-            <h3>$5.000</h3>
-          </div>
-        </article>
-
-        <article>
-          <div class="star">
-            <img class="myImage" onclick="changeImage()" src="/img/iconos-png/star-desactivada.png"
-              alt="botón favoritos">
-          </div>
-          <div class="img-producto">
-            <a href="/detalleDelProducto">
-              <img src="/img/Productos Gamers/NintendoEntertainmentSystemNES .jpg" alt="NES" />
-            </a>
-          </div>
-          <div class="puntuacion">
-            <img src="/img/iconos-png/4.5.png" alt="puntuacion" />
-            <p>4.05</p>
-          </div>
-          <div class="description-product">
-            <h4>Lorem ipsum dolor sit amet.</h4>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. A,
-              excepturi!
-            </p>
-            <h3>$5.000</h3>
-          </div>
-        </article>
-
-        <article>
-          <div class="star">
-            <img class="myImage" onclick="changeImage()" src="/img/iconos-png/star-desactivada.png"
-              alt="botón favoritos">
-          </div>
-          <div class="img-producto">
-            <a href="/detalleDelProducto">
-              <img src="/img/Productos Gamers/Generico Micrófono Kingston de 3.5 mm negro.jpg" alt="Micrófono" />
-            </a>
-          </div>
-          <div class="puntuacion">
-            <img src="/img/iconos-png/4.5.png" alt="puntuacion" />
-            <p>4.05</p>
-          </div>
-          <div class="description-product">
-            <h4>Lorem ipsum dolor sit amet.</h4>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. A,
-              excepturi!
-            </p>
-            <h3>$5.000</h3>
-          </div>
-        </article>
-
-        <article>
-          <div class="star">
-            <img class="myImage" onclick="changeImage()" src="/img/iconos-png/star-desactivada.png"
-              alt="botón favoritos">
-          </div>
-          <div class="img-producto">
-            <a href="/detalleDelProducto">
-              <img
-                src="/img/Productos Gamers/CyberpowerPC Gamer Xtreme VR Gaming PC, Intel i5-10400F 2.9GHz, GeForce GTX 1660 Super 6GB, 8GB DDR4, 500GB NVMe SSD, Wi-Fi Ready.jpg"
-                alt="PC Gamer" />
-            </a>
-          </div>
-          <div class="puntuacion">
-            <img src="/img/iconos-png/4.5.png" alt="puntuacion" />
-            <p>4.05</p>
-          </div>
-          <div class="description-product">
-            <h4>Lorem ipsum dolor sit amet.</h4>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. A,
-              excepturi!
-            </p>
-            <h3>$5.000</h3>
-          </div>
-        </article>
-
-        <article>
-          <div class="star">
-            <img class="myImage" onclick="changeImage()" src="/img/iconos-png/star-desactivada.png"
-              alt="botón favoritos">
-          </div>
-          <div class="img-producto">
-            <a href="/detalleDelProducto">
-              <img src="/img/Productos Gamers/GOLDEN_FIELD_5300_ATX .jpg" alt="Gabinete personalizado" />
-            </a>
-          </div>
-          <div class="puntuacion">
-            <img src="/img/iconos-png/4.5.png" alt="puntuacion" />
-            <p>4.05</p>
-          </div>
-          <div class="description-product">
-            <h4>Lorem ipsum dolor sit amet.</h4>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. A,
-              excepturi!
-            </p>
-            <h3>$5.000</h3>
-          </div>
-        </article>
-
-        <article>
-          <div class="star">
-            <img class="myImage" onclick="changeImage()" src="/img/iconos-png/star-desactivada.png"
-              alt="botón favoritos">
-          </div>
-          <div class="img-producto">
-            <a href="/detalleDelProducto">
-              <img src="/img/Productos Gamers/MFTEK.png" alt="Combo periféricos" />
-            </a>
-          </div>
-          <div class="puntuacion">
-            <img src="/img/iconos-png/4.5.png" alt="puntuacion" />
-            <p>4.05</p>
-          </div>
-          <div class="description-product">
-            <h4>Lorem ipsum dolor sit amet.</h4>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. A,
-              excepturi!
-            </p>
-            <h3>$5.000</h3>
-          </div>
-        </article>
-
-        <article>
-          <div class="star">
-            <img class="myImage" onclick="changeImage()" src="/img/iconos-png/star-desactivada.png"
-              alt="botón favoritos">
-          </div>
-          <div class="img-producto">
-            <a href="/detalleDelProducto">
-              <img src="/img/Productos Gamers/MFTEK.png" alt="Combo periféricos" />
-            </a>
-          </div>
-          <div class="puntuacion">
-            <img src="/img/iconos-png/4.5.png" alt="puntuacion" />
-            <p>4.05</p>
-          </div>
-          <div class="description-product">
-            <h4>Lorem ipsum dolor sit amet.</h4>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. A,
-              excepturi!
-            </p>
-            <h3>$5.000</h3>
-          </div>
-        </article>
-
-        <article>
-          <div class="star">
-            <img class="myImage" onclick="changeImage()" src="/img/iconos-png/star-desactivada.png"
-              alt="botón favoritos">
-          </div>
-          <div class="img-producto">
-            <a href="/detalleDelProducto">
-              <img src="/img/Productos Gamers/MFTEK.png" alt="Combo periféricos" />
-            </a>
-          </div>
-          <div class="puntuacion">
-            <img src="/img/iconos-png/4.5.png" alt="puntuacion" />
-            <p>4.05</p>
-          </div>
-          <div class="description-product">
-            <h4>Lorem ipsum dolor sit amet.</h4>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. A,
-              excepturi!
-            </p>
-            <h3>$5.000</h3>
-          </div>
-        </article>
-
-        <article>
-          <div class="star">
-            <img class="myImage" onclick="changeImage()" src="/img/iconos-png/star-desactivada.png"
-              alt="botón favoritos">
-          </div>
-          <div class="img-producto">
-            <a href="/detalleDelProducto">
-              <img src="/img/Productos Gamers/MFTEK.png" alt="Combo periféricos" />
-            </a>
-          </div>
-          <div class="puntuacion">
-            <img src="/img/iconos-png/4.5.png" alt="puntuacion" />
-            <p>4.05</p>
-          </div>
-          <div class="description-product">
-            <h4>Lorem ipsum dolor sit amet.</h4>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. A,
-              excepturi!
-            </p>
-            <h3>$5.000</h3>
-          </div>
-        </article>
-
+        <% } %>
 
       </div>
       <div class="arrow-top">
