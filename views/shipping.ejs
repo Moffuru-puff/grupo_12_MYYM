@@ -1,0 +1,140 @@
+  
+<!DOCTYPE html>
+<html lang="es">
+
+  <%- include('./partials/head.ejs') %> 
+<body>
+ 
+    <!-- Comienzo de header -->
+ <%- include('./partials/header.ejs') %> 
+ <!-- Fin del header -->
+
+ 
+  <section class="form-register">
+    <h4>Formulario de Envio</h4>
+    <input class="controls" type="text" name="provincia" id="provincia" placeholder="Ingrese su Provincia">
+    <input class="controls" type="text" name="localidad" id="localidad" placeholder="Ingrese su Localidad">
+    <input class="controls" type="number" name="cp" id="cp" placeholder="Ingrese su Codigo Postal">
+    <input class="controls" type="text" name="calle" id="calle" placeholder="Ingrese su Calle">
+    <input class="controls" type="text" name="altura" id="altura" placeholder="Ingrese su Altura">
+    <input class="controls" type="text" name="entrecalles" id="entrecalles" placeholder="Ingrese sus entrecalles">
+    <input class="controls" type="number" name="telefono" id="telefono" placeholder="Ingrese un telefono de contacto">
+    <p>Envio Por Correo argentino</p>
+   <a href="https://www.correoargentino.com.ar/MiCorreo/public/terminosycondiciones" target="_blanck"><p>Terminos y Condiciones de Envio</p></a>
+   <a href="checkout"> <input class="botons" type="submit" value="PROCEDER A PAGAR"></a>
+    
+  </section>
+  <footer>
+    <!-- Botón más info -->
+    <div class="mas-info">
+      <p>Más información</p>
+      <div class="btn-info">
+        <i class="fas fa-chevron-down"></i>
+      </div>
+    </div>
+    <div class="main-footer">
+      <section class="dropdown-footer">
+        <!-- Logo -->
+        <div class="logo-footer">
+          <a href="#"><img width="100%" src="/img/Logo1.png" alt="logo" /></a>
+        </div>
+        <div class="container-menu">
+          <!-- desplegable para mobile -->
+          <nav class="menu" id="navigation-bar-mobile">
+            <ul>
+              <li class="menu-item"><a href=""> Nosotros <div class="btn-info">
+                    <i class="fas fa-chevron-down"></i>
+                  </div></a>
+
+                <ul class="sub-menu x">
+                  <li><a href="">Sobre nosotros</a></li>
+                  <li><a href="">Sucursales</a></li>
+                  <li><a href="">Términos y condiciones</a></li>
+                  <li><a href="">Promociones</a></li>
+                  <li><a href="">Políticas de calidad</a></li>
+                </ul>
+              </li>
+              <li class="menu-item"><a href="">Tienda Online <div class="btn-info">
+                    <i class="fas fa-chevron-down"></i>
+                  </div></a>
+
+                <ul class="sub-menu y">
+                  <li><a href="">Formas de pago</a></li>
+                  <li><a href="">Descuentos</a></li>
+                  <li><a href="">Cambios y devoluciones</a></li>
+                  <li><a href="">Legales</a></li>
+                  <li><a href="">Botón de arrepentimiento</a></li>
+                </ul>
+              </li>
+              <li class="menu-item"><a href="#">Servicios <div class="btn-info">
+                    <i class="fas fa-chevron-down"></i>
+                  </div></a>
+                <ul class="sub-menu y">
+                  <li><a href="">Créditos</a></li>
+                  <li><a href="">Servicios</a></li>
+                  <li><a href="">Ventas corporativas</a></li>
+                </ul>
+              </li>
+              <li class="menu-item"><a href="#">Ayuda <div class="btn-info">
+                    <i class="fas fa-chevron-down"></i>
+                  </div></a>
+                <ul class="sub-menu y">
+                  <li><a href="">Atención al cliente</a></li>
+                  <li><a href="">Centro de seguridad</a></li>
+                  <li><a href="">Preguntas frecuentes</a></li>
+                  <li><a href="">Resolución de problemas</a></li>
+                </ul>
+              </li>
+              <li class="menu-item"><a href="#">Contacto <div class="btn-info">
+                    <i class="fas fa-chevron-down"></i>
+                  </div></a>
+                <ul class="sub-menu y">
+                  <li><a href="">Dirección: 1234 Street Adress City Addrees, 1233.</a></li>
+                  <li><a href="">Teléfono: <span>(00) 1234 5678</span></a></li>
+                  <li><a href="">Horarios de apertura: <br>
+                      Lunes-Jueves: 9:00 AM - 5:30 PM <br>
+                      Viernes: 9:00 AM - 6:00 PM <br>
+                      Sábados: 11:00 AM - 5:00 PM</a></li>
+                  <li><a href="mailto:myym.gamers@gmail.com">E-mail: <span> myym.gamers@gmail.com</span></a></li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+          <!-- fin del desplegable -->
+        </div>
+        <!-- fin del menu -->
+      </section>
+      <section class="social-footer">
+        <div class="list-footer">
+          <ul>
+            <li><a href="">Trabajá con nosotros</a></li>
+            <li><a href="">Términos y condiciones</a></li>
+            <li><a href="">Cómo cuidamos tu privacidad</a></li>
+            <li><a href="">Ayuda</a></li>
+            <li><a href="">Defensa al consumidor</a></li>
+          </ul>
+        </div>
+        <div class="container-social">
+          <div class="copy">
+            <p>Copyright © 2021 MYYM Gamers</p>
+          </div>
+          <div class="tarjetas">
+            <img src="/img/iconos-png/tarjetas-icon/paypal.png" alt="">
+            <img src="/img/iconos-png/tarjetas-icon/visa.png" alt="">
+            <img src="/img/iconos-png/tarjetas-icon//maestro.png" alt="">
+            <img src="/img/iconos-png/tarjetas-icon/mastercard.png" alt="">
+            <img src="/img/iconos-png/tarjetas-icon/american-express.png" alt="">
+
+          </div>
+          <div class="social-icon">
+            <a href="https://www.instagram.com/?hl=es" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-square"></i></a>
+            <a href="https://twitter.com/?lang=es" target="_blank"><i class="fab fa-twitter-square"></i></a>
+            <a href="https://web.whatsapp.com/" target="_blank"><img src="/img/iconos-png/whatsapp.png" alt=""></a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </footer>
+</body>
+</html>
