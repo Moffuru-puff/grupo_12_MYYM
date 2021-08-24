@@ -7,6 +7,7 @@ const port = 3000;
 
 let homeRouter = require("./routes/index");
 let usersRouter = require("./routes/users");
+let adminRouter = require("./routes/admin");
 let cargaDeProductosRouter = require("./routes/cargaDeProductos");
 let arrepentimientoRouter = require("./routes/btnDeArrepentimiento");
 
@@ -23,39 +24,19 @@ app.use(express.static('public'));
 
 /* Rutas */
 app.use('/', homeRouter);
+app.use('/admin', adminRouter);
 app.use('/charge', cargaDeProductosRouter);
 app.use('/btnDeArrepentimiento', arrepentimientoRouter);
-
-/* app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, `/views/index`) )
-}) */
 
 app.use('/user', usersRouter);
 
 app.use('/shoppingCart', shoppingCartRouter);
 
-app.get('/header', (req, res) => {
-    res.sendFile(path.join(__dirname, `/views/header.html`) )
-})
-
-app.get('/footer', (req, res) => {
-    res.sendFile(path.join(__dirname, `/views/footer.html`) )
-})
-
-
-
 app.get('/submit', (req, res) => {
     res.sendFile(path.join(__dirname, `/views/submit.html`))
 })
 
-
 app.use('/detalleDelProducto', producRouter);
-/*app.get('/detalleDelProducto', (req, res) => {
-    res.sendFile(path.join(__dirname, `/views/detalleDelProducto.html`))
-})*/
-
-
-
 
 app.get('/shoppingCart', (req, res) => {
     res.sendFile(path.join(__dirname, `/views/shoppingCart.html`) )
@@ -70,23 +51,11 @@ app.get('/confirm', (req, res) => {
     res.sendFile(path.join(__dirname, `/views/confirm.html`) )
 }) 
 
-
-
-
-
-
-/* app.get('/admin', (req, res) => {
-    res.sendFile(path.join(__dirname, `/views/cargaDeProductos.html`) )
-}); */ 
-
 app.get('/editprofile', (req, res) => {
     res.sendFile(path.join(__dirname, `/views/editProfile.html`) )
 }) 
 
-/* app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, `/views/error404.html`) )
-}) 
- */
+
 app.listen(port, () => {
     console.log(`Servidor corriendo en ${port}\n http://localhost:${port}`)
 })
