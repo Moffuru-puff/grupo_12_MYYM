@@ -179,7 +179,7 @@ header form input:focus {
 }
 
 header form button.btn-search {
-    border-radius: 10px;
+    border-radius: 0 10px 10px 0;
     position: absolute;
     right: 0;
 }

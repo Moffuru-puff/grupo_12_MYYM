@@ -4,10 +4,10 @@ let controller = require('../controllers/adminController');
 
 /* GET  */
 router.get('/', controller.index);
-/* router.get('/productsList', controller);
-router.get('/newProduct', controller);
-router.get('/editProduct/:id', controller);
-router.get('/deleteProduct/:id', controller);
+router.get('/productsList', controller.productsList);
+router.get('/newProduct', controller.charge);
+router.get('/editProduct/:id', controller.editProduct);
+/*router.get('/deleteProduct/:id', controller);
 
 router.get('/sucursalList', controller);
 router.get('/newSucursal', controller);

@@ -8,7 +8,7 @@ const port = 3000;
 let homeRouter = require("./routes/index");
 let usersRouter = require("./routes/users");
 let adminRouter = require("./routes/admin");
-let cargaDeProductosRouter = require("./routes/cargaDeProductos");
+/* let cargaDeProductosRouter = require("./routes/cargaDeProductos"); */
 let arrepentimientoRouter = require("./routes/btnDeArrepentimiento");
 
 let producRouter=require('./routes/producRouter');
@@ -25,7 +25,7 @@ app.use(express.static('public'));
 /* Rutas */
 app.use('/', homeRouter);
 app.use('/admin', adminRouter);
-app.use('/charge', cargaDeProductosRouter);
+/* app.use('/charge', cargaDeProductosRouter); */
 app.use('/btnDeArrepentimiento', arrepentimientoRouter);
 
 app.use('/user', usersRouter);

@@ -13,7 +13,7 @@ section.welcome {
 
 section.welcome h2 {
     font-family: var(--font-roboto);
-    color: var(--darkBlue);
+    color: var(--blue);
     text-align: center;
     font-size: 1.8rem;
 }
@@ -48,7 +48,7 @@ section.options-admin a div.administracion {
 section.options-admin a div.administracion:hover {
     background-color: var(--violet2);
     color:var(--cream);
-    transform: scale(1.05);
+    transform: scale(1.04);
 }
 
 section.options-admin a div.administracion h4 {

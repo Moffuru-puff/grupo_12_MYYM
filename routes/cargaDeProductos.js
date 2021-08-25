@@ -1,9 +1,9 @@
-let express = require('express');
+/* let express = require('express');
 let router = express.Router();
-let controller = require('../controllers/cargaDeProductosController');
+let controller = require('../controllers/adminController'); */
 
 /* GET  */
-router.get('/', controller.index);
+/* router.get('/', controller.charge);
 
 
-module.exports = router;
+module.exports = router; */
