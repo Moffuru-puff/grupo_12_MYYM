@@ -67,9 +67,9 @@
     },
     {
            "id" : 9,
-           "nombre": "CyberpowerPC Gamer Xtreme VR Gaming PC, Intel i5-10400F 2.9GHz, GeForce GTX 1660 Super 6GB, 8GB DDR4, 500GB NVMe SSD, Wi-Fi Ready",
+           "nombre": "CyberpowerPC Gamer Xtreme",
            "imagen": "CyberpowerPC Gamer Xtreme VR Gaming PC, Intel i5-10400F 2.9GHz, GeForce GTX 1660 Super 6GB, 8GB DDR4, 500GB NVMe SSD, Wi-Fi Ready.jpg",
-           "descripcion": "Lorem ipsum dolor sit amet.",
+           "descripcion": "VR Gaming PC, Intel i5-10400F 2.9GHz, GeForce GTX 1660 Super 6GB, 8GB DDR4, 500GB NVMe SSD, Wi-Fi Ready.",
            "price": "580.000"
            
     },

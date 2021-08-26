@@ -8,12 +8,12 @@
     <main>
       <!-- Lista de los productos -->
       <section class="welcome">
-        <h2>Lista de los productos</h2>
+        <h2>Lista de las sucursales</h2>
       </section>
 
       <section class="productsList"> 
         <div class="btn-agregarProducto">
-          <a href="/admin/newProduct" class="publish">Agregar producto</a>
+          <a href="/admin/newSucursal" class="publish">Agregar sucursal</a>
         </div>
 
         <!-- Tabla para Desktop -->
@@ -24,13 +24,10 @@
             <thead>
               <tr>
                 <th class="visible">ID</th>
-                <th class="visible">Código</th>
-                <th class="visible">Nombre</th>
-                <th class="invisible">Categoría</th>
-                <th class="invisible">Subcategoría</th>
-                <th class="invisible">Precio</th>
-                <th class="invisible">Descuento</th>
-                <th class="visible">Stock</th>
+                <th class="visible">Localidad</th>
+                <th class="visible">Dirección</th>
+                <th class="invisible">Tel</th>
+                <th class="invisible">Horarios</th>
                 <th></th>
               </tr>
             </thead>
@@ -38,15 +35,12 @@
             <tbody>
               <tr>
                 <td class="visible">ID</td>
-                <td class="visible">Código</td>
-                <td class="visible">Nombre</td>
-                <td class="invisible">Categoría</td>
-                <td class="invisible">Subcategoría</td>
-                <td class="invisible">Precio</td>
-                <td class="invisible">Descuento</td>
-                <td class="visible">Stock</td>
+                <td class="visible">Localidad</td>
+                <td class="visible">Dirección</td>
+                <td class="invisible">Tel</td>
+                <td class="invisible">Horarios</td>
                 <td>
-                  <a href="/admin/editProduct/:id">
+                  <a href="/admin/editSucursal/:id">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"

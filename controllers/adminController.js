@@ -14,4 +14,17 @@ module.exports = {
     editProduct : (req, res) => {
       res.render("./admin/editProduct");
     },
+
+    /* sucursales */
+    sucursalList: (req, res) => {
+      res.render("./admin/sucursalList");
+    },
+
+    addSucursal : (req, res) => {
+      res.render("./admin/addSucursal");
+    },
+
+    editSucursal : (req, res) => {
+      res.render("./admin/editSucursal");
+    },
 };

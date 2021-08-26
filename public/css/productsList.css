@@ -1,5 +1,14 @@
 @import url('/public/css/variants.css');
 
+.invisible {
+    display: none;
+}
+
+.btn-danger{
+    border: none;
+    cursor: pointer;
+} 
+
 section.productsList {
     display: flex;
     justify-content: center;
@@ -56,4 +65,14 @@ section.productsList .tableProducts table thead th {
 
 section.productsList .tableProducts table tbody td {
     border: solid 1px var(--grey);
+}
+
+@media screen and (min-width: 769px ){
+    .invisible {
+        display: table-cell;
+    }
+
+    section.productsList .tableProducts {
+        overflow: visible;      
+    }
 }
