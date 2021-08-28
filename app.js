@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const app = express();
+const methodOverride = require('method-override')
 const port = 3000;
 
 /* Enrutadores */
@@ -8,7 +9,6 @@ const port = 3000;
 let homeRouter = require("./routes/index");
 let usersRouter = require("./routes/users");
 let adminRouter = require("./routes/admin");
-/* let cargaDeProductosRouter = require("./routes/cargaDeProductos"); */
 let arrepentimientoRouter = require("./routes/btnDeArrepentimiento");
 
 let producRouter=require('./routes/producRouter');
@@ -21,11 +21,13 @@ app.set('view engine', 'ejs');
 
 /* Middlewares */
 app.use(express.static('public'));
+app.use(express.urlencoded({extended : false}));
+app.use(express.json());
+app.use(methodOverride('_method'));
 
 /* Rutas */
 app.use('/', homeRouter);
 app.use('/admin', adminRouter);
-/* app.use('/charge', cargaDeProductosRouter); */
 app.use('/btnDeArrepentimiento', arrepentimientoRouter);
 
 app.use('/user', usersRouter);
