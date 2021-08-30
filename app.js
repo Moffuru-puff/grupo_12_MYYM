@@ -50,9 +50,7 @@ app.get('/submit', (req, res) => {
 
 
 app.use('/detalleDelProducto', producRouter);
-/*app.get('/detalleDelProducto', (req, res) => {
-    res.sendFile(path.join(__dirname, `/views/detalleDelProducto.html`))
-})*/
+
 
 
 
