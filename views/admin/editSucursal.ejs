@@ -8,9 +8,11 @@
         <%- include('../partials/headerAdmin') %>
 
             <main class="main-admin">
+                <form action="/admin/sucursals/edit/<%= sucursal.id %>?_method=PUT " method="POST">
+                
                 <div class="cargaDeFotos">
                     <div class="volver">
-                        <a href="/admin/sucursalList">
+                        <a href="/admin/sucursals">
                             <i class="fas fa-arrow-left"></i>
                         </a>
                     </div>
@@ -18,21 +20,21 @@
                 <section class="charge">
                     <h2>Editar sucursal</h2>
                     <div class="freight">
-                        <form action="">
+                        <div class="formAdmin">
                             <div class="flex">
                                 <label for="location">Localidad</label>
                                 <div class="input">
-                                    <input type="text" placeholder="Pilar" id="location" name="location" />
+                                    <input type="text" value="<%= sucursal.location %>" id="location" name="location" />
                                 </div>
 
                                 <label for="direction">Dirección</label>
                                 <div class="input">
-                                    <input type="text" placeholder="Calle falsa 123" id="location" name="direction" />
+                                    <input type="text" value="<%= sucursal.direction %>"  id="location" name="direction" />
                                 </div>
 
                                 <label for="telephone">Teléfono</label>
                                 <div class="input">
-                                    <input type="text" name="telephone" id="telephone" placeholder="0800-0000" />
+                                    <input type="text" name="telephone" id="telephone" value="<%= sucursal.telephone %>"  />
                                 </div>
                             </div>
                             <div class="flex">
@@ -40,10 +42,10 @@
                                 <label for="schedule">Horarios</label>
                                 <div class="input">
                                     <textarea name="schedule" id="schedule" cols="30" rows="10"
-                                        placeholder="Lunes-Jueves: 9:00 AM - 5:30 PM"></textarea>
+                                    value="<%= sucursal.schedule %>" ></textarea>
                                 </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
                     <div class="btn-publish">
                         <button class="publish" type="submit">Cancelar</button>
@@ -51,6 +53,7 @@
                     </div>
 
                 </section>
+                </form>
             </main>
     </body>
 

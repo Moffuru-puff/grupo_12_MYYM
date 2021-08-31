@@ -10,7 +10,7 @@ let {
     productDelete,
     sucursalList, 
     addSucursal,
-    chargeSucursal,
+    createSucursal,
     editSucursal,
     sucursalUpdate,
     sucursalDelete,
@@ -31,15 +31,20 @@ router.get('/products/create', addProduct);
 router.post('/products/create', productUploadImage.array("image"), productValidator, charge);
 /* Edit Product */
 router.get('/products/edit/:id', editProduct);
-router.put('/products/edit/:id', productUpdate);
+router.put('/products/edit/:id', productUploadImage.array("image"), productValidator, productUpdate);
 /* Delete Product */
 router.delete('/products/delete/:id', productDelete);
 
 /* Sucursales */
-router.get('/sucursalList', sucursalList);
-router.get('/newSucursal', addSucursal);
-router.get('/editSucursal/:id', editSucursal);
-//router.get('/deleteSucursal/:id', controller);
+router.get('/sucursals', sucursalList);
+/* Create Sucursal */
+router.get('/sucursals/create', addSucursal);
+router.post('/sucursals/create', productValidator, createSucursal);
+/* Edit Sucursal */
+router.get('/sucursals/edit/:id', editSucursal);
+router.put('/sucursals/edit/:id', productValidator, sucursalUpdate);
+/* DeleteSucursal */
+router.get('/sucursals/deleteSucursal/:id', sucursalDelete);
 
 /* Usuarios */
 router.get('/userList', userList);

@@ -1,5 +1,5 @@
 const { validationResult } = require("express-validator");
-const { getProducts, categories, writeProductsJSON } = require("../db/dataB");
+const { getProducts, categories, sucursales, users, writeProductsJSON } = require("../db/dataB");
 
 const toThousand = (n) => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
@@ -156,15 +156,97 @@ module.exports = {
 
   /* sucursales */
   sucursalList: (req, res) => {
-    res.render("./admin/sucursalList");
+    res.render("./admin/sucursals", {
+      sucursales
+    });
   },
 
   addSucursal: (req, res) => {
     res.render("./admin/addSucursal");
   },
 
+  createSucursal: (req, res) => {
+    let errors = validationResult(req)
+
+       if (errors.isEmpty()) {
+        let lastId = 1;
+
+        sucursales.forEach((sucursal) => {
+            if(sucursal.id > lastId){
+                lastId = sucursal.id
+            }
+        })
+
+        let {
+            location, 
+            direction, 
+            telephone, 
+            schedule
+            } = req.body;
+
+        let newSucursal = {
+            id: lastId + 1,
+            location,
+            direction,
+            description,
+            telephone,
+            schedule
+        };
+
+        sucursales.push(newSucursal);
+
+        writeSucursalJSON(sucursales)
+
+        res.redirect('/admin/sucursals')
+       } else {
+           res.render("./admin/addSucursal", {
+               errors: errors.mapped(),
+               old: req.body 
+           })
+       }
+  },
+
   editSucursal: (req, res) => {
-    res.render("./admin/editSucursal");
+    let sucursal = sucursales.find(sucursal => sucursal.id === +req.params.id)
+    res.render("./admin/editSucursal", {
+      sucursal
+    });
+  },
+  sucursalUpdate: (req, res) => {
+
+   let {
+            location, 
+            direction, 
+            telephone, 
+            schedule
+            } = req.body;
+
+    console.log(req.body);
+    sucursales.map( sucursal => {
+      if (sucursal.id === +req.params.id) {
+          sucursal.id = sucursal.id,
+          sucursal.location = location,
+          sucursal.direction = direction,
+          sucursal.telephone = telephone,
+          sucursal.schedule = schedule
+      }
+    })
+
+    writeSucursalesJSON(sucursales)
+
+    res.redirect("/admin/sucursals")
+  },
+  sucursalDelete: (req, res) => {
+    sucursales.forEach(sucursal => {
+      if (sucursal.id === +req.params.id) {
+        let sucursalToDestroy = sucursales.indexOf(sucursal);
+        sucursales.splice(sucursalToDestroy, 1)
+      }
+    })
+
+    writeSucursalesJSON(sucursales)
+
+    res.redirect("/admin/sucursals")
   },
 
   /* Usuarios */

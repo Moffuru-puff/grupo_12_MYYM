@@ -8,9 +8,10 @@
         <%- include('../partials/headerAdmin') %>
 
             <main class="main-admin">
+                <form action="/admin/sucursals/create" method="POST">
                 <div class="cargaDeFotos">
                     <div class="volver">
-                        <a href="/admin/sucursalList">
+                        <a href="/admin/sucursals">
                             <i class="fas fa-arrow-left"></i>
                         </a>
                     </div>
@@ -18,7 +19,7 @@
                 <section class="charge">
                     <h2>Agregar nueva sucursal</h2>
                     <div class="freight">
-                        <form action="">
+                        <div class="formAdmin">
                             <div class="flex">
                                 <label for="location">Localidad</label>
                                 <div class="input">
@@ -43,13 +44,14 @@
                                         placeholder="Lunes-Jueves: 9:00 AM - 5:30 PM"></textarea>
                                 </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
                     <div class="btn-publish">
                         <button class="publish" type="submit">Guardar</button>
                     </div>
 
                 </section>
+            </form>
             </main>
     </body>
 

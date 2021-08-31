@@ -21,7 +21,7 @@
 
         <section class="productsList">
           <div class="btn-agregarProducto">
-            <a href="/admin/newSucursal" class="publish">Agregar sucursal</a>
+            <a href="/admin/sucursal/create" class="publish">Agregar sucursal</a>
           </div>
 
           <!-- Tabla para Desktop -->
@@ -41,14 +41,15 @@
               </thead>
 
               <tbody>
+                <% sucursales.forEach(sucursal => { %>
                 <tr>
-                  <td class="visible">ID</td>
-                  <td class="visible">Localidad</td>
-                  <td class="visible">Dirección</td>
-                  <td class="invisible">Tel</td>
-                  <td class="invisible">Horarios</td>
+                  <td class="visible"><%- sucursal.id %></td>
+                  <td class="visible"><%- sucursal.location %></td>
+                  <td class="visible"><%- sucursal.direction %></td>
+                  <td class="invisible"><%- sucursal.telephone %></td>
+                  <td class="invisible"><%- sucursal.schedule %></td>
                   <td>
-                    <a href="/admin/editSucursal/:id">
+                    <a href="/admin/sucursals/edit/<%= sucursal.id %>">
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-pencil-square" viewBox="0 0 16 16">
                         <path
@@ -57,7 +58,7 @@
                           d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
                       </svg>
                     </a>
-                    <form action="" method="">
+                    <form action="/admin/sucursals/delete/<%= sucursal.id %>?_method=DELETE" method="POST">
                       <button type="submit" class="btn btn-danger">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                           class="bi bi-trash" viewBox="0 0 16 16">
