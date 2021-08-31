@@ -11,7 +11,7 @@ module.exports = [
     .notEmpty()
     .withMessage("Debes elegir una categoría"),
     
-    check('sucategory')
+    check('subcategory')
     .notEmpty()
     .withMessage("Debes elegir una subcategoría"),
 

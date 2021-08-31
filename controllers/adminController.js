@@ -1,5 +1,5 @@
 const { validationResult } = require("express-validator");
-const { getProducts, categories, writeProductsJson } = require("../db/dataB");
+const { getProducts, categories, writeProductsJSON } = require("../db/dataB");
 
 const toThousand = (n) => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
@@ -77,7 +77,7 @@ module.exports = {
 
       getProducts.push(newProduct);
 
-      writeProductsJson(getProducts);
+      writeProductsJSON(getProducts);
 
       res.redirect("/admin/products");
     } else {
@@ -119,7 +119,8 @@ module.exports = {
       description,
     } = req.body;
 
-    products.forEach(product => {
+    console.log(req.body);
+    getProducts.map( product => {
       if (product.id === +req.params.id) {
         product.id = product.id,
           product.name = name,
@@ -132,10 +133,11 @@ module.exports = {
           product.stock = stock,
           product.description = description,
           product.image = arrayImages > 0 ? arrayImages : product.image
+          console.log("aaa",product);
       }
     })
 
-    writeProductsJSON(products)
+    writeProductsJSON(getProducts)
 
     res.redirect("/admin/products")
   },

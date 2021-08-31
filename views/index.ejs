@@ -131,15 +131,16 @@
       <div class="products">
         
         <% for (producto of productos) { %>
+         <a href="/detalleDelProducto/<%- producto.id %>">
         <article>
           <div class="star">
             <img id="articulo01" class="myImage" onclick="changeImage()" src="/img/iconos-png/star-desactivada.png"
               alt="botón favoritos">
           </div>
           <div class="img-producto">
-            <a href="/detalleDelProducto/<%- producto.id %>">
+            <div>
               <img src="/img/Productos Gamers/<%- producto.image %>" alt="PS5" />
-            </a>
+            </div>
           </div>
           <div class="puntuacion">
             <img src="/img/iconos-png/4.5.png" alt="puntuacion" />
@@ -153,8 +154,9 @@
             <h3>$<%- producto.price %></h3>
           </div>
         </article>
+        </a>
         <% } %>
-
+      
       </div>
       <div class="arrow-top">
         <a href="#"><img src="/img/iconos-png/arrow-top.png" alt="" /></a>
