@@ -1,98 +1,181 @@
-const { getProducts, writeJson } = require('../db/dataBase')
+const { validationResult } = require("express-validator");
+const { getProducts, categories, writeProductsJson } = require("../db/dataB");
 
-const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+const toThousand = (n) => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+
+let subcategories = [];
+getProducts.forEach((product) => {
+  if (!subcategories.includes(product.subcategory)) {
+    subcategories.push(product.subcategory);
+  }
+});
 
 module.exports = {
-    index: (req, res) => {
-      res.render("./admin/admin");
-    },
+  index: (req, res) => {
+    res.render("./admin/admin");
+  },
 
-    productsList: (req, res) => {
-      res.render("./admin/productsList", {
-         productsList: getProducts,
-         /* products : function (idProduct) {
-            return product
-         } */
-      });
-    },
+  productsList: (req, res) => {
+    res.render("./admin/productsList", {
+      getProducts,
+    });
+  },
 
-    addProduct : (req, res) => {
-      res.render("./admin/cargaDeProductos", {
-        product: getProducts,
-      });
-    },
+  addProduct: (req, res) => {
+    res.render("./admin/cargaDeProductos", {
+      categories,
+      subcategories,
+    });
+  },
 
-    charge : (req, res) => {
+  charge: (req, res) => {
+    let errors = validationResult(req);
+
+    if (errors.isEmpty()) {
       let lastId = 1;
 
-      console.log(req.body);
-      getProducts.forEach(product => {
-          if(product.id > lastId) {
-              lastId = product.id
-          }
+      getProducts.forEach((product) => {
+        if (product.id > lastId) {
+          lastId = product.id
+        }
       })
 
-      const { name,
+      console.log(req.body);
+
+      let arrayImages = [];
+      if (req.files) {
+        req.files.forEach(image => {
+          arrayImages.push(image.filename)
+        })
+      }
+
+      const {
+        name,
         price,
         discount,
         mark,
         category,
-        subCategory,
-        code,
+        subcategory,
+        scanning,
         stock,
-        description } = req.body
+        description,
+      } = req.body;
 
       let newProduct = {
-          id : lastId + 1,
-          name,
-          price,
-          discount,
-          mark,
-          category,
-          subCategory,
-          code,
-          stock,
-          description,
-          image: req.file ? req.file.filename : "",
-          
-      }
-
+        id: lastId + 1,
+        name,
+        price,
+        discount,
+        mark,
+        category,
+        subcategory,
+        scanning,
+        stock,
+        description,
+        image: arrayImages.length > 0 ? arrayImages : ""
+      };
 
       getProducts.push(newProduct);
 
-      writeJson(getProducts)
+      writeProductsJson(getProducts);
 
-      res.redirect('/admin/productsList')
-    },
+      res.redirect("/admin/products");
+    } else {
+      res.render("./admin/cargaDeProductos", {
+        subcategories,
+        categories,
+        errors: errors.mapped(),
+        old: req.body,
+      });
+    }
+  },
 
-    editProduct : (req, res) => {
-      res.render("./admin/editProduct");
-    },
+  editProduct: (req, res) => {
+    let product = getProducts.find(product => product.id === +req.params.id)
+    res.render("./admin/editProduct", {
+      categories,
+      subcategories,
+      product
+    });
+  },
+  productUpdate: (req, res) => {
 
-    /* sucursales */
-    sucursalList: (req, res) => {
-      res.render("./admin/sucursalList");
-    },
+    let arrayImages = [];
+    if (req.files) {
+      req.files.forEach(image => {
+        arrayImages.push(image.filename)
+      })
+    }
 
-    addSucursal : (req, res) => {
-      res.render("./admin/addSucursal");
-    },
+    let {
+      name,
+      price,
+      discount,
+      mark,
+      category,
+      subcategory,
+      scanning,
+      stock,
+      description,
+    } = req.body;
 
-    editSucursal : (req, res) => {
-      res.render("./admin/editSucursal");
-    },
+    products.forEach(product => {
+      if (product.id === +req.params.id) {
+        product.id = product.id,
+          product.name = name,
+          product.price = price,
+          product.discount = discount,
+          product.mark = mark,
+          product.category = category,
+          product.subcategory = subcategory,
+          product.scanning = scanning,
+          product.stock = stock,
+          product.description = description,
+          product.image = arrayImages > 0 ? arrayImages : product.image
+      }
+    })
 
-    /* Usuarios */
+    writeProductsJSON(products)
 
-    userList: (req, res) => {
-      res.render("./admin/userList");
-    },
+    res.redirect("/admin/products")
+  },
+  productDelete: (req, res) => {
+    getProducts.forEach(product => {
+      if (product.id === +req.params.id) {
+        let productToDestroy = getProducts.indexOf(product);
+        getProducts.splice(productToDestroy, 1)
+      }
+    })
 
-    addUser : (req, res) => {
-      res.render("./admin/addUser");
-    },
+    writeProductsJSON(getProducts)
 
-    editUser : (req, res) => {
-      res.render("./admin/editUser");
-    },
+    res.redirect("/admin/products")
+  },
+
+  /* sucursales */
+  sucursalList: (req, res) => {
+    res.render("./admin/sucursalList");
+  },
+
+  addSucursal: (req, res) => {
+    res.render("./admin/addSucursal");
+  },
+
+  editSucursal: (req, res) => {
+    res.render("./admin/editSucursal");
+  },
+
+  /* Usuarios */
+
+  userList: (req, res) => {
+    res.render("./admin/userList");
+  },
+
+  addUser: (req, res) => {
+    res.render("./admin/addUser");
+  },
+
+  editUser: (req, res) => {
+    res.render("./admin/editUser");
+  },
 };

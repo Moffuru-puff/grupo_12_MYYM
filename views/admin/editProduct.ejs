@@ -8,60 +8,67 @@
     <%- include('../partials/headerAdmin')  %>
 
     <main class="main-admin">
+        <form action="/admin/products/edit/<%= product.id %>?_method=PUT " method="POST" enctype="multipart/form-data">
         <div class="cargaDeFotos">
             <div class="volver">
-                <a href="/admin/productsList">
+                <a href="/admin/products">
                     <i class="fas fa-arrow-left"></i> 
                 </a> 
             </div>
             <div class="subirFoto">
-                <form action="">
+                <div class="formAdmin">
                     <label for="productPhoto">
                         <img src="/img/iconos-png/subirFoto.png" alt="" />
                     </label>
                     <input type="file" name="file" accept=".jpg, .png" multiple id="productPhoto" />
-                </form>
+                </div class="form">
             </div>
         </div>
         <section class="charge">
             <h2>Editar producto</h2>
             <div class="freight">
-                <form action="">
+                <div class="formAdmin">
                     <div class="flex">
                         <label for="name">Nombre del producto</label>
                         <div class="input">
-                            <input type="text" placeholder="Computadora Gamer" id="name" />
+                            <input type="text" value="<%= product.name %>" id="name" name="name" />
                         </div>
 
                         <label for="price">Precio del producto</label>
                         <div class="input">
-                            <input type="number" min="0" placeholder="$00.00" id="price" />
+                            <input type="number" min="0" value="<%= product.price %>" id="price" />
                         </div>
 
                         <label for="brand">Marca</label>
                         <div class="input">
-                            <input type="text" name="marca" id="brand" placeholder="Intel" />
+                            <input type="text" name="mark" id="brand" value="<%= product.mark %>" />
                         </div>
 
                         <label for="categoria-form">Categoría</label>
                         <div class="input">
-                            <select name="categoria" id="categoria-form">
-                                <option value="consolas">Consolas</option>
+                            <select name="category" id="categoria-form">
+                                <% categories.forEach(category => { %>
+                                    <option value="<%- category.id %>" <%= product.category == category.id ? "selected" : null %>><%- category.name %></option>
+                                 <% }) %>
+                                <!-- <option value="consolas">Consolas</option>
                                 <option value="videojuegos">Videojuegos</option>
                                 <option value="accesorios">Accesorios</option>
-                                <option value="zonaRetro">Zona Retro</option>
+                                <option value="zonaRetro">Zona Retro</option> -->
                             </select>
                         </div>
 
                         <label for="subCategoria-form">Subcategoría</label>
                         <div class="input">
-                            <input list="subCategoria-form" name="subCategoria" placeholder="Gamer" />
+                            <input list="subCategoria-form" name="subcategory" placeholder="Gamer" />
                             <datalist id="subCategoria-form">
-                                <option value="modernas">Modernas</option>
+                                <% subcategories.forEach(subcategory => { %>
+                                    <option value="<%- subcategory%>" <%= product.subcategory === subcategory ? "selected" : null %> ><%- subcategory %></option>
+                                 <% }) %>
+                               <!--  <option value="modernas">Modernas</option>
                                 <option value="Retro">Retro</option>
                                 <option value="Familiar">Familiar</option>
                                 <option value="ps">Play Station</option>
-                                <option value="nintendo">Nintendo</option>
+                                <option value="nintendo">Nintendo</option> -->
                             </datalist>
                         </div>
                     </div>
@@ -70,28 +77,29 @@
 
                         <label for="codigo">Código de producto</label>
                         <div class="input">
-                            <input type="number" min="0" placeholder="0000" id="codigo" />
+                            <input type="number" min="0" name="scanning" value="<%= product.scanning %>" id="codigo" />
                         </div>
                        
                         <label for="stock">Stock</label>
                         <div class="input">
-                            <input type="number" min="0" placeholder="0" id="stock" />
+                            <input type="number" min="0" name="stock" value="<%= product.stock %>" id="stock" />
                         </div>
 
 
                         <label for="description">Descripción del producto</label>
                         <div class="input">
                             <textarea name="descripcion" id="description" cols="30" rows="10"
-                                placeholder="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem repudiandae nam accusamus sint eum praesentium, necessitatibus explicabo. Magnam, ab omnis."></textarea>
+                            value="<%= product.description %>"></textarea>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
             <div class="btn-publish">
                 <button class="publish" type="submit">Cancelar</button>
                 <button class="publish" type="submit">Guardar</button>
             </div>
         </section>
+    </form>
     </main>
 </body>
 

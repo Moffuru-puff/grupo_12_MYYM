@@ -8,10 +8,10 @@
         <%- include('../partials/headerAdmin') %>
 
             <main class="main-admin">
-                <form action="/admin/chargeProduct" method="POST" enctype="multipart/form-data">
+                <form action="/admin/products/create" method="POST" enctype="multipart/form-data">
                     <div class="cargaDeFotos">
                         <div class="volver">
-                            <a href="/admin/productsList">
+                            <a href="/admin/products">
                                 <i class="fas fa-arrow-left"></i>
                             </a>
                         </div>
@@ -20,26 +20,32 @@
                                 <label for="productPhoto">
                                     <img src="/img/iconos-png/subirFoto.png" alt="" />
                                 </label>
-                                <input type="file" name="file" accept=".jpg, .png" multiple id="productPhoto" />
+                                <input type="file" name="image" accept=".jpg, .png" multiple id="productPhoto" />
                             </div>
                         </div>
                     </div>
                     <section class="charge">
                         <h2>Agregar nuevo producto</h2>
                         <div class="freight">
-                            <div class="form">
+                            <div class="formAdmin">
                                 <div class="flex">
                                     <label for="name">Nombre del producto</label>
                                     <div class="input">
                                         <input type="text" placeholder="Computadora Gamer" id="name" name="name" />
+                                        <% if (locals.errors && errors.name) { %>
+                                            <small class="text-danger"> <%= errors.name.msg %> </small>
+                                        <% } %>
                                     </div>
 
                                     <label for="price">Precio del producto</label>
                                     <div class="input">
                                         <input type="number" min="0" placeholder="$00.00" id="price" name="price" />
+                                        <% if (locals.errors && errors.price) { %>
+                                            <small class="text-danger"> <%= errors.price.msg %> </small>
+                                        <% } %>
                                     </div>
 
-                                    <label for="dicount">Descuento del producto</label>
+                                    <label for="discount">Descuento del producto</label>
                                     <div class="input">
                                         <input type="number" min="0" placeholder="20" id="discount" name="discount" />
                                     </div>
@@ -57,11 +63,14 @@
                                             <option value="accesorios">Accesorios</option>
                                             <option value="zonaRetro">Zona Retro</option>
                                         </select>
+                                        <% if(locals.errors && errors.category) { %> 
+                                            <small class="text-danger"> <%= errors.category.msg %> </small>
+                                         <% } %> 
                                     </div>
 
                                     <label for="subCategoria-form">Subcategoría</label>
                                     <div class="input">
-                                        <input list="subCategoria-form" name="subCategory" placeholder="Gamer" />
+                                        <input list="subCategoria-form" name="subcategory" placeholder="Gamer" />
                                         <datalist id="subCategoria-form">
                                             <option value="modernas">Modernas</option>
                                             <option value="Retro">Retro</option>
@@ -69,6 +78,9 @@
                                             <option value="ps">Play Station</option>
                                             <option value="nintendo">Nintendo</option>
                                         </datalist>
+                                        <% if(locals.errors && errors.subcategory) { %> 
+                                            <small class="text-danger"> <%= errors.subcategory.msg %> </small>
+                                         <% } %> 
                                     </div>
                                 </div>
 
@@ -76,7 +88,7 @@
 
                                     <label for="codigo">Código de producto</label>
                                     <div class="input">
-                                        <input type="number" min="0" placeholder="0000" id="codigo" name="code" />
+                                        <input type="number" min="0" placeholder="0000" id="codigo" name="scanning" />
                                     </div>
 
                                     <label for="stock">Stock</label>

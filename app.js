@@ -1,11 +1,10 @@
 const express = require('express');
-const path = require('path');
 const app = express();
+const path = require('path');
 const methodOverride = require('method-override')
 const port = 3000;
 
 /* Enrutadores */
-
 let homeRouter = require("./routes/index");
 let usersRouter = require("./routes/users");
 let adminRouter = require("./routes/admin");
@@ -16,8 +15,9 @@ let producRouter=require('./routes/producRouter');
 let shoppingCartRouter = require('./routes/shoppingCart')
 
 /* VIEWS */
-app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
 
 /* Middlewares */
 app.use(express.static('public'));

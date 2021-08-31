@@ -128,7 +128,7 @@ section.charge button.publish:hover {
         font-size: 24px;
     }
 
-    section.charge .form {
+    section.charge .formAdmin {
         display: flex;
         justify-content: space-evenly;
 
