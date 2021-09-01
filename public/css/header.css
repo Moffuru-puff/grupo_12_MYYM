@@ -179,7 +179,7 @@ header form input:focus {
 }
 
 header form button.btn-search {
-    border-radius: 0 10px 10px 0;
+    border-radius: 10px;
     position: absolute;
     right: 0;
 }
@@ -520,7 +520,7 @@ nav.navbar {
     nav.navbar ul.container-principal li.item-marcas div.general {
         position: absolute;
         display: flex;
-        margin-top: 5px;
+        margin-top: 2px;
         display: none;
         padding: 5px;
     }
