@@ -105,14 +105,12 @@ main section.container-products div.products article div.star img,
 
 main section.container-products div.products article div.img-producto,
 .cajasmini article div.img-producto {
-    width: 100%;
-    height: 180px;
+    width: fit-content;
 }
 
 main section.container-products div.products article div.img-producto img {
     width: 100%;
-    height: 100%;
-    object-fit: contain;
+    height: 180px;
 }
 
 /* puntuación */

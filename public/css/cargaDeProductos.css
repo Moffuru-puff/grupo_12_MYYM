@@ -19,10 +19,6 @@
     font-size: 1.5rem;
 }
 
-.volver a {
-    color: var(--darkBlue);
-}
-
 .subirFoto {
     width: 100%;
     height: 100%;
@@ -68,8 +64,7 @@ section.charge .freight div.input {
     margin-bottom: 15px;
 }
 
-section.charge .freight div.input textarea#description,
-section.charge .freight div.input textarea#schedule{
+section.charge .freight div.input textarea#description {
     border: none;
     padding: 5px;
     width: 100%;
@@ -91,7 +86,7 @@ section.charge .btn-publish {
     width: 100%;
     height: 80px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
 }
 
@@ -103,20 +98,6 @@ section.charge button.publish {
     font-size: 17px;
     color: var(--cream);
     background: linear-gradient(88.29deg, rgba(0, 0, 115, 0.911) 3.94%, rgba(201, 1, 98, 0.904) 96.6%);
-    transition: all 1s ease;
-    text-decoration: none;
-
-}
-section.charge button.publish a {
-    color: var(--cream);
-    text-decoration: none;
-    width: 100%;
-    height: 100%;
-}
-
-section.charge button.publish:hover {
-    transform: scale(1.03);
-    box-shadow: 2px 2px 2px var(--lilac1);
 
 }
 
@@ -136,7 +117,7 @@ section.charge button.publish:hover {
         font-size: 24px;
     }
 
-    section.charge .formAdmin {
+    section.charge form {
         display: flex;
         justify-content: space-evenly;
 

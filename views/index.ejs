@@ -131,32 +131,30 @@
       <div class="products">
         
         <% for (producto of productos) { %>
-         <a href="/detalleDelProducto/<%- producto.id %>">
         <article>
           <div class="star">
             <img id="articulo01" class="myImage" onclick="changeImage()" src="/img/iconos-png/star-desactivada.png"
               alt="botón favoritos">
           </div>
           <div class="img-producto">
-            <div>
-              <img src="/img/Productos Gamers/<%- producto.image %>" alt="PS5" />
-            </div>
+            <a href="/detalleDelProducto/<%- producto.id %>">
+              <img src="/img/Productos Gamers/<%- producto.imagen %>" alt="PS5" />
+            </a>
           </div>
           <div class="puntuacion">
             <img src="/img/iconos-png/4.5.png" alt="puntuacion" />
             <p>4.05</p>
           </div>
           <div class="description-product">
-            <h4><%- producto.name %></h4>
+            <h4><%- producto.nombre %></h4>
             <p>
-              <%- producto.description %>
+              <%- producto.descripcion %>
             </p>
             <h3>$<%- producto.price %></h3>
           </div>
         </article>
-        </a>
         <% } %>
-      
+
       </div>
       <div class="arrow-top">
         <a href="#"><img src="/img/iconos-png/arrow-top.png" alt="" /></a>

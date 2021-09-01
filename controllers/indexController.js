@@ -1,4 +1,4 @@
-const { getProducts} = require('../db/dataB')
+const { getProducts} = require('../db/dataBase')
  
 module.exports = {
     index: (req, res) => {
