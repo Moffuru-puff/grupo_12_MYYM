@@ -17,7 +17,7 @@
 
       <div class="nombre">
         <div class="nombredelproducto">
-          <h2><%- product.nombre %></h2>
+          <h2><%- product.name %></h2>
         </div>
         <div class="estrellita">
           <img id="myImage" onclick="changeImage()" src="/img/iconos-png/star-desactivada.png">
@@ -27,7 +27,7 @@
       </div>
       <div class="fotoMasdetalle">
         <div class="foto-principal">
-          <img src="/img/Productos Gamers/<%- product.imagen %>" alt="">
+          <img src="/img/Productos Gamers/<%- product.image %>" alt="">
         </div>
         <div class="detallesPrecio">
           <div id="detalleDePrecio">
@@ -65,9 +65,10 @@
       <div class="c-principales">
         <h4>Caracteristicas Principales:</h4>
         <ul>
-          <li>Tiene esta caractristica</li>
-          <li>Tiene esta otra</li>
-          <li>Y esta otra,esta zarpado</li>
+          <li><%- product.mark %></li>
+          <li><%- product.mainFeatures %></li>
+          <li><%- product.subcategory %></li>
+          
 
         </ul>
       </div>
@@ -264,5 +265,6 @@
 <!-- FIN DEL FOOTER-->
 
 </body>
+
 
 </html>
