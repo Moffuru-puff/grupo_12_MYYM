@@ -1,265 +1,367 @@
 const { validationResult } = require("express-validator");
-const { getProducts, categories, sucursales, users, writeProductsJSON } = require("../db/dataB");
+const { getProducts, categories, sucursales, users, writeProductsJSON, writeSucursalesJSON, writeUsersJSON } = require("../db/dataB");
 
 const toThousand = (n) => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
 let subcategories = [];
 getProducts.forEach((product) => {
-  if (!subcategories.includes(product.subcategory)) {
-    subcategories.push(product.subcategory);
-  }
+	if (!subcategories.includes(product.subcategory)) {
+		subcategories.push(product.subcategory);
+	}
 });
 
 module.exports = {
-  index: (req, res) => {
-    res.render("./admin/admin");
-  },
+	index: (req, res) => {
+		res.render("./admin/admin");
+	},
 
-  productsList: (req, res) => {
-    res.render("./admin/productsList", {
-      getProducts,
-    });
-  },
+	productsList: (req, res) => {
+		res.render("./admin/productsList", {
+			getProducts,
+		});
+	},
 
-  addProduct: (req, res) => {
-    res.render("./admin/cargaDeProductos", {
-      categories,
-      subcategories,
-    });
-  },
+	addProduct: (req, res) => {
+		res.render("./admin/cargaDeProductos", {
+			categories,
+			subcategories,
+		});
+	},
 
-  charge: (req, res) => {
-    let errors = validationResult(req);
+	charge: (req, res) => {
+		let errors = validationResult(req);
 
-    if (errors.isEmpty()) {
-      let lastId = 1;
+		if (errors.isEmpty()) {
+			let lastId = 1;
 
-      getProducts.forEach((product) => {
-        if (product.id > lastId) {
-          lastId = product.id
-        }
-      })
+			getProducts.forEach((product) => {
+				if (product.id >= lastId) {
+					lastId = product.id + 1
+				} 
+			})
 
-      console.log(req.body);
+			console.log(req.body);
 
-      let arrayImages = [];
-      if (req.files) {
-        req.files.forEach(image => {
-          arrayImages.push(image.filename)
-        })
-      }
+			let arrayImages = [];
+			if (req.files) {
+				req.files.forEach(image => {
+					arrayImages.push(image.filename)
+				})
+			}
 
-      const {
-        name,
-        price,
-        discount,
-        mark,
-        category,
-        subcategory,
-        scanning,
-        stock,
-        description,
-      } = req.body;
+			const {
+				name,
+				price,
+				discount,
+				mark,
+				category,
+				subcategory,
+				scanning,
+				stock,
+				description,
+			} = req.body;
 
-      let newProduct = {
-        id: lastId + 1,
-        name,
-        price,
-        discount,
-        mark,
-        category,
-        subcategory,
-        scanning,
-        stock,
-        description,
-        image: arrayImages.length > 0 ? arrayImages : ""
-      };
+			let newProduct = {
+				id: lastId,
+				name,
+				price,
+				discount,
+				mark,
+				category,
+				subcategory,
+				scanning,
+				stock,
+				description,
+				image: arrayImages.length > 0 ? arrayImages : ""
+			};
 
-      getProducts.push(newProduct);
+			getProducts.push(newProduct);
 
-      writeProductsJSON(getProducts);
+			writeProductsJSON(getProducts);
 
-      res.redirect("/admin/products");
-    } else {
-      res.render("./admin/cargaDeProductos", {
-        subcategories,
-        categories,
-        errors: errors.mapped(),
-        old: req.body,
-      });
-    }
-  },
+			res.redirect("/admin/products");
+		} else {
+			res.render("./admin/cargaDeProductos", {
+				subcategories,
+				categories,
+				errors: errors.mapped(),
+				old: req.body,
+			});
+		}
+	},
 
-  editProduct: (req, res) => {
-    let product = getProducts.find(product => product.id === +req.params.id)
-    res.render("./admin/editProduct", {
-      categories,
-      subcategories,
-      product
-    });
-  },
-  productUpdate: (req, res) => {
+	editProduct: (req, res) => {
+		let product = getProducts.find(product => product.id === +req.params.id)
+		res.render("./admin/editProduct", {
+			categories,
+			subcategories,
+			product
+		});
+	},
+	productUpdate: (req, res) => {
 
-    let arrayImages = [];
-    if (req.files) {
-      req.files.forEach(image => {
-        arrayImages.push(image.filename)
-      })
-    }
+		let arrayImages = [];
+		if (req.files) {
+			req.files.forEach(image => {
+				arrayImages.push(image.filename)
+			})
+		}
 
-    let {
-      name,
-      price,
-      discount,
-      mark,
-      category,
-      subcategory,
-      scanning,
-      stock,
-      description,
-    } = req.body;
+		let {
+			name,
+			price,
+			discount,
+			mark,
+			category,
+			subcategory,
+			scanning,
+			stock,
+			description
+		} = req.body;
 
-    console.log(req.body);
-    getProducts.map( product => {
-      if (product.id === +req.params.id) {
-        product.id = product.id,
-          product.name = name,
-          product.price = price,
-          product.discount = discount,
-          product.mark = mark,
-          product.category = category,
-          product.subcategory = subcategory,
-          product.scanning = scanning,
-          product.stock = stock,
-          product.description = description,
-          product.image = arrayImages > 0 ? arrayImages : product.image
-          console.log("aaa",product);
-      }
-    })
+		let categoria = categories.find(categoria => categoria.id == category);
 
-    writeProductsJSON(getProducts)
+		getProducts.map(product => {
+			if (product.id === +req.params.id) {
+				product.id = product.id,
+					product.name = name,
+					product.price = price,
+					product.discount = discount,
+					product.mark = mark,
+					product.category = categoria.name,
+					product.subcategory = subcategory,
+					product.scanning = scanning,
+					product.stock = stock,
+					product.description = description,
+					product.image = arrayImages.length > 0 ? arrayImages : product.image
 
-    res.redirect("/admin/products")
-  },
-  productDelete: (req, res) => {
-    getProducts.forEach(product => {
-      if (product.id === +req.params.id) {
-        let productToDestroy = getProducts.indexOf(product);
-        getProducts.splice(productToDestroy, 1)
-      }
-    })
+			}
+		})
 
-    writeProductsJSON(getProducts)
+		writeProductsJSON(getProducts)
 
-    res.redirect("/admin/products")
-  },
+		res.redirect("/admin/products")
+	},
+	productDelete: (req, res) => {
+		getProducts.forEach(product => {
+			if (product.id === +req.params.id) {
+				let productToDestroy = getProducts.indexOf(product);
+				getProducts.splice(productToDestroy, 1)
+			}
+		})
 
-  /* sucursales */
-  sucursalList: (req, res) => {
-    res.render("./admin/sucursals", {
-      sucursales
-    });
-  },
+		writeProductsJSON(getProducts)
 
-  addSucursal: (req, res) => {
-    res.render("./admin/addSucursal");
-  },
+		res.redirect("/admin/products")
+	},
 
-  createSucursal: (req, res) => {
-    let errors = validationResult(req)
+	/* sucursales */
+	sucursalList: (req, res) => {
+		res.render("./admin/sucursalList", {
+			sucursales
+		});
+	},
 
-       if (errors.isEmpty()) {
-        let lastId = 1;
+	addSucursal: (req, res) => {
+		res.render("./admin/addSucursal");
+	},
 
-        sucursales.forEach((sucursal) => {
-            if(sucursal.id > lastId){
-                lastId = sucursal.id
-            }
-        })
+	createSucursal: (req, res) => {
+		let errors = validationResult(req)
 
-        let {
-            location, 
-            direction, 
-            telephone, 
-            schedule
-            } = req.body;
+		if (errors.isEmpty()) {
+			let lastId = 1;
 
-        let newSucursal = {
-            id: lastId + 1,
-            location,
-            direction,
-            description,
-            telephone,
-            schedule
-        };
+			sucursales.forEach((sucursal) => {
+				if (sucursal.id >= lastId) {
+					lastId = sucursal.id + 1
+				}
+			})
 
-        sucursales.push(newSucursal);
+			let {
+				location,
+				direction,
+				description,
+				telephone,
+				schedule
+			} = req.body;
 
-        writeSucursalJSON(sucursales)
+			let newSucursal = {
+				id: lastId,
+				location,
+				direction,
+				description,
+				telephone,
+				schedule
+			};
 
-        res.redirect('/admin/sucursals')
-       } else {
-           res.render("./admin/addSucursal", {
-               errors: errors.mapped(),
-               old: req.body 
-           })
-       }
-  },
+			sucursales.push(newSucursal);
 
-  editSucursal: (req, res) => {
-    let sucursal = sucursales.find(sucursal => sucursal.id === +req.params.id)
-    res.render("./admin/editSucursal", {
-      sucursal
-    });
-  },
-  sucursalUpdate: (req, res) => {
+			writeSucursalesJSON(sucursales)
 
-   let {
-            location, 
-            direction, 
-            telephone, 
-            schedule
-            } = req.body;
+			res.redirect('/admin/sucursals')
+		} else {
+			res.render("./admin/addSucursal", {
+				errors: errors.mapped(),
+				old: req.body
+			})
+		}
+	},
 
-    console.log(req.body);
-    sucursales.map( sucursal => {
-      if (sucursal.id === +req.params.id) {
-          sucursal.id = sucursal.id,
-          sucursal.location = location,
-          sucursal.direction = direction,
-          sucursal.telephone = telephone,
-          sucursal.schedule = schedule
-      }
-    })
+	editSucursal: (req, res) => {
+		let sucursal = sucursales.find(sucursal => sucursal.id === +req.params.id)
+		res.render("./admin/editSucursal", {
+			sucursal
+		});
+	},
+	sucursalUpdate: (req, res) => {
 
-    writeSucursalesJSON(sucursales)
+		let {
+			location,
+			direction,
+			telephone,
+			schedule
+		} = req.body;
 
-    res.redirect("/admin/sucursals")
-  },
-  sucursalDelete: (req, res) => {
-    sucursales.forEach(sucursal => {
-      if (sucursal.id === +req.params.id) {
-        let sucursalToDestroy = sucursales.indexOf(sucursal);
-        sucursales.splice(sucursalToDestroy, 1)
-      }
-    })
+		sucursales.map(sucursal => {
+			if (sucursal.id === +req.params.id) {
+				sucursal.id = sucursal.id,
+					sucursal.location = location,
+					sucursal.direction = direction,
+					sucursal.telephone = telephone,
+					sucursal.schedule = schedule
+			}
+		})
 
-    writeSucursalesJSON(sucursales)
+		writeSucursalesJSON(sucursales)
 
-    res.redirect("/admin/sucursals")
-  },
+		res.redirect("/admin/sucursals")
+	},
+	sucursalDelete: (req, res) => {
+		sucursales.forEach(sucursal => {
+			if (sucursal.id === +req.params.id) {
+				let sucursalToDestroy = sucursales.indexOf(sucursal);
+				sucursales.splice(sucursalToDestroy, 1)
+			}
+		})
 
-  /* Usuarios */
+		writeSucursalesJSON(sucursales)
 
-  userList: (req, res) => {
-    res.render("./admin/userList");
-  },
+		res.redirect("/admin/sucursals")
+	},
 
-  addUser: (req, res) => {
-    res.render("./admin/addUser");
-  },
+	/* Usuarios */
 
-  editUser: (req, res) => {
-    res.render("./admin/editUser");
-  },
+	userList: (req, res) => {
+		res.render("./admin/userList", {
+			users
+		});
+	},
+
+	addUser: (req, res) => {
+		res.render("./admin/addUser");
+	},
+
+	createUser: (req, res) => {
+		let errors = validationResult(req)
+
+		if (errors.isEmpty()) {
+			let lastId = 1;
+
+			users.forEach((user) => {
+				if (user.id >= lastId) {
+					lastId = user.id + 1 
+				}
+			})
+
+			let {
+				user,
+				name,
+				lastname,
+				telephone,
+				address,
+				province,
+				email,
+				password,
+				rol
+			} = req.body;
+
+			let newUser = {
+				id: lastId,
+				user,
+				name,
+				lastname,
+				telephone,
+				address,
+				province,
+				email,
+				password,
+				rol
+			};
+
+			users.push(newUser);
+
+			writeUsersJSON(users)
+
+			res.redirect('/admin/userList')
+		} else {
+			res.render("./admin/addUser", {
+				errors: errors.mapped(),
+				old: req.body
+			})
+		}
+	},
+
+	editUser: (req, res) => {
+		let user = users.find(user => user.id === +req.params.id)
+		res.render("./admin/editUser", {
+			user
+		});
+	},
+
+	userUpdate: (req, res) => {
+		let {
+			user,
+			name,
+			lastname,
+			telephone,
+			address,
+			province,
+			email,
+			password,
+			rol
+		} = req.body;
+
+		users.map(usuario => {
+			if(usuario.id === +req.params.id) {
+				usuario.id = user.id,
+				usuario.user = user,
+				usuario.name = name,
+				usuario.lastname = lastname,
+				usuario.telephone = telephone,
+				usuario.address = address,
+				usuario.province = province,
+				usuario.email = email,
+				usuario.password = password,
+				usuario.rol = rol				
+			}
+		})
+
+		writeUsersJSON(users)
+
+		res.redirect("/admin/userList")
+	},
+
+	userDelete: (req, res) => {
+		users.forEach(usuario => {
+			if (usuario.id === +req.params.id) {
+				let userToDestroy = users.indexOf(usuario);
+				users.splice(userToDestroy, 1)
+			}
+		})
+
+		writeUsersJSON(users)
+
+		res.redirect("/admin/userList")
+	}
 };

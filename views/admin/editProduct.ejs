@@ -43,7 +43,8 @@
 
                                     <label for="discount">Descuento del producto</label>
                                     <div class="input">
-                                        <input type="number" min="0" value="<%= product.discount %>"id="discount" name="discount" />
+                                        <input type="number" min="0" value="<%= product.discount %>" id="discount"
+                                            name="discount" />
                                     </div>
 
                                     <label for="brand">Marca</label>
@@ -54,15 +55,17 @@
                                     <label for="categoria-form">Categoría</label>
                                     <div class="input">
                                         <select name="category" id="categoria-form">
+
+                                            <option value="<%- product.category %>" selected>
+                                                <%- product.category %>
+                                            </option>
                                             <% categories.forEach(category=> { %>
                                                 <option value="<%- category.id %>" <%=product.category==category.id
-                                                    ? "selected" : null %>><%- category.name %>
+                                                    ? "selected" : null %>
+                                                    >
+                                                    <%= category.name %>
                                                 </option>
                                                 <% }) %>
-                                                    <!-- <option value="consolas">Consolas</option>
-                                <option value="videojuegos">Videojuegos</option>
-                                <option value="accesorios">Accesorios</option>
-                                <option value="zonaRetro">Zona Retro</option> -->
                                         </select>
                                     </div>
 
@@ -102,13 +105,13 @@
                                     <label for="description">Descripción del producto</label>
                                     <div class="input">
                                         <textarea name="description" id="description" cols="30" rows="10"
-                                            value="<%= product.description %>"></textarea>
+                                            value="<%= product.description %>"><%= product.description %></textarea>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="btn-publish">
-                            <button class="publish" type="submit">Cancelar</button>
+                            <button class="publish" type="button"><a href="../">Cancelar</a></button>
                             <button class="publish" type="submit">Guardar</button>
                         </div>
                     </section>

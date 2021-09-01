@@ -37,18 +37,17 @@
                                     <input type="text" name="telephone" id="telephone" value="<%= sucursal.telephone %>"  />
                                 </div>
                             </div>
-                            <div class="flex">
-
+                            <div class="flex"> 
                                 <label for="schedule">Horarios</label>
                                 <div class="input">
                                     <textarea name="schedule" id="schedule" cols="30" rows="10"
-                                    value="<%= sucursal.schedule %>" ></textarea>
+                                    value="<%= sucursal.schedule %>" ><%= sucursal.schedule %></textarea>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="btn-publish">
-                        <button class="publish" type="submit">Cancelar</button>
+                        <button class="publish" type="button"><a href="../">Cancelar</a></button>
                         <button class="publish" type="submit">Guardar</button>
                     </div>
 

@@ -16,6 +16,4 @@ module.exports = {
     writeSucursalesJSON: (dataB) => {
         fs.writeFileSync(path.join(__dirname, "../db/sucursales.json"), JSON.stringify(dataB), "utf-8")
     }
-
-
 }

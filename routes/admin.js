@@ -16,9 +16,12 @@ let {
     sucursalDelete,
     userList,
     addUser,
-    editUser
+    createUser,
+    editUser,
+    userUpdate,
+    userDelete
  } = require('../controllers/adminController');
-let productUploadImage = require('../middlewares/productUploadImage');
+let uploadFile = require('../middlewares/productUploadImage');
 let productValidator = require('../validations/productCreateValidator')
 
 
@@ -28,29 +31,38 @@ router.get('/', index);
 router.get('/products', productsList);
 /* Create Product */
 router.get('/products/create', addProduct);
-router.post('/products/create', productUploadImage.array("image"), productValidator, charge);
+router.post('/products/create', uploadFile.array("image"), productValidator, charge);
 /* Edit Product */
 router.get('/products/edit/:id', editProduct);
-router.put('/products/edit/:id', productUploadImage.array("image"), productValidator, productUpdate);
+router.put('/products/edit/:id', uploadFile.array("image"), productValidator, productUpdate);
 /* Delete Product */
 router.delete('/products/delete/:id', productDelete);
 
 /* Sucursales */
 router.get('/sucursals', sucursalList);
 /* Create Sucursal */
-router.get('/sucursals/create', addSucursal);
-router.post('/sucursals/create', productValidator, createSucursal);
+router.get('/sucursal/create', addSucursal);
+router.post('/sucursal/create', createSucursal);
 /* Edit Sucursal */
 router.get('/sucursals/edit/:id', editSucursal);
 router.put('/sucursals/edit/:id', productValidator, sucursalUpdate);
-/* DeleteSucursal */
-router.get('/sucursals/deleteSucursal/:id', sucursalDelete);
+/* Delete Sucursal */
+router.delete('/sucursal/deleteSucursal/:id', sucursalDelete);
 
 /* Usuarios */
 router.get('/userList', userList);
-router.get('/newUser', addUser);
-router.get('/editUser/:id', editUser);
-//router.get('/deleteUser/:id', controller); */
+/* Create User */
+router.get('/user/create', addUser);
+router.post('/user/create', createUser);
+/* Edit User */
+router.get('/users/edit/:id', editUser);
+router.put('/users/edit/:id', productValidator, userUpdate);
+/* Delete User */
+router.delete('/user/deleteUser/:id', userDelete);
+
+/* router.get('/newUser', addUser);
+router.get('/editUser/:id', editUser); */
+
 
 
 module.exports = router;
