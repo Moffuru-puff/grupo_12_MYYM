@@ -9,6 +9,8 @@ let homeRouter = require("./routes/index");
 let usersRouter = require("./routes/users");
 let cargaDeProductosRouter = require("./routes/cargaDeProductos");
 let arrepentimientoRouter = require("./routes/btnDeArrepentimiento");
+const bodyParser = require('body-parser');
+
 
 let producRouter=require('./routes/producRouter');
 
@@ -20,6 +22,9 @@ app.set('view engine', 'ejs');
 
 /* Middlewares */
 app.use(express.static('public'));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
 
 /* Rutas */
 app.use('/', homeRouter);
@@ -30,7 +35,7 @@ app.use('/btnDeArrepentimiento', arrepentimientoRouter);
     res.sendFile(path.join(__dirname, `/views/index`) )
 }) */
 
-app.use('/user', usersRouter);
+app.use('/', usersRouter);
 
 app.use('/shoppingCart', shoppingCartRouter);
 
@@ -85,8 +90,8 @@ app.get('/editprofile', (req, res) => {
 
 /* app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, `/views/error404.html`) )
-}) 
- */
+})  */
+ 
 app.listen(port, () => {
     console.log(`Servidor corriendo en ${port}\n http://localhost:${port}`)
 })
