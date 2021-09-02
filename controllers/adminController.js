@@ -256,8 +256,7 @@ module.exports = {
 
 	userList: (req, res) => {
 		res.render("./admin/userList", {
-			users,
-			getUsers
+			users
 		});
 	},
 

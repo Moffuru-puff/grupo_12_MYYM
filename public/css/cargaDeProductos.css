@@ -69,7 +69,7 @@ section.charge .freight div.input {
 }
 
 section.charge .freight div.input textarea#description,
-section.charge .freight div.input textarea#schedule{
+section.charge .freight div.input textarea#schedule {
     border: none;
     padding: 5px;
     width: 100%;
@@ -107,6 +107,7 @@ section.charge button.publish {
     text-decoration: none;
 
 }
+
 section.charge button.publish a {
     color: var(--cream);
     text-decoration: none;
@@ -118,6 +119,16 @@ section.charge button.publish:hover {
     transform: scale(1.03);
     box-shadow: 2px 2px 2px var(--lilac1);
 
+}
+
+.text-danger {
+    color: rgb(255, 0, 0);
+    padding-top: 2px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    border-top: solid 1px var(--grey);
 }
 
 @media screen and (min-width: 481px) {
