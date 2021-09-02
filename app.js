@@ -38,8 +38,6 @@ app.use('/', homeRouter);
 app.use('/admin', adminRouter);
 app.use('/btnDeArrepentimiento', arrepentimientoRouter);
 
-
-
 app.use('/', usersRouter);
 
 app.use('/shoppingCart', shoppingCartRouter);
@@ -61,7 +59,6 @@ app.get('/shipping', (req, res) => {
 app.get('/confirm', (req, res) => {
     res.sendFile(path.join(__dirname, `/views/confirm.html`) )
 }) 
-
 
 
 app.listen(port, () => {
