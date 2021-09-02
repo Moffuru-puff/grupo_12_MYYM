@@ -34,7 +34,6 @@ app.use('/', homeRouter);
 app.use('/charge', cargaDeProductosRouter);
 app.use('/btnDeArrepentimiento', arrepentimientoRouter);
 
-app.use('/user', usersRouter);
 
 
 app.use('/', usersRouter);
