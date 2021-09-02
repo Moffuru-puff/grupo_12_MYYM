@@ -38,9 +38,14 @@ module.exports = {
       let newUser = {
           id: lastId + 1,
           user: `${user}`,
+          name: "",
+          lastname: "",
+          telephone: "",
+          address: "",
+          province: "",
           email: `${email}`,
           password: `${password}`,
-          rol: "normal",
+          rol: "1",
           image: "defaultAvatarImage.png"
       };
 
