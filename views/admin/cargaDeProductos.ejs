@@ -33,16 +33,20 @@
                                     <div class="input">
                                         <input type="text" placeholder="Computadora Gamer" id="name" name="name" />
                                         <% if (locals.errors && errors.name) { %>
-                                            <small class="text-danger"> <%= errors.name.msg %> </small>
-                                        <% } %>
+                                            <small class="text-danger">
+                                                <%= errors.name.msg %>
+                                            </small>
+                                            <% } %>
                                     </div>
 
                                     <label for="price">Precio del producto</label>
                                     <div class="input">
                                         <input type="number" min="0" placeholder="$00.00" id="price" name="price" />
                                         <% if (locals.errors && errors.price) { %>
-                                            <small class="text-danger"> <%= errors.price.msg %> </small>
-                                        <% } %>
+                                            <small class="text-danger">
+                                                <%= errors.price.msg %>
+                                            </small>
+                                            <% } %>
                                     </div>
 
                                     <label for="discount">Descuento del producto</label>
@@ -63,9 +67,11 @@
                                             <option value="accesorios">Accesorios</option>
                                             <option value="zonaRetro">Zona Retro</option>
                                         </select>
-                                        <% if(locals.errors && errors.category) { %> 
-                                            <small class="text-danger"> <%= errors.category.msg %> </small>
-                                         <% } %> 
+                                        <% if(locals.errors && errors.category) { %>
+                                            <small class="text-danger">
+                                                <%= errors.category.msg %>
+                                            </small>
+                                            <% } %>
                                     </div>
 
                                     <label for="subCategoria-form">Subcategoría</label>
@@ -78,9 +84,11 @@
                                             <option value="ps">Play Station</option>
                                             <option value="nintendo">Nintendo</option>
                                         </datalist>
-                                        <% if(locals.errors && errors.subcategory) { %> 
-                                            <small class="text-danger"> <%= errors.subcategory.msg %> </small>
-                                         <% } %> 
+                                        <% if(locals.errors && errors.subcategory) { %>
+                                            <small class="text-danger">
+                                                <%= errors.subcategory.msg %>
+                                            </small>
+                                            <% } %>
                                     </div>
                                 </div>
 
