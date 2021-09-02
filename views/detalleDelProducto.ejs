@@ -1,268 +1,291 @@
 <!DOCTYPE html>
 <html lang="es">
 
-  <%- include('./partials/head.ejs') %> 
-  
-
-<body>
-  <!--HEADER-->
-  <%- include('./partials/header.ejs') %> 
-<!-- FIN DEL HEADER-->
-
-<!--CUERPO DETALLE DEL PRODUCTO-->
-
-  <div class="cuerpo">
-
-    <article class="cajita-producto">
-
-      <div class="nombre">
-        <div class="nombredelproducto">
-          <h2><%- product.nombre %></h2>
-        </div>
-        <div class="estrellita">
-          <img id="myImage" onclick="changeImage()" src="/img/iconos-png/star-desactivada.png">
-        </div>
+<%- include('./partials/head.ejs') %>
 
 
-      </div>
-      <div class="fotoMasdetalle">
-        <div class="foto-principal">
-          <img src="/img/Productos Gamers/<%- product.imagen %>" alt="">
-        </div>
-        <div class="detallesPrecio">
-          <div id="detalleDePrecio">
-            <div id="precio">
-              <h2>$<%- product.price %></h2>
+  <body>
+    <!--HEADER-->
+    <%- include('./partials/header.ejs') %>
+      <!-- FIN DEL HEADER-->
+
+      <!--CUERPO DETALLE DEL PRODUCTO-->
+
+      <div class="cuerpo">
+
+        <article class="cajita-producto">
+
+          <div class="nombre">
+            <div class="nombredelproducto">
+              <h2>
+                <%- product.name %>
+              </h2>
             </div>
-            
-        
-            <div class="tarjeta-envio">
-              <div class="envio">
-                <i class="far fa-credit-card"></i>
-                <h4>Pagos con tarjeta</h4>
+            <div class="estrellita">
+              <img id="myImage" onclick="changeImage()" src="/img/iconos-png/star-desactivada.png">
+            </div>
+
+
+          </div>
+          <div class="fotoMasdetalle">
+            <div class="foto-principal">
+              <img src="/img/Productos Gamers/<%- product.image %>" alt="">
+            </div>
+            <div class="detallesPrecio">
+              <div id="detalleDePrecio">
+                <div id="precio">
+                  <h2>$<%- product.price - product.price * product.discount / 100 %>
+                  </h2>
+                  
+                  <h3 class="descuentoOferta"><%- product.discount !== 0 ? `${product.discount}% OFF` : '' %></h3>
+                </div>
+
+
+                <div class="tarjeta-envio">
+                  <div class="envio">
+                    <i class="far fa-credit-card"></i>
+                    <h4>Pagos con tarjeta</h4>
+                  </div>
+                  <div class="envio">
+                    <i class="fas fa-shipping-fast"></i>
+                    <h4>Envios</h4>
+                  </div>
+                </div>
               </div>
-              <div class="envio">
-                <i class="fas fa-shipping-fast"></i>
-                <h4>Envios</h4>
+              <div id="boton-compra">
+                <a class="boton-compra1" href="/shoppingCart">
+                  <button class="boton-compra1">
+
+                    Comprar Ahora</button></a>  
+                    <a class="boton-compra2" href="/shoppingCart">
+
+
+                  <button class="boton-compra2">
+                     Agregar al carrito
+                  </button></a>
               </div>
             </div>
           </div>
-          <div id="boton-compra">
-            <button class="boton-compra1">
-              Comprar Ahora
-            </button>
-            <button class="boton-compra2">
-              Agregar al carrito
-            </button>
+        </article>
+
+
+        <hr>
+        <div class="caracteristicas">
+          <div class="c-principales">
+            <h4>Caracteristicas Principales:</h4>
+            <ul>
+              <li>
+                <%- product.mark %>
+              </li>
+              <li>
+                <%- product.mainFeatures %>
+              </li>
+              <li>
+                <%- product.subcategory %>
+              </li>
+
+
+            </ul>
+          </div>
+          <br>
+          <div class="descripcion">
+            <h4>Descripcion del producto</h4>
+            <br>
+
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero minus praesentium hic id accusamus!
+              Nulla sed magnam consequatur amet aperiam eos consequuntur sunt facilis velit, delectus labore
+              explicabo dolorem exercitationem facere adipisci
+              ut ab optio, voluptate, distinctio dignissimos vel! Eveniet atque eligendi nostrum. Eum similique
+              quas voluptatibus reprehenderit distinctio libero doloribus unde temporibus repellendus. Sapiente
+              officiis corporis mollitia id aliquid
+              laudantium? Eius necessitatibus soluta tenetur rem. Modi eaque a perferendis, consequuntur non,
+              laboriosam eius error facilis amet ducimus unde veritatis! Nulla quidem ratione numquam fuga quaerat
+              aut non dignissimos excepturi eum
+              atque necessitatibus, qui animi consequatur error cum praesentium voluptatum.</p>
           </div>
         </div>
+        <hr>
+        <!--pregruntas de clientes-->
+        <div class="preguntas">
+          <form action="" method="post">
+            <label for="pregunta">¿Tienes alguna duda?</label>
+
+            <input type="text" placeholder="Haz tu preguna aqui" name="pregunta">
+
+            <button class="flecha">
+              <i class="fas fa-arrow-right"></i>
+            </button>
+          </form>
+
+          <button id="clientes">Preguntas de otros clientes</button>
+          <div class="flecha-abajo">
+            <i class="fas fa-angle-down"></i>
+          </div>
+        </div>
+        <hr>
+        <!--puntuacion en estrellas-->
+        <div class="calificacion">
+          <div class="califico">
+            <h4>
+              <%- product.nombre %>
+            </h4>
+          </div>
+          <div class="cuatroEstrellas">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+            <i class="far fa-star"></i>
+          </div>
+          <div class="numero">
+            <h2>4.2</h2>
+          </div>
+          <button class="opinion">
+            Todas las Opiniones
+          </button>
+          <button class="opinion">
+            Opiniones Negativas
+          </button>
+          <button class="opinion">
+            Opiniones Positivas
+          </button>
+        </div>
+        <hr>
+        <div class="otrosProductos">
+          <div class="tituloMini">
+            <!--tarjetas de otros articulos-->
+            <h4>Otros productos que pueden interesarte:</h4>
+          </div>
+          <div class="cajasmini">
+            <article class="productosInteresantes">
+              <div class="star" id="starFlotante">
+                <img id="myImage" onclick="changeImage()" src="/img/iconos-png/star-desactivada.png"
+                  alt="botón favoritos">
+              </div>
+              <div class="img-producto">
+                <a href="">
+                  <img src="/img/Productos Gamers/fortnite-xboxOne.jpg " alt="Nintendo reto" />
+                </a>
+              </div>
+              <div class="puntuacion" id="puntosDeEstrellas">
+                <img src="/img/iconos-png/4.5.png" alt="puntuacion" />
+                <p>4.2</p>
+              </div>
+              <div class="textoOtrosProductos">
+
+                <h4>Lorem ipsum dolor sit amet.</h4>
+                <p>
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. A,
+                  excepturi!
+                </p>
+                <h3>$5.000</h3>
+              </div>
+            </article>
+            <article class="productosInteresantes">
+              <div class="star" id="starFlotante">
+                <img id="myImage" onclick="changeImage()" src="/img/iconos-png/star-desactivada.png"
+                  alt="botón favoritos">
+              </div>
+              <div class="img-producto">
+                <a href="">
+                  <img src="/img/Productos Gamers/playStation5.jpg " alt="Nintendo reto" />
+                </a>
+              </div>
+              <div class="puntuacion" id="puntosDeEstrellas">
+                <img src="/img/iconos-png/4.5.png" alt="puntuacion" />
+                <p>4.05</p>
+              </div>
+              <div class="">
+                <h4>Lorem ipsum dolor sit amet.</h4>
+                <p>
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. A,
+                  excepturi!
+                </p>
+                <h3>$5.000</h3>
+              </div>
+            </article>
+            <article class="productosInteresantes">
+              <div class="star" id="starFlotante">
+                <img id="myImage" onclick="changeImage()" src="/img/iconos-png/star-desactivada.png"
+                  alt="botón favoritos">
+              </div>
+              <div class="img-producto">
+                <a href="">
+                  <img src="/img/Productos Gamers/PS4s.jpg" alt="Nintendo reto" />
+                </a>
+              </div>
+              <div class="puntuacion" id="puntosDeEstrellas">
+                <img src="/img/iconos-png/4.5.png" alt="puntuacion" />
+                <p>4.05</p>
+              </div>
+              <div class="">
+                <h4>Lorem ipsum dolor sit amet.</h4>
+                <p>
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. A,
+                  excepturi!
+                </p>
+                <h3>$5.000</h3>
+              </div>
+            </article>
+            <article class="productosInteresantes">
+              <div class="star" id="starFlotante">
+                <img id="myImage" onclick="changeImage()" src="/img/iconos-png/star-desactivada.png"
+                  alt="botón favoritos">
+              </div>
+              <div class="img-producto">
+                <a href="">
+                  <img src="/img/Productos Gamers/miniArcade.png " alt="Nintendo reto" />
+                </a>
+              </div>
+              <div class="puntuacion" id="puntosDeEstrellas">
+                <img src="/img/iconos-png/4.5.png" alt="puntuacion" />
+                <p>4.05</p>
+              </div>
+              <div class="">
+                <h4>Lorem ipsum dolor sit amet.</h4>
+                <p>
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. A,
+                  excepturi!
+                </p>
+                <h3>$5.000</h3>
+              </div>
+            </article>
+            <article class="productosInteresantes">
+              <div class="star" id="starFlotante">
+                <img id="myImage" onclick="changeImage()" src="/img/iconos-png/star-desactivada.png"
+                  alt="botón favoritos">
+              </div>
+              <div class="img-producto">
+                <a href="">
+                  <img src="/img/Productos Gamers/PS2.jpg " alt="Nintendo reto" />
+                </a>
+              </div>
+              <div class="puntuacion" id="puntosDeEstrellas">
+                <img src="/img/iconos-png/4.5.png" alt="puntuacion" />
+                <p>4.05</p>
+              </div>
+              <div class="">
+                <h4>Lorem ipsum dolor sit amet.</h4>
+                <p>
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. A,
+                  excepturi!
+                </p>
+                <h3>$5.000</h3>
+              </div>
+            </article>
+          </div>
+        </div>
+
       </div>
-    </article>
-
-    
-    <hr>
-    <div class="caracteristicas">
-      <div class="c-principales">
-        <h4>Caracteristicas Principales:</h4>
-        <ul>
-          <li>Tiene esta caractristica</li>
-          <li>Tiene esta otra</li>
-          <li>Y esta otra,esta zarpado</li>
-
-        </ul>
-      </div>
-      <br>
-      <div class="descripcion">
-        <h4>Descripcion del producto</h4>
-        <br>
-
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero minus praesentium hic id accusamus!
-          Nulla sed magnam consequatur amet aperiam eos consequuntur sunt facilis velit, delectus labore
-          explicabo dolorem exercitationem facere adipisci
-          ut ab optio, voluptate, distinctio dignissimos vel! Eveniet atque eligendi nostrum. Eum similique
-          quas voluptatibus reprehenderit distinctio libero doloribus unde temporibus repellendus. Sapiente
-          officiis corporis mollitia id aliquid
-          laudantium? Eius necessitatibus soluta tenetur rem. Modi eaque a perferendis, consequuntur non,
-          laboriosam eius error facilis amet ducimus unde veritatis! Nulla quidem ratione numquam fuga quaerat
-          aut non dignissimos excepturi eum
-          atque necessitatibus, qui animi consequatur error cum praesentium voluptatum.</p>
-      </div>
-    </div>
-    <hr>
-    <!--pregruntas de clientes-->
-    <div class="preguntas">
-      <form action="" method="post">
-        <label for="pregunta">¿Tienes alguna duda?</label>
-
-        <input type="text" placeholder="Haz tu preguna aqui" name="pregunta">
-
-        <button class="flecha">
-          <i class="fas fa-arrow-right"></i>
-        </button>
-      </form>
-
-      <button id="clientes">Preguntas de otros clientes</button>
-      <div class="flecha-abajo">
-        <i class="fas fa-angle-down"></i>
-      </div>
-    </div>
-    <hr>
-    <!--puntuacion en estrellas-->
-    <div class="calificacion">
-      <div class="califico">
-        <h4><%- product.nombre %></h4>
-      </div>
-      <div class="cuatroEstrellas">
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star-half-alt"></i>
-        <i class="far fa-star"></i>
-      </div>
-      <div class="numero">
-        <h2>4.2</h2>
-      </div>
-      <button class="opinion">
-        Todas las Opiniones
-      </button>
-      <button class="opinion">
-        Opiniones Negativas
-      </button>
-      <button class="opinion">
-        Opiniones Positivas
-      </button>
-    </div>
-    <hr>
-    <div class="otrosProductos">
-      <div class="tituloMini">
-        <!--tarjetas de otros articulos-->
-        <h4>Otros productos que pueden interesarte:</h4>
-      </div>
-      <div class="cajasmini">
-        <article class="productosInteresantes">
-          <div class="star" id="starFlotante">
-            <img id="myImage" onclick="changeImage()" src="/img/iconos-png/star-desactivada.png" alt="botón favoritos">
-          </div>
-          <div class="img-producto">
-            <a href="">
-              <img src="/img/Productos Gamers/Nintendo 64 Grape Purple Console for sale online .jpg "
-                alt="Nintendo reto" />
-            </a>
-          </div>
-          <div class="puntuacion" id="puntosDeEstrellas">
-            <img src="/img/iconos-png/4.5.png" alt="puntuacion" />
-            <p>4.2</p>
-          </div>
-          <div class="textoOtrosProductos">
-
-            <h4>Lorem ipsum dolor sit amet.</h4>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. A,
-              excepturi!
-            </p>
-            <h3>$5.000</h3>
-          </div>
-        </article>
-        <article class="productosInteresantes">
-          <div class="star" id="starFlotante">
-            <img id="myImage" onclick="changeImage()" src="/img/iconos-png/star-desactivada.png" alt="botón favoritos">
-          </div>
-          <div class="img-producto">
-            <a href="">
-              <img src="/img/Productos Gamers/playStation5.jpg " alt="Nintendo reto" />
-            </a>
-          </div>
-          <div class="puntuacion" id="puntosDeEstrellas">
-            <img src="/img/iconos-png/4.5.png" alt="puntuacion" />
-            <p>4.05</p>
-          </div>
-          <div class="">
-            <h4>Lorem ipsum dolor sit amet.</h4>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. A,
-              excepturi!
-            </p>
-            <h3>$5.000</h3>
-          </div>
-        </article>
-        <article class="productosInteresantes">
-          <div class="star" id="starFlotante">
-            <img id="myImage" onclick="changeImage()" src="/img/iconos-png/star-desactivada.png" alt="botón favoritos">
-          </div>
-          <div class="img-producto">
-            <a href="">
-              <img src="/img/Productos Gamers/PS4s.jpg" alt="Nintendo reto" />
-            </a>
-          </div>
-          <div class="puntuacion" id="puntosDeEstrellas">
-            <img src="/img/iconos-png/4.5.png" alt="puntuacion" />
-            <p>4.05</p>
-          </div>
-          <div class="">
-            <h4>Lorem ipsum dolor sit amet.</h4>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. A,
-              excepturi!
-            </p>
-            <h3>$5.000</h3>
-          </div>
-        </article>
-        <article class="productosInteresantes">
-          <div class="star" id="starFlotante">
-            <img id="myImage" onclick="changeImage()" src="/img/iconos-png/star-desactivada.png" alt="botón favoritos">
-          </div>
-          <div class="img-producto">
-            <a href="">
-              <img src="/img/Productos Gamers/MFTEK.png " alt="Nintendo reto" />
-            </a>
-          </div>
-          <div class="puntuacion" id="puntosDeEstrellas">
-            <img src="/img/iconos-png/4.5.png" alt="puntuacion" />
-            <p>4.05</p>
-          </div>
-          <div class="">
-            <h4>Lorem ipsum dolor sit amet.</h4>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. A,
-              excepturi!
-            </p>
-            <h3>$5.000</h3>
-          </div>
-        </article>
-        <article class="productosInteresantes">
-          <div class="star" id="starFlotante">
-            <img id="myImage" onclick="changeImage()" src="/img/iconos-png/star-desactivada.png" alt="botón favoritos">
-          </div>
-          <div class="img-producto">
-            <a href="">
-              <img src="/img/Productos Gamers/PS2.jpg " alt="Nintendo reto" />
-            </a>
-          </div>
-          <div class="puntuacion" id="puntosDeEstrellas">
-            <img src="/img/iconos-png/4.5.png" alt="puntuacion" />
-            <p>4.05</p>
-          </div>
-          <div class="">
-            <h4>Lorem ipsum dolor sit amet.</h4>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. A,
-              excepturi!
-            </p>
-            <h3>$5.000</h3>
-          </div>
-        </article>
-      </div>
-    </div>
-
-  </div>
-  <!-- FIN CUERPO DETALLE DEL PRODUCTO-->
+      <!-- FIN CUERPO DETALLE DEL PRODUCTO-->
 
 
-  <!--FOOTER-->
-  <%- include('./partials/footer.ejs') %> 
-  
-<!-- FIN DEL FOOTER-->
+      <!--FOOTER-->
+      <%- include('./partials/footer.ejs') %>
 
-</body>
+        <!-- FIN DEL FOOTER-->
+
+  </body>
+
 
 </html>

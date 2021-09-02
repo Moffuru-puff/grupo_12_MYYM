@@ -15,5 +15,9 @@ module.exports = {
     sucursales: JSON.parse(fs.readFileSync(path.join(__dirname, "/sucursales.json"), "utf-8")),
     writeSucursalesJSON: (dataB) => {
         fs.writeFileSync(path.join(__dirname, "../db/sucursales.json"), JSON.stringify(dataB), "utf-8")
-    }
+    },
+    getUsers : JSON.parse(fs.readFileSync('./db/users.json', "utf-8")),
+    writeJsonUsers : (dataBase) => {
+        fs.writeFileSync('./db/users.json', JSON.stringify(dataBase), 'utf-8')
+    },
 }

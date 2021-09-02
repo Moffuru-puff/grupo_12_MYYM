@@ -26,6 +26,8 @@ Somos un equipo de desarrolladores de software, orientado a la creación y dise�
 * **Maximo Arebalo, 21 años, desarrollador web, estudiante de Digital House.**
 * **Yesica Do Campo, 32 años, desarrolladora, estudiante de Digital House, con conocimiento en Marketing Digital.**
 
+## NUESTRO TABLERO DE TRELLO: https://trello.com/b/98JTamkm/pi-grupo-12-c8
+
 Utilizamos las siguientes paginas web como referencia para realizar nuestro proyecto:
 * https://www.puppis.com.ar/  
    * La funcionalidad de los desplegables del nav.

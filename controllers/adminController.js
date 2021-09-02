@@ -1,5 +1,5 @@
 const { validationResult } = require("express-validator");
-const { getProducts, categories, sucursales, users, writeProductsJSON, writeSucursalesJSON, writeUsersJSON } = require("../db/dataB");
+const { getProducts, categories, sucursales, users, writeProductsJSON, writeSucursalesJSON, writeUsersJSON, getUsers } = require("../db/dataB");
 
 const toThousand = (n) => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
@@ -12,7 +12,9 @@ getProducts.forEach((product) => {
 
 module.exports = {
 	index: (req, res) => {
-		res.render("./admin/admin");
+		res.render("./admin/admin", {
+			toThousand
+		});
 	},
 
 	productsList: (req, res) => {
@@ -128,7 +130,7 @@ module.exports = {
 					product.price = price,
 					product.discount = discount,
 					product.mark = mark,
-					product.category = categoria.name,
+					product.category = categoria ? categoria.name : category,
 					product.subcategory = subcategory,
 					product.scanning = scanning,
 					product.stock = stock,
@@ -334,7 +336,7 @@ module.exports = {
 
 		users.map(usuario => {
 			if(usuario.id === +req.params.id) {
-				usuario.id = user.id,
+				usuario.id = usuario.id,
 				usuario.user = user,
 				usuario.name = name,
 				usuario.lastname = lastname,
