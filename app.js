@@ -1,13 +1,13 @@
 const express = require('express');
-const app = express();
 const path = require('path');
-const methodOverride = require('method-override')
+const app = express();
 const port = 3000;
 
 /* Enrutadores */
+
 let homeRouter = require("./routes/index");
 let usersRouter = require("./routes/users");
-let adminRouter = require("./routes/admin");
+let cargaDeProductosRouter = require("./routes/cargaDeProductos");
 let arrepentimientoRouter = require("./routes/btnDeArrepentimiento");
 const bodyParser = require('body-parser');
 
@@ -17,9 +17,8 @@ let producRouter=require('./routes/producRouter');
 let shoppingCartRouter = require('./routes/shoppingCart')
 
 /* VIEWS */
-app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
-
+app.set('view engine', 'ejs');
 
 /* Middlewares */
 app.use(express.static('public'));
@@ -32,9 +31,10 @@ app.use(methodOverride('_method'));
 
 /* Rutas */
 app.use('/', homeRouter);
-app.use('/admin', adminRouter);
+app.use('/charge', cargaDeProductosRouter);
 app.use('/btnDeArrepentimiento', arrepentimientoRouter);
 
+app.use('/user', usersRouter);
 
 
 app.use('/', usersRouter);
@@ -58,7 +58,6 @@ app.get('/shipping', (req, res) => {
 app.get('/confirm', (req, res) => {
     res.sendFile(path.join(__dirname, `/views/confirm.html`) )
 }) 
-
 
 
 app.listen(port, () => {

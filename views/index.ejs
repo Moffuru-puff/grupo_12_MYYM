@@ -82,6 +82,7 @@
 
           </div>
         </div>
+<<<<<<< HEAD
         <!-- END CAROUSEL Desktop-->
 
         <!-- Tarjetitas -->
@@ -103,6 +104,27 @@
               <h4>Plan 12 cuotas</h4>
               <p>con todas las tarjetas de crédito</p>
             </div>
+=======
+      </div>
+    </section>
+
+    <!-- Sección de productos -->
+    <section class="container-products">
+      <h2>Productos Destacados</h2>
+      
+      <div class="products">
+        
+        <% for (producto of productos) { %>
+        <article>
+          <div class="star">
+            <img id="articulo01" class="myImage" onclick="changeImage()" src="/img/iconos-png/star-desactivada.png"
+              alt="botón favoritos">
+          </div>
+          <div class="img-producto">
+            <a href="/detalleDelProducto/<%- producto.id %>">
+              <img src="/img/Productos Gamers/<%- producto.imagen %>" alt="PS5" />
+            </a>
+>>>>>>> 1407c17aabbacb5d98bd7084c485e18bf1ea8f17
           </div>
           <div class="tarjetitas">
             <div class="icon-cards">
