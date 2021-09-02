@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const methodOverride = require('method-override')
 const port = 3000;
 
 /* Enrutadores */
@@ -10,6 +9,7 @@ let usersRouter = require("./routes/users");
 let adminRouter = require("./routes/admin");
 let arrepentimientoRouter = require("./routes/btnDeArrepentimiento");
 const bodyParser = require('body-parser');
+const methodOverride = require('method-override')
 
 
 let producRouter=require('./routes/producRouter');
