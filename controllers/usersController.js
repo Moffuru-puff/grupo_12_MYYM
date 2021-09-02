@@ -1,4 +1,4 @@
-const { getUsers, writeJsonUsers } = require('../db/dataBase')
+const { getUsers, writeJsonUsers } = require('../db/dataB')
 const { validationResult } = require('express-validator')
 
 module.exports = {

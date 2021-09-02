@@ -1,5 +1,5 @@
 const { validationResult } = require("express-validator");
-const { getProducts, categories, sucursales, users, writeProductsJSON, writeSucursalesJSON, writeUsersJSON } = require("../db/dataB");
+const { getProducts, categories, sucursales, users, writeProductsJSON, writeSucursalesJSON, writeUsersJSON, getUsers } = require("../db/dataB");
 
 const toThousand = (n) => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
@@ -12,7 +12,9 @@ getProducts.forEach((product) => {
 
 module.exports = {
 	index: (req, res) => {
-		res.render("./admin/admin");
+		res.render("./admin/admin", {
+			toThousand
+		});
 	},
 
 	productsList: (req, res) => {
@@ -254,7 +256,8 @@ module.exports = {
 
 	userList: (req, res) => {
 		res.render("./admin/userList", {
-			users
+			users,
+			getUsers
 		});
 	},
 
