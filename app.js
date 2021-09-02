@@ -1,15 +1,18 @@
 const express = require('express');
-const path = require('path');
 const app = express();
+const path = require('path');
+
 const port = 3000;
 
 /* Enrutadores */
-
 let homeRouter = require("./routes/index");
 let usersRouter = require("./routes/users");
-let cargaDeProductosRouter = require("./routes/cargaDeProductos");
+let adminRouter = require("./routes/admin");
 let arrepentimientoRouter = require("./routes/btnDeArrepentimiento");
+
+
 const bodyParser = require('body-parser');
+const methodOverride = require('method-override')
 
 
 let producRouter=require('./routes/producRouter');
@@ -17,8 +20,9 @@ let producRouter=require('./routes/producRouter');
 let shoppingCartRouter = require('./routes/shoppingCart')
 
 /* VIEWS */
-app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
 
 /* Middlewares */
 app.use(express.static('public'));
@@ -31,11 +35,8 @@ app.use(methodOverride('_method'));
 
 /* Rutas */
 app.use('/', homeRouter);
-app.use('/charge', cargaDeProductosRouter);
+app.use('/admin', adminRouter);
 app.use('/btnDeArrepentimiento', arrepentimientoRouter);
-
-app.use('/user', usersRouter);
-
 
 app.use('/', usersRouter);
 

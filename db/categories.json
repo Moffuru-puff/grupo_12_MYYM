@@ -1,0 +1,18 @@
+[
+    {
+        "id" : 1,
+        "name" : "consola"
+    },
+    {
+        "id" : 2,
+        "name" : "Videojuegos"
+    },
+    {
+        "id" : 3,
+        "name" : "Accesorios"
+    },
+    {
+        "id" : 4,
+        "name" : "Zona Retro"
+    }
+]
