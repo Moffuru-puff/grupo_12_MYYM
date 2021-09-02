@@ -130,7 +130,7 @@ module.exports = {
 					product.price = price,
 					product.discount = discount,
 					product.mark = mark,
-					product.category = categoria.name,
+					product.category = categoria ? categoria.name : category,
 					product.subcategory = subcategory,
 					product.scanning = scanning,
 					product.stock = stock,
@@ -336,7 +336,7 @@ module.exports = {
 
 		users.map(usuario => {
 			if(usuario.id === +req.params.id) {
-				usuario.id = user.id,
+				usuario.id = usuario.id,
 				usuario.user = user,
 				usuario.name = name,
 				usuario.lastname = lastname,
