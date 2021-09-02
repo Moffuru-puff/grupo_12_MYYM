@@ -1,7 +1,7 @@
 let { check, body } = require('express-validator');
 
 module.exports = [
-    check('usuario')
+    check('user')
     .notEmpty()
     .withMessage("Debe ingresar un nombre de usuario").bail()
     .isLength({min: 5})

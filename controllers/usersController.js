@@ -20,14 +20,14 @@ module.exports = {
      
         let lastId = 1;
 
-         getUsers.forEach(usuario => {
-            if(usuario.id > lastId){
-                lastId = usuario.id
+         getUsers.forEach(user => {
+            if(user.id > lastId){
+                lastId = user.id
             }
         })  
 
       let {
-          usuario,
+          user,
           email,
           password,
           repassword
@@ -37,7 +37,7 @@ module.exports = {
 
       let newUser = {
           id: lastId + 1,
-          usuario: `${usuario}`,
+          user: `${user}`,
           email: `${email}`,
           password: `${password}`,
           rol: "normal",
