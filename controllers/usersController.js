@@ -13,7 +13,7 @@ module.exports = {
 
       let errors = validationResult(req)
 
-      console.log(req.body)
+      /* console.log(req.body) */
    
 
       if(errors.isEmpty()){

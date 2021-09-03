@@ -1,4 +1,4 @@
-const { getProducts} = require('../db/dataBase')
+const { getProducts} = require('../db/dataB')
 
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
