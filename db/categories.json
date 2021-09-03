@@ -1,7 +1,7 @@
 [
     {
         "id" : 1,
-        "name" : "Consolas"
+        "name" : "consola"
     },
     {
         "id" : 2,
@@ -12,7 +12,7 @@
         "name" : "Accesorios"
     },
     {
-        "id" : 3,
+        "id" : 4,
         "name" : "Zona Retro"
     }
 ]
