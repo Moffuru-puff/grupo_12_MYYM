@@ -44,13 +44,6 @@ function dropSubCategoryMenu (id) {
     searchBar.style.display = "none"
 }
 
-/* function mostrar(){
-    let items = document.getElementsByClassName("hidden");
-    if(items.style.display === "none"){
-        items.classList.remove("hidden")
-    }
-} */
-
 function dropAccount(id){
     let account = document.getElementById(`btnAccount`);
 
@@ -65,12 +58,10 @@ function dropAccount(id){
 
 /******************* Desplegables de Tablet y desktop **********************/
 
-/* let categorias = document.getElementById('category');
-let marcas = document.getElementById('marcas');
-let general = document.getElementsByClassName("general");
- */
 function dropNav(id){
     let drop = document.getElementById(id);
+    let categ = document.getElementById(categ);
+    let marcas = document.getElementById(marcas);
 
     if (drop !== undefined && drop !== null) {
         if (drop.style.display === "flex") {
@@ -79,6 +70,7 @@ function dropNav(id){
             drop.style.display = "flex";
         }
       }
+
 }
 
 

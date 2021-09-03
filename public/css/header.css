@@ -120,7 +120,7 @@ header nav.menu li.menu-item:hover ul.sub-menu {
 /* Logo */
 div.logo img {
     border-radius: 45%;
-    max-width: 30vw;
+    max-width: 110px;
     max-height: 18vh;
     padding: 5px;
 
@@ -370,7 +370,6 @@ nav.navbar {
 
     nav.navbar ul.container-principal {
         display: flex;
-      /*   color: var(--cream); */
         font-family: var(--font-poppins);
         font-weight: lighter;
         justify-content: space-evenly;
