@@ -60,14 +60,24 @@ function dropAccount(id){
 
 function dropNav(id){
     let drop = document.getElementById(id);
-    let categ = document.getElementById(categ);
-    let marcas = document.getElementById(marcas);
+    let categ = document.getElementById(`categ`);
+    let marcas = document.getElementById(`marcas`);
 
-    if (drop !== undefined && drop !== null) {
+      if (drop !== undefined && drop !== null) {
         if (drop.style.display === "flex") {
-            drop.style.display = "none";
+            if (drop === categ) {
+             categ.style.display = "none"  
+            }else {
+             marcas.style.display = "none"
+            }
         } else {
-            drop.style.display = "flex";
+            if (drop === categ) {
+                categ.style.display = "flex"   
+                marcas.style.display = "none"
+            }else{
+                marcas.style.display = "flex"
+                categ.style.display = "none"   
+            }
         }
       }
 

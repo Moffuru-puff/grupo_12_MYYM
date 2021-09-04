@@ -32,68 +32,112 @@
                                 <div class="flex">
                                     <label for="name">Nombre del producto</label>
                                     <div class="input">
-                                        <input type="text" value="<%= product.name %>" id="name" name="name" />
+                                        <input type="text" value="<%= locals.old ? old.name : product.name%>" id="name"
+                                            name="name" />
+                                            <% if (locals.errors && errors.name) { %>
+                                                <small class="text-danger">
+                                                    <%= errors.name.msg %>
+                                                </small>
+                                                <% } %>
                                     </div>
 
                                     <label for="price">Precio del producto</label>
                                     <div class="input">
-                                        <input type="number" min="0" value="<%= product.price %>" id="price"
+                                        <input type="number" min="0"
+                                            value="<%= locals.old ? old.price : product.price %>" id="price"
                                             name="price" />
+                                            <% if (locals.errors && errors.price) { %>
+                                                <small class="text-danger">
+                                                    <%= errors.name.msg %>
+                                                </small>
+                                                <% } %>
                                     </div>
 
                                     <label for="discount">Descuento del producto</label>
                                     <div class="input">
-                                        <input type="number" min="0" value="<%= product.discount %>" id="discount"
+                                        <input type="number" min="0"
+                                            value="<%= locals.old ? old.discount : product.discount %>" id="discount"
                                             name="discount" />
                                     </div>
 
                                     <label for="brand">Marca</label>
                                     <div class="input">
-                                        <input type="text" name="mark" id="brand" value="<%= product.mark %>" />
+                                        <input type="text" name="mark" id="brand"
+                                            value="<%= locals.old ? old.mark : product.mark %>" />
+                                            <% if(locals.errors && errors.mark) { %>
+                                                <small class="text-danger">
+                                                    <%= errors.mark.msg %>
+                                                </small>
+                                                <% } %>
                                     </div>
 
+                                    <label for="mainFeatures">Características principales</label>
+                                    <div class="input">
+                                        <textarea name="mainFeatures" id="mainFeatures" cols="30"
+                                            rows="10"><%= locals.old ? old.mainFeatures : product.description %></textarea>
+                                        <% if(locals.errors && errors.mainFeatures) { %>
+                                            <small class="text-danger">
+                                                <%= errors.mainFeatures.msg %>
+                                            </small>
+                                            <% } %>
+                                    </div>
+                                </div>
+
+                                <div class="flex">
                                     <label for="categoria-form">Categoría</label>
                                     <div class="input">
                                         <select name="category" id="categoria-form">
 
-                                            <option value="<%- product.category %>" selected>
-                                                <%- product.category %>
+                                            <option selected>
+                                                 Categorías
                                             </option>
+                                            <!-- <option value="<%- product.category %>" selected>
+                                                <%- product.category %>
+                                            </option> -->
+
                                             <% categories.forEach(category=> { %>
-                                                <option value="<%- category.id %>" <%=product.category==category.id
-                                                    ? "selected" : null %>
-                                                    >
-                                                    <%= category.name %>
+                                                <option value="<%- category.id %>" <%- locals.old &&
+                                                    old.category == category.id ? "selected" :
+                                                    category.id == product.category ? `selected` : "" %>><%- category.name
+                                                        %>
                                                 </option>
                                                 <% }) %>
                                         </select>
+                                        <% if(locals.errors && errors.category) { %>
+                                            <small class="text-danger">
+                                                <%= errors.category.msg %>
+                                            </small>
+                                            <% } %>
                                     </div>
 
                                     <label for="subCategoria-form">Subcategoría</label>
                                     <div class="input">
                                         <input list="subCategoria-form" name="subcategory" placeholder="Gamer" />
                                         <datalist id="subCategoria-form">
-                                            <% subcategories.forEach(subcategory=> { %>
-                                                <option value="<%- subcategory%>" <%=product.subcategory===subcategory
-                                                    ? "selected" : null %> ><%- subcategory %>
-                                                </option>
-                                                <% }) %>
-                                                
+                                            <option selected hidden>Subcategorias</option>
+                                            <% subcategories.forEach(subcategory => { %>
+                                               <option value="<%- subcategory%>" <%- locals.old && old.subcategory == subcategory ? "selected" : subcategory == product.subcategory ? `selected` : ""  %>><%- subcategory %></option>
+                                            <% }) %>
+                                                <% if (locals.errors && errors.subcategory) { %>
+                                                    <small class="text-danger"><%= errors.subcategory.msg %> </small>
+                                                <% } %>
                                         </datalist>
+                                        <% if(locals.errors && errors.subcategory) { %>
+                                            <small class="text-danger">
+                                                <%= errors.subcategory.msg %>
+                                            </small>
+                                            <% } %>
                                     </div>
-                                </div>
-
-                                <div class="flex">
 
                                     <label for="codigo">Código de producto</label>
                                     <div class="input">
-                                        <input type="number" min="0" name="scanning" value="<%= product.scanning %>"
+                                        <input type="number" min="0" name="scanning" value="<%= locals.old ? old.scanning : product.scanning %>"
                                             id="codigo" />
                                     </div>
 
                                     <label for="stock">Stock</label>
                                     <div class="input">
-                                        <input type="number" min="0" name="stock" value="<%= product.stock %>"
+                                        <input type="number" min="0" name="stock" value="<%= locals.old ? old.stock : product.stock %>"
                                             id="stock" />
                                     </div>
 
@@ -101,7 +145,7 @@
                                     <label for="description">Descripción del producto</label>
                                     <div class="input">
                                         <textarea name="description" id="description" cols="30" rows="10"
-                                            value="<%= product.description %>"><%= product.description %></textarea>
+                                           ><%= locals.old ? old.description :  product.description %></textarea>
                                     </div>
                                 </div>
                             </div>

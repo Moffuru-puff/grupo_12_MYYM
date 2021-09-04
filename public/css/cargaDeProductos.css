@@ -69,7 +69,8 @@ section.charge .freight div.input {
 }
 
 section.charge .freight div.input textarea#description,
-section.charge .freight div.input textarea#schedule {
+section.charge .freight div.input textarea#schedule,
+section.charge .freight div.input textarea#mainFeatures{
     border: none;
     padding: 5px;
     width: 100%;
