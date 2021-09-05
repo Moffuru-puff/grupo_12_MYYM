@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head')%>
+<body>
+<%- include('../partials/header')%>
+    <main class="userProfile">
+    <form action="" method="">
+        <div class="profile-container">
+            <div class="avatar">
+                <img src="/img/userAvatars/defaultAvatarImage.png" alt="">
+            </div>
+        <div class="form">
+            <div class="profileData">
+                <h3 class="profile-title">Datos personales</h3>
+            <div class="input-container">
+                <input class="input-style" type="text" name="user" placeholder="usuario">
+                <span class="error-message">El campo no puede quedar vacio</span>
+            </div>
+            <div class="input-container">
+                <input class="input-style" type="text" name="name" placeholder="nombre">
+                <span class="error-message">El campo no puede quedar vacio</span>
+            </div>    
+            <div class="input-container">
+                <input class="input-style" type="text" name="lastname" placeholder="apellido">
+                <span class="error-message">El campo no puede quedar vacio</span>
+            </div>
+            <div class="input-container">    
+                <input class="input-style" type="email" name="email" placeholder="email">
+                <span class="error-message">El campo no puede quedar vacio</span>
+            </div>
+            <div class="input-container">    
+                <input class="input-style" type="text" name="telephone" placeholder="telefono">
+                <span class="error-message">El campo no puede quedar vacio</span>
+            </div>
+            </div>
+            </div>
+        <div class="form">
+            <div class="profileDatax">
+                <h3 class="profile-title">Datos de contacto</h3>
+            <div class="input-container">
+                <input class="input-style" type="text" name="address" placeholder="direccion">
+                <span class="error-message">El campo no puede quedar vacio</span>
+            </div>
+            <div class="input-container">
+                <input class="input-style" type="text" name="province" placeholder="provincia">
+                <span class="error-message">El campo no puede quedar vacio</span>
+            </div>
+            </div>
+        </div>
+            <div>
+                <button id="btn-submit" type="submit" style="color: white" class="btn btn-submit">Guardar Datos</button>
+            </div>
+        </div>
+    </form> 
+    </main>
+<%- include('../partials/footer')%>
+</body>
+</html>
