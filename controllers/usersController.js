@@ -2,13 +2,23 @@ const { getUsers, writeJsonUsers } = require('../db/dataB')
 const { validationResult } = require('express-validator')
 
 module.exports = {
+    profile: (req, res) => {
+      res.render("users/profile")
+    },
+
+    editProfile: (req, res) => {
+      res.render("users/editProfile")
+    },
+
     login: (req, res) => {
       res.render("users/login")
     },
+
     register: (req, res) => {
       res.render("users/register")
 
     },
+
     registerNewUser: (req, res) => {
 
       let errors = validationResult(req)
