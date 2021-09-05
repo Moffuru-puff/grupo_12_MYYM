@@ -1,0 +1,166 @@
+.cargaDeFotos {
+    width: 100%;
+    height: 50vh;
+    position: relative;
+    background-color: #F2F2F2;
+}
+
+.cargaDeFotos input {
+    display: none;
+}
+
+.volver {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    font-size: 1.5rem;
+}
+
+.volver a {
+    color: var(--darkBlue);
+}
+
+.subirFoto {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main.main-admin h2 {
+    font-family: var(--font-roboto);
+    font-size: 18px;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+section.charge {
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    font-family: var(--font-roboto);
+}
+
+section.charge .freight label {
+    font-size: 14px;
+    font-weight: bold;
+
+}
+
+section.charge .freight input {
+    border: none;
+    width: 100%;
+    height: 100%;
+}
+
+section.charge .freight input:focus {
+    outline: none;
+}
+
+section.charge .freight div.input {
+    border-bottom: solid 1px var(--grey);
+    padding: 5px;
+    margin-bottom: 15px;
+}
+
+section.charge .freight div.input textarea#description,
+section.charge .freight div.input textarea#schedule {
+    border: none;
+    padding: 5px;
+    width: 100%;
+}
+
+section.charge .freight div.input textarea#description:focus {
+    outline: none;
+}
+
+section.charge .freight div.input select {
+    border: none;
+    width: 100%;
+    height: 100%;
+    color: gray;
+
+}
+
+section.charge .btn-publish {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+section.charge button.publish {
+    width: 200px;
+    height: 50px;
+    border-radius: 25px;
+    font-family: var(--font-roboto);
+    font-size: 17px;
+    color: var(--cream);
+    background: linear-gradient(88.29deg, rgba(0, 0, 115, 0.911) 3.94%, rgba(201, 1, 98, 0.904) 96.6%);
+    transition: all 1s ease;
+    text-decoration: none;
+
+}
+
+section.charge button.publish a {
+    color: var(--cream);
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+}
+
+section.charge button.publish:hover {
+    transform: scale(1.03);
+    box-shadow: 2px 2px 2px var(--lilac1);
+
+}
+
+.text-danger {
+    color: rgb(255, 0, 0);
+    padding-top: 2px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    border-top: solid 1px var(--grey);
+}
+
+@media screen and (min-width: 481px) {
+
+    section.charge .freight div.input {
+        border: solid 1px var(--grey);
+        border-radius: 7px;
+    }
+
+}
+
+
+@media screen and (min-width: 769px) {
+
+    main.main-admin h2 {
+        font-size: 24px;
+    }
+
+    section.charge .formAdmin {
+        display: flex;
+        justify-content: space-evenly;
+
+    }
+
+
+    section.charge .freight div.input {
+        width: 35vw;
+    }
+
+    section.charge button.publish {
+        width: 270px;
+        height: 55px;
+    }
+
+}

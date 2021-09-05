@@ -1,40 +1,53 @@
 const express = require('express');
-const path = require('path');
 const app = express();
+const path = require('path');
+const methodOverride = require('method-override')
 const port = 3000;
 
+/* Enrutadores */
+let homeRouter = require("./routes/index");
+let usersRouter = require("./routes/users");
+let adminRouter = require("./routes/admin");
+let arrepentimientoRouter = require("./routes/btnDeArrepentimiento");
+const bodyParser = require('body-parser');
+
+
+let producRouter=require('./routes/producRouter');
+
+let shoppingCartRouter = require('./routes/shoppingCart')
+
+/* VIEWS */
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
+
+/* Middlewares */
 app.use(express.static('public'));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, `/views/index.html`) )
-})
+app.use(express.urlencoded({extended : false}));
+app.use(express.json());
+app.use(methodOverride('_method'));
 
-app.get('/header', (req, res) => {
-    res.sendFile(path.join(__dirname, `/views/header.html`) )
-})
+/* Rutas */
+app.use('/', homeRouter);
+app.use('/admin', adminRouter);
+app.use('/btnDeArrepentimiento', arrepentimientoRouter);
 
-app.get('/footer', (req, res) => {
-    res.sendFile(path.join(__dirname, `/views/footer.html`) )
-})
 
-app.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, `/views/login.html`) )
-})
 
-app.get('/register', (req, res) => {
-    res.sendFile(path.join(__dirname, `/views/register.html`))
-})
+app.use('/', usersRouter);
 
+app.use('/shoppingCart', shoppingCartRouter);
 app.get('/submit', (req, res) => {
     res.sendFile(path.join(__dirname, `/views/submit.html`))
 })
 
-app.get('/detalleDelProducto', (req, res) => {
-    res.sendFile(path.join(__dirname, `/views/detalleDelProducto.html`))
-})
+app.use('/detalleDelProducto', producRouter);
 
-app.get('/shopingCart', (req, res) => {
-    res.sendFile(path.join(__dirname, `/views/shopingCart.html`) )
+app.get('/shoppingCart', (req, res) => {
+    res.sendFile(path.join(__dirname, `/views/shoppingCart.html`) )
 }) 
 app.get('/checkout', (req, res) => {
     res.sendFile(path.join(__dirname, `/views/checkout.html`) )
@@ -51,9 +64,6 @@ app.get('/editprofile', (req, res) => {
     res.sendFile(path.join(__dirname, `/views/editProfile.html`) )
 }) 
 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, `/views/error404.html`) )
-}) 
 
 app.listen(port, () => {
     console.log(`Servidor corriendo en ${port}\n http://localhost:${port}`)

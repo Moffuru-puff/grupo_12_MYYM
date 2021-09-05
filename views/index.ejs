@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<%- include('./partials/head.ejs') %>
+
+  <body>
+    <!-- Comienzo de header -->
+    <%- include('./partials/header.ejs') %>
+      <!-- Fin del header -->
+
+      <main class="home">
+        <!-- CAROUSEL -->
+        <section class="carousel-container">
+          <div class="slides fade" id="img1">
+            <img src="/img/Slider/slider-1.png" alt="" />
+          </div>
+
+          <div class="slides fade" id="img2">
+            <img src="/img/Slider/slider-2.png" alt="" />
+          </div>
+
+          <div class="slides fade" id="img3">
+            <img src="/img/Slider/slider-3.png" alt="" />
+          </div>
+
+          <div class="slides fade" id="img4">
+            <img src="/img/Slider/slider-4.png" alt="" />
+          </div>
+
+          <div class="slides fade" id="img5">
+            <img src="/img/Slider/slider5.png" alt="" />
+          </div>
+
+          <!-- Next and previous buttons -->
+          <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+          <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+          <!-- The dots/circles -->
+          <div class="dots">
+            <span class="dot" onclick="currentSlide(1)">
+              <img src="/img/iconos-png/pokebola-1.png" alt="pokebola" class="img1" />
+              <img src="/img/iconos-png/superball-2.png" alt="superball" class="img2" />
+            </span>
+            <span class="dot" onclick="currentSlide(2)">
+              <img src="/img/iconos-png/pokebola-1.png" alt="pokebola" class="img1" />
+              <img src="/img/iconos-png/superball-2.png" alt="superball" class="img2" />
+            </span>
+            <span class="dot" onclick="currentSlide(3)">
+              <img src="/img/iconos-png/pokebola-1.png" alt="pokebola" class="img1" />
+              <img src="/img/iconos-png/superball-2.png" alt="superball" class="img2" />
+            </span>
+            <span class="dot" onclick="currentSlide(4)">
+              <img src="/img/iconos-png/pokebola-1.png" alt="pokebola" class="img1" />
+              <img src="/img/iconos-png/superball-2.png" alt="superball" class="img2" />
+            </span>
+          </div>
+        </section>
+        <!-- END CAROUSEL -->
+
+        <!-- Carousel Desktop -->
+        <div class="wrap">
+          <div class="slider">
+
+            <div class="item">
+              <img src="/img/Slider/slider-1.png" alt="">
+            </div>
+            <div class="item">
+              <img src="/img/Slider/slider-2.png" alt="">
+            </div>
+            <div class="item">
+              <img src="/img/Slider/slider-3.png" alt="">
+            </div>
+            <div class="item">
+              <img src="/img/Slider/slider-4.png" alt="">
+            </div>
+            <div class="item">
+              <img src="/img/Slider/slider5.png" alt="">
+            </div>
+            <div class="item">
+              <img src="/img/Slider/slider6.png" alt="">
+            </div>
+
+          </div>
+        </div>
+        <!-- END CAROUSEL Desktop-->
+
+        <!-- Tarjetitas -->
+        <section class="section-cards">
+          <div class="tarjetitas">
+            <div class="icon-cards">
+              <i class="fas fa-truck"></i>
+            </div>
+            <div class="description-cards">
+              <h4>Entrega rápida</h4>
+              <p>a todo el país</p>
+            </div>
+          </div>
+          <div class="tarjetitas">
+            <div class="icon-cards">
+              <i class="far fa-credit-card"></i>
+            </div>
+            <div class="description-cards">
+              <h4>Plan 12 cuotas</h4>
+              <p>con todas las tarjetas de crédito</p>
+            </div>
+          </div>
+          <div class="tarjetitas">
+            <div class="icon-cards">
+              <i class="fas fa-percent"></i>
+            </div>
+            <div class="description-cards">
+              <h4>10% de descuento</h4>
+              <p>pagando en efectivo</p>
+            </div>
+          </div>
+          <div class="tarjetitas">
+            <div class="icon-cards">
+              <i class="fas fa-hand-holding-usd"></i>
+            </div>
+            <div class="description-cards">
+              <h4>Facilidades de pago</h4>
+              <p>abonando desde la web</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Sección de productos -->
+        <section class="container-products">
+          <h2>Productos Destacados</h2>
+
+          <div class="products">
+
+            <% for (producto of productos) { %>
+              <a href="/detalleDelProducto/<%- producto.id %>">
+                <article>
+                  <div class="star">
+                    <img id="articulo01" class="myImage" onclick="changeImage()"
+                      src="/img/iconos-png/star-desactivada.png" alt="botón favoritos">
+                  </div>
+                  <div class="img-producto">
+                    <img src="/img/Productos Gamers/<%- producto.image %>" alt="<%- producto.name %>" />
+                  </div>
+                  <div class="puntuacion">
+                    <img src="/img/iconos-png/4.5.png" alt="puntuacion" />
+                    <p>4.05</p>
+                  </div>
+                  <div class="description-product">
+                   
+                    <h4>
+                      <% if (producto.name.length > 20) { %>
+                      <% let productoSlice = producto.name.slice(0,20) %> 
+                        <%= productoSlice %>... 
+                    
+                    <% } else { %>
+                      <%- producto.name %>
+                      <% } %>
+                    </h4>
+                    <p>
+                      <% if (producto.mainFeatures.length > 40) { %>
+                        <% let descriptionSlice = producto.mainFeatures.slice(0,40) %> 
+                          <%= descriptionSlice %>... 
+                      
+                      <% } else { %>
+                      <%- producto.mainFeatures %>
+                      <% } %>
+                    </p>
+                    <% if (producto.discount !== 0) { %>
+                      <div class="withDiscount">
+                        <small>$<%- toThousand(producto.price) %></small>
+                        <span>
+                          <%- producto.discount !== 0 ? `${producto.discount}% OFF` : '' %>
+                        </span>
+                        </div>
+                        <h3>$<%- toThousand(producto.price - producto.price * producto.discount / 100) %>
+                        </h3>
+                      
+                      <% } else { %>
+                        <h3>
+                          $<%- toThousand(producto.price) %>
+                        </h3>
+
+                        <% } %>
+
+                  </div>
+                </article>
+              </a>
+              <% } %>
+
+          </div>
+          <div class="arrow-top">
+            <a href="#"><img src="/img/iconos-png/arrow-top.png" alt="" /></a>
+          </div>
+        </section>
+      </main>
+
+      <!-- Comienzo del footer -->
+      <%- include('./partials/footer.ejs') %>
+        <!-- Fin del footer -->
+  </body>
+
+</html>

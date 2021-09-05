@@ -76,8 +76,7 @@ main section.container-products div.products a {
 }
 
 main section.container-products div.products article,
-.cajasmini article
- {
+.cajasmini article {
     padding: 1rem;
     background-color: white;
     border-radius: 5px;
@@ -86,6 +85,7 @@ main section.container-products div.products article,
     flex-direction: column;
     position: relative;
     margin: 2px 10px;
+    height: 370px;
 }
 
 main section.container-products div.products article div.star,
@@ -105,12 +105,14 @@ main section.container-products div.products article div.star img,
 
 main section.container-products div.products article div.img-producto,
 .cajasmini article div.img-producto {
-    width: fit-content;
+    width: 100%;
+    height: 180px;
 }
 
 main section.container-products div.products article div.img-producto img {
     width: 100%;
-    height: 180px;
+    height: 100%;
+    object-fit: contain;
 }
 
 /* puntuación */
@@ -131,6 +133,26 @@ main section.container-products div.products article div.puntuacion p,
 main section.container-products div.products article div.description-product,
 .cajasmini article div.description-product {
     font-family: var(--font-inter);
+    height: 125px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.withDiscount {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 5px 0;
+}
+
+.withDiscount small {
+    text-decoration: line-through;
+    color: var(--grey);
+}
+
+.withDiscount span {
+    color: var(--lyftPink);
 }
 
 main section.container-products div.products article div.description-product h4,
@@ -154,6 +176,7 @@ main section.container-products div.products article div.description-product h3 
 /* Flecha ir arriba */
 .arrow-top {
     position: relative;
+    z-index: 2;
 }
 
 .arrow-top a {
@@ -206,7 +229,7 @@ main section.container-products div.products article div.description-product h3 
 
     section div.tarjetitas:hover {
         transform: scale(1.05);
-        box-shadow: 0 4px 4px rgba( 255, 163, 0, 0.3);     
+        box-shadow: 0 4px 4px rgba(255, 163, 0, 0.3);
     }
 
     section div.tarjetitas .icon-cards {
@@ -226,7 +249,7 @@ main section.container-products div.products article div.description-product h3 
 
     /* Artículos */
 
-    main section.container-products div.products article{
+    main section.container-products div.products article {
         cursor: pointer;
         transition: all 1s ease;
     }
