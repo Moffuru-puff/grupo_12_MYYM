@@ -23,7 +23,7 @@ Somos un equipo de desarrolladores de software, orientado a la creación y dise�
 
 * **Yamila Vera López, 22 años, desorralladora, estudiante de Digital House, con conocimientos de Diseño gráfico y Figma.**
 * **Martin Salgado, 38 años, desarrollador web, estudiante de Digital House, con conocimientos en dev c++ y turbo c borland.**
-* **Maximo Arebalo, 21 años, desarrollador web, estudiante de Digital House.**
+* **Maximo Felix Arebalo, 21 años, desarrollador web, estudiante de Digital House.**
 * **Yesica Do Campo, 32 años, desarrolladora, estudiante de Digital House, con conocimiento en Marketing Digital.**
 
 ## NUESTRO TABLERO DE TRELLO: https://trello.com/b/98JTamkm/pi-grupo-12-c8
