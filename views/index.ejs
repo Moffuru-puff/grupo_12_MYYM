@@ -131,12 +131,13 @@
           <div class="products">
 
             <% for (producto of productos) { %>
-              <a href="/detalleDelProducto/<%- producto.id %>">
-                <article>
-                  <div class="star">
-                    <img id="articulo01" class="myImage" onclick="changeImage()"
-                      src="/img/iconos-png/star-desactivada.png" alt="botón favoritos">
+           <!--    <a href="/detalleDelProducto/<%- producto.id %>"> -->
+                <article id="article">
+                  <div class="star" id="btnFav">
+                    <figure class="myImage" id="<%- producto.id %>">
+                    </figure>
                   </div>
+                  <a href="/detalleDelProducto/<%- producto.id %>">
                   <div class="img-producto">
                     <img src="/img/Productos Gamers/<%- producto.image[0] %>" alt="<%- producto.name %>" />
                   </div>
@@ -182,8 +183,9 @@
                         <% } %>
 
                   </div>
+                  </a>
                 </article>
-              </a>
+              <!-- </a> -->
               <% } %>
 
           </div>
