@@ -5,10 +5,10 @@
     background-color: #F2F2F2;
 }
 
-.cargaDeFotos input {
+/* .cargaDeFotos input {
     display: none;
 }
-
+ */
 .volver {
     width: 50px;
     height: 50px;
@@ -29,6 +29,30 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.subirFoto .prevImage{
+    width: 80%;
+    height: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-color: white;
+}
+
+.subirFoto .prevImage img{
+    width: auto;
+    height: 100%;
+}
+
+.subirFoto div.inputFile{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 200px;
+    align-items: center;
+    margin-top: 100px;
 }
 
 main.main-admin h2 {

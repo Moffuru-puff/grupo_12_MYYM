@@ -13,7 +13,7 @@ const {
 const toThousand = (n) => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
 let subcategories = [];
-getProducts.forEach((product) => {
+getProducts.forEach(product => {
   if (!subcategories.includes(product.subcategory)) {
     subcategories.push(product.subcategory);
   }
@@ -45,7 +45,7 @@ module.exports = {
     if (errors.isEmpty()) {
       let lastId = 1;
 
-      getProducts.forEach((product) => {
+      getProducts.forEach(product => {
         if (product.id >= lastId) {
           lastId = product.id + 1;
         }
@@ -104,7 +104,7 @@ module.exports = {
   },
 
   editProduct: (req, res) => {
-    let product = getProducts.find((product) => product.id === +req.params.id);
+    let product = getProducts.find(product => product.id === +req.params.id);
     res.render("./admin/editProduct", {
       categories,
       subcategories,
@@ -118,7 +118,7 @@ module.exports = {
 
       let arrayImages = [];
       if (req.files) {
-        req.files.forEach((image) => {
+        req.files.forEach(image => {
           arrayImages.push(image.filename);
         });
       }
@@ -136,9 +136,9 @@ module.exports = {
         mainFeatures,
       } = req.body;
 
-      let categoria = categories.find((categoria) => categoria.id == category);
+      let categoria = categories.find(categoria => categoria.id == category);
 
-      getProducts.map((product) => {
+      getProducts.map(product => {
         if (product.id === +req.params.id) {
           product.id = product.id,
             product.name = name,
@@ -161,7 +161,7 @@ module.exports = {
       res.redirect("/admin/products");
     } else {
       let product = getProducts.find(
-        (product) => product.id === +req.params.id
+        product => product.id === +req.params.id
       );
 
       res.render("./admin/editProduct", {
@@ -174,7 +174,7 @@ module.exports = {
     }
   },
   productDelete: (req, res) => {
-    getProducts.forEach((product) => {
+    getProducts.forEach(product => {
       if (product.id === +req.params.id) {
         let productToDestroy = getProducts.indexOf(product);
         getProducts.splice(productToDestroy, 1);
@@ -203,7 +203,7 @@ module.exports = {
     if (errors.isEmpty()) {
       let lastId = 1;
 
-      sucursales.forEach((sucursal) => {
+      sucursales.forEach(sucursal => {
         if (sucursal.id >= lastId) {
           lastId = sucursal.id + 1;
         }
@@ -235,7 +235,7 @@ module.exports = {
 
   editSucursal: (req, res) => {
     let sucursal = sucursales.find(
-      (sucursal) => sucursal.id === +req.params.id
+      sucursal => sucursal.id === +req.params.id
     );
     res.render("./admin/editSucursal", {
       sucursal,
@@ -244,13 +244,13 @@ module.exports = {
   sucursalUpdate: (req, res) => {
     let { location, direction, telephone, schedule } = req.body;
 
-    sucursales.map((sucursal) => {
+    sucursales.map(sucursal => {
       if (sucursal.id === +req.params.id) {
-        (sucursal.id = sucursal.id),
-          (sucursal.location = location),
-          (sucursal.direction = direction),
-          (sucursal.telephone = telephone),
-          (sucursal.schedule = schedule);
+        sucursal.id = sucursal.id,
+          sucursal.location = location,
+          sucursal.direction = direction,
+          sucursal.telephone = telephone,
+          sucursal.schedule = schedule;
       }
     });
 
@@ -259,7 +259,7 @@ module.exports = {
     res.redirect("/admin/sucursals");
   },
   sucursalDelete: (req, res) => {
-    sucursales.forEach((sucursal) => {
+    sucursales.forEach(sucursal => {
       if (sucursal.id === +req.params.id) {
         let sucursalToDestroy = sucursales.indexOf(sucursal);
         sucursales.splice(sucursalToDestroy, 1);
@@ -289,7 +289,7 @@ module.exports = {
     if (errors.isEmpty()) {
       let lastId = 1;
 
-      users.forEach((user) => {
+      users.forEach(user => {
         if (user.id >= lastId) {
           lastId = user.id + 1;
         }
@@ -334,7 +334,7 @@ module.exports = {
   },
 
   editUser: (req, res) => {
-    let user = users.find((user) => user.id === +req.params.id);
+    let user = users.find(user => user.id === +req.params.id);
     res.render("./admin/editUser", {
       user,
     });
@@ -353,18 +353,18 @@ module.exports = {
       rol,
     } = req.body;
 
-    users.map((usuario) => {
+    users.map(usuario => {
       if (usuario.id === +req.params.id) {
-        (usuario.id = usuario.id),
-          (usuario.user = user),
-          (usuario.name = name),
-          (usuario.lastname = lastname),
-          (usuario.telephone = telephone),
-          (usuario.address = address),
-          (usuario.province = province),
-          (usuario.email = email),
-          (usuario.password = password),
-          (usuario.rol = rol);
+        usuario.id = usuario.id,
+        usuario.user = user,
+        usuario.name = name,
+        usuario.lastname = lastname,
+        usuario.telephone = telephone,
+        usuario.address = address,
+        usuario.province = province,
+        usuario.email = email,
+        usuario.password = password,
+        usuario.rol = rol;
       }
     });
 
@@ -374,7 +374,7 @@ module.exports = {
   },
 
   userDelete: (req, res) => {
-    users.forEach((usuario) => {
+    users.forEach(usuario => {
       if (usuario.id === +req.params.id) {
         let userToDestroy = users.indexOf(usuario);
         users.splice(userToDestroy, 1);

@@ -17,12 +17,20 @@
                             </a>
                         </div>
                         <div class="subirFoto">
-                            <div class="formAdmin">
-                                <label for="productPhoto">
+                            <div class="prevImage">
+                                <% if (product.image && product.image.length > 0) { %>
+                                    <img src="/img/<%= product.image %> " alt="" id="imagenPrevisualizacion">
+                                    <% } else { %>
+                                        <img id="imagenPrevisualizacion">
+                                    <% } %>
+                            </div>
+                            <div class="inputFile">
+                                <label for="seleccionArchivos">
                                     <img src="/img/iconos-png/subirFoto.png" alt="" />
                                 </label>
-                                <input type="file" name="image" accept=".jpg, .png" multiple id="productPhoto" />
-                            </div class="form">
+                                <input type="file" name="image" accept=".jpg, .png" multiple id="seleccionArchivos" value="<%= locals.old ? old.image : product.image %>"/>
+
+                            </div>
                         </div>
                     </div>
                     <section class="charge">
@@ -34,11 +42,11 @@
                                     <div class="input">
                                         <input type="text" value="<%= locals.old ? old.name : product.name%>" id="name"
                                             name="name" />
-                                            <% if (locals.errors && errors.name) { %>
-                                                <small class="text-danger">
-                                                    <%= errors.name.msg %>
-                                                </small>
-                                                <% } %>
+                                        <% if (locals.errors && errors.name) { %>
+                                            <small class="text-danger">
+                                                <%= errors.name.msg %>
+                                            </small>
+                                            <% } %>
                                     </div>
 
                                     <label for="price">Precio del producto</label>
@@ -46,11 +54,11 @@
                                         <input type="number" min="0"
                                             value="<%= locals.old ? old.price : product.price %>" id="price"
                                             name="price" />
-                                            <% if (locals.errors && errors.price) { %>
-                                                <small class="text-danger">
-                                                    <%= errors.name.msg %>
-                                                </small>
-                                                <% } %>
+                                        <% if (locals.errors && errors.price) { %>
+                                            <small class="text-danger">
+                                                <%= errors.name.msg %>
+                                            </small>
+                                            <% } %>
                                     </div>
 
                                     <label for="discount">Descuento del producto</label>
@@ -64,11 +72,11 @@
                                     <div class="input">
                                         <input type="text" name="mark" id="brand"
                                             value="<%= locals.old ? old.mark : product.mark %>" />
-                                            <% if(locals.errors && errors.mark) { %>
-                                                <small class="text-danger">
-                                                    <%= errors.mark.msg %>
-                                                </small>
-                                                <% } %>
+                                        <% if(locals.errors && errors.mark) { %>
+                                            <small class="text-danger">
+                                                <%= errors.mark.msg %>
+                                            </small>
+                                            <% } %>
                                     </div>
 
                                     <label for="mainFeatures">Características principales</label>
@@ -89,7 +97,7 @@
                                         <select name="category" id="categoria-form">
 
                                             <option selected>
-                                                 Categorías
+                                                Categorías
                                             </option>
                                             <!-- <option value="<%- product.category %>" selected>
                                                 <%- product.category %>
@@ -97,8 +105,8 @@
 
                                             <% categories.forEach(category=> { %>
                                                 <option value="<%- category.id %>" <%- locals.old &&
-                                                    old.category == category.id ? "selected" :
-                                                    category.id == product.category ? `selected` : "" %>><%- category.name
+                                                    old.category==category.id ? "selected" :
+                                                    category.id==product.category ? `selected` : "" %>><%- category.name
                                                         %>
                                                 </option>
                                                 <% }) %>
@@ -115,12 +123,18 @@
                                         <input list="subCategoria-form" name="subcategory" placeholder="Gamer" />
                                         <datalist id="subCategoria-form">
                                             <option selected hidden>Subcategorias</option>
-                                            <% subcategories.forEach(subcategory => { %>
-                                               <option value="<%- subcategory%>" <%- locals.old && old.subcategory == subcategory ? "selected" : subcategory == product.subcategory ? `selected` : ""  %>><%- subcategory %></option>
-                                            <% }) %>
-                                                <% if (locals.errors && errors.subcategory) { %>
-                                                    <small class="text-danger"><%= errors.subcategory.msg %> </small>
-                                                <% } %>
+                                            <% subcategories.forEach(subcategory=> { %>
+                                                <option value="<%- subcategory%>" <%- locals.old &&
+                                                    old.subcategory==subcategory ? "selected" :
+                                                    subcategory==product.subcategory ? `selected` : "" %>><%-
+                                                        subcategory %>
+                                                </option>
+                                                <% }) %>
+                                                    <% if (locals.errors && errors.subcategory) { %>
+                                                        <small class="text-danger">
+                                                            <%= errors.subcategory.msg %>
+                                                        </small>
+                                                        <% } %>
                                         </datalist>
                                         <% if(locals.errors && errors.subcategory) { %>
                                             <small class="text-danger">
@@ -131,21 +145,21 @@
 
                                     <label for="codigo">Código de producto</label>
                                     <div class="input">
-                                        <input type="number" min="0" name="scanning" value="<%= locals.old ? old.scanning : product.scanning %>"
-                                            id="codigo" />
+                                        <input type="number" min="0" name="scanning"
+                                            value="<%= locals.old ? old.scanning : product.scanning %>" id="codigo" />
                                     </div>
 
                                     <label for="stock">Stock</label>
                                     <div class="input">
-                                        <input type="number" min="0" name="stock" value="<%= locals.old ? old.stock : product.stock %>"
-                                            id="stock" />
+                                        <input type="number" min="0" name="stock"
+                                            value="<%= locals.old ? old.stock : product.stock %>" id="stock" />
                                     </div>
 
 
                                     <label for="description">Descripción del producto</label>
                                     <div class="input">
-                                        <textarea name="description" id="description" cols="30" rows="10"
-                                           ><%= locals.old ? old.description :  product.description %></textarea>
+                                        <textarea name="description" id="description" cols="30"
+                                            rows="10"><%= locals.old ? old.description :  product.description %></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -157,6 +171,7 @@
                     </section>
                 </form>
             </main>
+            <script src="/js/prevDeImg.js" defer></script>
     </body>
 
 </html>
