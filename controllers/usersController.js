@@ -43,7 +43,7 @@ module.exports = {
 
           writeJsonUsers(getUsers)
 
-          delete user.password
+          /* delete user.password */
 
           req.session.user = user
 

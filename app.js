@@ -33,7 +33,7 @@ app.use(session({
     secret: "myymGamers",
     resave: false,
     saveUninitialized: true,
-    cookie: { maxAge: 30000}
+    cookie: { maxAge: 30000 * 1000}
 }))
 
 app.use(express.urlencoded({extended : false}));
