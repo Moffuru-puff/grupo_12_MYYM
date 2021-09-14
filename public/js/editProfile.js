@@ -1,21 +1,25 @@
-// Obtener referencia al input y a la imagen
+let inputImage = document.getElementById('examinar')
 
-const $seleccionArchivos = document.querySelector("#seleccionArchivos"),
-  $imagenPrevisualizacion = document.querySelector("#imagenPrevisualizacion");
-
-// Escuchar cuando cambie
-$seleccionArchivos.addEventListener("change", () => {
-  // Los archivos seleccionados, pueden ser muchos o uno
-  const archivos = $seleccionArchivos.files;
-  // Si no hay archivos salimos de la función y quitamos la imagen
-  if (!archivos || !archivos.length) {
-    $imagenPrevisualizacion.src = "";
-    return;
-  }
-  // Ahora tomamos el primer archivo, el cual vamos a previsualizar
-  const primerArchivo = archivos[0];
-  // Lo convertimos a un objeto de tipo objectURL
-  const objectURL = URL.createObjectURL(primerArchivo);
-  // Y a la fuente de la imagen le ponemos el objectURL
-  $imagenPrevisualizacion.src = objectURL;
-});
+inputImage.addEventListener('change', 
+function fileValidation(){
+    var errorImage = document.getElementById('errorImage')
+    var filePath = inputImage.value; //Capturo el valor del input
+    var allowefExtensions = /(.jpg|.jpeg|.png|.gif)$/i; //Extensiones permitidas
+    if(!allowefExtensions.exec(filePath)){ //El método exec() ejecuta una busqueda sobre las coincidencias de una expresión regular en una cadena especifica. Devuelve el resultado como array, o null.
+        let error = 'Carga un archivo de imagen válido, con las extensiones (.jpg - .jpeg - .png - .gif)'
+        errorImage.innerHTML = error;
+        inputImage.value = '';
+        document.getElementById('imagePreview').innerHTML = '';
+        return false;
+    }else{
+        // Image preview
+        if(inputImage.files && inputImage.files[0]){
+            var reader = new FileReader();
+            reader.onload = function(e){
+                document.getElementById('imagePreview').innerHTML = '<img src="' + e.target.result +'"/>';
+            };
+            reader.readAsDataURL(inputImage.files[0]);
+            errorImage.innerHTML = '';
+        }
+    }
+})
