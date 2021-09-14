@@ -1,5 +1,9 @@
 @import url(variants.css);
 
+main {
+    margin-bottom: 80px;
+}
+
 main.home {
     font-family: var(--font-poppins);
 }
@@ -95,6 +99,22 @@ main section.container-products div.products article div.star,
     right: 1rem;
     width: 35px;
     height: 35px;
+   /*  background-image: url("/img/iconos-png/star-desactivada.png");
+    background-size: contain; */
+    
+}
+ 
+main section.container-products div.products article div.star figure{
+    background-image: url("/img/iconos-png/star-desactivada.png");
+    background-size: contain;
+    width: 35px;
+    height: 35px;
+} 
+main section.container-products div.products article div.star figure.activated{
+    background-image: url("/img/iconos-png/star-active.png");
+    background-size: contain;
+    width: 31px;
+    height: 31px;
 }
 
 main section.container-products div.products article div.star img,
@@ -182,7 +202,7 @@ main section.container-products div.products article div.description-product h3 
 .arrow-top a {
     display: inline-block;
     position: absolute;
-    right: 1rem;
+    right: 3rem;
     top: 85vh;
     position: fixed;
 }

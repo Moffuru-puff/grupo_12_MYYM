@@ -7,6 +7,12 @@ module.exports = [
     .isLength({ min: 3 })
     .withMessage("Ingrese más de 3 carácteres"),
 
+    check('mainFeatures')
+    .notEmpty()
+    .withMessage("El campo de caracterísicas principales no puede estar vacío")
+    .isLength({ min: 5 })
+    .withMessage("Ingrese más de 5 carácteres"),
+
     check('category')
     .notEmpty()
     .withMessage("Debes elegir una categoría"),
@@ -20,5 +26,9 @@ module.exports = [
     .withMessage("Coloca un precio")
     .isNumeric()
     .withMessage("Solo puedes ingresar números"),
+
+    check('mark')
+    .notEmpty()
+    .withMessage("Por favor ingrese la marca del producto")
 
 ]
