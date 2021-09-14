@@ -55,6 +55,10 @@
     margin-top: 100px;
 }
 
+.subirFoto div.inputFile label{
+  z-index: 1;
+}
+
 main.main-admin h2 {
     font-family: var(--font-roboto);
     font-size: 18px;
