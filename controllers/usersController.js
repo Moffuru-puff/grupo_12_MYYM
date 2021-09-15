@@ -145,7 +145,7 @@ module.exports = {
 
       writeJsonUsers(getUsers)
 
-      res.redirect('/')
+      res.redirect('/login')
   } else {
       res.render("users/register", {
           errors: errors.mapped(),
