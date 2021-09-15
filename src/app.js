@@ -12,11 +12,7 @@ let homeRouter = require("./routes/index");
 let usersRouter = require("./routes/users");
 let adminRouter = require("./routes/admin");
 let arrepentimientoRouter = require("./routes/btnDeArrepentimiento");
-
-
-
-let producRouter=require('./routes/producRouter');
-
+let producRouter = require('./routes/producRouter');
 let shoppingCartRouter = require('./routes/shoppingCart')
 
 /* VIEWS */
@@ -45,34 +41,18 @@ app.use('/', homeRouter);
 app.use('/admin', adminRouter);
 app.use('/btnDeArrepentimiento', arrepentimientoRouter);
 
-
-
 app.use('/', usersRouter);
 
 app.use('/shoppingCart', shoppingCartRouter);
-app.get('/submit', (req, res) => {
-    res.sendFile(path.join(__dirname, `/views/submit.html`))
-})
 
 app.use('/detalleDelProducto', producRouter);
 
-app.get('/shoppingCart', (req, res) => {
-    res.sendFile(path.join(__dirname, `/views/shoppingCart.html`) )
-}) 
-app.get('/checkout', (req, res) => {
-    res.sendFile(path.join(__dirname, `/views/checkout.html`) )
-}) 
-app.get('/shipping', (req, res) => {
-    res.sendFile(path.join(__dirname, `/views/shipping.html`) )
-}) 
 
-app.get('/confirm', (req, res) => {
-    res.sendFile(path.join(__dirname, `/views/confirm.html`) )
+
+app.use((req,res, next)=>{
+    res.status(404).render('error404')
+    next()
 })
-
-app.get('/editprofile', (req, res) => {
-    res.sendFile(path.join(__dirname, `/views/editProfile.html`) )
-}) 
 
 
 app.listen(port, () => {
