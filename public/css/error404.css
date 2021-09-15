@@ -50,3 +50,57 @@ div img.cheemsImg {
         
     }
 }
+
+@media screen and (min-width: 769px) {
+
+    h2.errorText{
+        text-align: center;
+        font-family: --font-roboto;
+        font-size: 2.1rem;
+    }
+    
+    div.errorContainer {
+        display: flex;
+        flex-wrap: wrap;
+        align-content: center;
+        justify-content: center;
+    }
+    
+    div.imagenCh {
+        display: flex;
+        align-items: center;
+    }
+    
+    div img.cheemsImg {
+        width: 100%;
+        
+    }
+}
+
+@media screen and (min-width: 1280px) {
+
+    h2.errorText{
+        text-align: center;
+        font-family: --font-roboto;
+        font-size: 3.4rem;
+    }
+    
+    div.errorContainer {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    div.imagenCh {
+        display: flex;
+        align-items: center;
+    }
+    
+    div img.cheemsImg {
+        width: 100%;
+        
+    }
+}

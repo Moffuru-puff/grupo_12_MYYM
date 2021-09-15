@@ -199,18 +199,8 @@
     "id": 15,
     "name": "Nintendo Switch",
     "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto facilis veritatis nobis temporibus, obcaecati cupiditate, magnam quis nisi modi quos consectetur optio labore numquam ipsa repudiandae, quaerat quia. Aliquam sint quae iusto minima voluptatum, distinctio excepturi impedit delectus corporis nemo voluptates exercitationem perspiciatis. Asperiores maxime culpa doloremque deleniti magnam officia, quae ratione assumenda perspiciatis vero eos perferendis voluptatum corporis, in amet expedita rem sapiente recusandae modi voluptatibus? Temporibus, voluptatem assumenda? Error fugiat nihil amet, reiciendis beatae ipsam illum voluptatibus aliquid sed vitae ducimus modi quae, pariatur aperiam quo voluptates. Id debitis aliquid ducimus nihil vel minus atque molestiae. Quam, enim? Libero eveniet autem harum aspernatur, hic dolorem. Quas sequi ad facilis odit consequatur facere expedita corrupti perferendis mollitia. Ea quae maxime quam ducimus nostrum quisquam amet, dolore tempore, corrupti praesentium distinctio eos molestiae nulla esse sequi voluptate ab est provident ipsam quis sed similique. Eaque asperiores earum molestiae temporibus corrupti sit perspiciatis ducimus? Doloribus, natus minima? Voluptatibus voluptate officia obcaecati totam nulla labore excepturi? Magni, et quis? Blanditiis officiis iste atque libero earum veniam numquam omnis saepe deserunt optio voluptatum itaque excepturi nobis vero et accusantium impedit, doloremque sunt eos placeat quaerat. Sapiente exercitationem aut debitis nesciunt rerum nulla consectetur.",
-<<<<<<< HEAD:db/dbProducts.json
-    "image": "Nintendo_Switch.png",
-    "category": "consolas",
-=======
-    "image": ["Nintendo_Switch.png"],
-    "category": "consola",
->>>>>>> fc56f904c9d0908cc92b92f0ce5026a9b07fff6b:src/db/dbProducts.json
-    "mark": "Nintendo",
-    "price": 45000,
     "discount": 10,
     "subcategory": "nintendo switch",
-    "stock": 10,
     "scanning": 15,
     "mainFeatures": "Es portátil, ideal para llevar a donde quieras y jugar con tus amistades y familia"
   },
