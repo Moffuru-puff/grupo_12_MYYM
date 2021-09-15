@@ -1,7 +1,7 @@
 @import url(variants.css);
 
 .main-btnArrepentimiento {
-    padding: 25px 15px;
+    padding: 25px 0px;
     max-width: 91%;
     margin: auto;
     display: flex;
@@ -133,4 +133,10 @@ div.line {
     height: 1px;
     background-color: rgb(201, 201, 201);
     margin: 22px 0 23px 0;
+}
+
+@media screen and (min-width: 481px) {
+    .main-btnArrepentimiento {
+        padding: 25px 15px;    
+    }
 }
