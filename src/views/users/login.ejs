@@ -11,7 +11,7 @@
         <a href="/"><img class="myym" src="/img/logo-form.png" alt=""></a>
       </div>
       <div style="order: 1" class="form-content">
-      <form action="" method="">
+        <form action="/login" method="POST" >
         <div class="iniciar">
           <h2>
             Iniciar Sesion
@@ -22,13 +22,17 @@
         </div>
         <div class="form">
           <div class="input-container">
-            <input class="input-style" type="text" name="usuario" placeholder="usuario">
-            <span class="error-message">Debe ingresar su usuario</span>
+            <input class="input-style" type="email" name="email" placeholder="email">
+            <% if(locals.errors && errors.email) {%>
+            <span class="error-message"><%= errors.email.msg %></span>
+            <% } %>
           </div>
         <div class="form">
             <div class="input-container">
               <input class="input-style" type="password" name="password" placeholder="contraseña">
-              <span class="error-message">Debe ingresar su contraseña</span>
+              <% if(locals.errors && errors.password) { %>
+              <span class="error-message"><%= errors.password.msg %></span>
+              <% } %>
             </div>
           <div class="check">
               <input type="checkbox" name="recordar" id="recordar">

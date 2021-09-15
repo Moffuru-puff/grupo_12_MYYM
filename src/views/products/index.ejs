@@ -129,16 +129,22 @@
           <h2>Productos Destacados</h2>
 
           <div class="products">
-
+             <% console.log(favorites) %> 
             <% for (producto of productos) { %>
+               
            <!--    <a href="/detalleDelProducto/<%- producto.id %>"> -->
                 <article id="article">
-                  <div class="star" id="btnFav">
-                    <% if (favorites.find(product => producto.id)) { %>
-                     
+                  <div class="star" id="btnFav"> 
+                    <figure 
+                     <% if (favorites[producto.id]) { %>
+                      class="myImage activated"
+                      <% } else { %>
+                        class="myImage"
                     <% } %>
-                    <figure class="myImage" id="<%- producto.id %>">
+                    id="<%- producto.id %>">
                     </figure>
+                   
+                    
                   </div>
                   <a href="/detalleDelProducto/<%- producto.id %>">
                   <div class="img-producto">

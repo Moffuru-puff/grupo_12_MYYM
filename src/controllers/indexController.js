@@ -12,7 +12,15 @@ module.exports = {
         }
       });
 
-      let favorites = [1, 5, 8, 3];
+      let favorites = {
+        "id": false,
+        5: true,
+        7: true,
+        9: true,
+        17: true
+      };
+      let id = 5;
+      favorites[id]
 
       res.render("./products/index.ejs", {
         productos: 
@@ -65,4 +73,5 @@ module.exports = {
         toThousand
       })
     },
+   
   };

@@ -1,19 +1,33 @@
 let express = require('express');
 let router = express.Router();
-let {register, login, profile , editProfile ,registerNewUser} = require('../controllers/usersController');
-let reValidator = require('../validations/registerValidator')
+const {
+    register, 
+    login, 
+    profile , 
+    editProfile,
+    registerNewUser, 
+    loginUser, 
+    updateProfile
+    } = require('../controllers/usersController');
+const reValidator = require('../validations/registerValidator')
+const loValidator = require('../validations/loginValidator')
+const uploadUserAvatar = require('../middlewares/uploadUserAvatar')
+const sessionCheck = require('../middlewares/sessionCheck')
+const userLoginCheck = require('../middlewares/userLoginCheck')
 
+/* GET - login */
+router.get('/login', userLoginCheck ,login)
+router.post('/login', loValidator ,loginUser)
 
-/* GET  */
-router.get('/login', login)
-router.get('/register', register)
-router.get('/profile', profile)
-router.get('/profile/editprofile', editProfile)
-
-/* POST */
-
+/* GET - Register */
+router.get('/register', userLoginCheck ,register)
 router.post('/register', reValidator ,registerNewUser)
 
+
+/* GET - Profile */
+router.get('/profile', sessionCheck ,profile)
+router.get('/profile/editprofile/:id', sessionCheck ,editProfile)
+router.put('/profile/editprofile/:id', uploadUserAvatar.single('avatar'), updateProfile)
 
 
 module.exports = router;
