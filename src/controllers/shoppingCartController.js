@@ -1,15 +1,15 @@
 module.exports = {
     shoppingCart: (req, res) => {
-      res.render("shoppingCart");
+      res.render("./products/shoppingCart");
     },
     shipping: (req, res) => {
-      res.render("shipping")
+      res.render("./products/shipping")
     },
     checkout: (req, res) => {
-      res.render("checkout")
+      res.render("./products/checkout")
     },
     confirm: (req, res) => {
-      res.render("confirm")
+      res.render("./products/confirm")
     }
 
   };

@@ -25,6 +25,7 @@
               <ul class="sub-menu" id="account">
                 <li><a href="/register">Regitrarse</a></li>
                 <li><a href="/login">Iniciar sesión</a></li>
+                <li><a href="/profile">Mi cuenta</a></li>
                 <li><a href="">Favoritos</a></li>
                 <li><a href="">Mis compras</a></li>
               </ul>
@@ -32,7 +33,6 @@
             <li class="menu-item" onclick="dropSubCategoryMenu(`category`)">
               <a href="#"> Categorías</a>
               <ul class="sub-menu" id="category">
-                <li><a href="">Todo</a></li>
                 <li><a href="">Consolas</a></li>
                 <li><a href="">Videojuegos</a></li>
                 <li><a href="">Accesorios</a></li>
@@ -59,8 +59,8 @@
       </div>
 
       <!-- barra de busqueda -->
-      <form action="#" id="search">
-        <input class="search" type="search" name="busqueda" placeholder="Buscar productos, marcas y más" />
+      <form action="/search"  method="GET" id="search">
+        <input class="search" type="search" name="keywords" placeholder="Buscar productos, marcas y más" />
         <button type="submit" class="btn-search"><i class="fas fa-search"></i></button>
       </form>
 
@@ -78,6 +78,7 @@
           <ul>
             <li><a href="/register">Registrarse</a></li>
             <li><a href="/login">Iniciar sesión</a></li>
+            <li><a href="/profile">Mi cuenta</a></li>
             <li><a href="">Mis favoritos</a></li>
             <li><a href="">Mis compras</a></li>
             <li><a href="/admin">Opciones de <br>  administrador</a></li> 
@@ -414,8 +415,8 @@
               </div>
             </div>
         </li>
-        <li class="item-ofertas item"><a href="#">Ofertas</a></li>
-        <li class="item-zonaRetro item"><a href="#">Zona Retro</a></li>
+        <li class="item-ofertas item"><a href="/offers">Ofertas</a></li>
+        <li class="item-zonaRetro item"><a href="/retro">Zona Retro</a></li>
       </ul>
     </nav>
   </header>

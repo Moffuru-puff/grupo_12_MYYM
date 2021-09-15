@@ -1,5 +1,5 @@
 module.exports = {
     index: (req, res) => {
-      res.render("btnDeArrepentimiento");
+      res.render("./products/btnDeArrepentimiento.ejs");
     },
 };
