@@ -10,4 +10,7 @@ module.exports = {
         toThousand
       });
     },
+    error: (req, res) => {
+      res.render("error404")
+    },
   };

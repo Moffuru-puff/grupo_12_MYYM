@@ -3,13 +3,16 @@ const app = express();
 const path = require('path');
 const methodOverride = require('method-override')
 const port = 3000;
+const session = require('express-session')
+const cookieParser = require('cookie-parser')
+const bodyParser = require('body-parser');
 
 /* Enrutadores */
 let homeRouter = require("./routes/index");
 let usersRouter = require("./routes/users");
 let adminRouter = require("./routes/admin");
 let arrepentimientoRouter = require("./routes/btnDeArrepentimiento");
-const bodyParser = require('body-parser');
+
 
 
 let producRouter=require('./routes/producRouter');
@@ -25,6 +28,13 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cookieParser())
+app.use(session({
+    secret: "myymGamers",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 30000 * 1000}
+}))
 
 app.use(express.urlencoded({extended : false}));
 app.use(express.json());
@@ -55,10 +65,14 @@ app.get('/checkout', (req, res) => {
 app.get('/shipping', (req, res) => {
     res.sendFile(path.join(__dirname, `/views/shipping.html`) )
 }) 
+
 app.get('/confirm', (req, res) => {
     res.sendFile(path.join(__dirname, `/views/confirm.html`) )
-}) 
+})
 
+app.get('/editprofile', (req, res) => {
+    res.sendFile(path.join(__dirname, `/views/editProfile.html`) )
+}) 
 
 
 app.listen(port, () => {

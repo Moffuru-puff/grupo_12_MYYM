@@ -3,27 +3,27 @@
 <%- include('../partials/head')%>
 <body>
 <%- include('../partials/header')%>
-    <main class="userProfile">
+    <main class="userProfile1">
  
-        <div class="profile-container">
+        <div class="profile-container1">
             <div class="avatar">
-                <img src="/img/userAvatars/defaultAvatarImage.png" alt="">
+                <img src="/img/userAvatars/<%= user.avatar %>" alt="">
             </div>
-            <div class="profileData">
-                <h3 class="profile-title">Datos personales</h3>
-                <p class="profile-item">usuario: Cyn</p>
-                <p class="profile-item">nombre: Giovanni</p>
-                <p class="profile-item">apellido: Giorgio</p>
-                <p class="profile-item">Email: email@hotmail.com</p>
-                <p class="profile-item">Teléfono: 12352134</p>
+            <div class="profileData1">
+                <h3 class="profile-title1">Datos personales</h3>
+                <p class="profile-item1">Usuario: <%= user.user ? user.user : "----" %></p>
+                <p class="profile-item1">Nombre: <%= user.name ? user.name : "----" %></p>
+                <p class="profile-item1">Apellido: <%= user.lastname ? user.lastname : "----" %></p>
+                <p class="profile-item1">Email: <%= user.email %></p>
+                <p class="profile-item1">Teléfono: <%= user.telephone ? user.telephone : "----" %></p>
             </div>
-            <div class="profileDatax">
-                <h3 class="profile-title">Datos de contacto</h3>
-                <p class="profile-item">Dirección: 1</p>
-                <p class="profile-item">Provincia: si</p>            
+            <div class="profileData2">
+                <h3 class="profile-title1">Datos de contacto</h3>
+                <p class="profile-item1">Dirección: <%= user.address ? user.address : "----" %></p>
+                <p class="profile-item1">Provincia: <%= user.province ? user.province : "----" %></p>            
             </div>
             <div>
-                <button id="btn-submit" type="submit" style="color: white" class="btn btn-submit">Editar Datos</button>
+                <a href="/profile/editprofile/<%= user.id %>"><button id="btn-submit1" type="submit" style="color: white" class="btn btn-submit">Editar perfil</button></a>
             </div>
         </div> 
     </main>
