@@ -1,16 +1,57 @@
 let changeFav =
     document.addEventListener('click', (e) => {
         var id =  e.target.id
-        console.log(e.target);
         if (e.target && e.target.tagName === "FIGURE" && e.target.id == id) {
-          e.target.classList.toggle('activated')
-          favoritos.push(id)
-          console.log(favoritos);
+            userId = e.target.attributes.userid.value
+            //
+            if (e.target.classList.value.indexOf('activated') == -1) {
+                fetch(`${window.location.origin}/api/favorite?userId=${userId}&productId=${id}`, {
+                    method: 'POST',
+                    cache: 'no-cache',
+                    headers: {
+                        'Content-Type':'application/json'
+                    }, 
+                })
+                    .then(function (response) {
+                        if (response.status !== 200) {
+                            console.log(`Looks like there was a problem. Status code: ${response.status}`);
+                            return;
+                        }
+                        response.json().then(function (data) {
+                            //console.log(data); Acá recibimos la respuesta en la variable data
+                            e.target.classList.value = "myImage activated"
+                        });
+                    })
+                    .catch(function (error) {
+                        console.log("Fetch error: " + error);
+                    });
+                
+            }else{
+                fetch(`${window.location.origin}/api/favorite?userId=${userId}&productId=${id}`, {
+                    method: 'DELETE',
+                    cache: 'no-cache',
+                    headers: {
+                        'Content-Type':'application/json'
+                    }, 
+                })
+                    .then(function (response) {
+                        if (response.status !== 200) {
+                            console.log(`Looks like there was a problem. Status code: ${response.status}`);
+                            return;
+                        }
+                        response.json().then(function (data) {
+                            //console.log(data); Acá recibimos la respuesta en la variable data
+                            e.target.classList.value = "myImage"
+                        });
+                    })
+                    .catch(function (error) {
+                        console.log("Fetch error: " + error);
+                    });
+            }
         }
     })
 ;
 
-let favoritos = [];
 
 function favoritosUpdate(id){
     let activo = false;
@@ -33,7 +74,7 @@ function cambiarEstadoFavorito(id, bolean){
     } */
 }
 
-window.onload = () => {
+/* window.onload = () => {
     document.addEventListener("click", (event) => {
         elementClass = event.target.className;
         elementId = event.target.Id;
@@ -41,12 +82,11 @@ window.onload = () => {
         console.log(event);
         if(elementClass == "MyImage"){
             favoritosUpdate(elementId);
-            //changeImage(elementId);
             changeFav
         }
     } )
 
-}
+} */
 
 /* array.splice(index, 1)
  */

@@ -10,8 +10,8 @@ module.exports = [
     check('mainFeatures')
     .notEmpty()
     .withMessage("El campo de caracterísicas principales no puede estar vacío")
-    .isLength({ min: 5 })
-    .withMessage("Ingrese más de 5 carácteres"),
+    .isLength({ min: 4 })
+    .withMessage("Ingrese más de 4 carácteres"),
 
     check('category')
     .notEmpty()

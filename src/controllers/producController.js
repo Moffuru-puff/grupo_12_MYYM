@@ -12,7 +12,8 @@ module.exports = {
         productos: 
         getProducts,
         toThousand,
-        product
+        product,
+        user : req.session.user ? req.session.user : ''
       });
     },
   };

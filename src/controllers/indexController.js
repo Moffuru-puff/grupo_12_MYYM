@@ -1,4 +1,4 @@
-const { getProducts} = require('../db/dataB')
+const { getProducts, users} = require('../db/dataB')
 
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
  
@@ -12,22 +12,14 @@ module.exports = {
         }
       });
 
-      let favorites = {
-        "id": false,
-        5: true,
-        7: true,
-        9: true,
-        17: true
-      };
-      let id = 5;
-      favorites[id]
-
+      console.log(req.session.user);
       res.render("./products/index.ejs", {
         productos: 
         getProducts,
         featured,
         toThousand,
-        favorites
+        favorites: req.session.user ? req.session.user.favorites : '',
+        user : req.session.user ? req.session.user : ''
       });
     },
     search: (req, res) => {
@@ -42,7 +34,8 @@ module.exports = {
       res.render('./products/results.ejs', {
         result, 
         toThousand,
-        search: req.query.keywords
+        search: req.query.keywords,
+        user : req.session.user ? req.session.user : ''
       })
     },
     offers: (req, res) => {
@@ -56,7 +49,8 @@ module.exports = {
 
       res.render('./products/offers.ejs', {
         withDiscount,
-        toThousand
+        toThousand,
+        user : req.session.user ? req.session.user : ''
       })
     },
     retroZone: (req, res) => {
@@ -70,7 +64,8 @@ module.exports = {
 
       res.render('./products/retro.ejs', {
         retro,
-        toThousand
+        toThousand,
+        user : req.session.user ? req.session.user : ''
       })
     },
    

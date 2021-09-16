@@ -1,12 +1,13 @@
-const { addUserFavorite } = require('../db/dataB')
+const { addUserFavorite, deleteUserFavorite } = require('../db/dataB')
 
 module.exports = {
     addFavorite : (req, res) =>{
-       console.log(addUserFavorite(req.query.userId, req.query.productId))
+      addUserFavorite(req.query.userId, req.query.productId)
        
        res.send({status: "ok"})
     },
     deleteFavorite: (req, res) => {
-
+        deleteUserFavorite(req.query.userId, req.query.productId)
+        res.send({status: "oki"})
     }
 }

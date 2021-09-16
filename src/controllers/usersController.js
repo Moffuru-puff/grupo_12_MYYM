@@ -77,6 +77,7 @@ module.exports = {
                 lastname: user.lastname,
                 email: user.email,
                 avatar: user.avatar,
+                favorites : user.favorites,
                 rol: user.rol
             }
 
