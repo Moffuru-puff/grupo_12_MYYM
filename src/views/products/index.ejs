@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<%- include('./partials/head.ejs') %>
+<%- include('../partials/head.ejs') %>
 
   <body>
     <!-- Comienzo de header -->
-    <%- include('./partials/header.ejs') %>
+    <%- include('../partials/header.ejs') %>
       <!-- Fin del header -->
 
       <main class="home">
@@ -129,13 +129,23 @@
           <h2>Productos Destacados</h2>
 
           <div class="products">
-
+             <% console.log(favorites) %> 
             <% for (producto of productos) { %>
+               
            <!--    <a href="/detalleDelProducto/<%- producto.id %>"> -->
                 <article id="article">
-                  <div class="star" id="btnFav">
-                    <figure class="myImage" id="<%- producto.id %>">
+                  <div class="star" id="btnFav"> 
+                    <figure 
+                    userid="<%- user.id  %>"
+                     <% if (favorites[producto.id]) { %>
+                      class="myImage activated"
+                      <% } else { %>
+                        class="myImage"
+                    <% } %>
+                    id="<%- producto.id %>">
                     </figure>
+                   
+                    
                   </div>
                   <a href="/detalleDelProducto/<%- producto.id %>">
                   <div class="img-producto">
@@ -196,7 +206,7 @@
       </main>
 
       <!-- Comienzo del footer -->
-      <%- include('./partials/footer.ejs') %>
+      <%- include('../partials/footer.ejs') %>
         <!-- Fin del footer -->
   </body>
 

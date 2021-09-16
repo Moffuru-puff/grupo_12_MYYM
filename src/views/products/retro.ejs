@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- Include Head -->
+<%- include('../partials/head.ejs', {title: 'Zona Retro' }) %>
+		<body>
+			<!-- Header -->
+			<%- include('../partials/header.ejs') %>
+				<!-- /Header -->
+				<main class="home">
+
+					<!-- Sección de productos -->
+					<section class="container-products">
+						<h2>Zona Retro
+						</h2>
+
+						<div class="products">
+
+							<% if (retro.length > 0 ) { %> <% retro.forEach(producto => { %>
+									<!--    <a href="/detalleDelProducto/<%- producto.id %>"> -->
+									<article id="article">
+										<div class="star" id="btnFav">
+											<figure class="myImage" id="<%- producto.id %>">
+											</figure>
+										</div>
+										<a href="/detalleDelProducto/<%- producto.id %>">
+											<div class="img-producto">
+												<img src="/img/Productos Gamers/<%- producto.image[0] %>"
+													alt="<%- producto.name %>" />
+											</div>
+											<div class="puntuacion">
+												<img src="/img/iconos-png/4.5.png" alt="puntuacion" />
+												<p>4.05</p>
+											</div>
+											<div class="description-product">
+
+												<h4>
+													<% if (producto.name.length> 20) { %>
+														<% let productoSlice=producto.name.slice(0,20) %>
+															<%= productoSlice %>...
+
+																<% } else { %>
+																	<%- producto.name %>
+																		<% } %>
+												</h4>
+												<p>
+													<% if (producto.mainFeatures.length> 40) { %>
+														<% let descriptionSlice=producto.mainFeatures.slice(0,40) %>
+															<%= descriptionSlice %>...
+
+																<% } else { %>
+																	<%- producto.mainFeatures %>
+																		<% } %>
+												</p>
+												<% if (producto.discount !==0) { %>
+													<div class="withDiscount">
+														<small>$<%- toThousand(producto.price) %></small>
+														<span>
+															<%- producto.discount !==0 ? `${producto.discount}% OFF`
+																: '' %>
+														</span>
+													</div>
+													<h3>$<%- toThousand(producto.price - producto.price *
+															producto.discount / 100) %>
+													</h3>
+
+													<% } else { %>
+														<h3>
+															$<%- toThousand(producto.price) %>
+														</h3>
+
+														<% } %>
+
+											</div>
+										</a>
+									</article>
+									<!-- </a> -->
+									<% }); %>
+										<% } else { %>
+											<div class="dBlock">
+												<h2 style="color: tomato">
+													No hay productos que coincidan con Zona Retro
+												</h2>
+												<div style="height: 250px;"></div>
+											</div>
+											<% } %>
+
+						</div>
+						<div class="arrow-top">
+							<a href="#"><img src="/img/iconos-png/arrow-top.png" alt="" /></a>
+						</div>
+						
+					</section>
+				</main>
+
+				<!-- Comienzo del footer -->
+				<%- include('../partials/footer.ejs') %>
+					<!-- Fin del footer -->
+		</body>
+
+</html>

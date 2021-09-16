@@ -77,6 +77,7 @@ module.exports = {
                 lastname: user.lastname,
                 email: user.email,
                 avatar: user.avatar,
+                favorites : user.favorites,
                 rol: user.rol
             }
 
@@ -135,6 +136,7 @@ module.exports = {
           telephone: "",
           address: "",
           province: "",
+          favorites: {},
           email: `${email}`,
           password: bcrypt.hashSync(password, 12),
           rol: "1",

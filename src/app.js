@@ -14,6 +14,7 @@ let adminRouter = require("./routes/admin");
 let arrepentimientoRouter = require("./routes/btnDeArrepentimiento");
 let producRouter = require('./routes/producRouter');
 let shoppingCartRouter = require('./routes/shoppingCart')
+let apiRouter = require('./routes/apiRouter')
 
 /* VIEWS */
 app.set('view engine', 'ejs');
@@ -46,11 +47,14 @@ app.use('/', usersRouter);
 app.use('/shoppingCart', shoppingCartRouter);
 
 app.use('/detalleDelProducto', producRouter);
+app.use('/api', apiRouter);
 
 
 
 app.use((req,res, next)=>{
-    res.status(404).render('error404')
+    res.status(404).render('error404', {
+        user : req.session.user ? req.session.user : ''
+    })
     next()
 })
 

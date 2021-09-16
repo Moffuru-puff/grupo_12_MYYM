@@ -8,11 +8,12 @@ module.exports = {
 
       let product = getProducts.find(product =>
          product.id === productID)
-      res.render("detalleDelProducto", {
+      res.render("./products/detalleDelProducto", {
         productos: 
         getProducts,
         toThousand,
-        product
+        product,
+        user : req.session.user ? req.session.user : ''
       });
     },
   };
