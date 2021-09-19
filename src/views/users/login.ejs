@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+
+  <%- include('../partials/head.ejs') %> 
+
+<body class="forms-form">
+  <main>
+    <div class="contain3r">
+    <div class="form-container">
+      <div style="order: -1" class="logo-container">
+        <a href="/"><img class="myym" src="/img/logo-form.png" alt=""></a>
+      </div>
+      <div style="order: 1" class="form-content">
+        <form action="/login" method="POST" >
+        <div class="iniciar">
+          <h2>
+            Iniciar Sesion
+          </h2>
+          <h3>
+            ¿No tienes una cuenta? <a class="a" href="/register">Registrate</a>
+          </h3>
+        </div>
+        <div class="form">
+          <div class="input-container">
+            <input class="input-style" type="email" name="email" placeholder="email">
+            <% if(locals.errors && errors.email) {%>
+            <span class="error-message"><%= errors.email.msg %></span>
+            <% } %>
+          </div>
+        <div class="form">
+            <div class="input-container">
+              <input class="input-style" type="password" name="password" placeholder="contraseña">
+              <% if(locals.errors && errors.password) { %>
+              <span class="error-message"><%= errors.password.msg %></span>
+              <% } %>
+            </div>
+          <div class="check">
+              <input type="checkbox" name="recordar" id="recordar">
+              <label style="color: white;" for="recordar">Recordarme</label>
+          </div>
+          <div class="old">
+              <span><a class="a" href="">¿Olvidaste tu contraseña?</a></span>
+            </div>
+            <button id="btn-submit" type="submit" class="btn btn-submit">Ingresar</button>
+          </div>
+        </div>
+      </form>
+      </div>
+
+    </div>
+  </div>
+  </main>
+</body>
+
+</html>
