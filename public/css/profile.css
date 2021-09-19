@@ -7,6 +7,10 @@
     position: relative;
 }
 
+.avatarContainer {
+    display: block;
+}
+
 .userProfile1 .avatar{
     width: 10rem;
     height: 10rem;
@@ -47,6 +51,10 @@
 .profile-item1 {
     margin: 1rem 0;
     color: white;
+}
+
+.dat4 {
+    display: block;
 }
 
 .profileData2 {
@@ -102,6 +110,16 @@
         padding: 1rem;
     }
 
+    .dat4 {
+        position: relative;
+        display: flex;
+    }
+
+    .avatarContainer {
+        position: relative;
+        display: flex;
+    }
+
     .profile-container1 {
         position: relative;
         display: flex;
@@ -136,29 +154,18 @@
         background-color: #1f53c5;
         text-align: center;
         position: relative;
-        top: 60px;
     }
 
     .profileData1 {
         margin: 1rem 0;
         font-family: var(--font-roboto);
         position: relative;
-        /* margin: 1rem; */
-        /* order: -1; */
-        flex-grow: 0.50;
-        right: 220px;
-        top: 60px;
     }
 
     .profileData2 {
         margin: 1rem 0;
         font-family: var(--font-roboto);
         position: relative;
-        /* margin: 1rem; */
-        /* order: -1; */
-        flex-grow: 0.50;
-        top: 83px;
-        right: 25px;
     }
 
 }
