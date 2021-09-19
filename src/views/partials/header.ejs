@@ -27,8 +27,9 @@
               </a>
               <ul class="sub-menu" id="account">
                 <li><a href="/profile">Mi perfil</a></li>
-                <li><a href="">Favoritos</a></li>
+                <li><a href="/favorites">Favoritos</a></li>
                 <li><a href="">Mis compras</a></li>
+                <li><a href="">Cerrar sesión</a></li>
                 <% if (user.rol == 0) { %>
                   <li><a href="/admin">Opciones de <br> administrador</a></li>
                   <% } %>
@@ -51,7 +52,7 @@
               <li><a href="">Marcas</a></li>
             </ul>
           </li>
-          <li class="menu-item"><a href="#">Mis favoritos</a></li>
+          <li class="menu-item"><a href="/favorites">Mis favoritos</a></li>
           <li class="menu-item"><a href="#">Mis compras</a></li>
         </ul>
       </nav>
@@ -79,7 +80,7 @@
     <div class="account" onclick="dropAccount(`btnAccount`)">
       <div class="avatar">
         <% if (user) { %>
-          <img src="/img/userAvatars/<%= user.avatar %> " alt="" style="width: 85%;">
+          <img src="/img/userAvatars/<%= user.avatar %> " alt="" style="width: 85%; border-radius: 50%;">
           <% } else { %>
             <i class="fas fa-user-circle"></i>
             <% } %>
@@ -99,8 +100,9 @@
         <ul>
           <% if (user) { %>
             <li><a href="/profile">Mi perfil</a></li>
-            <li><a href="">Mis favoritos</a></li>
+            <li><a href="/favorites">Mis favoritos</a></li>
             <li><a href="">Mis compras</a></li>
+            <li><a href="">Cerrar sesión</a></li>
             <% if (user.rol == 0) { %>
               <li><a href="/admin">Opciones de <br> administrador</a></li>
               <% } %>

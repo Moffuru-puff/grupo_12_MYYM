@@ -107,9 +107,6 @@ module.exports = {
 
       let errors = validationResult(req)
 
-      /* console.log(req.body) */
-   
-
       if(errors.isEmpty()){
      
         let lastId = 0;

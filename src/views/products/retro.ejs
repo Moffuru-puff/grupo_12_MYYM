@@ -19,7 +19,14 @@
 									<!--    <a href="/detalleDelProducto/<%- producto.id %>"> -->
 									<article id="article">
 										<div class="star" id="btnFav">
-											<figure class="myImage" id="<%- producto.id %>">
+											<figure 
+											userid="<%- user.id  %>"
+											 <% if (favorites[producto.id]) { %>
+											  class="myImage activated"
+											  <% } else { %>
+												class="myImage"
+											<% } %>
+											id="<%- producto.id %>">
 											</figure>
 										</div>
 										<a href="/detalleDelProducto/<%- producto.id %>">

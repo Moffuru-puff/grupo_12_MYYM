@@ -12,7 +12,6 @@ module.exports = {
         }
       });
 
-      console.log(req.session.user);
       res.render("./products/index.ejs", {
         productos: 
         getProducts,
@@ -35,6 +34,7 @@ module.exports = {
         result, 
         toThousand,
         search: req.query.keywords,
+        favorites: req.session.user ? req.session.user.favorites : '',
         user : req.session.user ? req.session.user : ''
       })
     },
@@ -50,6 +50,7 @@ module.exports = {
       res.render('./products/offers.ejs', {
         withDiscount,
         toThousand,
+        favorites: req.session.user ? req.session.user.favorites : '',
         user : req.session.user ? req.session.user : ''
       })
     },
@@ -64,6 +65,23 @@ module.exports = {
 
       res.render('./products/retro.ejs', {
         retro,
+        toThousand,
+        favorites: req.session.user ? req.session.user.favorites : '',
+        user : req.session.user ? req.session.user : ''
+      })
+    },
+    favorite: (req, res) => {
+      productsFavorites = []
+     
+
+      getProducts.forEach(product => {
+        if (product.id ==  req.session.user.favorites[product.id]) {
+          productsFavorites.push(product)
+        }
+      });
+
+      res.render('./products/favorites.ejs', {
+        productsFavorites,
         toThousand,
         user : req.session.user ? req.session.user : ''
       })
