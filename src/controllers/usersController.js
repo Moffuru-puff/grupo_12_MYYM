@@ -1,5 +1,5 @@
 const { getUsers, writeJsonUsers } = require('../db/dataB')
-const { validationResult } = require('express-validator')
+const { validationResult , check, body} = require('express-validator')
 let bcrypt = require('bcryptjs')
 
 module.exports = {
