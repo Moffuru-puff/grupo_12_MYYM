@@ -1,18 +1,46 @@
 let { check, body } = require('express-validator');
+const { getUsers } = require('../db/dataB')
 
 module.exports = [
     check('user')
     .notEmpty()
     .withMessage("Debe ingresar un nombre de usuario").bail()
-    .isLength({min: 5})
-    .withMessage("Ingrese un usuario minimo de 5 caracteres"),
+    .isLength({min: 4, max: 7})
+    .withMessage("Ingrese un usuario de 4-7 caracteres"),
+
+    body('user')
+    .custom(function(value){
+
+    let usuario = getUsers.filter(user=>{ 
+        return user.user == value 
+    })
+    if(usuario == false){ 
+        return true 
+    }else{
+        return false 
+    }
+ 
+}).withMessage('Este nombre de usuario ya está en uso'),
 
     check('email')
     .notEmpty()
     .withMessage("Debe ingresar su email").bail()
     .isEmail()
-    .withMessage("Debe ingresar un email valido")
-    ,
+    .withMessage("Debe ingresar un email valido"),
+
+    body('email')
+    .custom(function(value){
+
+    let usuario = getUsers.filter(user=>{ 
+        return user.email == value 
+    })
+    if(usuario == false){ 
+        return true 
+    }else{
+        return false 
+    }
+ 
+}).withMessage('Este email ya está en uso'),
     
     check('password')
     .notEmpty()
