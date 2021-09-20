@@ -8,10 +8,10 @@
                 <form action="/profile/editprofile/<%= user.id %>?_method=PUT" method="POST"
                     enctype="multipart/form-data">
                     <div class="profile-container">
-                        <div style="width: fit-content;height: fit-content;" alt="">
+                        <div style="width: fit-content;height: fit-content;display: contents;" alt="">
                             <div class="fileInputz">
-                            <p>Subir foto</p>
-                            <input type="file" name="avatar" id="examinar">
+                                <p>Subir foto de perfil</p>
+                                <input type="file" name="avatar" id="examinar">
                             </div>
                             <span class="error-message" id="errorMsg"></span>
                         </div>
@@ -21,7 +21,7 @@
                                     <h3 class="profile-title">Datos personales</h3>
                                     <div class="input-container">
                                         <input class="input-style" type="text" name="user" placeholder="usuario"
-                                            readonly value="<%= user.user %>">
+                                           readonly value="<%= user.user ? user.user : "" %>">
                                         <% if (locals.errors && errors.user) { %>
                                             <span class="error-message">
                                                 <%= errors.user.msg %>
@@ -62,18 +62,6 @@
                                                 <% } %>
                                         </div>
                                     </div>
-                                    <div class="form">
-                                        <div class="input-container">
-                                            <input class="input-style" type="text" name="telephone"
-                                                placeholder="telefono"
-                                                value="<%= user.telephone ? user.telephone : "" %>">
-                                            <% if (locals.errors && errors.telephone) { %>
-                                                <span class="error-message">
-                                                    <%= errors.telephone.msg %>
-                                                </span>
-                                                <% } %>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                             <div class="profileDatax">
@@ -100,8 +88,21 @@
                                                 <% } %>
                                         </div>
                                     </div>
+                                    <div class="form">
+                                        <div class="input-container">
+                                            <input class="input-style" type="text" name="telephone"
+                                                placeholder="telefono"
+                                                value="<%= user.telephone ? user.telephone : "" %>">
+                                            <% if (locals.errors && errors.telephone) { %>
+                                                <span class="error-message">
+                                                    <%= errors.telephone.msg %>
+                                                </span>
+                                                <% } %>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+
                         </div>
                         <div>
                             <button id="btn-submit2" type="submit" style="color: white" class="btn btn-submit">Guardar

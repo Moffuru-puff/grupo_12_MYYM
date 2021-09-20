@@ -23,14 +23,14 @@ module.exports = {
   index: (req, res) => {
     res.render("./admin/admin", {
       toThousand,
-      usuario : req.session.user
+      userInSession : req.session.user ? req.session.user : ''
     });
   },
 
   productsList: (req, res) => {
     res.render("./admin/productsList", {
       getProducts,
-      usuario : req.session.user
+      userInSession : req.session.user ? req.session.user : ''
     });
   },
 
@@ -38,7 +38,7 @@ module.exports = {
     res.render("./admin/cargaDeProductos", {
       categories,
       subcategories,
-      usuario : req.session.user
+      userInSession : req.session.user ? req.session.user : ''
     });
   },
 
@@ -102,7 +102,7 @@ module.exports = {
         categories,
         errors: errors.mapped(),
         old: req.body,
-        usuario : req.session.user
+        userInSession : req.session.user ? req.session.user : ''
       });
     }
   },
@@ -113,7 +113,7 @@ module.exports = {
       categories,
       subcategories,
       product,
-      usuario : req.session.user
+      userInSession : req.session.user ? req.session.user : ''
     });
   },
   productUpdate: (req, res) => {
@@ -175,7 +175,7 @@ module.exports = {
         product,
         errors: errors.mapped(),
         old: req.body,
-        usuario : req.session.user
+        userInSession : req.session.user ? req.session.user : ''
       });
     }
   },
@@ -196,13 +196,13 @@ module.exports = {
   sucursalList: (req, res) => {
     res.render("./admin/sucursalList", {
       sucursales,
-      usuario : req.session.user
+      userInSession : req.session.user ? req.session.user : ''
     });
   },
 
   addSucursal: (req, res) => {
     res.render("./admin/addSucursal", {
-      usuario : req.session.user
+      userInSession : req.session.user ? req.session.user : ''
     });
   },
 
@@ -238,7 +238,7 @@ module.exports = {
       res.render("./admin/addSucursal", {
         errors: errors.mapped(),
         old: req.body,
-        usuario : req.session.user
+        userInSession : req.session.user ? req.session.user : ''
       });
     }
   },
@@ -249,7 +249,7 @@ module.exports = {
     );
     res.render("./admin/editSucursal", {
       sucursal,
-      usuario : req.session.user
+      userInSession : req.session.user ? req.session.user : ''
     });
   },
   sucursalUpdate: (req, res) => {
@@ -287,13 +287,13 @@ module.exports = {
   userList: (req, res) => {
     res.render("./admin/userList", {
       users,
-      usuario : req.session.user
+      userInSession : req.session.user ? req.session.user : ''
     });
   },
 
   addUser: (req, res) => {
     res.render("./admin/addUser", {
-      usuario : req.session.user
+      userInSession : req.session.user ? req.session.user : ''
     });
   },
 
@@ -343,7 +343,8 @@ module.exports = {
       res.render("./admin/addUser", {
         errors: errors.mapped(),
         old: req.body,
-        usuario : req.session.user
+        userInSession : req.session.user ? req.session.user : ''
+
       });
     }
   },
@@ -352,7 +353,7 @@ module.exports = {
     let user = users.find(user => user.id === +req.params.id);
     res.render("./admin/editUser", {
       user,
-      usuario : req.session.user
+      userInSession : req.session.user ? req.session.user : ''
     });
   },
 

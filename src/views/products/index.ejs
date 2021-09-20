@@ -128,15 +128,14 @@
         <section class="container-products">
           <h2>Productos Destacados</h2>
 
-          <div class="products">
-             <% console.log(favorites) %> 
+          <div class="products"> 
             <% for (producto of productos) { %>
                
            <!--    <a href="/detalleDelProducto/<%- producto.id %>"> -->
                 <article id="article">
                   <div class="star" id="btnFav"> 
                     <figure 
-                    userid="<%- user.id  %>"
+                    userid="<%- userInSession.id  %>"
                      <% if (favorites[producto.id]) { %>
                       class="myImage activated"
                       <% } else { %>

@@ -1,0 +1,23 @@
+@import url(variants.css);
+
+.fav-container {
+    width: 80%;
+}
+
+.fav-info {
+    display: flex;
+    justify-content: space-around;
+}
+
+th.favProduct {
+    text-align: center;
+}
+
+.jccenter {
+    display: flex;
+    justify-content: center;
+}
+
+.favorites td {
+    border-bottom: solid 1px var(--darkBlue);
+}
