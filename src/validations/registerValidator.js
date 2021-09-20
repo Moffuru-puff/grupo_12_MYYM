@@ -46,11 +46,7 @@ module.exports = [
     .notEmpty()
     .withMessage('Debe ingresar una contraseña').bail()
     .isLength({min: 4, max: 10})
-    .withMessage('Debe ingresar una contraseña de 4-10 caracteres')
-  /*   .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\d@$.!%*#?&]/,)
-    .withMessage('Debe ingresar una contraseña valida') */,
-    /* .equals('password', 'repassword') */
-    /* .withMessage('Las contraseñas no coinciden'), */
+    .withMessage('Debe ingresar una contraseña de 4-10 caracteres'),
 
     body('repassword')
     .custom((value, {req}) => value !== req.body.password ? false : true)

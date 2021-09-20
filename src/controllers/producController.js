@@ -13,7 +13,7 @@ module.exports = {
         getProducts,
         toThousand,
         product,
-        user : req.session.user ? req.session.user : ''
+        userInSession : req.session.user ? req.session.user : ''
       });
     },
   };
