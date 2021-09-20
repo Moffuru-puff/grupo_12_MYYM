@@ -29,8 +29,8 @@ router.post('/register', reValidator ,registerNewUser)
 
 /* GET - Profile */
 router.get('/profile', sessionCheck ,profile)
-router.get('/profile/editprofile/:id', sessionCheck, editProValidator ,editProfile)
-router.put('/profile/editprofile/:id', uploadUserAvatar.single('avatar'), updateProfile)
+router.get('/profile/editprofile/:id', sessionCheck ,editProfile)
+router.put('/profile/editprofile/:id' ,uploadUserAvatar.single('avatar'), updateProfile)
 
 
 module.exports = router;
