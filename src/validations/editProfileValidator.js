@@ -22,6 +22,10 @@ module.exports = [
  
 }).withMessage('Este nombre de usuario ya está en uso'),
 
+    check('name')
+    .notEmpty()
+    .withMessage("El campo no puede quedar vacio"),
+
     check('lastname')
     .notEmpty()
     .withMessage("El campo no puede quedar vacio"),
