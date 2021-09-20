@@ -18,7 +18,7 @@ module.exports = {
         featured,
         toThousand,
         favorites: req.session.user ? req.session.user.favorites : '',
-        user : req.session.user ? req.session.user : ''
+        userInSession : req.session.user ? req.session.user : ''
       });
     },
     search: (req, res) => {
@@ -35,7 +35,7 @@ module.exports = {
         toThousand,
         search: req.query.keywords,
         favorites: req.session.user ? req.session.user.favorites : '',
-        user : req.session.user ? req.session.user : ''
+        userInSession : req.session.user ? req.session.user : ''
       })
     },
     offers: (req, res) => {
@@ -51,7 +51,7 @@ module.exports = {
         withDiscount,
         toThousand,
         favorites: req.session.user ? req.session.user.favorites : '',
-        user : req.session.user ? req.session.user : ''
+        userInSession : req.session.user ? req.session.user : ''
       })
     },
     retroZone: (req, res) => {
@@ -67,7 +67,7 @@ module.exports = {
         retro,
         toThousand,
         favorites: req.session.user ? req.session.user.favorites : '',
-        user : req.session.user ? req.session.user : ''
+        userInSession : req.session.user ? req.session.user : ''
       })
     },
     favorite: (req, res) => {
@@ -83,7 +83,7 @@ module.exports = {
       res.render('./products/favorites.ejs', {
         productsFavorites,
         toThousand,
-        user : req.session.user ? req.session.user : ''
+        userInSession : req.session.user ? req.session.user : ''
       })
     },
    

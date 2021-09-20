@@ -21,16 +21,16 @@
       <nav class="menu" id="navigation-bar-mobile">
         <ul class="menu-ul">
           <li class="menu-item" onclick="dropSubCategoryMenu(`account`)">
-            <% if (user) { %>
+            <% if (userInSession) { %>
               <a href="#">
-                <%- user.user %>
+                <%- userInSession.user %>
               </a>
               <ul class="sub-menu" id="account">
                 <li><a href="/profile">Mi perfil</a></li>
                 <li><a href="/favorites">Favoritos</a></li>
                 <li><a href="">Mis compras</a></li>
-                <li><a href="">Cerrar sesión</a></li>
-                <% if (user.rol == 0) { %>
+                <li><a href="/logout">Cerrar sesión</a></li>
+                <% if (userInSession.rol == 0) { %>
                   <li><a href="/admin">Opciones de <br> administrador</a></li>
                   <% } %>
               </ul>
@@ -79,16 +79,16 @@
     <!-- boton de mi cuenta -->
     <div class="account" onclick="dropAccount(`btnAccount`)">
       <div class="avatar">
-        <% if (user) { %>
-          <img src="/img/userAvatars/<%= user.avatar %> " alt="" style="width: 85%; border-radius: 50%;">
+        <% if (userInSession) { %>
+          <img src="/img/userAvatars/<%= userInSession.avatar %> " alt="" style="width: 85%; border-radius: 50%;">
           <% } else { %>
             <i class="fas fa-user-circle"></i>
             <% } %>
       </div>
       <div class="btn-account">
-        <% if (user) { %>
+        <% if (userInSession) { %>
           <p>
-            <%- user.user %>
+            <%- userInSession.user %>
           </p>
           <% } else { %>
             <p>Mi cuenta</p>
@@ -98,12 +98,12 @@
       <!-- Desplegable de botón mi cuenta -->
       <div class="drop-account" id="btnAccount">
         <ul>
-          <% if (user) { %>
+          <% if (userInSession) { %>
             <li><a href="/profile">Mi perfil</a></li>
             <li><a href="/favorites">Mis favoritos</a></li>
             <li><a href="">Mis compras</a></li>
-            <li><a href="">Cerrar sesión</a></li>
-            <% if (user.rol == 0) { %>
+            <li><a href="/logout">Cerrar sesión</a></li>
+            <% if (userInSession.rol == 0) { %>
               <li><a href="/admin">Opciones de <br> administrador</a></li>
               <% } %>
                 <% } else { %>

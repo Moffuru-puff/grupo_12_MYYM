@@ -24,7 +24,7 @@ let {
 let uploadFile = require('../middlewares/productUploadImage');
 let adminCheck = require('../middlewares/adminCheck');
 let sucursalValidator = require('../validations/sucursalValidator');
-let userAdminValidator = require(`../validations//userAdminValidator`);
+let userAdminValidator = require('../validations//userAdminValidator');
 let productValidator = require('../validations/productCreateValidator')
 
 
