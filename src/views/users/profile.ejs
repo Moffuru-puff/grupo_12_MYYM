@@ -6,22 +6,30 @@
     <main class="userProfile1">
  
         <div class="profile-container1">
+            <div class="avatarContainer">
             <div class="avatar">
                 <img src="/img/userAvatars/<%= user.avatar %>" alt="">
             </div>
+            </div>
+    <div class="dat4">
+        <div class="inputs-container">
             <div class="profileData1">
                 <h3 class="profile-title1">Datos personales</h3>
                 <p class="profile-item1">Usuario: <%= user.user ? user.user : "----" %></p>
                 <p class="profile-item1">Nombre: <%= user.name ? user.name : "----" %></p>
                 <p class="profile-item1">Apellido: <%= user.lastname ? user.lastname : "----" %></p>
                 <p class="profile-item1">Email: <%= user.email %></p>
-                <p class="profile-item1">Teléfono: <%= user.telephone ? user.telephone : "----" %></p>
             </div>
+        </div>
+        <div class="inputs-container">
             <div class="profileData2">
                 <h3 class="profile-title1">Datos de contacto</h3>
                 <p class="profile-item1">Dirección: <%= user.address ? user.address : "----" %></p>
                 <p class="profile-item1">Provincia: <%= user.province ? user.province : "----" %></p>            
+                <p class="profile-item1">Teléfono: <%= user.telephone ? user.telephone : "----" %></p>
             </div>
+            </div>
+    </div>
             <div>
                 <a href="/profile/editprofile/<%= user.id %>"><button id="btn-submit1" type="submit" style="color: white" class="btn btn-submit">Editar perfil</button></a>
             </div>

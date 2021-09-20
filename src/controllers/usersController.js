@@ -1,5 +1,5 @@
 const { getUsers, writeJsonUsers } = require('../db/dataB')
-const { validationResult } = require('express-validator')
+const { validationResult , check, body} = require('express-validator')
 let bcrypt = require('bcryptjs')
 
 module.exports = {
@@ -34,11 +34,11 @@ module.exports = {
               province,
           } = req.body
           
-          user.name = name
-          user.lastname = lastname
-          user.telephone = telephone
-          user.address = address
-          user.province = province
+          user.name = name.trim()
+          user.lastname = lastname.trim()
+          user.telephone = telephone.trim()
+          user.address = address.trim()
+          user.province = province.trim()
           user.avatar = req.file ? req.file.filename : user.avatar
 
           writeJsonUsers(getUsers)
@@ -51,7 +51,6 @@ module.exports = {
 
       }else{
           res.render("users/editProfile", {
-              user,
               errors: errors.mapped(),
               old:req.body,
               session: req.session
@@ -127,15 +126,15 @@ module.exports = {
 
       let newUser = {
           id: lastId + 1,
-          user: `${user}`,
+          user: user.trim(),
           name: "",
           lastname: "",
           telephone: "",
           address: "",
           province: "",
           favorites: {},
-          email: `${email}`,
-          password: bcrypt.hashSync(password, 12),
+          email: email.trim(),
+          password: bcrypt.hashSync(password, 12).trim(),
           rol: "1",
           avatar: req.file ? req.file.filename : "defaultAvatarImage.png"
       };
@@ -154,4 +153,12 @@ module.exports = {
   }
 
     },
+    logout: (req, res) => {
+      req.session.destroy()
+      if(req.cookies.userMyymGamers){
+          res.cookie('userMyymGamers', '', {maxAge: -1})
+      }
+
+      res.redirect('/')
+    }
   };

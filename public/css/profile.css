@@ -7,6 +7,16 @@
     position: relative;
 }
 
+.avatarContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-grow: 1;
+}
+
 .userProfile1 .avatar{
     width: 10rem;
     height: 10rem;
@@ -45,8 +55,12 @@
 }
 
 .profile-item1 {
-    margin: 1rem 0;
+    margin: 0.3rem 0;
     color: white;
+}
+
+.dat4 {
+    display: block;
 }
 
 .profileData2 {
@@ -77,13 +91,44 @@
 }
 
 @media screen and (min-width: 769px) {
+    .dat4 {
+        display: flex;
+        position: relative;
+        flex-direction: row;
+        justify-content: space-around;
+        align-content: space-around;
+        align-items: baseline;
+    }
+
+    .profileData1 {
+        margin: 1rem 0;
+        position: relative;
+        display: flex;
+        flex-grow: 0.50;
+        font-family: var(--font-roboto);
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-content: center;
+    }
+
+    .profileData2 {
+        margin: 1rem 0;
+        position: relative;
+        display: flex;
+        flex-grow: 0.50;
+        font-family: var(--font-roboto);
+        flex-direction: column;
+        align-content: flex-start;
+        flex-wrap: wrap;
+    }
+
     .userProfile1 {
         font-size: 1.2rem;
         margin-bottom: 100px;
     }
 
     .profile-container1 {
-        flex-direction: row;
+        flex-direction: column;
         flex-wrap: wrap;
         gap: 1rem;
     }
@@ -92,73 +137,76 @@
         margin: 3rem 2rem 1rem -3rem;
     }
 
+    .avatarContainer {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        flex-grow: 1;
+    }
+
 
 }
 
 @media screen and (min-width: 1280px) {
-    .userProfile1 {
-        font-size: 1.3rem;
-        margin-bottom: 100px;
-        padding: 1rem;
-    }
-
-    .profile-container1 {
-        position: relative;
+    .dat4 {
         display: flex;
-        gap: 1rem;
-        padding: 6rem;
+        position: relative;
         flex-direction: row;
-        flex-wrap: wrap;
-        align-items: center;
-        order: 1;
-        max-width: 1280px;
-    }   
-
-    .userProfile1 .avatar{
-        margin: 0px;
-        bottom: 120px;
-        left: 240px;
-        position: relative;
-        /* order: -1; */
-    }
-
-    #btn-submit1 {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 26px;
-        border: 2px solid black;
-        width: 233px;
-        height: 42px;
-        margin: 0 auto;
-        font-size: 24px;
-        color: white;
-        background-color: #1f53c5;
-        text-align: center;
-        position: relative;
-        top: 60px;
+        justify-content: space-around;
+        align-content: space-around;
+        align-items: baseline;
     }
 
     .profileData1 {
         margin: 1rem 0;
-        font-family: var(--font-roboto);
         position: relative;
-        /* margin: 1rem; */
-        /* order: -1; */
+        display: flex;
         flex-grow: 0.50;
-        right: 220px;
-        top: 60px;
+        font-family: var(--font-roboto);
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-content: center;
     }
 
     .profileData2 {
         margin: 1rem 0;
-        font-family: var(--font-roboto);
         position: relative;
-        /* margin: 1rem; */
-        /* order: -1; */
+        display: flex;
         flex-grow: 0.50;
-        top: 83px;
-        right: 25px;
+        font-family: var(--font-roboto);
+        flex-direction: column;
+        align-content: flex-start;
+        flex-wrap: wrap;
     }
+
+    .userProfile1 {
+        font-size: 1.2rem;
+        margin-bottom: 100px;
+    }
+
+    .profile-container1 {
+        flex-direction: column;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .userProfile1 .avatar{
+        margin: 3rem 2rem 1rem -3rem;
+    }
+
+    .avatarContainer {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        flex-grow: 1;
+    }
+
+
 
 }
