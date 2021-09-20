@@ -23,9 +23,7 @@
                                         <input class="input-style" type="text" name="user" placeholder="usuario"
                                            readonly value="<%= user.user ? user.user : "" %>">
                                         <% if (locals.errors && errors.user) { %>
-                                            <span class="error-message">
-                                                <%= errors.user.msg %>
-                                            </span>
+                                            <span class="error-message"><%= errors.user.msg %></span>
                                             <% } %>
                                     </div>
                                     <div class="form">
