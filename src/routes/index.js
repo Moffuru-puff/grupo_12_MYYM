@@ -7,6 +7,7 @@ router.get('/', controller.index);
 router.get('/search', controller.search); 
 router.get('/offers', controller.offers); 
 router.get('/retro', controller.retroZone); 
+router.get('/favorites', controller.favorite); 
 
 
 

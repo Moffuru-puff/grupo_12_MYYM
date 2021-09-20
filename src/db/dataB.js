@@ -12,7 +12,7 @@ module.exports = {
         dbUser.find(user => {
            
             if (user.id == userId) {
-                user.favorites[productId] = true 
+                user.favorites[productId] = productId
                 
                 saveDB(dbUser, 'users.json')
             } 

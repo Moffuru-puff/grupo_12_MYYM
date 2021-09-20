@@ -53,7 +53,7 @@ let changeFav =
 ;
 
 
-function favoritosUpdate(id){
+/* function favoritosUpdate(id){
     let activo = false;
     for(i = 0; i < favoritos.length; i++){
         if (id == favoritos[i]) {
@@ -63,7 +63,7 @@ function favoritosUpdate(id){
     if (id) {
         
     }
-} 
+}  */
 
 function cambiarEstadoFavorito(id, bolean){
     var image = document.getElementById();

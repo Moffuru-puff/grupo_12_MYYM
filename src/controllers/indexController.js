@@ -12,14 +12,13 @@ module.exports = {
         }
       });
 
-      console.log(req.session.user);
       res.render("./products/index.ejs", {
         productos: 
         getProducts,
         featured,
         toThousand,
         favorites: req.session.user ? req.session.user.favorites : '',
-        user : req.session.user ? req.session.user : ''
+        userInSession : req.session.user ? req.session.user : ''
       });
     },
     search: (req, res) => {
@@ -35,7 +34,8 @@ module.exports = {
         result, 
         toThousand,
         search: req.query.keywords,
-        user : req.session.user ? req.session.user : ''
+        favorites: req.session.user ? req.session.user.favorites : '',
+        userInSession : req.session.user ? req.session.user : ''
       })
     },
     offers: (req, res) => {
@@ -50,7 +50,8 @@ module.exports = {
       res.render('./products/offers.ejs', {
         withDiscount,
         toThousand,
-        user : req.session.user ? req.session.user : ''
+        favorites: req.session.user ? req.session.user.favorites : '',
+        userInSession : req.session.user ? req.session.user : ''
       })
     },
     retroZone: (req, res) => {
@@ -65,7 +66,24 @@ module.exports = {
       res.render('./products/retro.ejs', {
         retro,
         toThousand,
-        user : req.session.user ? req.session.user : ''
+        favorites: req.session.user ? req.session.user.favorites : '',
+        userInSession : req.session.user ? req.session.user : ''
+      })
+    },
+    favorite: (req, res) => {
+      productsFavorites = []
+     
+
+      getProducts.forEach(product => {
+        if (product.id ==  req.session.user.favorites[product.id]) {
+          productsFavorites.push(product)
+        }
+      });
+
+      res.render('./products/favorites.ejs', {
+        productsFavorites,
+        toThousand,
+        userInSession : req.session.user ? req.session.user : ''
       })
     },
    

@@ -7,7 +7,8 @@ module.exports = {
       let user = getUsers.find(user => user.id === req.session.user.id)
       res.render("users/profile", {
         user,
-        session: req.session
+        session: req.session,
+        userInSession : req.session.user ? req.session.user : ''
     })
 
     },
@@ -17,7 +18,8 @@ module.exports = {
 
       res.render("users/editProfile", {
           user,
-          session: req.session
+          session: req.session,
+          userInSession : req.session.user ? req.session.user : ''
       })
     },
     updateProfile: (req, res) => {
@@ -53,7 +55,8 @@ module.exports = {
           res.render("users/editProfile", {
               errors: errors.mapped(),
               old:req.body,
-              session: req.session
+              session: req.session,
+              userInSession : req.session.user ? req.session.user : ''
           })
       }
     },
@@ -92,7 +95,8 @@ module.exports = {
         } else {
           res.render("users/login", {
              errors: errors.mapped(),
-             session: req.session
+             session: req.session,
+             userInSession : req.session.user ? req.session.user : ''
           })
         }
     },
@@ -105,9 +109,6 @@ module.exports = {
     registerNewUser: (req, res) => {
 
       let errors = validationResult(req)
-
-      /* console.log(req.body) */
-   
 
       if(errors.isEmpty()){
      
@@ -151,7 +152,8 @@ module.exports = {
       res.render("users/register", {
           errors: errors.mapped(),
           old: req.body,
-          session: req.session
+          session: req.session,
+          userInSession : req.session.user ? req.session.user : ''
       })
   }
 

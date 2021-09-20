@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<%- include('../partials/head.ejs') %>
+
+    <body>
+
+        <!-- Comienzo de header -->
+        <%- include('../partials/header.ejs') %>
+            <!-- Fin del header -->
+
+            <!------cart items details------->
+
+
+
+            <div class="fav-container cart-page">
+                <div class="mi_carrito">
+                    <h3>Mis Favoritos</h3>
+
+                    <button class="btn-vaciar">Vaciar Favoritos</button>
+                </div>
+                <table class="favorites">
+                    <thead>
+                        <tr>
+                            <th class="favProduct">Producto</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <% if (productsFavorites.length > 0) { %>
+                            <% productsFavorites.forEach( product => { %>
+                                <tr>
+                                   <td>
+                                       <div class="fav-info">
+                                           <a href=""> <img src="/img/Productos Gamers/<%- product.image[0] %>" alt="<%- producto.name %>" /></a>
+                                           <div>
+                                               <p>
+                                               <h4> <%- product.name%></h4>
+                                               </p>
+                                               <% if (product.discount !== 0) { %>
+                                                   <div class="withDiscount">
+                                                     <small>$<%- toThousand(product.price) %></small>
+                                                     <span>
+                                                       <%- product.discount !== 0 ? `${product.discount}% OFF` : '' %>
+                                                     </span>
+                                                     </div>
+                                                     <h3>$<%- toThousand(product.price - product.price * product.discount / 100) %>
+                                                     </h3>
+                                                   
+                                                   <% } else { %>
+                                                     <h3>
+                                                       $<%- toThousand(product.price) %>
+                                                     </h3>
+                             
+                                                     <% } %>
+                                            <br>
+                                               <a href="" id="<%- producto.id %>" ><i style="margin-right: 10px;" class="fas fa-trash"></i>Eliminar</a>
+                                           </div>
+                                       </div>
+                                   </td>
+                               </tr>
+                                <% }) %> 
+                         
+                        <% } else { %>
+                                <div class="dBlock">
+                                    <h2 style="color: tomato">
+                                        No hay productos que coincidan con Zona Retro
+                                    </h2>
+                                    <div style="height: 250px;"></div>
+                                </div>
+                                <% } %>
+                       
+                    </tbody>
+                    
+                </table>
+                <div class="jccenter">
+                    <div class="btn-seguirComprando">
+                    <a href="/"><button class="btn-seguirComprando">Seguir Comprando</button></a>
+                </div>
+                </div>
+                
+            </div>
+            <!-- Comienzo de footer -->
+            <%- include('../partials/footer.ejs') %>
+                <!-- Fin del footer -->
+
+    </body>
+
+</html>
