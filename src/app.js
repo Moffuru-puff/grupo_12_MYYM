@@ -6,6 +6,7 @@ const port = 3000;
 const session = require('express-session')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser');
+const localsCheck = require('./middlewares/localsCheck')
 
 /* Enrutadores */
 let homeRouter = require("./routes/index");
@@ -29,9 +30,10 @@ app.use(cookieParser())
 app.use(session({
     secret: "myymGamers",
     resave: false,
-    saveUninitialized: true,
-    cookie: { maxAge: 30000 * 1000}
+    saveUninitialized: true
 }))
+
+app.use(localsCheck)
 
 app.use(express.urlencoded({extended : false}));
 app.use(express.json());
