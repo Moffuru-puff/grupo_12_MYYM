@@ -36,7 +36,7 @@ DROP TABLE IF EXISTS `Products`;
 CREATE TABLE `Products` (
    `id` INT NOT NULL,
    `name` VARCHAR(100),
-   ` mainFeatures` VARCHAR(255) NOT NULL,
+   `mainFeatures` VARCHAR(255) NOT NULL,
    `price` FLOAT NOT NULL,
    `discount` INT,
    `barcode` INT NOT NULL,
@@ -115,6 +115,7 @@ DROP TABLE IF EXISTS `ProductsImages`;
 CREATE TABLE `ProductsImages` (
    `id` INT NOT NULL AUTO_INCREMENT,
    `url` VARCHAR(200) NOT NULL,
+   `productId` INT NOT NULL,
    `createdAt` timestamp NULL DEFAULT NULL,
    `updatedAt` timestamp NULL DEFAULT NULL,
    PRIMARY KEY (`id`)
@@ -231,6 +232,8 @@ ALTER TABLE `Cart` ADD CONSTRAINT `FK_e60f5dcd-c4c6-4d73-80c8-ed02cf9ef7f4` FORE
 ALTER TABLE `Cart` ADD CONSTRAINT `FK_aa487105-2bd5-4622-ba32-1a784f776fad` FOREIGN KEY (`itemsId`) REFERENCES `Items`(`id`);
 
 ALTER TABLE `Items` ADD CONSTRAINT `FK_6b160d5b-5e08-46ac-bdd0-dffd0e15ed3c` FOREIGN KEY (`productId`) REFERENCES `Products`(`id`);
+
+ALTER TABLE `ProductsImages` ADD CONSTRAINT `FK_34ec83fb-f7bd-436b-a95d-9de5f91603d1` FOREIGN KEY (`productId`) REFERENCES `Products`(`id`);
 
 ALTER TABLE `CategoryProductId` ADD CONSTRAINT `FK_e38daf69-8079-4f56-9633-486bb83f9109` FOREIGN KEY (`categoryId`) REFERENCES `Categories`(`id`);
 
