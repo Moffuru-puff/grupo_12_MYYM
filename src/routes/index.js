@@ -1,9 +1,10 @@
 let express = require('express');
 let router = express.Router();
 let controller = require('../controllers/indexController');
+let cookieCheck = require('../middlewares/cookieCheck')
 
 /* GET  */
-router.get('/', controller.index);
+router.get('/', cookieCheck, controller.index);
 router.get('/search', controller.search); 
 router.get('/offers', controller.offers); 
 router.get('/retro', controller.retroZone); 

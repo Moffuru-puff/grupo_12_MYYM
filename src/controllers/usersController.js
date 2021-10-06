@@ -52,7 +52,9 @@ module.exports = {
           res.redirect("/profile")
 
       }else{
+        let user = getUsers.find(user => user.id === +req.params.id)
           res.render("users/editProfile", {
+              user,
               errors: errors.mapped(),
               old:req.body,
               session: req.session,
@@ -63,7 +65,8 @@ module.exports = {
 
     login: (req, res) => {
       res.render("users/login", {
-        session: req.session
+        session: req.session,
+        user : req.session.user ? req.session.user : ''
       })
     },
     loginUser: (req, res) => {
