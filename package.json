@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/YesiDC8/grupo_12_MYYM#readme",
   "nodemonConfig": {
-    "ignore":"src/db/*.json"
+    "ignore": "src/db/*.json"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
