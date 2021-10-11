@@ -18,17 +18,18 @@
                         </div>
                         <div class="subirFoto">
                             <div class="prevImage">
-                                <% if (product.image && product.image.length > 0) { %>
+                                <% if (product.image && product.image.length> 0) { %>
                                     <img src="/img/<%= product.image %> " alt="" id="imagenPrevisualizacion">
                                     <% } else { %>
                                         <img id="imagenPrevisualizacion">
-                                    <% } %>
+                                        <% } %>
                             </div>
                             <div class="inputFile">
                                 <label for="seleccionArchivos">
                                     <img src="/img/iconos-png/subirFoto.png" alt="" />
                                 </label>
-                                <input type="file" name="image" accept=".jpg, .png" multiple id="seleccionArchivos" value="<%= locals.old ? old.image : product.image %>"/>
+                                <input type="file" name="image" accept=".jpg, .png" multiple id="seleccionArchivos"
+                                    value="<%= locals.old ? old.image : product.image %>" />
 
                             </div>
                         </div>
@@ -40,7 +41,7 @@
                                 <div class="flex">
                                     <label for="name">Nombre del producto</label>
                                     <div class="input">
-                                        <input type="text" value="<%= locals.old ? old.name : product.name%>" id="name"
+                                        <input type="text" value="<%= locals.old ? old.name : product.name %>" id="name"
                                             name="name" />
                                         <% if (locals.errors && errors.name) { %>
                                             <small class="text-danger">
@@ -96,13 +97,7 @@
                                     <div class="input">
                                         <select name="category" id="categoria-form">
 
-                                            <option selected>
-                                                Categorías
-                                            </option>
-                                            <!-- <option value="<%- product.category %>" selected>
-                                                <%- product.category %>
-                                            </option> -->
-
+                                            <option value="" hidden>Categorias</option>
                                             <% categories.forEach(category=> { %>
                                                 <option value="<%- category.id %>" <%- locals.old &&
                                                     old.category==category.id ? "selected" :
@@ -110,6 +105,7 @@
                                                         %>
                                                 </option>
                                                 <% }) %>
+                                                    
                                         </select>
                                         <% if(locals.errors && errors.category) { %>
                                             <small class="text-danger">
@@ -125,8 +121,8 @@
                                             <option selected hidden>Subcategorias</option>
                                             <% subcategories.forEach(subcategory=> { %>
                                                 <option value="<%- subcategory%>" <%- locals.old &&
-                                                    old.subcategory==subcategory ? "selected" :
-                                                    subcategory==product.subcategory ? `selected` : "" %>><%-
+                                                    old.subcategory == subcategory ? "selected" :
+                                                    subcategory == product.subcategory ? `selected` : "" %>><%-
                                                         subcategory %>
                                                 </option>
                                                 <% }) %>
