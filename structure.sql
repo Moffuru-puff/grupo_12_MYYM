@@ -134,7 +134,7 @@ DROP TABLE IF EXISTS `Subcategory`;
 CREATE TABLE `Subcategories` (
    `id` INT NOT NULL AUTO_INCREMENT,
    `name` VARCHAR(100) NOT NULL,
-   `categoryId`  NOT NULL,
+   `categoryId` INT NOT NULL,
    `createdAt` timestamp NULL DEFAULT NULL,
    `updatedAt` timestamp NULL DEFAULT NULL,
    PRIMARY KEY (`id`)
