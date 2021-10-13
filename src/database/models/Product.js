@@ -38,7 +38,7 @@ module.exports = function (sequelize, dataTypes) {
             type: dataTypes.INTEGER(11).UNSIGNED,
             allowNull: false
         },
-        categoryProductId: {
+        subcategoryId: {
             type: dataTypes.INTEGER(11).UNSIGNED,
             allowNull: false
         },
@@ -62,9 +62,9 @@ module.exports = function (sequelize, dataTypes) {
     const Product = sequelize.define(alias, cols, config)
 
     Product.associate = models => {
-        Product.belongsTo(models.Categoryproductid, {
-            as:"Categoryproductid",
-            foreignKey: "categoryProductId"
+        Product.belongsTo(models.Subcategorie, {
+            as:"Subcategory",
+            foreignKey: "subcategoryId"
         }),
         Product.belongsTo(models.Mark, {
             as:"Mark",

@@ -34,7 +34,7 @@ CREATE TABLE `Roles` (
 
 DROP TABLE IF EXISTS `Products`;
 CREATE TABLE `Products` (
-   `id` INT NOT NULL,
+   `id` INT NOT NULL AUTO_INCREMENT,
    `name` VARCHAR(100),
    `mainFeatures` VARCHAR(255) NOT NULL,
    `price` FLOAT NOT NULL,
@@ -43,7 +43,7 @@ CREATE TABLE `Products` (
    `stock` INT,
    `description` VARCHAR(255),
    `imagesId` INT NOT NULL,
-   `categoryProductId` INT NOT NULL,
+   `subcategoryId` INT NOT NULL,
    `markId` INT NOT NULL,
    `valorationsId` INT,
    `createdAt` timestamp NULL DEFAULT NULL,
@@ -53,7 +53,7 @@ CREATE TABLE `Products` (
 
 DROP TABLE IF EXISTS `Favorites`;
 CREATE TABLE `Favorites` (
-   `id` INT NOT NULL,
+   `id` INT NOT NULL AUTO_INCREMENT,
    `userId` INT NOT NULL,
    `productId` INT NOT NULL,
    `createdAt` timestamp NULL DEFAULT NULL,
@@ -76,7 +76,7 @@ CREATE TABLE `Addresses` (
 
 DROP TABLE IF EXISTS `Order`;
 CREATE TABLE `Order` (
-   `id` INT NOT NULL,
+   `id` INT NOT NULL AUTO_INCREMENT,
    `numberOrder` INT NOT NULL,
    `createdAt` timestamp NULL DEFAULT NULL,
    `updatedAt` timestamp NULL DEFAULT NULL,
@@ -85,7 +85,7 @@ CREATE TABLE `Order` (
 
 DROP TABLE IF EXISTS `Cart`;
 CREATE TABLE `Cart` (
-   `id` INT NOT NULL,
+   `id` INT NOT NULL AUTO_INCREMENT,
    `userId` INT NOT NULL,
    `itemsId` INT,
    `total` FLOAT,
@@ -97,7 +97,7 @@ CREATE TABLE `Cart` (
 
 DROP TABLE IF EXISTS `Items`;
 CREATE TABLE `Items` (
-   `id` INT NOT NULL,
+   `id` INT NOT NULL AUTO_INCREMENT,
    `productId` INT NOT NULL,
    `quantity` INT NOT NULL,
    `price` FLOAT NOT NULL,
@@ -130,20 +130,11 @@ CREATE TABLE `Categories` (
    PRIMARY KEY (`id`)
 );
 
-DROP TABLE IF EXISTS `CategoryProductId`;
-CREATE TABLE `CategoryProductId` (
-   `id` INT NOT NULL,
-   `categoryId` INT NOT NULL,
-   `subcategoryId` INT NOT NULL,
-   `createdAt` timestamp NULL DEFAULT NULL,
-   `updatedAt` timestamp NULL DEFAULT NULL,
-   PRIMARY KEY (`id`)
-);
-
 DROP TABLE IF EXISTS `Subcategory`;
 CREATE TABLE `Subcategories` (
-   `id` INT NOT NULL,
+   `id` INT NOT NULL AUTO_INCREMENT,
    `name` VARCHAR(100) NOT NULL,
+   `categoryId` INT NOT NULL,
    `createdAt` timestamp NULL DEFAULT NULL,
    `updatedAt` timestamp NULL DEFAULT NULL,
    PRIMARY KEY (`id`)
@@ -151,7 +142,7 @@ CREATE TABLE `Subcategories` (
 
 DROP TABLE IF EXISTS `Marks`;
 CREATE TABLE `Marks` (
-   `id` INT NOT NULL,
+   `id` INT NOT NULL AUTO_INCREMENT,
    `name` VARCHAR(100) NOT NULL,
    `createdAt` timestamp NULL DEFAULT NULL,
    `updatedAt` timestamp NULL DEFAULT NULL,
@@ -172,7 +163,7 @@ CREATE TABLE `BranchOffices` (
 
 DROP TABLE IF EXISTS `Banners`;
 CREATE TABLE `Banners` (
-   `id` INT NOT NULL,
+   `id` INT NOT NULL AUTO_INCREMENT,
    `urlImage` VARCHAR(100) NOT NULL,
    `createdAt` timestamp NULL DEFAULT NULL,
    `updatedAt` timestamp NULL DEFAULT NULL,
@@ -194,7 +185,7 @@ CREATE TABLE `CreditCards` (
 
 DROP TABLE IF EXISTS `valorationProduct`;
 CREATE TABLE `valorationProduct` (
-   `id` INT NOT NULL,
+   `id` INT NOT NULL AUTO_INCREMENT,
    `opinions` VARCHAR(255),
    `score` FLOAT NOT NULL,
    `userId` INT NOT NULL,
@@ -217,7 +208,9 @@ ALTER TABLE `Users` ADD CONSTRAINT `FK_4d065e4a-ea49-4e4f-aaad-cc51088b15c3` FOR
 
 ALTER TABLE `Products` ADD CONSTRAINT `FK_04bbe5b1-cd75-4de8-a7e5-e29cf0940332` FOREIGN KEY (`imagesId`) REFERENCES `ProductsImages`(`id`);
 
-ALTER TABLE `Products` ADD CONSTRAINT `FK_ae6ef166-17c7-42ea-ade1-d47ee96f9f81` FOREIGN KEY (`categoryProductId`) REFERENCES `CategoryProductId`(`id`);
+ALTER TABLE `Products` ADD CONSTRAINT `FK_2ca8e1a1-379b-4285-9b27-26917de9b144` FOREIGN KEY (`subcategoryId`) REFERENCES `Subcategories`(`id`);
+
+ALTER TABLE `Subcategories` ADD CONSTRAINT `FK_2a2f3254-54f0-45ba-852c-900215c20288` FOREIGN KEY (`categoryId`) REFERENCES `Categories`(`id`);
 
 ALTER TABLE `Products` ADD CONSTRAINT `FK_d8253084-fbd9-4269-a316-505498ad6d57` FOREIGN KEY (`markId`) REFERENCES `Marks`(`id`);
 
@@ -234,10 +227,6 @@ ALTER TABLE `Cart` ADD CONSTRAINT `FK_aa487105-2bd5-4622-ba32-1a784f776fad` FORE
 ALTER TABLE `Items` ADD CONSTRAINT `FK_6b160d5b-5e08-46ac-bdd0-dffd0e15ed3c` FOREIGN KEY (`productId`) REFERENCES `Products`(`id`);
 
 ALTER TABLE `ProductsImages` ADD CONSTRAINT `FK_34ec83fb-f7bd-436b-a95d-9de5f91603d1` FOREIGN KEY (`productId`) REFERENCES `Products`(`id`);
-
-ALTER TABLE `CategoryProductId` ADD CONSTRAINT `FK_e38daf69-8079-4f56-9633-486bb83f9109` FOREIGN KEY (`categoryId`) REFERENCES `Categories`(`id`);
-
-ALTER TABLE `CategoryProductId` ADD CONSTRAINT `FK_38dec425-9bc0-4884-b7db-edee618c907d` FOREIGN KEY (`subcategoryId`) REFERENCES `Subcategories`(`id`);
 
 ALTER TABLE `BranchOffices` ADD CONSTRAINT `FK_ff709677-84f1-4874-b620-3ff55802f36f` FOREIGN KEY (`addressId`) REFERENCES `Addresses`(`id`);
 
