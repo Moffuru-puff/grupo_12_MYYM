@@ -5,8 +5,8 @@ module.exports = [
     check('user')
     .notEmpty()
     .withMessage("Debe ingresar un nombre de usuario").bail()
-    .isLength({min: 4, max: 7})
-    .withMessage("Ingrese un usuario de min 4 o max 7 caracteres"),
+    .isLength({min: 4, max: 8})
+    .withMessage("Ingrese un usuario de min 4 o max 8 caracteres"),
 
     body('user')
     .custom(function(value){
