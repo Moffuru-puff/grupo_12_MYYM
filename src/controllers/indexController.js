@@ -1,10 +1,10 @@
 const { getProducts, users} = require('../db/dataB')
-
+const db = require ('../database/models')
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
  
 module.exports = {
     index: (req, res) => {
-      let featured = [];
+      let featured = [];//destacados
 
       getProducts.forEach(product => {
         if (product.score >= 4){
@@ -39,7 +39,7 @@ module.exports = {
       })
     },
     offers: (req, res) => {
-      let withDiscount = []
+      let withDiscount = [] //con descuento
 
       getProducts.forEach(product => {
         if (product.discount >= 5) {

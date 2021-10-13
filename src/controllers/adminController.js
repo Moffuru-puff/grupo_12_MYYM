@@ -1,6 +1,6 @@
 const { validationResult } = require("express-validator");
 const {
-  getProducts,
+  //getProducts,
   categories,
   sucursales,
   users,
@@ -10,6 +10,8 @@ const {
   getUsers,
 } = require("../db/dataB");
 
+const db = require ('../database/models')
+const {Op}= db.Sequelize.Op
 const toThousand = (n) => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
 let subcategories = [];
@@ -28,29 +30,90 @@ module.exports = {
   },
 
   productsList: (req, res) => {
-    res.render("./admin/productsList", {
+    db.Product.findAll()
+    .then(getProducts=> {
+      res.render("./admin/productsList", {
+        getProducts,
+        userInSession : req.session.user ? req.session.user : ''
+    })
+  })
+    /* res.render("./admin/productsList", {
       getProducts,
       userInSession : req.session.user ? req.session.user : ''
-    });
+    }); */
   },
 
   addProduct: (req, res) => {
-    res.render("./admin/cargaDeProductos", {
+    let categoriesPromise = db.Categorie.findAll();
+    let subcategoriesPromise = db.Subcategorie.findAll();
+
+    Promise.all([categoriesPromise, subcategoriesPromise])
+      .then(([categories, subcategories]) => {
+        res.render("./admin/cargaDeProductos", {
+          categories,
+          subcategories,
+          userInSession : req.session.user ? req.session.user : ''        });
+      })
+      .catch((err) => console.log(err));
+
+    /* res.render("./admin/cargaDeProductos", {
       categories,
       subcategories,
       userInSession : req.session.user ? req.session.user : ''
-    });
+    }); */
   },
 
   charge: (req, res) => {
     let errors = validationResult(req);
 
     if (errors.isEmpty()) {
-      let lastId = 1;
+      let arrayImages = [];
+      if (req.files) {
+        req.files.forEach((image) => {
+          arrayImages.push(image.filename);
+        });
+      }
+
+      const {
+        name,
+        price,
+        discount,
+        mark,
+        category,
+        subcategory,
+        barcode,
+        stock,
+        description,
+        mainFeatures,
+      } = req.body;
+
+      db.Categoryproductid.create({
+        category,subcategory
+
+      })
+      .then()
+
+      db.Product.create({
+        name,
+        price,
+        discount,
+        markId:mark,
+        subcategoryId: subcategory,
+        barcode,
+        stock,
+        description,
+        mainFeatures,
+      })
+
+
+
+
+
+ /*     let lastId = 1;
 
       getProducts.forEach(product => {
         if (product.id >= lastId) {
-          lastId = product.id + 1;
+           lastId = product.id + 1;
         }
       });
 
@@ -95,7 +158,7 @@ module.exports = {
 
       writeProductsJSON(getProducts);
 
-      res.redirect(`/admin/products/#${newProduct.id}`);
+      res.redirect(`/admin/products/#${newProduct.id}`); */
     } else {
       res.render("./admin/cargaDeProductos", {
         subcategories,

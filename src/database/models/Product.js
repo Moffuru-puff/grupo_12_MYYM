@@ -12,7 +12,7 @@ module.exports = function (sequelize, dataTypes) {
         name: {
             type: dataTypes.STRING(100)
         },
-        mainFeautures: {
+        mainFeatures: {
             type: dataTypes.STRING(255),
             allowNull: false
 
