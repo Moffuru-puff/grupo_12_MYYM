@@ -14,7 +14,7 @@ module.exports = function (sequelize, dataTypes) {
             allowNull: false
         },
         name: {
-            type: dataTypes.STRING(16),
+            type: dataTypes.STRING(16)
         },
         lastName: {
             type: dataTypes.STRING(25)
