@@ -36,7 +36,7 @@ module.exports = function (sequelize, dataTypes) {
 
     Branchoffice.associate= models => {
 
-        Baranchoffice.belongsTo(models.Addresse, {
+        Branchoffice.belongsTo(models.Addresse, {
 
             as: "Branchoffice",
             foreignKey: "addressId"

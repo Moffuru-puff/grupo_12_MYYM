@@ -1,10 +1,32 @@
-const { getProducts} = require('../db/dataB')
-
+//const { getProducts} = require('../db/dataB')
+const db = require("../database/models");
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
 module.exports = {
     produc: (req, res) => {
-      let productID = +req.params.id;
+
+      db.Product.findOne({
+        where: {
+          id: req.params.id,
+        },
+        include: [
+          {
+            association: "Productimages",
+          },
+        ],
+      }).then((products)=>{
+        res.render("./products/detalleDelProducto", {
+          productos: 
+          getProducts,
+          toThousand,
+          
+          userInSession : req.session.user ? req.session.user : ''
+        })
+      })
+      .catch(error => console.log(error))
+
+        
+      /* let productID = +req.params.id;
 
       let product = getProducts.find(product =>
          product.id === productID)
@@ -14,6 +36,6 @@ module.exports = {
         toThousand,
         product,
         userInSession : req.session.user ? req.session.user : ''
-      });
+      }); */
     },
   };
