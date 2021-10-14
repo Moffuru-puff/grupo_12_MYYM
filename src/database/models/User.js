@@ -72,29 +72,30 @@ module.exports = function (sequelize, dataTypes) {
             as: "Role",
             foreignKey:"rolesId" 
         }),
-        User.belongsTo(models.Cart, {
+        User.hasMany(models.Cart, {
             as: "Cart",
-            foreignKey:/* "cartId" */ "userId"
-        }),
+            foreignKey:/* "cartId"*/  "userId"
+        }), 
         User.belongsTo(models.Addresse, {
             as: "Addresse",
             foreignKey:"addressesId" 
         }),
         User.hasMany(models.Favorite, {
             as: "Favorite",
-            foreignKey:/* "favoritesId" */ "userId"
+            foreignKey:/* "favoritesId" */  "userId" 
         }),
-        User.belongsTo(models.Creditcard, {
+        User.hasMany(models.Creditcard, {
             as: "Creditcard",
-            foreignKey:/* "creditCardsId" */ "userId"
-        }),
-        User.hasOne(models.Valorationproduct, {
+            foreignKey: /* "creditCardsId"  */ "userId" 
+        }), 
+       User.hasOne(models.Valorationproduct, {
             as: "Valorationproduct",
-            foreignKey:"userId" 
+            foreignKey:"userId"  
         })
 
 
     }
+
 
 
   

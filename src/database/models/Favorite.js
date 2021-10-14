@@ -34,7 +34,7 @@ module.exports = function (sequelize, dataTypes) {
     Favorite.belongsTo(models.User, {
         as: "User",
         foreignKey:"userId" 
-    })
+    }) , 
     Favorite.belongsTo(models.Product, {
         as: "Product",
         foreignKey:"productId" 
