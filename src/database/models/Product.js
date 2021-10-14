@@ -70,7 +70,7 @@ module.exports = function (sequelize, dataTypes) {
             as:"Mark",
             foreignKey: "markId"
         }),
-        Product.hasMany(models.Productimage, {
+        Product.hasMany(models.Productsimage, {
             as: "productimage",
             foreignKey: "productId"
         }),

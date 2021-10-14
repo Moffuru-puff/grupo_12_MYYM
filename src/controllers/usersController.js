@@ -120,20 +120,21 @@ module.exports = {
           email,
           password
           } = req.body;
-
+/*           res.send(req.body)
+ */
         db.User.create({
-          user: user.trim(),
+          user: user,
+          email: email,
+          password: bcrypt.hashSync(password, 12),
+          rol: "1",
+          avatar: req.file ? req.file.filename : "defaultAvatarImage.png",
           name: "",
-          lastName: "",
+          lastname: "",
           telephone: "",
           address: "",
           province: "",
           favorites: {},
-          email: email.trim(),
-          password: bcrypt.hashSync(password, 12).trim(),
-          rol: "1",
-          avatar: req.file ? req.file.filename : "defaultAvatarImage.png",
-          creditcard: ""
+          
         })
           .then(() => {
           res.redirect("/login")
