@@ -4,10 +4,10 @@ module.exports = function (sequelize, dataTypes) {
 
     let cols = {
         id: {
-            type: dataTypes.INTEGER(11).USIGNED,
+            type: dataTypes.INTEGER(11).UNSIGNED,
             allowNull: false,
             autoIncrement: true,
-            prymaryKey: true
+            primaryKey: true
         },
         userId: {
             type: dataTypes.INTEGER(11).UNSIGNED,

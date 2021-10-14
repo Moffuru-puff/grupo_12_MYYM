@@ -23,8 +23,8 @@ router.post('/login', loValidator ,loginUser)
 router.get('/logout', sessionCheck, logout)
 
 /* GET - Register */
-router.get('/register', userLoginCheck ,register)
-router.post('/register', reValidator ,registerNewUser)
+router.get('/register', /* userLoginCheck , */ register)
+router.post('/register', /* reValidator ,*/ registerNewUser)
 
 
 /* GET - Profile */

@@ -39,7 +39,7 @@ module.exports = function (sequelize, dataTypes) {
             as: "Item",
             foreignKey: "itemsId"
         })
-        Cart.belognsTo(models.Cart, {
+        Cart.belongsTo(models.Cart, {
 
             as: "Cart",
             foreignKey: "userId"
