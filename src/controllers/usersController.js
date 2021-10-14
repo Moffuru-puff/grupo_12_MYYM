@@ -126,14 +126,8 @@ module.exports = {
           user: user,
           email: email,
           password: bcrypt.hashSync(password, 12),
-          rol: "1",
-          avatar: req.file ? req.file.filename : "defaultAvatarImage.png",
-          name: "",
-          lastname: "",
-          telephone: "",
-          address: "",
-          province: "",
-          favorites: {},
+          rolesId: 1,
+          avatar: req.file ? req.file.filename : "defaultAvatarImage.png"
           
         })
           .then(() => {
