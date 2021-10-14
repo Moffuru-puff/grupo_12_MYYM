@@ -12,12 +12,14 @@ module.exports = {
         include: [
           {
             association: "Productimages",
+            association:"Subcategorie",
+            association:"Mark"
           },
         ],
       }).then((products)=>{
         res.render("./products/detalleDelProducto", {
-          productos: 
-          getProducts,
+          
+          products,
           toThousand,
           
           userInSession : req.session.user ? req.session.user : ''

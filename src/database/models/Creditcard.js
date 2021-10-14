@@ -41,7 +41,7 @@ module.exports = function (sequelize, dataTypes) {
 
     const Creditcard = sequelize.define(alias, cols, config)
 
-    Creditcard.associate = () => {//cambie "c"
+    Creditcard.associate = models => {
 
         Creditcard.hasMany(models.User, {
             as: "User",

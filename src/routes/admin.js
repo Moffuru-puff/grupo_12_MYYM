@@ -29,36 +29,36 @@ let productValidator = require('../validations/productCreateValidator')
 
 
 /* GET  */
-router.get('/', adminCheck, index);
+router.get('/', /* adminCheck, */ index);
 /* Get - Admin products */
-router.get('/products', adminCheck, productsList);
+router.get('/products', /* adminCheck, */ productsList);
 /* Create Product */
-router.get('/products/create', adminCheck, addProduct);
-router.post('/products/create', uploadFile.array("image"), productValidator, charge);
+router.get('/products/create', /* adminCheck, */ addProduct);
+router.post('/products/create', uploadFile.array("image"), /*productValidator,*/ charge);
 /* Edit Product */
-router.get('/products/edit/:id', adminCheck, editProduct);
+router.get('/products/edit/:id', /* adminCheck, */ editProduct);
 router.put('/products/edit/:id', uploadFile.array("image"), productValidator, productUpdate);
 /* Delete Product */
 router.delete('/products/delete/:id', productDelete);
 
 /* Sucursales */
-router.get('/sucursals', adminCheck, sucursalList);
+router.get('/sucursals', /* adminCheck, */ sucursalList);
 /* Create Sucursal */
-router.get('/sucursal/create', adminCheck, addSucursal);
+router.get('/sucursal/create', /* adminCheck, */ addSucursal);
 router.post('/sucursal/create', sucursalValidator, createSucursal);
 /* Edit Sucursal */
-router.get('/sucursals/edit/:id', adminCheck, editSucursal);
+router.get('/sucursals/edit/:id', /* adminCheck, */ editSucursal);
 router.put('/sucursals/edit/:id', productValidator, sucursalUpdate);
 /* Delete Sucursal */
 router.delete('/sucursal/deleteSucursal/:id', sucursalDelete);
 
 /* Usuarios */
-router.get('/userList', adminCheck, userList);
+router.get('/userList', /* adminCheck, */ userList);
 /* Create User */
-router.get('/user/create', adminCheck, addUser);
+router.get('/user/create', /* adminCheck, */ addUser);
 router.post('/user/create', userAdminValidator,createUser);
 /* Edit User */
-router.get('/users/edit/:id', adminCheck, editUser);
+router.get('/users/edit/:id', /* adminCheck, */ editUser);
 router.put('/users/edit/:id', userUpdate);
 /* Delete User */
 router.delete('/user/deleteUser/:id', userDelete);

@@ -14,12 +14,12 @@ const db = require('../database/models')
 const { Op } = db.Sequelize.Op
 const toThousand = (n) => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
-let subcategories = [];
+/* let subcategories = [];
 getProducts.forEach(product => {
   if (!subcategories.includes(product.subcategory)) {
     subcategories.push(product.subcategory);
   }
-});
+}); */
 
 module.exports = {
   index: (req, res) => {
@@ -65,7 +65,15 @@ module.exports = {
   },
 
   charge: (req, res) => {
+    
     let errors = validationResult(req);
+    /*if (req.fileValidatorError) {
+      let image = {
+        param: "image",
+        msg: req.fileValidatorError,
+      };
+      errors.push(image);
+    }*/
 
     if (errors.isEmpty()) {
       let arrayImages = [];
@@ -74,6 +82,7 @@ module.exports = {
           arrayImages.push(image.filename);
         });
       }
+      //console.log(arrayImages)
 
       const {
         name,
@@ -81,41 +90,40 @@ module.exports = {
         discount,
         mark,
         category,
-        subcategory,
+        subcategorie,
         barcode,
         stock,
         description,
         mainFeatures,
       } = req.body;
 
-
-
-
-
       db.Product.create({
         name,
         price,
         discount,
-        markId: mark,
-        subcategoryId: subcategory,
+        markId: 1,
+        subcategoryId: subcategorie,
         barcode,
         stock,
         description,
         mainFeatures,
+        valorationsId:"",
+        imagesId : ""
       })
-        .then(product => {
-          if (arrayImages.length > 0) {
-            let images = arrayImages.map(image => {
-              return {
-                image: image,
-                productId: product.id
-              }
-            })
-            db.Productsimage.bulkCreate(images)
-              .then(() => res.redirect(`/admin/products`))
-              .catch(err => console.log(err))
-          }
-        })
+      .then(product => {
+        console.log(product)
+        if (arrayImages.length > 0) {
+          let images = arrayImages.map(image => {
+            return {
+              image: image,
+              productId: product.id
+            }
+          })
+          db.Productsimage.bulkCreate(images)
+            .then(() => res.redirect(`/admin/products`))
+            .catch(err => console.log(err))
+        }
+      })
 
 
 
@@ -170,15 +178,29 @@ module.exports = {
            writeProductsJSON(getProducts);
      
            res.redirect(`/admin/products/#${newProduct.id}`); */
-    } else {
-      res.render("./admin/cargaDeProductos", {
-        subcategories,
+          //console.log(subcategories)
+    } else { console.log('hola')
+     // console.log(subcategories)
+     let categoriesPromise = db.Categorie.findAll();
+     let subcategoriesPromise = db.Subcategorie.findAll();
+ 
+     Promise.all([categoriesPromise, subcategoriesPromise])
+       .then(([categories, subcategories]) => {
+         res.render("./admin/cargaDeProductos", {
+           categories,
+           subcategories,
+           userInSession: req.session.user ? req.session.user : ''
+         });
+       })
+       .catch((err) => console.log(err));
+      /* res.render("./admin/cargaDeProductos", { 
         categories,
+        subcategories,
         errors: errors.mapped(),
         old: req.body,
         userInSession: req.session.user ? req.session.user : ''
-      });
-    }
+      });*/
+    } 
   },
 
   editProduct: (req, res) => {

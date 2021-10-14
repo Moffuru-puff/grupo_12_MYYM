@@ -24,7 +24,7 @@ module.exports = function (sequelize, dataTypes) {
 
     const Role = sequelize.define(alias, cols, config)
 
-    Role.associate = () => {
+    Role.associate = models => {
 
         Role.hasOne(models.User, {
             as: "User",

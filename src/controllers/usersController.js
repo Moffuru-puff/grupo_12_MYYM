@@ -1,6 +1,7 @@
 const { getUsers, writeJsonUsers } = require('../db/dataB')
 const { validationResult , check, body} = require('express-validator')
 let bcrypt = require('bcryptjs')
+let db = require("../database/models")
 
 module.exports = {
     profile: (req, res) => {
@@ -114,8 +115,27 @@ module.exports = {
       let errors = validationResult(req)
 
       if(errors.isEmpty()){
-     
-        let lastId = 0;
+        let {
+          user,
+          email,
+          password
+          } = req.body;
+/*           res.send(req.body)
+ */
+        db.User.create({
+          user: user,
+          email: email,
+          password: bcrypt.hashSync(password, 12),
+          rolesId: 1,
+          avatar: req.file ? req.file.filename : "defaultAvatarImage.png"
+          
+        })
+          .then(() => {
+          res.redirect("/login")
+        })
+        .catch((err) => console.log(err))
+
+/*         let lastId = 0;
 
          getUsers.forEach(user => {
             if(user.id > lastId){
@@ -150,7 +170,7 @@ module.exports = {
 
       writeJsonUsers(getUsers)
 
-      res.redirect('/login')
+      res.redirect('/login') */
   } else {
       res.render("users/register", {
           errors: errors.mapped(),
