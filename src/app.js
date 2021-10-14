@@ -7,6 +7,8 @@ const session = require('express-session')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser');
 const localsCheck = require('./middlewares/localsCheck')
+let categoriesHeader = require('./middlewares/categoriesHeader')
+
 
 /* Enrutadores */
 let homeRouter = require("./routes/index");

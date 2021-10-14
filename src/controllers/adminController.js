@@ -1,6 +1,6 @@
 const { validationResult } = require("express-validator");
 const {
-  getProducts,
+  //getProducts,
   categories,
   sucursales,
   users,
@@ -10,56 +10,79 @@ const {
   getUsers,
 } = require("../db/dataB");
 
+const db = require('../database/models')
+const { Op } = db.Sequelize.Op
 const toThousand = (n) => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
-let subcategories = [];
+/* let subcategories = [];
 getProducts.forEach(product => {
   if (!subcategories.includes(product.subcategory)) {
     subcategories.push(product.subcategory);
   }
-});
+}); */
 
 module.exports = {
   index: (req, res) => {
     res.render("./admin/admin", {
       toThousand,
-      userInSession : req.session.user ? req.session.user : ''
+      userInSession: req.session.user ? req.session.user : ''
     });
   },
 
   productsList: (req, res) => {
-    res.render("./admin/productsList", {
+    db.Product.findAll()
+      .then(getProducts => {
+        res.render("./admin/productsList", {
+          getProducts,
+          userInSession: req.session.user ? req.session.user : ''
+        })
+      })
+    /* res.render("./admin/productsList", {
       getProducts,
       userInSession : req.session.user ? req.session.user : ''
-    });
+    }); */
   },
 
   addProduct: (req, res) => {
-    res.render("./admin/cargaDeProductos", {
+    let categoriesPromise = db.Categorie.findAll();
+    let subcategoriesPromise = db.Subcategorie.findAll();
+
+    Promise.all([categoriesPromise, subcategoriesPromise])
+      .then(([categories, subcategories]) => {
+        res.render("./admin/cargaDeProductos", {
+          categories,
+          subcategories,
+          userInSession: req.session.user ? req.session.user : ''
+        });
+      })
+      .catch((err) => console.log(err));
+
+    /* res.render("./admin/cargaDeProductos", {
       categories,
       subcategories,
       userInSession : req.session.user ? req.session.user : ''
-    });
+    }); */
   },
 
   charge: (req, res) => {
+    
     let errors = validationResult(req);
+    /*if (req.fileValidatorError) {
+      let image = {
+        param: "image",
+        msg: req.fileValidatorError,
+      };
+      errors.push(image);
+    }*/
 
     if (errors.isEmpty()) {
-      let lastId = 1;
-
-      getProducts.forEach(product => {
-        if (product.id >= lastId) {
-          lastId = product.id + 1;
-        }
-      });
-
       let arrayImages = [];
       if (req.files) {
         req.files.forEach((image) => {
           arrayImages.push(image.filename);
         });
       }
+      //console.log(arrayImages)
 
       const {
         name,
@@ -67,54 +90,131 @@ module.exports = {
         discount,
         mark,
         category,
-        subcategory,
-        scanning,
+        subcategorie,
+        barcode,
         stock,
         description,
         mainFeatures,
       } = req.body;
 
-	  let categoria = categories.find(categoria => categoria.id == category);
-
-      let newProduct = {
-        id: lastId,
+      db.Product.create({
         name,
         price,
         discount,
-        mark,
-        category: categoria ? categoria.name : category,
-        subcategory,
-        scanning,
+        markId: 1,
+        subcategoryId: subcategorie,
+        barcode,
         stock,
         description,
         mainFeatures,
-        image: arrayImages.length > 0 ? arrayImages : "",
-      };
+        valorationsId:"",
+        imagesId : ""
+      })
+      .then(product => {
+        console.log(product)
+        if (arrayImages.length > 0) {
+          let images = arrayImages.map(image => {
+            return {
+              image: image,
+              productId: product.id
+            }
+          })
+          db.Productsimage.bulkCreate(images)
+            .then(() => res.redirect(`/admin/products`))
+            .catch(err => console.log(err))
+        }
+      })
 
-      getProducts.push(newProduct);
 
-      writeProductsJSON(getProducts);
 
-      res.redirect(`/admin/products/#${newProduct.id}`);
-    } else {
-      res.render("./admin/cargaDeProductos", {
-        subcategories,
+
+      /*     let lastId = 1;
+     
+           getProducts.forEach(product => {
+             if (product.id >= lastId) {
+                lastId = product.id + 1;
+             }
+           });
+     
+           let arrayImages = [];
+           if (req.files) {
+             req.files.forEach((image) => {
+               arrayImages.push(image.filename);
+             });
+           }
+     
+           const {
+             name,
+             price,
+             discount,
+             mark,
+             category,
+             subcategory,
+             scanning,
+             stock,
+             description,
+             mainFeatures,
+           } = req.body;
+     
+         let categoria = categories.find(categoria => categoria.id == category);
+     
+           let newProduct = {
+             id: lastId,
+             name,
+             price,
+             discount,
+             mark,
+             category: categoria ? categoria.name : category,
+             subcategory,
+             scanning,
+             stock,
+             description,
+             mainFeatures,
+             image: arrayImages.length > 0 ? arrayImages : "",
+           };
+     
+           getProducts.push(newProduct);
+     
+           writeProductsJSON(getProducts);
+     
+           res.redirect(`/admin/products/#${newProduct.id}`); */
+          //console.log(subcategories)
+    } else { console.log('hola')
+     // console.log(subcategories)
+     let categoriesPromise = db.Categorie.findAll();
+     let subcategoriesPromise = db.Subcategorie.findAll();
+ 
+     Promise.all([categoriesPromise, subcategoriesPromise])
+       .then(([categories, subcategories]) => {
+         res.render("./admin/cargaDeProductos", {
+           categories,
+           subcategories,
+           userInSession: req.session.user ? req.session.user : ''
+         });
+       })
+       .catch((err) => console.log(err));
+      /* res.render("./admin/cargaDeProductos", { 
         categories,
+        subcategories,
         errors: errors.mapped(),
         old: req.body,
-        userInSession : req.session.user ? req.session.user : ''
-      });
-    }
+        userInSession: req.session.user ? req.session.user : ''
+      });*/
+    } 
   },
 
   editProduct: (req, res) => {
-    let product = getProducts.find(product => product.id === +req.params.id);
-    res.render("./admin/editProduct", {
-      categories,
-      subcategories,
-      product,
-      userInSession : req.session.user ? req.session.user : ''
-    });
+    db.Product.findByPK(+req.params.id)
+      .then(product => {
+        res.render("./admin/editProduct", {
+          categories,
+          subcategories,
+          product,
+          userInSession: req.session.user ? req.session.user : ''
+        })
+      })
+
+
   },
   productUpdate: (req, res) => {
     let errors = validationResult(req);
@@ -135,7 +235,7 @@ module.exports = {
         mark,
         category,
         subcategory,
-        scanning,
+        barcode,
         stock,
         description,
         mainFeatures,
@@ -157,7 +257,7 @@ module.exports = {
             product.description = description,
             product.mainFeatures = mainFeatures,
             product.image =
-              arrayImages > 0 ? arrayImages : product.image;
+            arrayImages > 0 ? arrayImages : product.image;
         }
       });
 
@@ -175,7 +275,7 @@ module.exports = {
         product,
         errors: errors.mapped(),
         old: req.body,
-        userInSession : req.session.user ? req.session.user : ''
+        userInSession: req.session.user ? req.session.user : ''
       });
     }
   },
@@ -196,13 +296,13 @@ module.exports = {
   sucursalList: (req, res) => {
     res.render("./admin/sucursalList", {
       sucursales,
-      userInSession : req.session.user ? req.session.user : ''
+      userInSession: req.session.user ? req.session.user : ''
     });
   },
 
   addSucursal: (req, res) => {
     res.render("./admin/addSucursal", {
-      userInSession : req.session.user ? req.session.user : ''
+      userInSession: req.session.user ? req.session.user : ''
     });
   },
 
@@ -238,7 +338,7 @@ module.exports = {
       res.render("./admin/addSucursal", {
         errors: errors.mapped(),
         old: req.body,
-        userInSession : req.session.user ? req.session.user : ''
+        userInSession: req.session.user ? req.session.user : ''
       });
     }
   },
@@ -249,7 +349,7 @@ module.exports = {
     );
     res.render("./admin/editSucursal", {
       sucursal,
-      userInSession : req.session.user ? req.session.user : ''
+      userInSession: req.session.user ? req.session.user : ''
     });
   },
   sucursalUpdate: (req, res) => {
@@ -287,13 +387,13 @@ module.exports = {
   userList: (req, res) => {
     res.render("./admin/userList", {
       users,
-      userInSession : req.session.user ? req.session.user : ''
+      userInSession: req.session.user ? req.session.user : ''
     });
   },
 
   addUser: (req, res) => {
     res.render("./admin/addUser", {
-      userInSession : req.session.user ? req.session.user : ''
+      userInSession: req.session.user ? req.session.user : ''
     });
   },
 
@@ -343,7 +443,7 @@ module.exports = {
       res.render("./admin/addUser", {
         errors: errors.mapped(),
         old: req.body,
-        userInSession : req.session.user ? req.session.user : ''
+        userInSession: req.session.user ? req.session.user : ''
 
       });
     }
@@ -353,7 +453,7 @@ module.exports = {
     let user = users.find(user => user.id === +req.params.id);
     res.render("./admin/editUser", {
       user,
-      userInSession : req.session.user ? req.session.user : ''
+      userInSession: req.session.user ? req.session.user : ''
     });
   },
 
@@ -373,15 +473,15 @@ module.exports = {
     users.map(usuario => {
       if (usuario.id === +req.params.id) {
         usuario.id = usuario.id,
-        usuario.user = user,
-        usuario.name = name,
-        usuario.lastname = lastname,
-        usuario.telephone = telephone,
-        usuario.address = address,
-        usuario.province = province,
-        usuario.email = email,
-        usuario.password = password,
-        usuario.rol = rol;
+          usuario.user = user,
+          usuario.name = name,
+          usuario.lastname = lastname,
+          usuario.telephone = telephone,
+          usuario.address = address,
+          usuario.province = province,
+          usuario.email = email,
+          usuario.password = password,
+          usuario.rol = rol;
       }
     });
 
