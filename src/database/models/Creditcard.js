@@ -45,7 +45,7 @@ module.exports = function (sequelize, dataTypes) {
 
         Creditcard.hasMany(models.User, {
             as: "User",
-            foreignKey:"creditCardsId" 
+            foreignKey:/* "creditCardsId" */ "userId"
         })
     
     }

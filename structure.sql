@@ -44,8 +44,6 @@ CREATE TABLE `Products` (
    `description` VARCHAR(255),
    `imagesId` INT NOT NULL,
    `subcategoryId` INT NOT NULL,
-   `markId` INT NOT NULL,
-   `valorationsId` INT,
    `createdAt` timestamp NULL DEFAULT NULL,
    `updatedAt` timestamp NULL DEFAULT NULL,
    PRIMARY KEY (`id`)
