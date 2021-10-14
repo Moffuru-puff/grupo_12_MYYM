@@ -5,23 +5,44 @@ let db = require("../database/models")
 
 module.exports = {
     profile: (req, res) => {
-      let user = getUsers.find(user => user.id === req.session.user.id)
+
+      db.User.findByPk(req.session.user.id/* , {
+        include: [{ association: "addresses" }],
+      } */).then((user) => {
+        res.render("users/profile", {
+          user,
+          session: req.session,
+          userInSession : req.session.user ? req.session.user : ''
+      }) ;
+      });
+
+/*       let user = getUsers.find(user => user.id === req.session.user.id)
       res.render("users/profile", {
         user,
         session: req.session,
         userInSession : req.session.user ? req.session.user : ''
-    })
+    }) */
 
     },
 
     editProfile: (req, res) => {
-      let user = getUsers.find(user => user.id === +req.params.id)
+
+      db.User.findByPk(req.session.user.id/* , {
+        include: [{ association: "addresses" }],
+      } */).then((user) => {
+        res.render("users/editProfile", {
+          user,
+          session: req.session,
+          userInSession : req.session.user ? req.session.user : ''
+      });
+      });
+     /*  let user = getUsers.find(user => user.id === +req.params.id)
 
       res.render("users/editProfile", {
           user,
           session: req.session,
           userInSession : req.session.user ? req.session.user : ''
-      })
+      }) */
     },
     updateProfile: (req, res) => {
       let errors = validationResult(req)
@@ -74,7 +95,35 @@ module.exports = {
         let errors = validationResult(req)
 
         if (errors.isEmpty()) {
-            let user = getUsers.find(user => user.email === req.body.email)
+          /* res.send(req.body) */
+          db.User.findOne({
+            where: {
+              email: req.body.email,
+            },
+          }).then((user) => {
+            
+            req.session.user = {
+              id: user.id,
+              user: user.user,
+              name: user.name,
+              lastName: user.lastName,
+              email: user.email,
+              avatar: user.avatar,
+              rolesId: user.rolesId,
+            };
+    
+            if (req.body.recordar) {
+              res.cookie("userMyymGamers", req.session.user, {
+                expires: new Date(Date.now() + 900000),
+                httpOnly: true,
+              });
+            }
+    
+            res.locals.user = req.session.user;
+    
+            res.redirect("/");
+          });
+/*             let user = getUsers.find(user => user.email === req.body.email)
 
             req.session.user = {
                 id: user.id,
@@ -95,7 +144,7 @@ module.exports = {
             res.locals.user = req.session.user
 
             res.redirect("/")
-
+ */
         } else {
           res.render("users/login", {
              errors: errors.mapped(),

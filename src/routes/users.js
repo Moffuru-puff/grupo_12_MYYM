@@ -18,9 +18,9 @@ const sessionCheck = require('../middlewares/sessionCheck')
 const userLoginCheck = require('../middlewares/userLoginCheck')
 
 /* GET - login */
-router.get('/login', userLoginCheck ,login)
-router.post('/login', loValidator ,loginUser)
-router.get('/logout', sessionCheck, logout)
+router.get('/login', /* userLoginCheck , */login)
+router.post('/login', /* loValidator , */loginUser)
+router.get('/logout', /* sessionCheck,  */logout)
 
 /* GET - Register */
 router.get('/register', /* userLoginCheck , */ register)
@@ -28,8 +28,8 @@ router.post('/register', /* reValidator ,*/ registerNewUser)
 
 
 /* GET - Profile */
-router.get('/profile', sessionCheck ,profile)
-router.get('/profile/editprofile/:id', sessionCheck ,editProfile)
+router.get('/profile', /* sessionCheck , */profile)
+router.get('/profile/editprofile/:id', /* sessionCheck , */editProfile)
 router.put('/profile/editprofile/:id' ,uploadUserAvatar.single('avatar'), updateProfile)
 
 

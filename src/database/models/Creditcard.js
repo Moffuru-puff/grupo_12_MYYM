@@ -43,10 +43,10 @@ module.exports = function (sequelize, dataTypes) {
 
     Creditcard.associate = models => {
 
-        Creditcard.hasMany(models.User, {
+         Creditcard.belongsTo(models.User, {
             as: "User",
-            foreignKey:/* "creditCardsId" */ "userId"
-        })
+            foreignKey: /* "creditCardsId"  */ "userId"
+        }) 
     
     }
 
