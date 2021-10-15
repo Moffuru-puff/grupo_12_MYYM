@@ -41,10 +41,6 @@ module.exports = function (sequelize, dataTypes) {
         markId: {
             type: dataTypes.INTEGER(11).UNSIGNED,
             allowNull: false
-        },
-        valorationsId: {
-            type: dataTypes.INTEGER(11).UNSIGNED,
-
         }
 
     }
