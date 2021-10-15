@@ -1,3 +1,9 @@
+
+DROP DATABASE IF EXISTS myymGamers;
+CREATE DATABASE myymGamers;
+USE myymGamers;
+
+
 -- MySQL dump 10.13  Distrib 5.5.62, for Win64 (AMD64)
 --
 -- Host: localhost    Database: myymgamers
@@ -265,7 +271,7 @@ CREATE TABLE `marks` (
   `createdAt` timestamp NULL DEFAULT NULL,
   `updatedAt` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -274,6 +280,7 @@ CREATE TABLE `marks` (
 
 LOCK TABLES `marks` WRITE;
 /*!40000 ALTER TABLE `marks` DISABLE KEYS */;
+INSERT INTO `marks` VALUES (1,'Intel',NULL,NULL),(2,'Play Station',NULL,NULL),(3,'X-Box',NULL,NULL),(4,'Sega',NULL,NULL),(5,'Amd Ryzer',NULL,NULL),(6,'Nintendo',NULL,NULL),(7,'Kanji',NULL,NULL),(8,'Kingston',NULL,NULL),(9,'GameBoy',NULL,NULL);
 /*!40000 ALTER TABLE `marks` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -320,16 +327,14 @@ CREATE TABLE `products` (
   `description` varchar(255) DEFAULT NULL,
   `subcategoryId` int(11) NOT NULL,
   `markId` int(11) NOT NULL,
-  `valorationsId` int(11) DEFAULT NULL,
   `createdAt` timestamp NULL DEFAULT NULL,
   `updatedAt` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_2ca8e1a1-379b-4285-9b27-26917de9b144` (`subcategoryId`),
   KEY `FK_d8253084-fbd9-4269-a316-505498ad6d57` (`markId`),
-  KEY `FK_903d101b-4bf1-47dd-8fbf-ad03b54be8e9` (`valorationsId`),
   CONSTRAINT `FK_2ca8e1a1-379b-4285-9b27-26917de9b144` FOREIGN KEY (`subcategoryId`) REFERENCES `subcategories` (`id`),
   CONSTRAINT `FK_d8253084-fbd9-4269-a316-505498ad6d57` FOREIGN KEY (`markId`) REFERENCES `marks` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -382,7 +387,7 @@ CREATE TABLE `roles` (
   `createdAt` timestamp NULL DEFAULT NULL,
   `updatedAt` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -391,6 +396,7 @@ CREATE TABLE `roles` (
 
 LOCK TABLES `roles` WRITE;
 /*!40000 ALTER TABLE `roles` DISABLE KEYS */;
+INSERT INTO `roles` VALUES (1,'User',NULL,NULL),(2,'Admin',NULL,NULL);
 /*!40000 ALTER TABLE `roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -505,5 +511,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-10-14  6:58:29
-
+-- Dump completed on 2021-10-14 21:41:20
