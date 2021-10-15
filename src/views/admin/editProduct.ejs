@@ -71,8 +71,15 @@
 
                                     <label for="brand">Marca</label>
                                     <div class="input">
-                                        <input type="text" name="mark" id="brand"
-                                            value="<%= locals.old ? old.mark : product.mark %>" />
+                                        <select name="mark" id="mark">
+                                            <option value="" selected disabled>Marcas</option>
+                                            <% marks.forEach(mark=> { %>
+                                                <option value="<%- mark.id %>" <%=locals.old &&
+                                                    old.mark == mark.id ? "selected" : null %> ><%- mark.name %>
+                                                </option>
+                                                <% }) %>
+                                                   
+                                        </select>
                                         <% if(locals.errors && errors.mark) { %>
                                             <small class="text-danger">
                                                 <%= errors.mark.msg %>
@@ -116,14 +123,14 @@
 
                                     <label for="subCategoria-form">Subcategoría</label>
                                     <div class="input">
-                                        <input list="subCategoria-form" name="subcategory" placeholder="Gamer" />
+                                        <input list="subCategoria-form" name="subcategorie" placeholder="Gamer" />
                                         <datalist id="subCategoria-form">
-                                            <option selected hidden>Subcategorias</option>
+                                            <option value="" selected disabled>Subcategorías</option>
+         
                                             <% subcategories.forEach(subcategory=> { %>
-                                                <option value="<%- subcategory%>" <%- locals.old &&
-                                                    old.subcategory == subcategory ? "selected" :
-                                                    subcategory == product.subcategory ? `selected` : "" %>><%-
-                                                        subcategory %>
+                                                <option value="<%- subcategory.id %>" <%= locals.old &&
+                                                    old.subcategory == subcategory.id ? "selected" : null %> ><%- subcategory.name
+                                                        %>
                                                 </option>
                                                 <% }) %>
                                                     <% if (locals.errors && errors.subcategory) { %>
@@ -141,7 +148,7 @@
 
                                     <label for="codigo">Código de producto</label>
                                     <div class="input">
-                                        <input type="number" min="0" name="scanning"
+                                        <input type="number" min="0" name="barcode"
                                             value="<%= locals.old ? old.scanning : product.scanning %>" id="codigo" />
                                     </div>
 

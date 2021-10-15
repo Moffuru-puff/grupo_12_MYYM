@@ -63,8 +63,16 @@
 
                                     <label for="mark">Marca</label>
                                     <div class="input">
-                                        <input type="text" name="mark" id="mark" placeholder="Intel"
-                                            value="<%= locals.old && old.mark %>" />
+                                        <select name="mark" id="mark">
+                                            <option value="" selected disabled>Marcas</option>
+                                            <% marks.forEach(mark=> { %>
+                                                <option value="<%- mark.id %>" <%=locals.old &&
+                                                    old.mark == mark.id ? "selected" : null %> ><%- mark.name %>
+                                                </option>
+                                                <% }) %>
+                                                   
+                                        </select>
+                                        
                                         <% if(locals.errors && errors.mark) { %>
                                             <small class="text-danger">
                                                 <%= errors.mark.msg %>

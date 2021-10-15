@@ -37,7 +37,7 @@ router.get('/products/create', /* adminCheck, */ addProduct);
 router.post('/products/create', uploadFile.array("image"), /*productValidator,*/ charge);
 /* Edit Product */
 router.get('/products/edit/:id', /* adminCheck, */ editProduct);
-router.put('/products/edit/:id', uploadFile.array("image"), productValidator, productUpdate);
+router.put('/products/edit/:id', uploadFile.array("image"), /* productValidator, */ productUpdate);
 /* Delete Product */
 router.delete('/products/delete/:id', productDelete);
 
