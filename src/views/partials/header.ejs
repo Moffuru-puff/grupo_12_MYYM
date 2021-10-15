@@ -80,7 +80,7 @@
     <div class="account" onclick="dropAccount(`btnAccount`)">
       <div class="avatar">
         <% if (userInSession) { %>
-          <img src="/img/userAvatars/<%= userInSession.avatar %> " alt="" style="width: 85%; border-radius: 50%;">
+          <img src="/img/userAvatars/<%= user.avatar %> " alt="" style="width: 85%; border-radius: 50%;">
           <% } else { %>
             <i class="fas fa-user-circle"></i>
             <% } %>
