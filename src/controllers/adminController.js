@@ -179,7 +179,7 @@ module.exports = {
      
            res.redirect(`/admin/products/#${newProduct.id}`); */
           //console.log(subcategories)
-    } else { console.log('hola')
+    } else { 
      // console.log(subcategories)
      let categoriesPromise = db.Categorie.findAll();
      let subcategoriesPromise = db.Subcategorie.findAll();
@@ -227,6 +227,7 @@ module.exports = {
           arrayImages.push(image.filename);
         });
       }
+      let product = db.Product.findByPk(req.params.id)
 
       let {
         name,
@@ -240,10 +241,29 @@ module.exports = {
         description,
         mainFeatures,
       } = req.body;
+      
+      db.Product.update({
+        name,
+        price,
+        discount,
+        markId: 1,
+        subcategoryId: subcategorie,
+        barcode,
+        stock,
+        description,
+        mainFeatures,
+        valorationsId:"",
+        imagesId : ""
+      },
+      { where: { id : req.params.id}})
+      .then(()=>{
+        res.redirect('/admin/products')
+      })
+      .catch(error => console.log(error))
 
-      let categoria = categories.find(categoria => categoria.id == category);
+      //let categoria = categories.find(categoria => categoria.id == category);
 
-      getProducts.map(product => {
+      /* getProducts.map(product => {
         if (product.id === +req.params.id) {
           product.id = product.id,
             product.name = name,
@@ -259,13 +279,25 @@ module.exports = {
             product.image =
             arrayImages > 0 ? arrayImages : product.image;
         }
-      });
+      }); */
 
-      writeProductsJSON(getProducts);
+      //writeProductsJSON(getProducts);
 
-      res.redirect("/admin/products");
+      //res.redirect("/admin/products");
+      
     } else {
-      let product = getProducts.find(
+      db.Product.findByPK(+req.params.id)
+      .then(product => {
+        res.render("./admin/editProduct", {
+          categories,
+          subcategories,
+          product,
+          errors: errors.mapped(),
+        old: req.body,
+          userInSession: req.session.user ? req.session.user : ''
+        })
+      })
+     /*  let product = getProducts.find(
         product => product.id === +req.params.id
       );
 
@@ -276,11 +308,17 @@ module.exports = {
         errors: errors.mapped(),
         old: req.body,
         userInSession: req.session.user ? req.session.user : ''
-      });
+      }); */
     }
   },
   productDelete: (req, res) => {
-    getProducts.forEach(product => {
+    db.Product.destroy({
+      where:{
+        id: req.params.id
+      }
+
+    })
+    /* getProducts.forEach(product => {
       if (product.id === +req.params.id) {
         let productToDestroy = getProducts.indexOf(product);
         getProducts.splice(productToDestroy, 1);
@@ -289,7 +327,7 @@ module.exports = {
 
     writeProductsJSON(getProducts);
 
-    res.redirect("/admin/products");
+    res.redirect("/admin/products"); */
   },
 
   /* sucursales */
