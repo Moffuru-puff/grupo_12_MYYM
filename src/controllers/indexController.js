@@ -4,22 +4,26 @@ const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
  
 module.exports = {
     index: (req, res) => {
-      let featured = [];//destacados
+
+      db.Product.findAll({include: [{association: "productimage"}]})
+      .then(Products => {
+      /* res.send(Products) */
+      res.render("./products/index.ejs", {
+        Products,
+        toThousand,
+        favorites: req.session.user ? req.session.user.favorites : '',
+        userInSession : req.session.user ? req.session.user : ''
+      });
+    })
+/*       let featured = [];//destacados
 
       getProducts.forEach(product => {
         if (product.score >= 4){
           featured.push(product)
         }
       });
+ */
 
-      res.render("./products/index.ejs", {
-        productos: 
-        getProducts,
-        featured,
-        toThousand,
-        favorites: req.session.user ? req.session.user.favorites : '',
-        userInSession : req.session.user ? req.session.user : ''
-      });
     },
     search: (req, res) => {
       let result = []
