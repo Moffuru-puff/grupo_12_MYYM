@@ -6,9 +6,16 @@ let db = require("../database/models")
 module.exports = {
     profile: (req, res) => {
 
-      db.User.findByPk(req.session.user.id/* , {
-        include: [{ association: "addresses" }],
-      } */).then((user) => {
+      db.User.findOne({
+        where: {
+          id: req.session.user.id
+        },
+        include: [{
+          association: 'Addresse'
+        }]
+      })
+      .then((user) => {
+        /* res.send(user) */
         res.render("users/profile", {
           user,
           session: req.session,
@@ -27,9 +34,15 @@ module.exports = {
 
     editProfile: (req, res) => {
 
-      db.User.findByPk(req.session.user.id/* , {
-        include: [{ association: "addresses" }],
-      } */).then((user) => {
+      db.User.findOne({
+        where: {
+          id: req.params.id
+        },
+        include: [{
+          association: 'Addresse'
+        }]
+      })
+      .then((user) => {
         res.render("users/editProfile", {
           user,
           session: req.session,
@@ -48,7 +61,36 @@ module.exports = {
       let errors = validationResult(req)
 
       if (errors.isEmpty()) {
-          let user = getUsers.find(user => user.id === +req.params.id)
+
+        let { name, lastName, telephone, address, state, city, country, postalCode} = req.body;
+        db.Addresse.create({
+          address,
+          state,
+          city,
+          country,
+          postalCode,
+          userId: req.params.id
+        })
+        .then((address) => {
+          db.User.update({
+            name,
+            lastName,
+            telephone,
+            avatar: req.file ? req.file.filename : req.session.user.avatar,
+            addressesId: address.id
+
+          }, {
+            where: {
+              id: req.params.id
+            }
+          })
+          .then(() => {
+            res.redirect('/profile')
+          })
+        })
+        
+
+/*           let user = getUsers.find(user => user.id === +req.params.id)
 
           let {
               name,
@@ -67,16 +109,14 @@ module.exports = {
 
           writeJsonUsers(getUsers)
 
-          /* delete user.password */
+         
 
           req.session.user = user
 
           res.redirect("/profile")
-
+ */
       }else{
-        let user = getUsers.find(user => user.id === +req.params.id)
           res.render("users/editProfile", {
-              user,
               errors: errors.mapped(),
               old:req.body,
               session: req.session,

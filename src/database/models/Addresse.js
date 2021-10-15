@@ -37,7 +37,7 @@ module.exports = function (sequelize, dataTypes) {
     const Addresse = sequelize.define(alias, cols, config)
     
     Addresse.associate = models => {
-        Addresse.hasMany(models.Addresse, {
+        Addresse.hasMany(models.User, {
             as: "Addresse",
             foreignKey:"addressesId" 
         }),
