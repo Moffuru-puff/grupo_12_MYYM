@@ -140,8 +140,11 @@ module.exports = {
             where: {
               email: req.body.email,
             },
+            include: [{
+              association: "Favorite"
+            }],
           }).then((user) => {
-            
+            /* res.send(user) */
             req.session.user = {
               id: user.id,
               user: user.user,
