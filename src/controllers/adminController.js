@@ -258,6 +258,7 @@ module.exports = {
 
   createSucursal: (req, res) => {
     let errors = validationResult(req);
+    let addressePromise = db.Addresse.findAll();
 
      if (errors.isEmpty()) {/*
       let lastId = 1;
@@ -270,13 +271,12 @@ module.exports = {
 
       let { location, direction, description, telephone, schedule } = req.body;
 
-      db.Product.create({
-        addressId,
+      db.Branchoffice.create({
+        addressId:"Adresse",
         schedule,
         telephone,
         description
-        
-      });
+        });
 
       /* sucursales.push(newSucursal);
 
@@ -293,9 +293,8 @@ module.exports = {
   },
 
   editSucursal: (req, res) => {
-    let sucursal = sucursales.find(
-      sucursal => sucursal.id === +req.params.id
-    );
+    let  = db.Branchoffice.findByPk(req.params.id)
+    ;
     res.render("./admin/editSucursal", {
       sucursal,
       userInSession: req.session.user ? req.session.user : ''
