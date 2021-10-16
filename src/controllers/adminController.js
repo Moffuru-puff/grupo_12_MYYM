@@ -25,12 +25,27 @@ module.exports = {
   },
 
   productsList: (req, res) => {
-    db.Product.findAll()
+    db.Product.findAll({
+      include: [{ association : 'Subcategorie' }]
+    })
       .then(getProducts => {
-        res.render("./admin/productsList", {
+        res.send(getProducts)
+         db.Subcategorie.findAll({
+          include : [{ association : "category"}]
+        });
+    
+        Promise.all([subcategoriesPromise])
+          .then((subcategories) => {
+            res.render("./admin/productsList", {
+              subcategories,
+              getProducts,
+              userInSession: req.session.user ? req.session.user : ''
+            });
+          })
+       /*  res.render("./admin/productsList", {
           getProducts,
           userInSession: req.session.user ? req.session.user : ''
-        })
+        }) */
       })
     
   },
@@ -156,6 +171,13 @@ module.exports = {
   },
   productUpdate: (req, res) => {
     let errors = validationResult(req);
+    if (req.fileValidatorError) {
+      let image = {
+          param: "image",
+          msg: req.fileValidatorError,
+      };
+      errors.push(image);
+  }
 
     if (errors.isEmpty()) {
 
@@ -165,7 +187,7 @@ module.exports = {
           arrayImages.push(image.filename);
         });
       }
-      let product = db.Product.findByPk(req.params.id)
+      //let product = db.Product.findByPk(req.params.id)
 
       let {
         name,
@@ -193,6 +215,42 @@ module.exports = {
        
       },
         { where: { id: req.params.id } })
+        .then(() => {
+          if (arrayImages.length > 0) {
+              var imagesNew = arrayImages.map(image => {
+                  return {
+                      url: image,
+                      productId: req.params.id
+                  }
+              })
+              if (req.files.length > 0) {
+
+                  db.Productsimage.findAll({
+                      where: {
+                          productId: req.params.id
+                      }
+                  })
+
+                      .then(images => {
+                          Promise.all(images.map(image => {
+                              fs.unlink(`./public/img/Productos Gamers/${image.url}`)
+                          }))
+                              .then(() => {
+                                  images.forEach(image => {
+                                      db.Productsimage.destroy({
+                                          where: {
+                                              url: image.url
+                                          }
+                                      })
+                                  })
+                              })
+                      })
+
+                      .then(() => {
+                          db.Productsimage.bulkCreate(imagesNew)
+                      })
+              }
+          }})
         .then(() => {
           res.redirect('/admin/products')
         })
