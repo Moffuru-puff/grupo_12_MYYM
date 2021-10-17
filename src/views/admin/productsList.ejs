@@ -45,12 +45,13 @@
 
               <tbody>
                 <% getProducts.forEach(product => { %>
+                  <% console.log(product) %> 
                   <tr>
                     <td class="visible"><%- product.id %> </td>
-                    <td class="visible"><%- product.scanning %></td>
+                    <td class="visible"><%- product.barcode %></td>
                     <td class="visible"><%- product.name %></td>
-                    <td class="invisible"><%- product.category %></td>
-                    <td class="invisible"><%- product.subcategory %></td>
+                    <td class="invisible"><%- categories.id == subcategories.categoryId ? categories.name : "" %></td>
+                    <td class="invisible"><%- subcategories.id == product.subcategoryId ? subcategories.name : "" %></td>
                     <td class="invisible"><%- product.price %></td>
                     <td class="invisible"><%- product.discount %></td>
                     <td class="visible"><%- product.stock %></td>
