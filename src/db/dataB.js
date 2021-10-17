@@ -8,7 +8,7 @@ function saveDB(db, nameFile){
 }
 
 module.exports = {
-    addUserFavorite : (userId, productId) => {
+   /*  addUserFavorite : (userId, productId) => {
        return dbUser.find(user => {
            
             if (user.id == userId) {
@@ -31,7 +31,7 @@ module.exports = {
             } 
         })
 
-    },
+    }, */
     getProducts : JSON.parse(fs.readFileSync(path.join(__dirname, '/dbProducts.json'), "utf-8")),
     carousel:  JSON.parse(fs.readFileSync(path.join(__dirname, '/banner.json'), "utf-8")),
     categories:  JSON.parse(fs.readFileSync(path.join(__dirname, '/categories.json'), "utf-8")),

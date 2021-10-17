@@ -82,7 +82,7 @@ module.exports = function (sequelize, dataTypes) {
         }),
         User.hasMany(models.Favorite, {
             as: "Favorite",
-            foreignKey:/* "favoritesId" */  "userId" 
+            foreignKey:/* "favoritesId" */ "userId" 
         }),
         User.hasMany(models.Creditcard, {
             as: "Creditcard",

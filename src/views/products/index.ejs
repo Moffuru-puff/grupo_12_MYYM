@@ -133,6 +133,19 @@
                
            <!--    <a href="/detalleDelProducto/<- producto.Product.id %>"> -->
                 <article id="article">
+                  <div class="star" id="btnFav"> 
+                    <figure 
+                    userid="<%- userInSession.id  %>"
+                     <% if(userInSession.favorites != undefined ) { %>
+                      <% if (userInSession.favorites.productId == producto.id) { %>
+                         class="myImage activated"                              
+                      <% } else { %>
+                        class="myImage"
+                        <% } %>
+                    <% } %>
+                    id="<%- producto.id %>">
+                    </figure>                              
+                  </div>
                    <!-- <div class="star" id="btnFav"> 
                     <figure 
                     userid="<- userInSession.id  %>"

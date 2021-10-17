@@ -153,6 +153,7 @@ module.exports = {
               email: user.email,
               avatar: user.avatar,
               rolesId: user.rolesId,
+              favorites : user.Favorite
             };
     
             if (req.body.recordar) {

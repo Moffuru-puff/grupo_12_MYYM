@@ -29,27 +29,28 @@
                     <tbody>
                         <% if (productsFavorites.length > 0) { %>
                             <% productsFavorites.forEach( product => { %>
+                                <% console.log(product) %> 
                                 <tr>
                                    <td>
                                        <div class="fav-info">
-                                           <a href=""> <img src="/img/Productos Gamers/<%- product.image[0] %>" alt="<%- producto.name %>" /></a>
+                                           <a href=""> <img src="/img/Productos Gamers/<%- producto.productimage[0]?.url %>" alt="<%- producto.name %>" /></a>
                                            <div>
                                                <p>
-                                               <h4> <%- product.name%></h4>
+                                               <h4> <%- producto.name%></h4>
                                                </p>
-                                               <% if (product.discount !== 0) { %>
+                                               <% if (producto.discount !== 0) { %>
                                                    <div class="withDiscount">
-                                                     <small>$<%- toThousand(product.price) %></small>
+                                                     <small>$<%- producto.price %></small>
                                                      <span>
-                                                       <%- product.discount !== 0 ? `${product.discount}% OFF` : '' %>
+                                                       <%- producto.discount !== 0 ? `${producto.discount}% OFF` : '' %>
                                                      </span>
                                                      </div>
-                                                     <h3>$<%- toThousand(product.price - product.price * product.discount / 100) %>
+                                                     <h3>$<%- toThousand(producto.price - producto.price * producto.discount / 100) %>
                                                      </h3>
                                                    
                                                    <% } else { %>
                                                      <h3>
-                                                       $<%- toThousand(product.price) %>
+                                                       $<%- toThousand(producto.price) %>
                                                      </h3>
                              
                                                      <% } %>
