@@ -8,28 +8,30 @@ function saveDB(db, nameFile){
 }
 
 module.exports = {
-    addUserFavorite : (userId, productId) => {
-        dbUser.find(user => {
+   /*  addUserFavorite : (userId, productId) => {
+       return dbUser.find(user => {
            
             if (user.id == userId) {
                 user.favorites[productId] = productId
                 
                 saveDB(dbUser, 'users.json')
+                return user
             } 
         })
-        return true
+
     },
     deleteUserFavorite : (userId, productId) => {
-        dbUser.find(user => {
+        return dbUser.find(user => {
            
             if (user.id == userId) {
                 delete user.favorites[productId]
                 
                 saveDB(dbUser, 'users.json')
+                return user
             } 
         })
-        return true
-    },
+
+    }, */
     getProducts : JSON.parse(fs.readFileSync(path.join(__dirname, '/dbProducts.json'), "utf-8")),
     carousel:  JSON.parse(fs.readFileSync(path.join(__dirname, '/banner.json'), "utf-8")),
     categories:  JSON.parse(fs.readFileSync(path.join(__dirname, '/categories.json'), "utf-8")),

@@ -129,26 +129,39 @@
           <h2>Productos Destacados</h2>
 
           <div class="products"> 
-            <% for (producto of productos) { %>
+            <% for (producto of Products) { %>
                
-           <!--    <a href="/detalleDelProducto/<%- producto.id %>"> -->
+           <!--    <a href="/detalleDelProducto/<- producto.Product.id %>"> -->
                 <article id="article">
                   <div class="star" id="btnFav"> 
                     <figure 
                     userid="<%- userInSession.id  %>"
-                     <% if (favorites[producto.id]) { %>
-                      class="myImage activated"
+                     <% if(userInSession.favorites != undefined ) { %>
+                      <% if (userInSession.favorites.productId == producto.id) { %>
+                         class="myImage activated"                              
                       <% } else { %>
                         class="myImage"
+                        <% } %>
                     <% } %>
                     id="<%- producto.id %>">
+                    </figure>                              
+                  </div>
+                   <!-- <div class="star" id="btnFav"> 
+                    <figure 
+                    userid="<- userInSession.id  %>"
+                    < if (userInSession.Favorite[0].productId == producto.id) { %>
+                      class="myImage activated"
+                      < } else { %>
+                        class="myImage"
+                    < } %>
+                    id="<- producto.id %>">
                     </figure>
                    
                     
-                  </div>
+                  </div>  -->
                   <a href="/detalleDelProducto/<%- producto.id %>">
                   <div class="img-producto">
-                    <img src="/img/Productos Gamers/<%- producto.image[0] %>" alt="<%- producto.name %>" />
+                    <img src="/img/Productos Gamers/<%- producto.productimage[0]?.url %>" alt="<%- producto.name %>" />
                   </div>
                   <div class="puntuacion">
                     <img src="/img/iconos-png/4.5.png" alt="puntuacion" />

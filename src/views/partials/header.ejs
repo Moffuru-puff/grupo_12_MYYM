@@ -30,7 +30,7 @@
                 <li><a href="/favorites">Favoritos</a></li>
                 <li><a href="">Mis compras</a></li>
                 <li><a href="/logout">Cerrar sesión</a></li>
-                <% if (userInSession.rol == 0) { %>
+                <% if (userInSession.rol == 2) { %>
                   <li><a href="/admin">Opciones de <br> administrador</a></li>
                   <% } %>
               </ul>
@@ -80,7 +80,7 @@
     <div class="account" onclick="dropAccount(`btnAccount`)">
       <div class="avatar">
         <% if (userInSession) { %>
-          <img src="/img/userAvatars/<%= userInSession.avatar %> " alt="" style="width: 85%; border-radius: 50%;">
+          <img src="/img/userAvatars/<%= user.avatar %> " alt="" style="width: 85%; border-radius: 50%;">
           <% } else { %>
             <i class="fas fa-user-circle"></i>
             <% } %>
@@ -103,7 +103,7 @@
             <li><a href="/favorites">Mis favoritos</a></li>
             <li><a href="">Mis compras</a></li>
             <li><a href="/logout">Cerrar sesión</a></li>
-            <% if (userInSession.rol == 0) { %>
+            <% if (userInSession.rol == 2) { %>
               <li><a href="/admin">Opciones de <br> administrador</a></li>
               <% } %>
                 <% } else { %>

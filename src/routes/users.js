@@ -12,7 +12,6 @@ const {
     } = require('../controllers/usersController');
 const reValidator = require('../validations/registerValidator')
 const loValidator = require('../validations/loginValidator')
-const editProValidator = require('../validations/editProfileValidator')
 const uploadUserAvatar = require('../middlewares/uploadUserAvatar')
 const sessionCheck = require('../middlewares/sessionCheck')
 const userLoginCheck = require('../middlewares/userLoginCheck')
@@ -23,8 +22,8 @@ router.post('/login', loValidator ,loginUser)
 router.get('/logout', sessionCheck, logout)
 
 /* GET - Register */
-router.get('/register', userLoginCheck ,register)
-router.post('/register', reValidator ,registerNewUser)
+router.get('/register', userLoginCheck , register)
+router.post('/register', reValidator , registerNewUser)
 
 
 /* GET - Profile */
