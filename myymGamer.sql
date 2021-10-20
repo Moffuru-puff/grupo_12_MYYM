@@ -1,13 +1,12 @@
-DROP DATABASE IF EXISTS myymGamers;
+﻿DROP DATABASE IF EXISTS myymGamers;
 CREATE DATABASE myymGamers;
 USE myymGamers;
-
 
 -- MySQL dump 10.13  Distrib 5.5.62, for Win64 (AMD64)
 --
 -- Host: localhost    Database: myymgamers
 -- ------------------------------------------------------
--- Server version	5.5.5-10.4.19-MariaDB
+-- Server version	5.5.5-10.4.21-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -456,7 +455,7 @@ CREATE TABLE `users` (
   KEY `FK_4432b4c0-2c91-4541-b581-0d6b6e73edce` (`rolesId`),
   CONSTRAINT `FK_3f38ccf4-7245-4c22-a0c5-3f04b3683994` FOREIGN KEY (`addressesId`) REFERENCES `addresses` (`id`),
   CONSTRAINT `FK_4432b4c0-2c91-4541-b581-0d6b6e73edce` FOREIGN KEY (`rolesId`) REFERENCES `roles` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -465,7 +464,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Yami',NULL,NULL,NULL,'yami@gmail.com','$2a$12$lfviTvTBX9wNpbBfYANNBuY7CY8it9rMAi.JrCauk/NerpjK3lz46','defaultAvatarImage.png',1,NULL,'2021-10-16 01:02:52','2021-10-16 01:02:52');
+INSERT INTO `users` VALUES (1,'Yami',NULL,NULL,NULL,'yami@gmail.com','$2a$12$lfviTvTBX9wNpbBfYANNBuY7CY8it9rMAi.JrCauk/NerpjK3lz46','defaultAvatarImage.png',2,NULL,'2021-10-16 01:02:52','2021-10-16 01:02:52'),(2,'equisde',NULL,NULL,NULL,'myym@gmail.com','$2a$12$YR6M3.8MhU8qnBk9f/BjQ.pqtaPCO.pn0nCbc2ayGqZ2nucGlLwky','defaultAvatarImage.png',1,NULL,'2021-10-18 17:38:19','2021-10-18 17:38:19');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -514,4 +513,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-10-17 18:23:13
+-- Dump completed on 2021-10-18 14:46:23
