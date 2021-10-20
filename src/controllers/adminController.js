@@ -26,26 +26,15 @@ module.exports = {
 
   productsList: (req, res) => {
     db.Product.findAll({
-      include: [{ association : 'Subcategorie' }]
+      include: [{ association : 'Subcategorie', 
+      include: [{ association : 'category'}] }]
     })
       .then(getProducts => {
-        res.send(getProducts)
-         db.Subcategorie.findAll({
-          include : [{ association : "category"}]
-        });
-    
-        Promise.all([subcategoriesPromise])
-          .then((subcategories) => {
             res.render("./admin/productsList", {
-              subcategories,
               getProducts,
-              userInSession: req.session.user ? req.session.user : ''
+              userInSession: req.session.user ? req.session.user : '',
+              
             });
-          })
-       /*  res.render("./admin/productsList", {
-          getProducts,
-          userInSession: req.session.user ? req.session.user : ''
-        }) */
       })
     
   },
@@ -128,8 +117,7 @@ module.exports = {
               .catch(err => console.log(err))
           }
         })
-
-
+        
     } else {
       
       let categoriesPromise = db.Categorie.findAll();
