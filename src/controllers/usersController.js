@@ -76,7 +76,7 @@ module.exports = {
             name,
             lastName,
             telephone,
-            avatar: req.file ? req.file.filename : req.session.user.avatar,
+            avatar: req.file ? req.file.filename : db.User.avatar,
             addressesId: address.id
 
           }, {
