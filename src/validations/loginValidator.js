@@ -10,7 +10,7 @@ module.exports = [
     .isEmail()
     .withMessage('Debes escribir un email válido'),
 
-    body("custom").custom((value, { req }) => {
+    body("email", "password").custom((value, { req }) => {
         return db.User.findOne({
           where: {
             email: req.body.email,
@@ -21,10 +21,7 @@ module.exports = [
               return Promise.reject();
             }
           })
-          .catch((error) => {
-            return Promise.reject("Credenciales inválidas");
-          });
-      }),
+      }).withMessage("Credenciales invalidas"),
 
 /*     body('email')
     .custom(value => {
