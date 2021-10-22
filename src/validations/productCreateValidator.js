@@ -13,11 +13,11 @@ module.exports = [
     .isLength({ min: 4 })
     .withMessage("Ingrese más de 4 carácteres"),
 
-    check('category')
+    check('categorie')
     .notEmpty()
     .withMessage("Debes elegir una categoría"),
     
-    check('subcategory')
+    check('subcategorie')
     .notEmpty()
     .withMessage("Debes elegir una subcategoría"),
 
