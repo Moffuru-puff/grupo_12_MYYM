@@ -8,7 +8,8 @@ const {
     registerNewUser, 
     loginUser, 
     updateProfile,
-    logout
+    logout,
+    deleteProfile
     } = require('../controllers/usersController');
 const reValidator = require('../validations/registerValidator')
 const loValidator = require('../validations/loginValidator')
@@ -30,6 +31,6 @@ router.post('/register', reValidator , registerNewUser)
 router.get('/profile', sessionCheck ,profile)
 router.get('/profile/editprofile/:id', sessionCheck ,editProfile)
 router.put('/profile/editprofile/:id' ,uploadUserAvatar.single('avatar'), updateProfile)
-
+router.delete('/profile/delete/:id' ,deleteProfile)
 
 module.exports = router;
