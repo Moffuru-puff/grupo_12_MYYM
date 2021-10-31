@@ -33,29 +33,29 @@
                                 <tr>
                                    <td>
                                        <div class="fav-info">
-                                           <a href=""> <img src="/img/Productos Gamers/<%- producto.productimage[0]?.url %>" alt="<%- producto.name %>" /></a>
+                                           <a href=""> <img src="/img/Productos Gamers/<%- product.productimage[0]?.url %>" alt="<%- product.name %>" /></a>
                                            <div>
                                                <p>
-                                               <h4> <%- producto.name%></h4>
+                                               <h4> <%- product.name%></h4>
                                                </p>
-                                               <% if (producto.discount !== 0) { %>
+                                               <% if (product.discount !== 0) { %>
                                                    <div class="withDiscount">
-                                                     <small>$<%- producto.price %></small>
+                                                     <small>$<%- product.price %></small>
                                                      <span>
-                                                       <%- producto.discount !== 0 ? `${producto.discount}% OFF` : '' %>
+                                                       <%- product.discount !== 0 ? `${product.discount}% OFF` : '' %>
                                                      </span>
                                                      </div>
-                                                     <h3>$<%- toThousand(producto.price - producto.price * producto.discount / 100) %>
+                                                     <h3>$<%- toThousand(product.price - product.price * product.discount / 100) %>
                                                      </h3>
                                                    
                                                    <% } else { %>
                                                      <h3>
-                                                       $<%- toThousand(producto.price) %>
+                                                       $<%- toThousand(product.price) %>
                                                      </h3>
                              
                                                      <% } %>
                                             <br>
-                                               <a href="" id="<%- producto.id %>" ><i style="margin-right: 10px;" class="fas fa-trash"></i>Eliminar</a>
+                                               <a href="" id="<%- product.id %>" ><i style="margin-right: 10px;" class="fas fa-trash"></i>Eliminar</a>
                                            </div>
                                        </div>
                                    </td>

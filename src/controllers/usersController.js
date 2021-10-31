@@ -15,20 +15,12 @@ module.exports = {
         }]
       })
       .then((user) => {
-        /* res.send(user) */
         res.render("users/profile", {
           user,
           session: req.session,
           userInSession : req.session.user ? req.session.user : ''
       }) ;
       });
-
-/*       let user = getUsers.find(user => user.id === req.session.user.id)
-      res.render("users/profile", {
-        user,
-        session: req.session,
-        userInSession : req.session.user ? req.session.user : ''
-    }) */
 
     },
 
@@ -49,13 +41,6 @@ module.exports = {
           userInSession : req.session.user ? req.session.user : ''
       });
       });
-     /*  let user = getUsers.find(user => user.id === +req.params.id)
-
-      res.render("users/editProfile", {
-          user,
-          session: req.session,
-          userInSession : req.session.user ? req.session.user : ''
-      }) */
     },
     updateProfile: (req, res) => {
       let errors = validationResult(req)
@@ -76,7 +61,7 @@ module.exports = {
             name,
             lastName,
             telephone,
-            avatar: req.file ? req.file.filename : req.session.user.avatar,
+            avatar: req.file ? req.file.filename : db.User.avatar,
             addressesId: address.id
 
           }, {
@@ -88,33 +73,6 @@ module.exports = {
             res.redirect('/profile')
           })
         })
-        
-
-/*           let user = getUsers.find(user => user.id === +req.params.id)
-
-          let {
-              name,
-              lastname,
-              telephone,
-              address,
-              province,
-          } = req.body
-          
-          user.name = name.trim()
-          user.lastname = lastname.trim()
-          user.telephone = telephone.trim()
-          user.address = address.trim()
-          user.province = province.trim()
-          user.avatar = req.file ? req.file.filename : user.avatar
-
-          writeJsonUsers(getUsers)
-
-         
-
-          req.session.user = user
-
-          res.redirect("/profile")
- */
       }else{
           res.render("users/editProfile", {
               errors: errors.mapped(),
@@ -124,6 +82,19 @@ module.exports = {
           })
       }
     },
+    deleteProfile: (req, res) => {
+      req.session.destroy();
+      if (req.cookies.userMyymGamers){
+        res.cookie('userMyymGamers','',{maxAge:-1});
+      }
+      db.User.destroy({
+        where:{
+          id : req.params.id
+        }
+      })
+      return res.redirect('/') 
+    },
+    
 
     login: (req, res) => {
       res.render("users/login", {
@@ -144,7 +115,6 @@ module.exports = {
               association: "Favorite"
             }],
           }).then((user) => {
-            /* res.send(user) */
             req.session.user = {
               id: user.id,
               user: user.user,
@@ -167,28 +137,6 @@ module.exports = {
     
             res.redirect("/");
           });
-/*             let user = getUsers.find(user => user.email === req.body.email)
-
-            req.session.user = {
-                id: user.id,
-                user: user.user,
-                name: user.name,
-                lastname: user.lastname,
-                email: user.email,
-                avatar: user.avatar,
-                favorites : user.favorites,
-                rol: user.rol
-            }
-
-            if(req.body.recordar){
-                res.cookie('userMyymGamers', req.session.user, {expires: new Date(Date.now() + 900000), httpOnly : true})
-            }
-
-
-            res.locals.user = req.session.user
-
-            res.redirect("/")
- */
         } else {
           res.render("users/login", {
              errors: errors.mapped(),
@@ -213,8 +161,7 @@ module.exports = {
           email,
           password
           } = req.body;
-/*           res.send(req.body)
- */
+
         db.User.create({
           user: user,
           email: email,
@@ -228,42 +175,6 @@ module.exports = {
         })
         .catch((err) => console.log(err))
 
-/*         let lastId = 0;
-
-         getUsers.forEach(user => {
-            if(user.id > lastId){
-                lastId = user.id
-            }
-        })  
-
-      let {
-          user,
-          email,
-          password
-          } = req.body;
-
-          
-
-      let newUser = {
-          id: lastId + 1,
-          user: user.trim(),
-          name: "",
-          lastname: "",
-          telephone: "",
-          address: "",
-          province: "",
-          favorites: {},
-          email: email.trim(),
-          password: bcrypt.hashSync(password, 12).trim(),
-          rol: "1",
-          avatar: req.file ? req.file.filename : "defaultAvatarImage.png"
-      };
-
-      getUsers.push(newUser);
-
-      writeJsonUsers(getUsers)
-
-      res.redirect('/login') */
   } else {
       res.render("users/register", {
           errors: errors.mapped(),

@@ -42,9 +42,16 @@
             </div>
             </div>
     </div>
+        <div class="buttons">
             <div>
                 <a href="/profile/editprofile/<%= user.id %>"><button id="btn-submit1" type="submit" style="color: white" class="btn btn-submit">Editar perfil</button></a>
             </div>
+            <div>
+                <form action="/profile/delete/<%= user.id%>?_method=DELETE" method="POST">
+                <button id="evil-btn-submit" type="submit" style="color: white" class="btn btn-submit">Eliminar perfil</button>
+                </form>    
+            </div>
+        </div>
         </div> 
     </main>
 <%- include('../partials/footer')%>

@@ -1,4 +1,3 @@
-//const { getProducts} = require('../db/dataB')
 const db = require("../database/models");
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
@@ -21,7 +20,6 @@ module.exports = {
         }
       ],
     }).then((product) => {
-     /*  res.send(product) */
       res.render("./products/detalleDelProducto", {
 
         product,
@@ -32,17 +30,5 @@ module.exports = {
     })
       .catch(error => console.log(error))
 
-
-    /* let productID = +req.params.id;
-
-    let product = getProducts.find(product =>
-       product.id === productID)
-    res.render("./products/detalleDelProducto", {
-      productos: 
-      getProducts,
-      toThousand,
-      product,
-      userInSession : req.session.user ? req.session.user : ''
-    }); */
   },
 };
