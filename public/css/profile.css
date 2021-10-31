@@ -133,18 +133,9 @@
         gap: 1rem;
     }
 
-    .userProfile1 .avatar{
-        margin: 3rem 2rem 1rem -3rem;
-    }
-
     .avatarContainer {
         display: flex;
         flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        align-content: center;
-        flex-grow: 1;
     }
 
 
@@ -191,10 +182,6 @@
         flex-direction: column;
         flex-wrap: wrap;
         gap: 1rem;
-    }
-
-    .userProfile1 .avatar{
-        margin: 3rem 2rem 1rem -3rem;
     }
 
     .avatarContainer {
