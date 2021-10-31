@@ -180,7 +180,67 @@ span.error-message {
     background-color: #c51f1f;
     text-align: center;
     margin: 0.5rem;
+    text-shadow: 0.05em 0 0 rgb(255, 0, 0),
+    -0.025em -0.05em 0 rgb(0, 255, 0),
+    0.025em 0.05em 0 rgb(0, 0, 255);
+
+    animation: glitch 2500ms infinite;
 }
+
+#evil-btn-submit:first-child {
+	animation: glitch 650ms infinite;
+  	transform: translate(-0.025em, -0.0125em);
+  	opacity: 0.8;
+ }
+ #evil-btn-submit:last-child {
+ 	animation: glitch 375ms infinite;
+  	transform: translate(0.0125em, 0.025em);
+  	opacity: 0.8;
+ }
+
+@keyframes glitch {
+    0% {
+      text-shadow: 0.05em 0 0 rgba(255, 0, 0, 1),
+        -0.05em -0.025em 0 rgba(0, 255, 0, 1),
+        -0.025em 0.05em 0 rgba(0, 0, 255, 1);
+    }
+    
+    15% {
+      text-shadow: -0.05em -0.025em 0 rgba(255, 0, 0, 1),
+        0.025em 0.025em 0 rgba(0, 255, 0, 1),
+        0.05em -0.05em 0 rgba(0, 0, 255, 1);
+    }
+
+    30% {
+      text-shadow: 0.05em -0.025em 0 rgba(255, 0, 0, 1),
+        0.025em 0.025em 0 rgba(0, 255, 0, 1),
+        -0.05em -0.05em 0 rgba(0, 0, 255, 1);
+    }
+
+    45% {
+      text-shadow: -0.05em -0.025em 0 rgba(255, 0, 0, 1),
+        0.025em 0.025em 0 rgba(0, 255, 0, 1),
+        -0.05em -0.05em 0 rgba(0, 0, 255, 1);
+    }
+    
+    50% {
+      text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, 1),
+        0.05em 0 0 rgba(0, 255, 0, 1), 
+        0 -0.05em 0 rgba(0, 0, 255, 1);
+    }
+
+    75% {
+      text-shadow: -0.025em -0.05em 0 rgba(255, 0, 0, 1),
+        0.05em 0 0 rgba(0, 255, 0, 1), 
+        0 -0.05em 0 rgba(0, 0, 255, 1);
+    }
+    
+    100% {
+      text-shadow: 0.025em 0 0 rgba(255, 0, 0, 1),
+        -0.025em -0.025em 0 rgba(0, 255, 0, 1),
+        -0.025em -0.05em 0 rgba(0, 0, 255, 1);
+    }
+  }
 
 .buttons {
     display: flex;
