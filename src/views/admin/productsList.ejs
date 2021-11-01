@@ -47,10 +47,10 @@
                 <% getProducts.forEach(product => { %>
                   <tr>
                     <td class="visible"><%- product.id %> </td>
-                    <td class="visible"><%- product.scanning %></td>
+                    <td class="visible"><%- product.barcode %></td>
                     <td class="visible"><%- product.name %></td>
-                    <td class="invisible"><%- product.category %></td>
-                    <td class="invisible"><%- product.subcategory %></td>
+                    <td class="invisible"><%- product.Subcategorie.category ? product.Subcategorie.category.name : "" %></td>                   
+                    <td class="invisible"><%- product.Subcategorie ? product.Subcategorie.name : "" %></td>
                     <td class="invisible"><%- product.price %></td>
                     <td class="invisible"><%- product.discount %></td>
                     <td class="visible"><%- product.stock %></td>

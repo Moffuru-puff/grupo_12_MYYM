@@ -8,11 +8,11 @@ const {
     registerNewUser, 
     loginUser, 
     updateProfile,
-    logout
+    logout,
+    deleteProfile
     } = require('../controllers/usersController');
 const reValidator = require('../validations/registerValidator')
 const loValidator = require('../validations/loginValidator')
-const editProValidator = require('../validations/editProfileValidator')
 const uploadUserAvatar = require('../middlewares/uploadUserAvatar')
 const sessionCheck = require('../middlewares/sessionCheck')
 const userLoginCheck = require('../middlewares/userLoginCheck')
@@ -23,14 +23,14 @@ router.post('/login', loValidator ,loginUser)
 router.get('/logout', sessionCheck, logout)
 
 /* GET - Register */
-router.get('/register', userLoginCheck ,register)
-router.post('/register', reValidator ,registerNewUser)
+router.get('/register', userLoginCheck , register)
+router.post('/register', reValidator , registerNewUser)
 
 
 /* GET - Profile */
 router.get('/profile', sessionCheck ,profile)
 router.get('/profile/editprofile/:id', sessionCheck ,editProfile)
 router.put('/profile/editprofile/:id' ,uploadUserAvatar.single('avatar'), updateProfile)
-
+router.delete('/profile/delete/:id' ,deleteProfile)
 
 module.exports = router;

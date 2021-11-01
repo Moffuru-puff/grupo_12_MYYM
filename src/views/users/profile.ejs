@@ -17,22 +17,41 @@
                 <h3 class="profile-title1">Datos personales</h3>
                 <p class="profile-item1">Usuario: <%= user.user ? user.user : "----" %></p>
                 <p class="profile-item1">Nombre: <%= user.name ? user.name : "----" %></p>
-                <p class="profile-item1">Apellido: <%= user.lastname ? user.lastname : "----" %></p>
+                <p class="profile-item1">Apellido: <%= user.lastName ? user.lastName : "----" %></p>
                 <p class="profile-item1">Email: <%= user.email %></p>
+                <p class="profile-item1">Teléfono: <%= user.telephone ? user.telephone : "----" %></p>
             </div>
         </div>
         <div class="inputs-container">
             <div class="profileData2">
                 <h3 class="profile-title1">Datos de contacto</h3>
-                <p class="profile-item1">Dirección: <%= user.address ? user.address : "----" %></p>
-                <p class="profile-item1">Provincia: <%= user.province ? user.province : "----" %></p>            
-                <p class="profile-item1">Teléfono: <%= user.telephone ? user.telephone : "----" %></p>
+                <% if (user.addressesId != null) { %>
+                    <p class="profile-item1">Dirección: <%= user.Addresse.address ? user.Addresse.address : "----" %></p>
+                    <p class="profile-item1">Estado: <%= user.Addresse.state ? user.Addresse.state : "----" %></p>            
+                    <p class="profile-item1">Ciudad: <%= user.Addresse.city ? user.Addresse.city : "----" %></p>            
+                    <p class="profile-item1">Pais: <%= user.Addresse.country ? user.Addresse.country : "----" %></p>            
+                    <p class="profile-item1">Codigo postal: <%= user.Addresse.postalCode ? user.Addresse.postalCode : "----" %></p> 
+                <% } else { %>
+                    <p class="profile-item1">Dirección:  ---- </p>
+                    <p class="profile-item1">Estado:  ----</p>            
+                    <p class="profile-item1">Ciudad:  ---- </p>            
+                    <p class="profile-item1">Pais: ---- </p>            
+                    <p class="profile-item1">Codigo postal:  ---- </p> 
+                <% } %>    
+           
             </div>
             </div>
     </div>
+        <div class="buttons">
             <div>
                 <a href="/profile/editprofile/<%= user.id %>"><button id="btn-submit1" type="submit" style="color: white" class="btn btn-submit">Editar perfil</button></a>
             </div>
+            <div>
+                <form action="/profile/delete/<%= user.id%>?_method=DELETE" method="POST">
+                <button id="evil-btn-submit" type="submit" style="color: white" class="btn btn-submit">Eliminar perfil</button>
+                </form>    
+            </div>
+        </div>
         </div> 
     </main>
 <%- include('../partials/footer')%>

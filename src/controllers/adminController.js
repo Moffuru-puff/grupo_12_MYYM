@@ -1,6 +1,6 @@
 const { validationResult } = require("express-validator");
 const {
-  getProducts,
+  //getProducts,
   categories,
   sucursales,
   users,
@@ -10,50 +10,60 @@ const {
   getUsers,
 } = require("../db/dataB");
 
+const db = require("../database/models");
+const { Op } = db.Sequelize.Op;
 const toThousand = (n) => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-
-let subcategories = [];
-getProducts.forEach(product => {
-  if (!subcategories.includes(product.subcategory)) {
-    subcategories.push(product.subcategory);
-  }
-});
+const fs = require("fs");
 
 module.exports = {
   index: (req, res) => {
     res.render("./admin/admin", {
       toThousand,
-      userInSession : req.session.user ? req.session.user : ''
+      userInSession: req.session.user ? req.session.user : "",
     });
   },
 
   productsList: (req, res) => {
-    res.render("./admin/productsList", {
-      getProducts,
-      userInSession : req.session.user ? req.session.user : ''
+    db.Product.findAll({
+      include: [
+        { association: "Subcategorie", include: [{ association: "category" }] },
+      ],
+    }).then((getProducts) => {
+      res.render("./admin/productsList", {
+        getProducts,
+        userInSession: req.session.user ? req.session.user : "",
+      });
     });
   },
 
   addProduct: (req, res) => {
-    res.render("./admin/cargaDeProductos", {
-      categories,
-      subcategories,
-      userInSession : req.session.user ? req.session.user : ''
-    });
+    let categoriesPromise = db.Categorie.findAll();
+    let subcategoriesPromise = db.Subcategorie.findAll();
+    let markPromise = db.Mark.findAll();
+
+    Promise.all([categoriesPromise, subcategoriesPromise, markPromise])
+      .then(([categories, subcategories, marks]) => {
+        res.render("./admin/cargaDeProductos", {
+          categories,
+          subcategories,
+          marks,
+          userInSession: req.session.user ? req.session.user : "",
+        });
+      })
+      .catch((err) => console.log(err));
   },
 
   charge: (req, res) => {
     let errors = validationResult(req);
-
+    /*if (req.fileValidatorError) {
+      let image = {
+        param: "image",
+        msg: req.fileValidatorError,
+      };
+      errors.push(image);
+    }*/
+    
     if (errors.isEmpty()) {
-      let lastId = 1;
-
-      getProducts.forEach(product => {
-        if (product.id >= lastId) {
-          lastId = product.id + 1;
-        }
-      });
-
       let arrayImages = [];
       if (req.files) {
         req.files.forEach((image) => {
@@ -66,202 +76,266 @@ module.exports = {
         price,
         discount,
         mark,
-        category,
-        subcategory,
-        scanning,
+        categorie,
+        subcategorie,
+        barcode,
         stock,
         description,
         mainFeatures,
       } = req.body;
 
-	  let categoria = categories.find(categoria => categoria.id == category);
-
-      let newProduct = {
-        id: lastId,
+      db.Product.create({
         name,
         price,
         discount,
-        mark,
-        category: categoria ? categoria.name : category,
-        subcategory,
-        scanning,
+        markId: mark,
+        subcategoryId: subcategorie,
+        barcode,
         stock,
         description,
         mainFeatures,
-        image: arrayImages.length > 0 ? arrayImages : "",
-      };
-
-      getProducts.push(newProduct);
-
-      writeProductsJSON(getProducts);
-
-      res.redirect(`/admin/products/#${newProduct.id}`);
-    } else {
-      res.render("./admin/cargaDeProductos", {
-        subcategories,
-        categories,
-        errors: errors.mapped(),
-        old: req.body,
-        userInSession : req.session.user ? req.session.user : ''
+      }).then((product) => {
+        // console.log(product);
+        if (arrayImages.length > 0) {
+          let images = arrayImages.map((image) => {
+            return {
+              url: image,
+              productId: product.id,
+            };
+          });
+          db.Productsimage.bulkCreate(images)
+            .then(() => res.redirect(`/admin/products`))
+            .catch((err) => console.log(err));
+        }
       });
+    } else {
+      let categoriesPromise = db.Categorie.findAll();
+      let subcategoriesPromise = db.Subcategorie.findAll();
+      let markPromise = db.Mark.findAll();
+
+      Promise.all([categoriesPromise, subcategoriesPromise, markPromise])
+        .then(([categories, subcategories, marks]) => {
+          res.render("./admin/cargaDeProductos", {
+            categories,
+            subcategories,
+            marks,
+            userInSession: req.session.user ? req.session.user : "",
+          });
+        })
+        .catch((err) => console.log(err));
     }
   },
 
   editProduct: (req, res) => {
-    let product = getProducts.find(product => product.id === +req.params.id);
-    res.render("./admin/editProduct", {
-      categories,
-      subcategories,
-      product,
-      userInSession : req.session.user ? req.session.user : ''
-    });
+    let categoriesPromise = db.Categorie.findAll();
+    let subcategoriesPromise = db.Subcategorie.findAll();
+    let markPromise = db.Mark.findAll();
+
+    Promise.all([categoriesPromise, subcategoriesPromise, markPromise])
+      .then(([categories, subcategories, marks]) => {
+        db.Product.findByPk(+req.params.id).then((product) => {
+          res.render("./admin/editProduct", {
+            categories,
+            subcategories,
+            marks,
+            product,
+            userInSession: req.session.user ? req.session.user : "",
+          });
+        });
+      })
+      .catch((err) => console.log(err));
   },
   productUpdate: (req, res) => {
     let errors = validationResult(req);
-
+    if (req.fileValidatorError) {
+      let image = {
+        param: "image",
+        msg: req.fileValidatorError,
+      };
+      errors.push(image);
+    }
+    
     if (errors.isEmpty()) {
-
       let arrayImages = [];
       if (req.files) {
-        req.files.forEach(image => {
+        req.files.forEach((image) => {
           arrayImages.push(image.filename);
         });
       }
+      //let product = db.Product.findByPk(req.params.id)
 
       let {
         name,
         price,
         discount,
         mark,
-        category,
-        subcategory,
-        scanning,
+        categorie,
+        subcategorie,
+        barcode,
         stock,
         description,
         mainFeatures,
       } = req.body;
 
-      let categoria = categories.find(categoria => categoria.id == category);
+      db.Product.update(
+        {
+          name,
+          price,
+          discount,
+          markId: mark,
+          subcategoryId: subcategorie,
+          barcode,
+          stock,
+          description,
+          mainFeatures,
+        },
+        { where: { id: req.params.id } }
+      )
+        .then(() => {
+          if (req.files.length > 0) {
+            var imagesNew = arrayImages.map((image) => {
+              return {
+                url: image,
+                productId: req.params.id,
+              };
+            });
+            db.Productsimage.findAll({
+              where: {
+                productId: req.params.id,
+              },
+            })
 
-      getProducts.map(product => {
-        if (product.id === +req.params.id) {
-          product.id = product.id,
-            product.name = name,
-            product.price = price,
-            product.discount = discount,
-            product.mark = mark,
-            product.category = categoria ? categoria.name : category,
-            product.subcategory = subcategory,
-            product.scanning = scanning,
-            product.stock = stock,
-            product.description = description,
-            product.mainFeatures = mainFeatures,
-            product.image =
-              arrayImages > 0 ? arrayImages : product.image;
-        }
-      });
-
-      writeProductsJSON(getProducts);
-
-      res.redirect("/admin/products");
+              .then((images) => {
+                images.forEach((image) => {
+                  fs.unlinkSync(`./public/img/Productos Gamers/${image.url}`);
+                });
+                db.Productsimage.destroy({
+                  where: {
+                    productId: req.params.id,
+                  },
+                });
+              })
+              .then(() => {
+                db.Productsimage.bulkCreate(imagesNew);
+              })
+              .then(() => {
+                res.redirect("/admin/products");
+              });
+          }
+          res.redirect("/admin/products");
+        })
+        .catch((error) => console.log(error));
     } else {
-      let product = getProducts.find(
-        product => product.id === +req.params.id
-      );
+      let categoriesPromise = db.Categorie.findAll();
+      let subcategoriesPromise = db.Subcategorie.findAll();
+      let markPromise = db.Mark.findAll();
 
-      res.render("./admin/editProduct", {
-        categories,
-        subcategories,
-        product,
-        errors: errors.mapped(),
-        old: req.body,
-        userInSession : req.session.user ? req.session.user : ''
-      });
+      Promise.all([categoriesPromise, subcategoriesPromise, markPromise])
+        .then(([categories, subcategories, marks]) => {
+          db.Product.findByPk(+req.params.id).then((product) => {
+            res.render("./admin/editProduct", {
+              categories,
+              subcategories,
+              marks,
+              product,
+              errors: errors.mapped(),
+              old: req.body,
+              userInSession: req.session.user ? req.session.user : "",
+            });
+          });
+        })
+        .catch((err) => console.log(err));
     }
   },
   productDelete: (req, res) => {
-    getProducts.forEach(product => {
-      if (product.id === +req.params.id) {
-        let productToDestroy = getProducts.indexOf(product);
-        getProducts.splice(productToDestroy, 1);
-      }
-    });
-
-    writeProductsJSON(getProducts);
-
-    res.redirect("/admin/products");
+    db.Productsimage.destroy({
+      where: {
+        productId: req.params.id,
+      },
+    })
+      .then(() => {
+        db.Product.destroy({
+          where: {
+            id: req.params.id,
+          },
+        });
+      })
+      .then(() => {
+        res.redirect("/admin/products");
+      })
+      .catch((error) => console.log(error));
   },
 
   /* sucursales */
   sucursalList: (req, res) => {
-    res.render("./admin/sucursalList", {
-      sucursales,
-      userInSession : req.session.user ? req.session.user : ''
+    db.Branchoffice.findAll().then((sucursales) => {
+      res.render("./admin/sucursalList", {
+        sucursales,
+        userInSession: req.session.user ? req.session.user : "",
+      });
     });
   },
 
   addSucursal: (req, res) => {
     res.render("./admin/addSucursal", {
-      userInSession : req.session.user ? req.session.user : ''
+      userInSession: req.session.user ? req.session.user : "",
     });
   },
 
   createSucursal: (req, res) => {
     let errors = validationResult(req);
+    let addressePromise = db.Addresse.findAll();
 
     if (errors.isEmpty()) {
+      /*
       let lastId = 1;
 
       sucursales.forEach(sucursal => {
         if (sucursal.id >= lastId) {
           lastId = sucursal.id + 1;
         }
-      });
+      }); */
 
       let { location, direction, description, telephone, schedule } = req.body;
 
-      let newSucursal = {
-        id: lastId,
-        location,
-        direction,
-        description,
-        telephone,
+      db.Branchoffice.create({
+        addressId: "Adresse",
         schedule,
-      };
+        telephone,
+        description,
+      });
 
-      sucursales.push(newSucursal);
+      /* sucursales.push(newSucursal);
 
-      writeSucursalesJSON(sucursales);
+      writeSucursalesJSON(sucursales); */
 
       res.redirect("/admin/sucursals");
     } else {
       res.render("./admin/addSucursal", {
         errors: errors.mapped(),
         old: req.body,
-        userInSession : req.session.user ? req.session.user : ''
+        userInSession: req.session.user ? req.session.user : "",
       });
     }
   },
 
   editSucursal: (req, res) => {
-    let sucursal = sucursales.find(
-      sucursal => sucursal.id === +req.params.id
-    );
+    let = db.Branchoffice.findByPk(req.params.id);
     res.render("./admin/editSucursal", {
       sucursal,
-      userInSession : req.session.user ? req.session.user : ''
+      userInSession: req.session.user ? req.session.user : "",
     });
   },
   sucursalUpdate: (req, res) => {
     let { location, direction, telephone, schedule } = req.body;
 
-    sucursales.map(sucursal => {
+    sucursales.map((sucursal) => {
       if (sucursal.id === +req.params.id) {
-        sucursal.id = sucursal.id,
-          sucursal.location = location,
-          sucursal.direction = direction,
-          sucursal.telephone = telephone,
-          sucursal.schedule = schedule;
+        (sucursal.id = sucursal.id),
+          (sucursal.location = location),
+          (sucursal.direction = direction),
+          (sucursal.telephone = telephone),
+          (sucursal.schedule = schedule);
       }
     });
 
@@ -270,7 +344,7 @@ module.exports = {
     res.redirect("/admin/sucursals");
   },
   sucursalDelete: (req, res) => {
-    sucursales.forEach(sucursal => {
+    sucursales.forEach((sucursal) => {
       if (sucursal.id === +req.params.id) {
         let sucursalToDestroy = sucursales.indexOf(sucursal);
         sucursales.splice(sucursalToDestroy, 1);
@@ -287,18 +361,66 @@ module.exports = {
   userList: (req, res) => {
     res.render("./admin/userList", {
       users,
-      userInSession : req.session.user ? req.session.user : ''
+      userInSession: req.session.user ? req.session.user : "",
     });
   },
 
   addUser: (req, res) => {
     res.render("./admin/addUser", {
-      userInSession : req.session.user ? req.session.user : ''
+      userInSession: req.session.user ? req.session.user : "",
     });
   },
 
   createUser: (req, res) => {
     let errors = validationResult(req);
+    /*if (req.fileValidatorError) {
+      let image = {
+        param: "image",
+        msg: req.fileValidatorError,
+      };
+      errors.push(image);
+    }*/
+
+    if (errors.isEmpty()) {
+      let {
+        user,
+        name,
+        lastname,
+        telephone,
+        address,
+        province,
+        email,
+        password,
+        rol,
+      } = req.body;
+
+      db.Product.create({
+        addressId,
+        shedule,
+        telephone,
+        description,
+      }).then((product) => {
+        if (arrayImages.length > 0) {
+          let images = arrayImages.map((image) => {
+            return {
+              url: image,
+              productId: product.id,
+            };
+          });
+          db.Productsimage.bulkCreate(images)
+            .then(() => res.redirect(`/admin/products`))
+            .catch((err) => console.log(err));
+        }
+      });
+    } else {
+      res.render("./admin/cargaDeProductos", {
+        categories,
+        subcategories,
+        userInSession: req.session.user ? req.session.user : "",
+      });
+    }
+
+    /*  let errors = validationResult(req);
 
     if (errors.isEmpty()) {
       let lastId = 1;
@@ -343,17 +465,17 @@ module.exports = {
       res.render("./admin/addUser", {
         errors: errors.mapped(),
         old: req.body,
-        userInSession : req.session.user ? req.session.user : ''
+        userInSession: req.session.user ? req.session.user : ''
 
       });
-    }
+    }*/
   },
 
   editUser: (req, res) => {
-    let user = users.find(user => user.id === +req.params.id);
+    let user = users.find((user) => user.id === +req.params.id);
     res.render("./admin/editUser", {
       user,
-      userInSession : req.session.user ? req.session.user : ''
+      userInSession: req.session.user ? req.session.user : "",
     });
   },
 
@@ -370,18 +492,18 @@ module.exports = {
       rol,
     } = req.body;
 
-    users.map(usuario => {
+    users.map((usuario) => {
       if (usuario.id === +req.params.id) {
-        usuario.id = usuario.id,
-        usuario.user = user,
-        usuario.name = name,
-        usuario.lastname = lastname,
-        usuario.telephone = telephone,
-        usuario.address = address,
-        usuario.province = province,
-        usuario.email = email,
-        usuario.password = password,
-        usuario.rol = rol;
+        (usuario.id = usuario.id),
+          (usuario.user = user),
+          (usuario.name = name),
+          (usuario.lastname = lastname),
+          (usuario.telephone = telephone),
+          (usuario.address = address),
+          (usuario.province = province),
+          (usuario.email = email),
+          (usuario.password = password),
+          (usuario.rol = rol);
       }
     });
 
@@ -391,7 +513,7 @@ module.exports = {
   },
 
   userDelete: (req, res) => {
-    users.forEach(usuario => {
+    users.forEach((usuario) => {
       if (usuario.id === +req.params.id) {
         let userToDestroy = users.indexOf(usuario);
         users.splice(userToDestroy, 1);
