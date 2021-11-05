@@ -4,22 +4,16 @@ function qs (element) {
 
 
 window.addEventListener("load", function(){
-    let $user = qs('#user'),
-    $userError = qs('#userError'),
-    $email = qs('#email'),
-    $emailError = qs('#emailError'),
-    $password = qs('#password'),
-    $passwordError = qs('#passwordError'),
-    $repassword = qs('#repassword'),
-    $repasswordError = qs('#repasswordError'),
-    $form = qs("#form"),
-    $submitError = qs("#submitError"),
-    error = false,
-    errores = []
-    expreg = /"^[A-Za-z]{4,8}$/,
-    regExAlpha = /^[a-zA-Z\sñáéíóúü ]*$/,
-    regExEmail = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i,
-    regExPass = /^([a-z])([A-Z]).{4,10}$/;
+    let $user = qs('#userRe'),
+    $userError = qs('#userErrorRe'),
+    $email = qs('#emailRe'),
+    $emailError = qs('#emailErrorRe'),
+    $password = qs('#passwordRe'),
+    $passwordError = qs('#passwordErrorRe'),
+    $repassword = qs('#repasswordRe'),
+    $repasswordError = qs('#repasswordErrorRe'),
+    $form = qs("#formRe"),
+    $submitError = qs("#submitErrorRe");
 
 
     function addAndRemoveClass(element, classToAdd, classToRemove){
@@ -27,7 +21,7 @@ window.addEventListener("load", function(){
         element.classList.remove(classToRemove)
     }
 
-    inputUser = document.getElementById("user")
+    inputUser = document.getElementById("userRe")
     inputUser.addEventListener("keyup", function(event){
     if(inputUser.value.length > 0){
         console.log(/^[A-Z]{4,8}$/i.test(inputUser.value))
@@ -48,7 +42,7 @@ window.addEventListener("load", function(){
         
     })
 
-    inputEmail = document.getElementById("email")
+    inputEmail = document.getElementById("emailRe")
     inputEmail.addEventListener("keyup", function(event){
     if(inputEmail.value.length > 0){
         console.log(/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i.test(inputEmail.value))
@@ -69,7 +63,7 @@ window.addEventListener("load", function(){
         
     })
 
-    inputPass = document.getElementById("password")
+    inputPass = document.getElementById("passwordRe")
     inputPass.addEventListener("keyup", function(event){
     if(inputPass.value.length > 0){
         console.log(/^[A-Z].{4,10}$/i.test(inputPass.value))
@@ -90,7 +84,7 @@ window.addEventListener("load", function(){
         
     })
 
-    inputRePass = document.getElementById("repassword")
+    inputRePass = document.getElementById("repasswordRe")
     inputRePass.addEventListener("keyup", function(event){
     if(inputRePass.value.length > 0){
         if(inputRePass.value === inputPass.value){
@@ -110,19 +104,6 @@ window.addEventListener("load", function(){
         
     })
 
-    submitErr = document.getElementById("submitError")
-    submitErr.addEventListener("change", function(event){
-        let elementosForm = this.elements
-
-        for (let index = 0; index < elementosForm.length-1; index++) {
-            if(inputUser.classList.contains('is-valid') && inputEmail.classList.contains('is-valid') && inputPass.classList.contains('is-valid') && inputRePass.classList.contains('is-valid')){
-                submitErr.classList.remove('is-invalid');
-                submitErr.innerHTML = ""
-            } 
-
-        }  
-        
-    })
 
 
     $form.addEventListener('submit',function(event){
