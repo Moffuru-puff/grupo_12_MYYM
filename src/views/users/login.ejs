@@ -11,7 +11,7 @@
         <a href="/"><img class="myym" src="/img/logo-form.png" alt=""></a>
       </div>
       <div style="order: 1" class="form-content">
-        <form action="/login" method="POST" >
+        <form id="formLog" action="/login" method="POST" >
         <div class="iniciar">
           <h2>
             Iniciar Sesion
@@ -22,17 +22,19 @@
         </div>
         <div class="form">
           <div class="input-container">
-            <input class="input-style" type="email" name="email" placeholder="email">
+            <input class="input-style" id="emailLog" type="email" name="email" placeholder="email">
             <% if(locals.errors && errors.email) {%>
             <span class="error-message"><%= errors.email.msg %></span>
             <% } %>
+            <span class="error-message" id="emailErrorLog"></span>
           </div>
         <div class="form">
             <div class="input-container">
-              <input class="input-style" type="password" name="password" placeholder="contraseña">
+              <input class="input-style" id="passwordLog" type="password" name="password" placeholder="contraseña">
               <% if(locals.errors && errors.password) { %>
               <span class="error-message"><%= errors.password.msg %></span>
               <% } %>
+              <span class="error-message" id="passwordErrorLog"></span>
             </div>
           <div class="check">
               <input type="checkbox" name="recordar" id="recordar">
@@ -41,6 +43,7 @@
           <div class="old">
               <span><a class="a" href="">¿Olvidaste tu contraseña?</a></span>
             </div>
+            <span class="error-message" id="submitErrorLog"></span>
             <button id="btn-submit" type="submit" class="btn btn-submit">Ingresar</button>
           </div>
         </div>

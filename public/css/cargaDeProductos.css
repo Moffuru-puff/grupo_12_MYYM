@@ -1,3 +1,20 @@
+.is-valid{
+    border-color: forestgreen;
+  }
+  
+  .is-valid + .icon::after {
+    content: '😃';
+  }
+  
+  .is-invalid {
+    border-color: firebrick;
+  }
+  
+  .is-invalid + .icon::after {
+    content: '😳';
+  }  
+
+
 .cargaDeFotos {
     width: 100%;
     height: 50vh;
