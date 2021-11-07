@@ -5,7 +5,7 @@
     <body>
         <%- include('../partials/header')%>
             <main class="userProfile">
-                <form action="/profile/editprofile/<%= user.id %>?_method=PUT" method="POST"
+                <form id="formPro" action="/profile/editprofile/<%= user.id %>?_method=PUT" method="POST"
                     enctype="multipart/form-data">
                     <div class="profile-container">
                         <div style="width: fit-content;height: fit-content;display: contents;" alt="">
@@ -20,11 +20,12 @@
                                 <div class="form">
                                     <h3 class="profile-title">Datos personales</h3>
                                     <div class="input-container">
-                                        <input class="input-style" type="text" name="user" placeholder="usuario"
-                                           readonly value="<%= user.user ? user.user : "" %>">
+                                        <input class="input-style" id="userPro" type="text" name="user" placeholder="usuario"
+                                           value="<%= user.user ? user.user : "" %>">
                                         <% if (locals.errors && errors.user) { %>
                                             <span class="error-message"><%= errors.user.msg %></span>
                                             <% } %>
+                                            <span class="error-message" id="userErrorPro"></span>
                                     </div>
                                     <div class="form">
                                         <div class="input-container">
@@ -160,6 +161,7 @@
 
                         </div>
                         <div>
+                            <span class="error-message" id="submitErrorPro"></span>
                             <button id="btn-submit2" type="submit" style="color: white" class="btn btn-submit">Guardar
                                 Datos</button>
                         </div>
