@@ -21,7 +21,7 @@
                                     <h3 class="profile-title">Datos personales</h3>
                                     <div class="input-container">
                                         <input class="input-style" id="userPro" type="text" name="user" placeholder="usuario"
-                                           value="<%= user.user ? user.user : "" %>">
+                                        readonly value="<%= user.user ? user.user : "" %>">
                                         <% if (locals.errors && errors.user) { %>
                                             <span class="error-message"><%= errors.user.msg %></span>
                                             <% } %>
