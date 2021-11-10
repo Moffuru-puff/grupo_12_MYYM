@@ -15,6 +15,11 @@ const { Op } = db.Sequelize.Op;
 const toThousand = (n) => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 const fs = require("fs");
 
+let categoriesPromise = db.Categorie.findAll();
+let subcategoriesPromise = db.Subcategorie.findAll();
+let markPromise = db.Mark.findAll();
+
+
 module.exports = {
   index: (req, res) => {
     res.render("./admin/admin", {
@@ -37,9 +42,7 @@ module.exports = {
   },
 
   addProduct: (req, res) => {
-    let categoriesPromise = db.Categorie.findAll();
-    let subcategoriesPromise = db.Subcategorie.findAll();
-    let markPromise = db.Mark.findAll();
+
 
     Promise.all([categoriesPromise, subcategoriesPromise, markPromise])
       .then(([categories, subcategories, marks]) => {
@@ -62,7 +65,7 @@ module.exports = {
       };
       errors.push(image);
     }*/
-    
+
     if (errors.isEmpty()) {
       let arrayImages = [];
       if (req.files) {
@@ -109,9 +112,7 @@ module.exports = {
         }
       });
     } else {
-      let categoriesPromise = db.Categorie.findAll();
-      let subcategoriesPromise = db.Subcategorie.findAll();
-      let markPromise = db.Mark.findAll();
+
 
       Promise.all([categoriesPromise, subcategoriesPromise, markPromise])
         .then(([categories, subcategories, marks]) => {
@@ -127,21 +128,27 @@ module.exports = {
   },
 
   editProduct: (req, res) => {
-    let categoriesPromise = db.Categorie.findAll();
-    let subcategoriesPromise = db.Subcategorie.findAll();
-    let markPromise = db.Mark.findAll();
+
 
     Promise.all([categoriesPromise, subcategoriesPromise, markPromise])
       .then(([categories, subcategories, marks]) => {
-        db.Product.findByPk(+req.params.id).then((product) => {
-          res.render("./admin/editProduct", {
-            categories,
-            subcategories,
-            marks,
-            product,
-            userInSession: req.session.user ? req.session.user : "",
+        db.Product.findOne({
+          where: {
+            id: +req.params.id
+          },
+          include: [{
+            association: "productimage"
+          }]
+        })
+          .then((product) => {
+            res.render("./admin/editProduct", {
+              categories,
+              subcategories,
+              marks,
+              product,
+              userInSession: req.session.user ? req.session.user : "",
+            });
           });
-        });
       })
       .catch((err) => console.log(err));
   },
@@ -154,7 +161,7 @@ module.exports = {
       };
       errors.push(image);
     }
-    
+
     if (errors.isEmpty()) {
       let arrayImages = [];
       if (req.files) {
@@ -226,9 +233,7 @@ module.exports = {
         })
         .catch((error) => console.log(error));
     } else {
-      let categoriesPromise = db.Categorie.findAll();
-      let subcategoriesPromise = db.Subcategorie.findAll();
-      let markPromise = db.Mark.findAll();
+
 
       Promise.all([categoriesPromise, subcategoriesPromise, markPromise])
         .then(([categories, subcategories, marks]) => {
@@ -268,7 +273,11 @@ module.exports = {
 
   /* sucursales */
   sucursalList: (req, res) => {
-    db.Branchoffice.findAll().then((sucursales) => {
+    db.Branchoffice.findAll({
+      include: [
+        { association: "Address" }
+      ]
+    }).then(sucursales => {
       res.render("./admin/sucursalList", {
         sucursales,
         userInSession: req.session.user ? req.session.user : "",
@@ -284,30 +293,24 @@ module.exports = {
 
   createSucursal: (req, res) => {
     let errors = validationResult(req);
-    let addressePromise = db.Addresse.findAll();
 
     if (errors.isEmpty()) {
-      /*
-      let lastId = 1;
 
-      sucursales.forEach(sucursal => {
-        if (sucursal.id >= lastId) {
-          lastId = sucursal.id + 1;
-        }
-      }); */
+      let { location, direction, telephone, schedule, postalCode } = req.body;
 
-      let { location, direction, description, telephone, schedule } = req.body;
-
-      db.Branchoffice.create({
-        addressId: "Adresse",
-        schedule,
-        telephone,
-        description,
-      });
-
-      /* sucursales.push(newSucursal);
-
-      writeSucursalesJSON(sucursales); */
+      db.Addresse.create({
+        address: direction,
+        state: location,
+        postalCode: postalCode
+      }).then(address => {
+        db.Branchoffice.create({
+          addressId: address.id,
+          schedule,
+          telephone
+        }).then(() => {
+          console.log(address, "Realizado");
+        })
+      })
 
       res.redirect("/admin/sucursals");
     } else {
@@ -320,16 +323,56 @@ module.exports = {
   },
 
   editSucursal: (req, res) => {
-    let = db.Branchoffice.findByPk(req.params.id);
-    res.render("./admin/editSucursal", {
-      sucursal,
-      userInSession: req.session.user ? req.session.user : "",
-    });
+    let = db.Branchoffice.findOne({
+      where: {
+        id: +req.params.id
+      },
+      include: [{
+        association: "Address"
+      }]
+    }).then(sucursal => {
+      res.render("./admin/editSucursal", {
+        sucursal,
+        userInSession: req.session.user ? req.session.user : "",
+      });
+    })
+
   },
   sucursalUpdate: (req, res) => {
-    let { location, direction, telephone, schedule } = req.body;
+    let errors = validationResult(req);
 
-    sucursales.map((sucursal) => {
+    if (errors.isEmpty()) {
+
+    let { location, direction, telephone, schedule, postalCode } = req.body;
+   
+      db.Branchoffice.update({
+        schedule,
+        telephone
+      }, 
+      { where : {
+        id : +req.params.id
+      }}).then(office => {
+        db.Addresse.update({
+          address: direction,
+          state: location,
+          postalCode: postalCode
+        }, 
+        {
+          where: {
+            id : office.addressId
+          }
+        }).then(address => {
+          console.log(address, 'ok');
+      })
+    })
+  } else {
+    res.render("./admin/addSucursal", {
+      errors: errors.mapped(),
+      old: req.body,
+      userInSession: req.session.user ? req.session.user : "",
+    });
+  }
+    /* sucursales.map((sucursal) => {
       if (sucursal.id === +req.params.id) {
         (sucursal.id = sucursal.id),
           (sucursal.location = location),
@@ -341,11 +384,28 @@ module.exports = {
 
     writeSucursalesJSON(sucursales);
 
-    res.redirect("/admin/sucursals");
+    res.redirect("/admin/sucursals"); */
   },
   sucursalDelete: (req, res) => {
-    sucursales.forEach((sucursal) => {
-      if (sucursal.id === +req.params.id) {
+
+        db.Branchoffice.destroy({
+          where: {
+            id: +req.params.id,
+          }
+        }).then(office => {
+        db.Addresse.destroy({
+      where: {
+        id: office.addressId
+      },
+    }).then(() => {
+        res.redirect("/admin/sucursals");
+      })   
+    }) .catch((error) => console.log(error));
+   
+      
+      
+
+    /*   if (sucursal.id === +req.params.id) {
         let sucursalToDestroy = sucursales.indexOf(sucursal);
         sucursales.splice(sucursalToDestroy, 1);
       }
@@ -353,7 +413,7 @@ module.exports = {
 
     writeSucursalesJSON(sucursales);
 
-    res.redirect("/admin/sucursals");
+    res.redirect("/admin/sucursals"); */
   },
 
   /* Usuarios */
@@ -420,55 +480,6 @@ module.exports = {
       });
     }
 
-    /*  let errors = validationResult(req);
-
-    if (errors.isEmpty()) {
-      let lastId = 1;
-
-      users.forEach(user => {
-        if (user.id >= lastId) {
-          lastId = user.id + 1;
-        }
-      });
-
-      let {
-        user,
-        name,
-        lastname,
-        telephone,
-        address,
-        province,
-        email,
-        password,
-        rol,
-      } = req.body;
-
-      let newUser = {
-        id: lastId,
-        user,
-        name,
-        lastname,
-        telephone,
-        address,
-        province,
-        email,
-        password,
-        rol,
-      };
-
-      users.push(newUser);
-
-      writeUsersJSON(users);
-
-      res.redirect("/admin/userList");
-    } else {
-      res.render("./admin/addUser", {
-        errors: errors.mapped(),
-        old: req.body,
-        userInSession: req.session.user ? req.session.user : ''
-
-      });
-    }*/
   },
 
   editUser: (req, res) => {

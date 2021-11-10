@@ -50,6 +50,16 @@
                                         </small>
                                         <% } %>
                                 </div>
+
+                                <label for="postalCode">Código Postal</label>
+                                <div class="input">
+                                    <input type="number" name="postalCode" id="postalCode" placeholder="1629" value="<%= locals.old && old.postalCode %>" />
+                                    <% if(locals.errors && errors.postalCode) { %>
+                                        <small class="text-danger">
+                                            <%= errors.postalCode.msg %>
+                                        </small>
+                                        <% } %>
+                                </div>
                             </div>
                             <div class="flex">
 

@@ -32,8 +32,9 @@
               <thead>
                 <tr>
                   <th class="visible">ID</th>
+                  <th class="invisible">Código Postal</th>
                   <th class="visible">Localidad</th>
-                  <th class="visible">Dirección</th>
+                  <th class="visible">Dirección</th>                 
                   <th class="invisible">Tel</th>
                   <th class="invisible">Horarios</th>
                   <th></th>
@@ -44,8 +45,9 @@
                 <% sucursales.forEach(sucursal => { %>
                 <tr>
                   <td class="visible"><%- sucursal.id %></td>
-                  <td class="visible"><%- sucursal.location %></td>
-                  <td class="visible"><%- sucursal.direction %></td>
+                  <td class="invisible"><%- sucursal.Address.postalCode %></td>
+                  <td class="visible"><%- sucursal.Address.state %></td>
+                  <td class="visible"><%- sucursal.Address.address %></td>
                   <td class="invisible"><%- sucursal.telephone %></td>
                   <td class="invisible"><%- sucursal.schedule %></td>
                   <td>
