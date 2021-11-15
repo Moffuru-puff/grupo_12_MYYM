@@ -8,7 +8,7 @@
         <%- include('../partials/header') %>
 
             <main class="main-admin">
-                <form action="/admin/sucursals/edit/<%= sucursal.id %>?_method=PUT " method="POST">
+                <form action="/admin/sucursals/edit/<%= sucursal.id %>?_method=PUT " method="POST" id="formSucursal">
                 
                 <div>
                     <div class="volver">
@@ -25,16 +25,34 @@
                                 <label for="location">Localidad</label>
                                 <div class="input">
                                     <input type="text" value="<%= sucursal.Address.state %>" id="location" name="location" />
+                                    <% if(locals.errors && errors.location) { %>
+                                        <small class="text-danger">
+                                            <%= errors.location.msg %>
+                                        </small>
+                                        <% } %>
+                                        <small class="text-danger" id="locationErrors"></small>
                                 </div>
 
                                 <label for="direction">Dirección</label>
                                 <div class="input">
-                                    <input type="text" value="<%= sucursal.Address.address %>"  id="location" name="direction" />
+                                    <input type="text" value="<%= sucursal.Address.address %>"  id="direction" name="direction" />
+                                    <% if(locals.errors && errors.direction) { %>
+                                        <small class="text-danger">
+                                            <%= errors.direction.msg %>
+                                        </small>
+                                        <% } %>
+                                        <small class="text-danger" id="directionErrors"></small>
                                 </div>
 
                                 <label for="telephone">Teléfono</label>
                                 <div class="input">
                                     <input type="text" name="telephone" id="telephone" value="<%= sucursal.telephone %>"  />
+                                    <% if(locals.errors && errors.telephone) { %>
+                                        <small class="text-danger">
+                                            <%= errors.telephone.msg %>
+                                        </small>
+                                        <% } %>
+                                        <small class="text-danger" id="telephoneErrors"></small>
                                 </div>
 
                                 <label for="postalCode">Código Postal</label>
@@ -45,6 +63,12 @@
                                             <%= errors.postalCode.msg %>
                                         </small>
                                         <% } %>
+                                        <% if(locals.errors && errors.postalCode) { %>
+                                            <small class="text-danger">
+                                                <%= errors.postalCode.msg %>
+                                            </small>
+                                            <% } %>
+                                            <small class="text-danger" id="postalCodeErrors"></small>
                                     </div>
                             </div>
                             <div class="flex"> 
@@ -56,14 +80,15 @@
                             </div>
                         </div>
                     </div>
+                    <small class="text-danger" id="sucursalsErrors"></small>
                     <div class="btn-publish">
-                        <button class="publish" type="button"><a href="../">Cancelar</a></button>
+                        <button class="publish" type="button" id="cancel"><a href="../">Cancelar</a></button>
                         <button class="publish" type="submit">Guardar</button>
                     </div>
-
                 </section>
                 </form>
             </main>
+            <script src="/js/validationsFront/sucursalsValidations.js"></script>
     </body>
 
 </html>

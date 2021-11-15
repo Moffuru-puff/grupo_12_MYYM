@@ -30,7 +30,7 @@
                 <li><a href="/favorites">Favoritos</a></li>
                 <li><a href="">Mis compras</a></li>
                 <li><a href="/logout">Cerrar sesión</a></li>
-                <% if (userInSession.rolesId == 2) { %>
+                <% if (userInSession.rolesId == 2 || userInSession.rolesId == 3) { %>
                   <li><a href="/admin">Opciones de <br> administrador</a></li>
                   <% } %>
               </ul>
@@ -101,7 +101,7 @@
             <li><a href="/favorites">Mis favoritos</a></li>
             <li><a href="">Mis compras</a></li>
             <li><a href="/logout">Cerrar sesión</a></li>
-            <% if (userInSession.rolesId == 2) { %>
+            <% if (userInSession.rolesId == 2 || userInSession.rolesId == 3) { %>
               <li><a href="/admin">Opciones de <br> administrador</a></li>
               <% } %>
                 <% } else { %>

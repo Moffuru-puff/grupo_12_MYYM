@@ -18,5 +18,11 @@ module.exports = [
     .withMessage("El campo teléfono no puede estar vacío")
     .isInt()
     .withMessage("Debes ingresar un teléfono válido"),
+
+    check('postalCode')    
+    .notEmpty().bail()
+    .withMessage("El campo de código postal no puede estar vacío")
+    .isNumeric()
+    .withMessage("Debes ingresar un código postal válido"),
     
 ]

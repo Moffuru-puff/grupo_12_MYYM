@@ -26,7 +26,10 @@
                                 </label>
                                 <input type="file" name="image" accept=".jpg, .png" multiple id="seleccionArchivos"
                                     value="<%= locals.old && old.image %>" />
-
+                                    <% if (locals.errors && errors.image) { %>
+                                        <small class="text-danger"><%= errors.image.msg %> </small>
+                                    <% } %>
+                                    <small class="text-danger" id="fileErrors"></small>
                             </div>
                         </div>
                     </div>
@@ -142,6 +145,13 @@
                                     <div class="input">
                                         <input type="number" min="0" placeholder="0000" id="codigo" name="barcode"
                                             value="<%= locals.old && old.barcode %>" />
+
+                                            <% if(locals.errors && errors.barcode) { %>
+                                                <small class="text-danger" id="barcodeErrors">
+                                                    <%= errors.barcode.msg %>
+                                                </small>
+                                                <% } %>
+                                                    <small class="text-danger" id="barcodeErrors"></small>
                                     </div>
 
                                     <label for="stock">Stock</label>
@@ -159,6 +169,7 @@
                                 </div>
                             </div>
                         </div>
+                        <small class="text-danger" id="submitErrors"></small>
                         <div class="btn-publish">
                             <button class="publish" id="submitProduct" type="submit">Publicar producto</button>
                         </div>

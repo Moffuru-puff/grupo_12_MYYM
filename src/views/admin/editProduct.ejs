@@ -98,7 +98,7 @@
                                     <label for="mainFeatures">Características principales</label>
                                     <div class="input">
                                         <textarea name="mainFeatures" id="mainFeatures" cols="30"
-                                            rows="10"><%= locals.old ? old.mainFeatures : product.description %></textarea>
+                                            rows="10"><%= locals.old ? old.mainFeatures : product.mainFeatures %></textarea>
                                         <small class="text-danger" id="mainFeaturesErrors"></small>
                                         <% if(locals.errors && errors.mainFeatures) { %>
                                             <small class="text-danger">
@@ -153,6 +153,13 @@
                                     <div class="input">
                                         <input type="number" min="0" name="barcode"
                                             value="<%= locals.old ? old.barcode : product.barcode %>" id="codigo" />
+
+                                            <% if(locals.errors && errors.barcode) { %>
+                                                <small class="text-danger" id="barcodeErrors">
+                                                    <%= errors.barcode.msg %>
+                                                </small>
+                                                <% } %>
+                                                    <small class="text-danger" id="barcodeErrors"></small>
                                     </div>
 
                                     <label for="stock">Stock</label>
@@ -170,6 +177,7 @@
                                 </div>
                             </div>
                         </div>
+                        <small class="text-danger" id="submitErrors"></small>
                         <div class="btn-publish">
                             <button class="publish" type="button"><a href="../">Cancelar</a></button>
                             <button class="publish" type="submit">Guardar</button>
