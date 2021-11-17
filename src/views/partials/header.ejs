@@ -30,14 +30,14 @@
                 <li><a href="/favorites">Favoritos</a></li>
                 <li><a href="">Mis compras</a></li>
                 <li><a href="/logout">Cerrar sesión</a></li>
-                <% if (userInSession.rolesId == 2) { %>
+                <% if (userInSession.rolesId == 2 || userInSession.rolesId == 3) { %>
                   <li><a href="/admin">Opciones de <br> administrador</a></li>
                   <% } %>
               </ul>
               <% } else { %>
                 <a href="#">Mi cuenta</a>
                 <ul class="sub-menu" id="account">
-                  <li><a href="/register">Regitrarse</a></li>
+                  <li><a href="/register">Registrarse</a></li>
                   <li><a href="/login">Iniciar sesión</a></li>
                 </ul>
                 <% } %>
@@ -52,8 +52,6 @@
               <li><a href="">Marcas</a></li>
             </ul>
           </li>
-          <li class="menu-item"><a href="/favorites">Mis favoritos</a></li>
-          <li class="menu-item"><a href="#">Mis compras</a></li>
         </ul>
       </nav>
       <!-- fin del desplegable -->
@@ -103,7 +101,7 @@
             <li><a href="/favorites">Mis favoritos</a></li>
             <li><a href="">Mis compras</a></li>
             <li><a href="/logout">Cerrar sesión</a></li>
-            <% if (userInSession.rolesId == 2) { %>
+            <% if (userInSession.rolesId == 2 || userInSession.rolesId == 3) { %>
               <li><a href="/admin">Opciones de <br> administrador</a></li>
               <% } %>
                 <% } else { %>

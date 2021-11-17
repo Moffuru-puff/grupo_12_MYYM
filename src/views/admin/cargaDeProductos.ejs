@@ -26,7 +26,10 @@
                                 </label>
                                 <input type="file" name="image" accept=".jpg, .png" multiple id="seleccionArchivos"
                                     value="<%= locals.old && old.image %>" />
-
+                                    <% if (locals.errors && errors.image) { %>
+                                        <small class="text-danger"><%= errors.image.msg %> </small>
+                                    <% } %>
+                                    <small class="text-danger" id="fileErrors"></small>
                             </div>
                         </div>
                     </div>
@@ -104,16 +107,12 @@
                                     <label for="categoria-form">Categoría</label>
                                     <div class="input">
                                         <select name="categorie" id="categoria-form">
-                                            <option value="" selected>Categorías</option>
-                                            <% categories.forEach(category=> { %>
+                                            <option value="" selected disabled>Categorías</option>
+                                            <% categories.forEach(category => { %>
                                                 <option value="<%- category.id %>" <%=locals.old &&
-                                                    old.category==category.id ? "selected" : null %> ><%- category.name
-                                                        %>
+                                                    old.category == category.id ? "selected" : null %> ><%- category.name %>
                                                 </option>
-                                                <% }) %>
-                                                    <!-- <option value="videojuegos">Videojuegos</option>
-                                            <option value="accesorios">Accesorios</option>
-                                            <option value="zonaRetro">Zona Retro</option> -->
+                                                <% }) %>                                                   
                                         </select>
                                         <small class="text-danger" id="categoryErrors"></small>
                                         <% if(locals.errors && errors.category) { %>
@@ -125,22 +124,15 @@
 
                                     <label for="subCategoria-form">Subcategoría</label>
                                     <div class="input">
-                                        <input list="subCategoria-form" name="subcategorie" placeholder="Gamer" />
-                                        <datalist id="subCategoria-form">
+                                        <select name="subcategorie" id="subcategoria-form">
                                             <option value="" selected disabled>Subcategorías</option>
-
-                                            <% subcategories.forEach(subcategory=> { %>
+                                            <% subcategories.forEach(subcategory => { %>
                                                 <option value="<%- subcategory.id %>" <%=locals.old &&
-                                                    old.subcategory==subcategory.id ? "selected" : null %> ><%-
-                                                        subcategory.name %>
+                                                    old.subcategory==subcategory.id ? "selected" : null %> ><%- subcategory.name %>
                                                 </option>
                                                 <% }) %>
-                                                    <!-- <option value="Retro">Retro</option>
-                                                <option value="modernas">Modernas</option>
-                                            <option value="Familiar">Familiar</option>
-                                            <option value="ps">Play Station</option>
-                                            <option value="nintendo">Nintendo</option> -->
-                                        </datalist>
+                                                    
+                                        </select>
                                         <% if(locals.errors && errors.subcategory) { %>
                                             <small class="text-danger" id="subcategoryErrors">
                                                 <%= errors.subcategory.msg %>
@@ -153,6 +145,13 @@
                                     <div class="input">
                                         <input type="number" min="0" placeholder="0000" id="codigo" name="barcode"
                                             value="<%= locals.old && old.barcode %>" />
+
+                                            <% if(locals.errors && errors.barcode) { %>
+                                                <small class="text-danger" id="barcodeErrors">
+                                                    <%= errors.barcode.msg %>
+                                                </small>
+                                                <% } %>
+                                                    <small class="text-danger" id="barcodeErrors"></small>
                                     </div>
 
                                     <label for="stock">Stock</label>
@@ -170,6 +169,7 @@
                                 </div>
                             </div>
                         </div>
+                        <small class="text-danger" id="submitErrors"></small>
                         <div class="btn-publish">
                             <button class="publish" id="submitProduct" type="submit">Publicar producto</button>
                         </div>
