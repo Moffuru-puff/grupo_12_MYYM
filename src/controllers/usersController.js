@@ -47,7 +47,7 @@ module.exports = {
 
       if (errors.isEmpty()) {
 
-        let { name, lastName, telephone, address, state, city, country, postalCode} = req.body;
+        let { user, name, lastName, telephone, address, state, city, country, postalCode} = req.body;
         db.Addresse.create({
           address,
           state,
@@ -58,6 +58,7 @@ module.exports = {
         })
         .then((address) => {
           db.User.update({
+            user,
             name,
             lastName,
             telephone,

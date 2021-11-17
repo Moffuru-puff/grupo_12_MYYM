@@ -23,13 +23,12 @@
                                     </div>
                                     <div class="input-container">
                                         <input class="input-style" id="userPro" type="text" name="user"
-                                            placeholder="usuario" readonly value="<%= user.user ? user.user : "" %>">
-                                        <% if (locals.errors && errors.user) { %>
-                                            <span class="error-message">
-                                                <%= errors.user.msg %>
+                                            placeholder="usuario" value="<%= user.user ? user.user : "" %>">
+
+                                            <span class="error-message" id="userErrorPro">
+                                                <%= (locals.errors && errors.user) ? errors.user.msg : ""%>
                                             </span>
-                                            <% } %>
-                                                <span class="error-message" id="userErrorPro"></span>
+
                                     </div>
                                     <div class="form">
                                         <div class="input-container">
