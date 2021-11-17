@@ -285,9 +285,9 @@ module.exports = {
 					addressId: address.id,
 					schedule,
 					telephone,
-				}).then(() => { });
+				}).then(() => { res.redirect("/admin/sucursals") });
+				res.redirect("/admin/sucursals");
 			});
-			res.redirect("/admin/sucursals");
 		} else {
 			res.render("./admin/addSucursal", {
 				errors: errors.mapped(),
@@ -564,4 +564,82 @@ module.exports = {
 				}).catch((error) => console.log(error));
 			}).catch((error) => console.log(error));
 	},
+
+	/* Categories */
+
+	categoryList: (req, res) => {
+		db.Categorie.findAll().then(categories => {
+			res.render("./admin/CategoriesList", {
+				categories,
+				userInSession: req.session.user ? req.session.user : "",
+			})
+		}).catch(errors => console.log(errors))
+
+	},
+	categoryAdd: (req, res) => {
+		res.render("./admin/addCategory", {
+			userInSession: req.session.user ? req.session.user : "",
+		})
+	},
+	createCategory: (req, res) => {
+		let errors = validationResult(req);
+
+		if (errors.isEmpty()) {
+			let { name } = req.body
+			console.log(name);
+			db.Categorie.create({
+				name
+			}).then(() => {
+				res.redirect("/admin/categories", {
+					userInSession: req.session.user ? req.session.user : "",
+				})
+			}).catch(errors => console.log(errors))
+		} else {
+			res.redirect("/category/create", {
+				userInSession: req.session.user ? req.session.user : "",
+			})
+		}
+	},
+
+	editCategory: (req, res) => {
+		db.Categorie.findByPk(+req.params.id).then((category) => {
+			console.log(category);
+			res.render("./admin/editCategory", {
+				userInSession: req.session.user ? req.session.user : "",
+				category,
+				
+			})
+		}).catch(err => console.log(err))
+
+
+	},
+	categoryUpdate: (req, res) => {
+		let errors = validationResult(req);
+
+		if (errors.isEmpty()) {
+			let { name } = req.body;
+
+			db.Categorie.update({
+				name
+			}, {
+				where: {
+					id: +req.params.id
+				}
+			}).then(() => {
+				res.redirect("/admin/categories")
+			}).catch(errors => console.log(errors))
+		} else {
+			res.redirect("/category/edit/:id")
+		}
+	},
+	categoryDelete: (req, res) => {
+
+		db.Categorie.destroy({
+			where: {
+				id: +req.params.id
+			}
+		}).then(() => {
+			res.redirect("/admin/categories")
+		}).catch(errors => console.log(errors))
+	}
 };

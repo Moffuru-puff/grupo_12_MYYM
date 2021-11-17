@@ -19,7 +19,13 @@ let {
     createUser,
     editUser,
     userUpdate,
-    userDelete
+    userDelete,
+    categoryList,
+    categoryAdd,
+    createCategory,
+    editCategory,
+    categoryUpdate,
+    categoryDelete
  } = require('../controllers/adminController');
 /* let index = require('../controllers/admin/adminController');
 let { productsList, 
@@ -86,5 +92,16 @@ router.get('/users/edit/:id', adminCheck, editUser);
 router.put('/users/edit/:id', userAdminValidator, userUpdate);
 /* Delete User */
 router.delete('/user/deleteUser/:id', userDelete);
+
+/* Categorías */
+router.get('/categories', adminCheck, categoryList);
+/* Create category */
+router.get('/category/create', adminCheck, categoryAdd);
+router.post('/category/create', createCategory);
+/* Edit category */
+router.get('/category/edit/:id', adminCheck, editCategory);
+router.put('/category/edit/:id', categoryUpdate);
+/* Delete category */
+router.delete('/category/deletecategory/:id', categoryDelete);
 
 module.exports = router;
