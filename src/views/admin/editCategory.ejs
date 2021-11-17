@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<%- include('../partials/head.ejs') %>
+
+    <body>
+        <!-- header para el administrador -->
+        <%- include('../partials/header') %>
+
+            <main class="main-admin">
+                <form action="/admin/category/edit/<%= category.id %>?_method=PUT " method="POST" id="formCategory">
+                
+                <div>
+                    <div class="volver">
+                        <a href="/admin/categories">
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </div>
+                </div>
+                <section class="charge">
+                    <h2>Editar categoría</h2>
+                    <div class="freight">
+                        <div class="formAdmin">
+                            <div class="flex">
+                                <label for="name">Nombre de la categoría</label>
+                                <div class="input">
+                                    <input type="text" value="<%= category.name %>" id="name" name="name" />
+                                    <% if(locals.errors && errors.name) { %>
+                                        <small class="text-danger">
+                                            <%= errors.name.msg %>
+                                        </small>
+                                        <% } %>
+                                        <small class="text-danger" id="nameErrors"></small>
+                                </div>
+
+                                
+                            </div>                       
+                        </div>
+                    </div>
+                    <small class="text-danger" id="categoryErrors"></small>
+                    <div class="btn-publish">
+                        <button class="publish" type="button" id="cancel"><a href="/admin/categories">Cancelar</a></button>
+                        <button class="publish" type="submit">Guardar</button>
+                    </div>
+                </section>
+                </form>
+            </main>
+   
+    </body>
+
+</html>

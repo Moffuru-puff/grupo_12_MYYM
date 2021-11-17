@@ -16,12 +16,12 @@
         </div>
         <!-- Lista de los productos -->
         <section class="welcome">
-          <h2>Lista de las sucursales</h2>
+          <h2>Lista de las categorías</h2>
         </section>
 
         <section class="productsList">
           <div class="btn-agregarProducto">
-            <a href="/admin/sucursal/create" class="publish">Agregar sucursal</a>
+            <a href="/admin/category/create" class="publish">Agregar categoría</a>
           </div>
 
           <!-- Tabla para Desktop -->
@@ -32,26 +32,18 @@
               <thead>
                 <tr>
                   <th class="visible">ID</th>
-                  <th class="invisible">Código Postal</th>
-                  <th class="visible">Localidad</th>
-                  <th class="visible">Dirección</th>                 
-                  <th class="invisible">Tel</th>
-                  <th class="invisible">Horarios</th>
+                  <th class="invisible">Nombre</th>
                   <th></th>
                 </tr>
               </thead>
 
               <tbody>
-                <% sucursales.forEach(sucursal => { %>
+                <% categories.forEach(category => { %>
                 <tr>
-                  <td class="visible"><%- sucursal.id %></td>
-                  <td class="invisible"><%- sucursal.Address.postalCode %></td>
-                  <td class="visible"><%- sucursal.Address.state %></td>
-                  <td class="visible"><%- sucursal.Address.address %></td>
-                  <td class="invisible"><%- sucursal.telephone %></td>
-                  <td class="invisible"><%- sucursal.schedule %></td>
+                  <td class="visible"><%- category.id %></td>
+                  <td class="invisible"><%- category.name %></td>
                   <td>
-                    <a href="/admin/sucursals/edit/<%= sucursal.id %>">
+                    <a href="/admin/category/edit/<%= category.id %>">
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-pencil-square" viewBox="0 0 16 16">
                         <path
@@ -61,7 +53,7 @@
                       </svg>
                     </a>
                     
-                      <button type="submit" class="btn btn-danger" onclick="javascript:return deleteShow(`<%= sucursal.id %>`)">
+                      <button type="submit" class="btn btn-danger" onclick="javascript:return deleteShow(`<%= category.id %>`)">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                           class="bi bi-trash" viewBox="0 0 16 16">
                           <path
@@ -94,10 +86,10 @@
     function deleteShow(id) {
        modal.innerHTML = `<div class="modal">
                             <p>
-                                ¿Seguro que desea eliminar esta sucursal?
+                                ¿Seguro que desea eliminar esta categoría?
                             </p>
                             <div class="modal-buttons">
-                                <form action="/admin/sucursal/deleteSucursal/${id}?_method=DELETE" method="POST">
+                                <form action="/admin/category/deletecategory/${id}?_method=DELETE" method="POST">
                                     <button type="submit" id="delete">ELIMINAR</button>
                                 </form>
                                 <button  onclick="javascript:return hiddenDelete()" id="dontDelete">Cancelar</button>

@@ -19,12 +19,42 @@ let {
     createUser,
     editUser,
     userUpdate,
-    userDelete
+    userDelete,
+    categoryList,
+    categoryAdd,
+    createCategory,
+    editCategory,
+    categoryUpdate,
+    categoryDelete
  } = require('../controllers/adminController');
+/* let index = require('../controllers/admin/adminController');
+let { productsList, 
+    addProduct,
+    charge,
+    editProduct,
+    productUpdate,
+    productDelete } = require('../controllers/admin/adminProductsController');
+
+let {
+    sucursalList, 
+    addSucursal,
+    createSucursal,
+    editSucursal,
+    sucursalUpdate,
+    sucursalDelete } = require('../controllers/admin/adminSucursalsController');   
+
+let {
+    userList,
+    addUser,
+    createUser,
+    editUser,
+    userUpdate,
+    userDelete } = require('../controllers/admin/adminUserController'); */
+
 let uploadFile = require('../middlewares/productUploadImage');
 let adminCheck = require('../middlewares/adminCheck');
 let sucursalValidator = require('../validations/sucursalValidator');
-let userAdminValidator = require('../validations//userAdminValidator');
+let userAdminValidator = require('../validations/userAdminValidator');
 let productValidator = require('../validations/productCreateValidator')
 
 
@@ -48,7 +78,7 @@ router.get('/sucursal/create', adminCheck, addSucursal);
 router.post('/sucursal/create', sucursalValidator, createSucursal);
 /* Edit Sucursal */
 router.get('/sucursals/edit/:id', adminCheck, editSucursal);
-router.put('/sucursals/edit/:id', productValidator, sucursalUpdate);
+router.put('/sucursals/edit/:id', sucursalValidator, sucursalUpdate);
 /* Delete Sucursal */
 router.delete('/sucursal/deleteSucursal/:id', sucursalDelete);
 
@@ -56,11 +86,22 @@ router.delete('/sucursal/deleteSucursal/:id', sucursalDelete);
 router.get('/userList', adminCheck, userList);
 /* Create User */
 router.get('/user/create', adminCheck, addUser);
-router.post('/user/create', userAdminValidator,createUser);
+router.post('/user/create', userAdminValidator, createUser);
 /* Edit User */
 router.get('/users/edit/:id', adminCheck, editUser);
-router.put('/users/edit/:id', userUpdate);
+router.put('/users/edit/:id', userAdminValidator, userUpdate);
 /* Delete User */
 router.delete('/user/deleteUser/:id', userDelete);
+
+/* Categorías */
+router.get('/categories', adminCheck, categoryList);
+/* Create category */
+router.get('/category/create', adminCheck, categoryAdd);
+router.post('/category/create', createCategory);
+/* Edit category */
+router.get('/category/edit/:id', adminCheck, editCategory);
+router.put('/category/edit/:id', categoryUpdate);
+/* Delete category */
+router.delete('/category/deletecategory/:id', categoryDelete);
 
 module.exports = router;
