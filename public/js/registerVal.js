@@ -83,7 +83,12 @@ window.addEventListener("load", function(){
             inputEmail.classList.remove("is-valid")
             $emailErrorRe.innerHTML = "El campo email es obligatorio"
             errores = true
-        } 
+        } else{
+            addAndRemoveClass(inputEmail, "is-valid", "is-invalid")
+            $emailErrorRe.innerHTML = ""
+            errores = false
+        }
+
 
     })
 

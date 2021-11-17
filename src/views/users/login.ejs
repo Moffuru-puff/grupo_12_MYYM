@@ -23,18 +23,17 @@
         <div class="form">
           <div class="input-container">
             <input class="input-style" id="emailLog" type="email" name="email" placeholder="email">
-            <% if(locals.errors && errors.email) {%>
-            <span class="error-message"><%= errors.email.msg %></span>
-            <% } %>
-            <span class="error-message" id="emailErrorLog"></span>
+
+            <span class="error-message" id="emailErrorLog"><%= (locals.errors && errors.email) ? errors.email.msg : "" %></span>
+
+
           </div>
         <div class="form">
             <div class="input-container">
               <input class="input-style" id="passwordLog" type="password" name="password" placeholder="contraseña">
-              <% if(locals.errors && errors.password) { %>
-              <span class="error-message"><%= errors.password.msg %></span>
-              <% } %>
-              <span class="error-message" id="passwordErrorLog"></span>
+
+              <span class="error-message" id="passwordErrorLog"><%= (locals.errors && errors.password) ? errors.password.msg : "" %></span>
+
             </div>
           <div class="check">
               <input type="checkbox" name="recordar" id="recordar">
