@@ -17,7 +17,8 @@ let adminRouter = require("./routes/admin");
 let arrepentimientoRouter = require("./routes/btnDeArrepentimiento");
 let producRouter = require('./routes/producRouter');
 let shoppingCartRouter = require('./routes/shoppingCart')
-let apiRouter = require('./routes/apiRouter')
+let apiRouter = require('./routes/apiRouter') 
+
 
 /* VIEWS */
 app.set('view engine', 'ejs');
@@ -41,6 +42,8 @@ app.use(express.urlencoded({extended : false}));
 app.use(express.json());
 app.use(methodOverride('_method'));
 
+app.use(categoriesHeader)
+
 /* Rutas */
 app.use('/', homeRouter);
 app.use('/admin', adminRouter);
@@ -51,7 +54,7 @@ app.use('/', usersRouter);
 app.use('/shoppingCart', shoppingCartRouter);
 
 app.use('/detalleDelProducto', producRouter);
-app.use('/api', apiRouter);
+app.use('/api', apiRouter); //APIs
 
 
 

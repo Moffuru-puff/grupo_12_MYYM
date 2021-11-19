@@ -25,7 +25,19 @@ let {
     createCategory,
     editCategory,
     categoryUpdate,
-    categoryDelete
+    categoryDelete,
+    subcategoryList,
+    subcategoryAdd,
+    createSubcategory,
+    editSubcategory,
+    subcategoryUpdate,
+    subcategoryDelete,
+    markList,
+    markAdd,
+    createMark,
+    editMark,
+    markUpdate,
+    markDelete,
  } = require('../controllers/adminController');
 /* let index = require('../controllers/admin/adminController');
 let { productsList, 
@@ -103,5 +115,27 @@ router.get('/category/edit/:id', adminCheck, editCategory);
 router.put('/category/edit/:id', categoryUpdate);
 /* Delete category */
 router.delete('/category/deletecategory/:id', categoryDelete);
+
+/* Subcategorías */
+router.get('/subcategories', adminCheck, subcategoryList);
+/* Create subcategory */
+router.get('/subcategory/create', adminCheck, subcategoryAdd);
+router.post('/subcategory/create', createSubcategory);
+/* Edit subcategory */
+router.get('/subcategory/edit/:id', adminCheck, editSubcategory);
+router.put('/subcategory/edit/:id', subcategoryUpdate);
+/* Delete subcategory */
+router.delete('/subcategory/deletesubcategory/:id', subcategoryDelete);
+
+/* Marcas */
+router.get('/marks', adminCheck, markList);
+/* Create mark */
+router.get('/mark/create', adminCheck, markAdd);
+router.post('/mark/create', createMark);
+/* Edit mark */
+router.get('/mark/edit/:id', adminCheck, editMark);
+router.put('/mark/edit/:id', markUpdate);
+/* Delete mark */
+router.delete('/mark/deletemark/:id', markDelete);
 
 module.exports = router;

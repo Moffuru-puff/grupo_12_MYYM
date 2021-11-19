@@ -1,5 +1,4 @@
-/* const { addUserFavorite, deleteUserFavorite } = require('../db/dataB') */
-const db = require('../database/models')
+let db = require('../../database/models')
 const { Op } = db.Sequelize.Op
 
 const fav = {
@@ -39,6 +38,7 @@ const fav = {
 };
 
 module.exports = {
+    /* Favoritos */
     addFavorite : (req, res) =>{
      user =  fav.addUserFavorite(req.query.userId, req.query.productId)
      req.session.user = user
@@ -48,5 +48,30 @@ module.exports = {
        user = fav.deleteUserFavorite(req.query.userId, req.query.productId)
        req.session.user = user
         res.send({status: "oki"})
+    },
+    /* Categorías */
+    allCategories: (req, res)=>{
+        db.Categorie.findAll({
+            include: [{association: "subcategories"}]
+        })
+        .then(categories => {
+            res.status(200).json({
+                meta: {
+                    status: 200,
+                    total: categories.length
+                },
+                data: categories
+            })
+        })
+    },
+    oneCategory: (req, res) => {
+        db.Categorie.findOne({where: {id: +req.params.id }, include: [{association: "subcategories"}]}).then(category => {
+            res.status(200).json({
+                meta:{
+                    status: 200
+                },
+                data: category
+            })
+        })
     }
 }
