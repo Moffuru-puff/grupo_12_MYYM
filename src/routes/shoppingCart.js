@@ -9,5 +9,9 @@ router.get('/shipping', sessionCheck, shipping)
 router.get('/checkout', sessionCheck, checkout)
 router.get('/confirm', sessionCheck, confirm)
 
+/* POST */
+
+router.post('/', sessionCheck)
+
 
 module.exports = router;

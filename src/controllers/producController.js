@@ -31,4 +31,41 @@ module.exports = {
       .catch(error => console.log(error))
 
   },
+  cart: (req, res) => {
+    db.Product.findOne({
+      where: {
+        id: req.params.id
+      },
+      include: [
+        {
+          association: "productimage"
+        }, 
+        {
+          association: "Mark"
+        }, 
+        {
+          association: "Subcategorie"
+        }
+      ]
+    }).then((product) => {
+      db.Item.create({
+        productId: product.id,
+        price: product.price - product.price * product.discount / 100 ,
+        quantity: 1,
+        discount: product.discount ? product.discount : 0,
+        name: product.name,
+        barcode: product.barcode
+      })
+      .then((item) => {
+        db.Cart.create({
+          userId: req.session.user.id,
+          itemsId: item.id
+        })
+        .then(() => {
+          res.redirect('/shoppingCart')
+        })
+      })
+      })
+
+  },
 };

@@ -20,78 +20,35 @@
     <button class="btn-vaciar">Vaciar Carrito</button>
         </div>
         <table>
-
+          <thead>
             <tr>
                 <th class="detalleproducto">Producto</th>
                 <th>Cantidad</th>
                 <th>Subtotal</th>
             </tr>
-
-            <tr>
+          </thead>
+            <tbody>
+              <% if(cart.length != 0){ %>
+                <% cart.forEach(product => { %>
+                  <tr>
                 <td>
                     <div class="cart-info">
-                        <a href=""> <img src="/img/ps4ok.png"></a>
+                        <a href="/detalleDelProducto/<%- product.Item.ProductId %>"> <img src="/img/<%- product.productimage %>"></a>
                         <div>
                             <p>
-                            <h4> Play Station 4 / Mega Pack + 3 Juegos + 1 Joystick</h4>
+                            <h4><%- product.Item.name %></h4>
+                            <% console.log(product)%>
                             </p>
-                            <small>Precio: $97.000</small><br>
+                            <small>$<%- product.Item.price %></small><br>
                             <a href=""><i style="margin-right: 10px;" class="fas fa-trash"></i>Eliminar</a>
                         </div>
                     </div>
                 </td>
-                <td><input type="number" value="1" min="0" max="100"></td>
-                <td>$97.000</td>
-            </tr>
-
-            <tr>
-                <td>
-                    <div class="cart-info">
-                        <a href=""><img src="/img/xbox.png"></a>
-                        <div>
-                            <p>
-                            <h4>Microsoft Controller Wireless Negro (PC/Xbox 360°)</h4>
-                            </p>
-                            <small>Precio: $7.400</small><br>
-                            <a href=""><i style="margin-right: 10px;" class="fas fa-trash"></i>Eliminar</a>
-                        </div>
-                    </div>
-                </td>
-                <td><input type="number" value="1" min="0" max="100"></td>
-                <td>$7.400</td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="cart-info">
-                        <a href=""><img src="/img/nes.jpg"></a>
-                        <div>
-                            <p>
-                            <h4>NES Classic Edition - Nintendo Entertainment System (8-Bits)</h4>
-                            </p>
-                            <small>Precio: $75.000</small><br>
-                            <a href=""><i style="margin-right: 10px;" class="fas fa-trash"></i>Eliminar</a>
-                        </div>
-                    </div>
-                </td>
-                <td><input type="number" value="1" min="0" max="100"></td>
-                <td>$75.000</td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="cart-info">
-                        <a href=""><img src="/img/asusokk.jpg"></a>
-                        <div>
-                            <p>
-                            <h4>Notebook Asus AMD Ryzen 156 SSD 4Gb Ram i7 3.2Ghz</h4>
-                            </p>
-                            <small>Precio: $154.000</small><br>
-                            <a href=""><i style="margin-right: 10px;" class="fas fa-trash"></i>Eliminar</a>
-                        </div>
-                    </div>
-                </td>
-                <td><input type="number" value="1" min="0" max="100"></td>
-                <td>$154.000</td>
-            </tr>
+                <td><input type="number" value="<%- product.Item.quantity %>" min="0" max="100"></td>
+                <td>$<%- product.Item.price %></td>
+              </tr>
+                <% }); }else{  %> <h3>no hay productos en el carrito</h3> <%  } %>
+              </tbody>
             
         </table>
 
@@ -100,7 +57,7 @@
             <table>
                 <tr>
                     <td>Subtotal</td>
-                    <td>$333.400</td>
+                    <td>$0</td>
                 </tr>
                 <tr>
                     <td>Envio</td>
@@ -108,7 +65,7 @@
                 </tr>
                 <tr>
                     <td>Total</td>
-                    <td>$333.400</td>
+                    <td>$0</td>
                 </tr>
                 <tr>
                     <td>

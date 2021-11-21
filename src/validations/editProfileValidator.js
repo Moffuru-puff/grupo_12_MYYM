@@ -1,5 +1,6 @@
 let { check, body } = require('express-validator');
 
+
 module.exports = [
     check('user')
     .notEmpty()
@@ -12,12 +13,17 @@ module.exports = [
 
 
 
-/*     check("name")
-    .isAlpha('es-ES', { ignore_whitespace: true })
-    .withMessage("Ingrese solamente caracteres alfabeticos"),
+  /*   check("name")
+    .matches('^[A-Za-z\s]+$')
+    .withMessage("Ingrese solamente caracteres alfabeticos"), */
 
-    check("lastName")
-    .isAlpha('es-ES', { ignore_whitespace: true })
+/*     body("name")
+    .custom((value, {req}) => {
+
+    }) */
+
+/*    check("lastName")
+    .isAlpha('es-ES')
     .withMessage("Ingrese solamente caracteres alfabeticos"),
 
     check("telephone")
