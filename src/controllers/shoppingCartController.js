@@ -30,12 +30,12 @@ module.exports = {
           db.Cart.destroy(
             {
             where: {
-              id: userProduct.itemsId
+              userId: req.session.user.id
             }
           }).then(() => {
             db.Item.destroy({
               where: {
-                id: userProduct.id,
+                id: userProduct.itemsId,
               },
             }).then(() => {
               res.redirect("/shoppingCart");
@@ -59,6 +59,7 @@ module.exports = {
           userId: req.session.user.id
         }
       }).then((userProduct) => {
+        console.log(userProduct)
         db.Cart.destroy({
           where: {
             id: userProduct.itemsId
