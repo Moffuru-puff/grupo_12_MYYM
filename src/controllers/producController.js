@@ -50,7 +50,7 @@ module.exports = {
     }).then((product) => {
       db.Item.create({
         productId: product.id,
-        price: product.price - product.price * product.discount / 100 ,
+        price: product.price,
         quantity: 1,
         discount: product.discount ? product.discount : 0,
         name: product.name,

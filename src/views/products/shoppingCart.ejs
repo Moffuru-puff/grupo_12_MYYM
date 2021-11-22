@@ -16,8 +16,13 @@
     <div class="small-container cart-page">
         <div class="mi_carrito">
             <h3>Mi Carrito</h3>
-    
-    <button class="btn-vaciar">Vaciar Carrito</button>
+            <% cart.forEach(product => { %>
+    <form action="/shoppingCart/deleteAll/<%- product.Item.ProductId %>?_method=DELETE" method="POST">
+      <% });%>
+      <% if(cart.length != 0) {%>
+    <button type="submit" class="btn-vaciar">Vaciar Carrito</button>
+    <% } else { %> <button type="submit" hidden class="btn-vaciar">Vaciar Carrito</button> <% } %>
+    </form>
         </div>
         <table>
           <thead>
@@ -37,13 +42,17 @@
                         <div>
                             <p>
                             <h4><%- product.Item.name %></h4>
-                            <% console.log(product)%>
+                         
                             </p>
                             <small>$<%- product.Item.price %></small><br>
-                            <a href=""><i style="margin-right: 10px;" class="fas fa-trash"></i>Eliminar</a>
-                        </div>
+                            <form action="/shoppingCart/deleteOne/<%- product.Item.ProductId %>?_method=DELETE" method="POST">
+                            <button type="submit" style="background: none; border: none; cursor: pointer;"><i style="margin-right: 10px; color: red; cursor: pointer;" class="fas fa-trash">Eliminar</i></button>
+                            </form>
+                          </div>
                     </div>
                 </td>
+                
+                
                 <td><input type="number" value="<%- product.Item.quantity %>" min="0" max="100"></td>
                 <td>$<%- product.Item.price %></td>
               </tr>

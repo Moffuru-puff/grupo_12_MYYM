@@ -19,21 +19,63 @@ module.exports = {
           }) 
         })
     },
-/*       db.Cart.findAll({
-        include: [
-          {
-            association: "Item"
-          }
-        ]
-      }).then(cart =>{
-        res.render("./products/shoppingCart", {
-          cart,
-          userInSession : req.session.user ? req.session.user : '',
+    emptyCart : (req, res) => {
+      db.Cart.findAll({
+        where: {
+          userId: req.session.user.id
+        }
+      }).then((userProducts) => {
+        
+        userProducts.forEach(userProduct => {
+          db.Cart.destroy(
+            {
+            where: {
+              id: userProduct.itemsId
+            }
+          }).then(() => {
+            db.Item.destroy({
+              where: {
+                id: userProduct.id,
+              },
+            }).then(() => {
+              res.redirect("/shoppingCart");
+          })
           
-        }) 
-      }) */
+        })
+          
+        })
+          
+        
+        
+      })
 
+        
+    },
 
+    deleteProduct: (req, res) => {
+
+      db.Cart.findOne({
+        where: {
+          userId: req.session.user.id
+        }
+      }).then((userProduct) => {
+        db.Cart.destroy({
+          where: {
+            id: userProduct.itemsId
+          }
+        }).then(() => {
+          db.Item.destroy({
+            where: {
+              id: userProduct.id,
+            },
+          });
+        })
+        .then(() => {
+          res.redirect("/shoppingCart");
+        })
+      })
+
+    },
 
 
     
