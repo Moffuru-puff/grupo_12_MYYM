@@ -16,12 +16,12 @@
         </div>
         <!-- Lista de los productos -->
         <section class="welcome">
-          <h2>Lista de las categorías</h2>
+          <h2>Lista de las subcategorías</h2>
         </section>
 
         <section class="productsList">
           <div class="btn-agregarProducto">
-            <a href="/admin/category/create" class="publish">Agregar categoría</a>
+            <a href="/admin/subcategory/create" class="publish">Agregar subcategoría</a>
           </div>
 
           <!-- Tabla para Desktop -->
@@ -32,18 +32,20 @@
               <thead>
                 <tr>
                   <th class="visible">ID</th>
-                  <th class="visible">Nombre</th>
+                  <th class="visible">Subcategoría</th>
+                  <th class="visible">Categoría</th>
                   <th></th>
                 </tr>
               </thead>
 
               <tbody>
-                <% categories.forEach(category => { %>
+                <% subcategories.forEach(subcategory => { %>
                 <tr>
-                  <td class="visible"><%- category.id %></td>
-                  <td class="visible"><%- category.name %></td>
+                  <td class="visible"><%- subcategory.id %></td>
+                  <td class="visible"><%- subcategory.name %></td>
+                  <td class="visible"><%- subcategory.category && subcategory.categoryId === subcategory.category.id ? subcategory.category.name : "" %></td>
                   <td>
-                    <a href="/admin/category/edit/<%= category.id %>">
+                    <a href="/admin/subcategory/edit/<%= subcategory.id %>">
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-pencil-square" viewBox="0 0 16 16">
                         <path
@@ -53,7 +55,7 @@
                       </svg>
                     </a>
                     
-                      <button type="submit" class="btn btn-danger" onclick="javascript:return deleteShow(`<%= category.id %>`)">
+                      <button type="submit" class="btn btn-danger" onclick="javascript:return deleteShow(`<%= subcategory.id %>`)">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                           class="bi bi-trash" viewBox="0 0 16 16">
                           <path
@@ -86,10 +88,13 @@
     function deleteShow(id) {
        modal.innerHTML = `<div class="modal">
                             <p>
-                                ¿Seguro que desea eliminar esta categoría?
+                                ¿Seguro que desea eliminar esta subcategoría?
+                            </p>
+                            <p>
+                                Esta acción es irreversible y se eliminaran todos los productos asociados a esta subcategoría
                             </p>
                             <div class="modal-buttons">
-                                <form action="/admin/category/deletecategory/${id}?_method=DELETE" method="POST">
+                                <form action="/admin/subcategory/deletesubcategory/${id}?_method=DELETE" method="POST">
                                     <button type="submit" id="delete">ELIMINAR</button>
                                 </form>
                                 <button  onclick="javascript:return hiddenDelete()" id="dontDelete">Cancelar</button>

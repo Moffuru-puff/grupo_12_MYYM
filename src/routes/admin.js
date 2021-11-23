@@ -25,7 +25,19 @@ let {
     createCategory,
     editCategory,
     categoryUpdate,
-    categoryDelete
+    categoryDelete,
+    subcategoryList,
+    subcategoryAdd,
+    createSubcategory,
+    editSubcategory,
+    subcategoryUpdate,
+    subcategoryDelete,
+    markList,
+    markAdd,
+    createMark,
+    editMark,
+    markUpdate,
+    markDelete,
  } = require('../controllers/adminController');
 /* let index = require('../controllers/admin/adminController');
 let { productsList, 
@@ -56,6 +68,9 @@ let adminCheck = require('../middlewares/adminCheck');
 let sucursalValidator = require('../validations/sucursalValidator');
 let userAdminValidator = require('../validations/userAdminValidator');
 let productValidator = require('../validations/productCreateValidator')
+let categoryValidator = require('../validations/categoryValidator')
+let subcategoryValidator = require('../validations/subcategoryValidator')
+let marksValidator = require('../validations/marksValidator')
 
 
 /* GET  */
@@ -97,11 +112,33 @@ router.delete('/user/deleteUser/:id', userDelete);
 router.get('/categories', adminCheck, categoryList);
 /* Create category */
 router.get('/category/create', adminCheck, categoryAdd);
-router.post('/category/create', createCategory);
+router.post('/category/create', categoryValidator, createCategory);
 /* Edit category */
 router.get('/category/edit/:id', adminCheck, editCategory);
-router.put('/category/edit/:id', categoryUpdate);
+router.put('/category/edit/:id', categoryValidator, categoryUpdate);
 /* Delete category */
 router.delete('/category/deletecategory/:id', categoryDelete);
+
+/* Subcategorías */
+router.get('/subcategories', adminCheck, subcategoryList);
+/* Create subcategory */
+router.get('/subcategory/create', adminCheck, subcategoryAdd);
+router.post('/subcategory/create', subcategoryValidator, createSubcategory);
+/* Edit subcategory */
+router.get('/subcategory/edit/:id', adminCheck, editSubcategory);
+router.put('/subcategory/edit/:id', subcategoryValidator, subcategoryUpdate);
+/* Delete subcategory */
+router.delete('/subcategory/deletesubcategory/:id', subcategoryDelete);
+
+/* Marcas */
+router.get('/marks', adminCheck, markList);
+/* Create mark */
+router.get('/mark/create', adminCheck, markAdd);
+router.post('/mark/create', marksValidator, createMark);
+/* Edit mark */
+router.get('/mark/edit/:id', adminCheck, editMark);
+router.put('/mark/edit/:id', marksValidator, markUpdate);
+/* Delete mark */
+router.delete('/mark/deletemark/:id', markDelete);
 
 module.exports = router;

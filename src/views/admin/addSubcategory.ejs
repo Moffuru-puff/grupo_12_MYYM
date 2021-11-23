@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<%- include('../partials/head.ejs') %>
+
+    <body>
+        <!-- header para el administrador -->
+        <%- include('../partials/header') %>
+
+            <main class="main-admin">
+                <form action="/admin/subcategory/create" method="POST" id="formSubcategory">
+                <div>
+                    <div class="volver">
+                        <a href="/admin/subcategories">
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </div>
+                </div>
+                <section class="charge">
+                    <h2>Agregar nueva subcategoría</h2>
+                    <div class="freight">
+                        <div class="formAdmin">
+                            <div class="flex">
+                                <label for="name">Nombre de la Subcategoría</label>
+                                <div class="input">
+                                    <input type="text" placeholder="Familiar" id="name" name="name" value="<%= locals.old && old.name %>" />
+                                    <% if(locals.errors && errors.name) { %>
+                                        <small class="text-danger">
+                                            <%= errors.name.msg %>
+                                        </small>
+                                        <% } %>
+                                        <small class="text-danger" id="nameErrors"></small>
+                                </div>
+                            </div>
+                            <div class="flex">
+                                <label for="categoria-form">Categoría</label>
+                                <div class="input">
+                                    <select name="categoryId" id="categoria-form" class="categorySelect">
+                                        <option value="" selected disabled>Categorías</option>
+                                        <% locals.categories.forEach(category => { %>
+                                            <option value="<%- category.id %>" <%= locals.old &&
+                                                old.category == category.id ? "selected" : "" %> ><%- category.name %>
+                                            </option>
+                                            <% console.log(category) %> 
+                                            <% }) %>                                                   
+                                    </select>
+                                    <small class="text-danger" id="categoryErrors"></small>
+                                    <% if(locals.errors && errors.categoryId) { %>
+                                        <small class="text-danger" id="categoryErrors">
+                                            <%= errors.categoryId.msg %>
+                                        </small>
+                                        <% } %>
+                            </div>
+                        </div>
+                    </div>
+                    <small class="text-danger" id="subcategoryErrors"></small>
+                    <div class="btn-publish">                        
+                        <button class="publish" type="submit">Guardar</button>
+                    </div>
+
+                </section>
+            </form>
+            </main>
+            <script src="/js/adminCategories.js"></script>
+            <script src="/js/validationsFront/subcategoryValidations.js"></script>
+    </body>
+
+</html>

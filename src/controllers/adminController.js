@@ -105,6 +105,8 @@ module.exports = {
 						categories,
 						subcategories,
 						marks,
+						errors: errors.mapped(),
+						old: req.body,
 						userInSession: req.session.user ? req.session.user : "",
 					});
 				})
@@ -461,6 +463,8 @@ module.exports = {
 			}).catch((err) => console.log(err));
 		} else {
 			res.render("./admin/addUser", {
+				errors: errors.mapped(),
+				old: req.body,
 				userInSession: req.session.user ? req.session.user : "",
 			});
 		}
@@ -479,12 +483,7 @@ module.exports = {
 				{
 					association: "Role"
 				}
-			],
-			/* include: [
-				{
-					association: "Role"
-				}
-			], */
+			]
 		}).then(user => {
 			res.render("./admin/editUser", {
 				user,
@@ -539,6 +538,8 @@ module.exports = {
 			});
 		} else {
 			res.render("./admin/editUser", {
+				errors: errors.mapped(),
+				old: req.body,
 				userInSession: req.session.user ? req.session.user : "",
 			});
 		}
@@ -568,7 +569,9 @@ module.exports = {
 	/* Categories */
 
 	categoryList: (req, res) => {
-		db.Categorie.findAll().then(categories => {
+		db.Categorie.findAll({
+			include: [{association: "subcategories"}]
+		}).then(categories => {
 			res.render("./admin/CategoriesList", {
 				categories,
 				userInSession: req.session.user ? req.session.user : "",
@@ -586,16 +589,16 @@ module.exports = {
 
 		if (errors.isEmpty()) {
 			let { name } = req.body
-			console.log(name);
+
 			db.Categorie.create({
 				name
 			}).then(() => {
-				res.redirect("/admin/categories", {
-					userInSession: req.session.user ? req.session.user : "",
-				})
+				res.redirect("/admin/categories")
 			}).catch(errors => console.log(errors))
 		} else {
-			res.redirect("/category/create", {
+			res.render("./admin/addCategory", {
+				errors: errors.mapped(),
+          		old: req.body,
 				userInSession: req.session.user ? req.session.user : "",
 			})
 		}
@@ -607,11 +610,9 @@ module.exports = {
 			res.render("./admin/editCategory", {
 				userInSession: req.session.user ? req.session.user : "",
 				category,
-				
+
 			})
 		}).catch(err => console.log(err))
-
-
 	},
 	categoryUpdate: (req, res) => {
 		let errors = validationResult(req);
@@ -629,17 +630,295 @@ module.exports = {
 				res.redirect("/admin/categories")
 			}).catch(errors => console.log(errors))
 		} else {
-			res.redirect("/category/edit/:id")
+			db.Categorie.findByPk(+req.params.id).then((category) => {
+				console.log(category);
+				res.render("./admin/editCategory", {
+					errors: errors.mapped(),
+         			old: req.body,
+					userInSession: req.session.user ? req.session.user : "",
+					category,
+	
+				})
+			}).catch(err => console.log(err))
 		}
 	},
 	categoryDelete: (req, res) => {
 
-		db.Categorie.destroy({
+		db.Subcategorie.destroy({
 			where: {
-				id: +req.params.id
+				categoryId: +req.params.id
 			}
 		}).then(() => {
-			res.redirect("/admin/categories")
+			db.Categorie.destroy({
+				where: {
+					id: +req.params.id
+				}
+			}).then(() => {
+				res.redirect("/admin/categories")
+			}).catch(errors => console.log(errors))
 		}).catch(errors => console.log(errors))
-	}
+
+	},
+
+	/* Subcategorías */
+
+	subcategoryList: (req, res) => {
+		db.Subcategorie.findAll({
+			include: [{
+				association: "category"
+			}]
+		}).then(subcategories => {
+			res.render("./admin/SubcategoryList", {
+				subcategories,
+				userInSession: req.session.user ? req.session.user : "",
+			})
+		}).catch(errors => console.log(errors))
+
+	},
+	subcategoryAdd: (req, res) => {
+		res.render("./admin/addSubcategory", {
+			userInSession: req.session.user ? req.session.user : "",
+		})
+	},
+	createSubcategory: (req, res) => {
+		let errors = validationResult(req);
+
+		if (errors.isEmpty()) {
+			let { name, categoryId } = req.body
+
+			db.Subcategorie.create({
+				name,
+				categoryId
+			}).then(() => {
+				res.redirect("/admin/subcategories")
+			}).catch(errors => console.log(errors))
+		} else {
+			res.render("./admin/addSubcategory", {
+				errors: errors.mapped(),
+         		old: req.body,
+				userInSession: req.session.user ? req.session.user : "",
+			})
+		}
+	},
+
+	editSubcategory: (req, res) => {
+		db.Subcategorie.findByPk(+req.params.id).then((subcategory) => {
+			console.log(subcategory);
+			res.render("./admin/editSubcategory", {
+				userInSession: req.session.user ? req.session.user : "",
+				subcategory
+			})
+		}).catch(err => console.log(err))
+
+
+	},
+	subcategoryUpdate: (req, res) => {
+		let errors = validationResult(req);
+
+		if (errors.isEmpty()) {
+			let { name, categoryId } = req.body;
+
+			db.Subcategorie.update({
+				name,
+				categoryId
+			}, {
+				where: {
+					id: +req.params.id
+				}
+			}).then(() => {
+				res.redirect("/admin/subcategories")
+			}).catch(errors => console.log(errors))
+		} else {
+			db.Subcategorie.findByPk(+req.params.id).then((subcategory) => {
+				console.log(subcategory);
+				res.render("./admin/editSubcategory", {
+					errors: errors.mapped(),
+					old: req.body,
+					userInSession: req.session.user ? req.session.user : "",
+					subcategory
+				})
+			}).catch(err => console.log(err))
+		}
+	},
+	subcategoryDelete: (req, res) => {
+		db.Product.findAll({
+			where: {
+				subcategoryId: +req.params.id
+			}
+		}).then((productsWithSubcategory) => {
+			if (productsWithSubcategory) {
+				db.Product.destroy({
+					where: {
+						subcategoryId: +req.params.id
+					}
+				}).then((products) => {
+					productsWithSubcategory.forEach(product => {
+						db.Productsimage.findAll({
+							where: {
+								productId: product.id,
+							},
+						}).then((images) => {
+							images.forEach((image) => {
+								fs.existsSync(`./public/img/Productos Gamers/${image.url}`) ?
+									fs.unlinkSync(`./public/img/Productos Gamers/${image.url}`) : console.log("-- No se encontró");
+							});
+						})
+						db.Productsimage.destroy({
+							where: {
+								productId: product.id,
+							},
+						}).then(() => { })
+					})
+					db.Product.destroy({
+						where: {
+							subcategoryId: +req.params.id,
+						},
+					}).then((result) => {
+						db.Subcategorie.destroy({
+							where: {
+								id: +req.params.id,
+							}
+						}).then(() => {
+							res.redirect("/admin/subcategories")
+						}).catch(errors => console.log(errors))
+		
+					}).catch(errors => console.log(errors))
+				})
+			}else {
+				db.Subcategorie.destroy({
+					where: {
+						id: +req.params.id,
+					}
+				}).then(() => {
+					res.redirect("/admin/subcategories")
+				}).catch(errors => console.log(errors))
+			}
+		})
+
+		db.Product.destroy({
+			where: {
+				subcategoryId: +req.params.id
+			}
+		}).then((products) => {
+			products.forEach(product => {
+				db.Productsimage.findAll({
+					where: {
+						productId: product.id,
+					},
+				}).then((images) => {
+					images.forEach((image) => {
+						fs.existsSync(`./public/img/Productos Gamers/${image.url}`) ?
+							fs.unlinkSync(`./public/img/Productos Gamers/${image.url}`) : console.log("-- No se encontró");
+					});
+				})
+				db.Productsimage.destroy({
+					where: {
+						productId: product.id,
+					},
+				}).then(() => { })
+			})
+			db.Product.destroy({
+				where: {
+					subcategoryId: +req.params.id,
+				},
+			}).then((result) => {
+				db.Subcategorie.destroy({
+					where: {
+						id: +req.params.id,
+					}
+				}).then(() => {
+					res.redirect("/admin/subcategories")
+				}).catch(errors => console.log(errors))
+
+			}).catch(errors => console.log(errors))
+		})
+	},
+
+		/* Marcas */
+
+		markList: (req, res) => {
+			db.Mark.findAll().then(marks => {
+				res.render("./admin/MarksList", {
+					marks,
+					userInSession: req.session.user ? req.session.user : "",
+				})
+			}).catch(errors => console.log(errors))
+	
+		},
+		markAdd: (req, res) => {
+			res.render("./admin/addMark", {
+				userInSession: req.session.user ? req.session.user : "",
+			})
+		},
+		createMark: (req, res) => {
+			let errors = validationResult(req);
+	
+			if (errors.isEmpty()) {
+				let { name } = req.body
+	
+				db.Mark.create({
+					name
+				}).then(() => {
+					res.redirect("/admin/marks")
+				}).catch(errors => console.log(errors))
+			} else {
+				res.render("./admin/addMark", {
+					errors: errors.mapped(),
+          			old: req.body,
+					userInSession: req.session.user ? req.session.user : "",
+				})
+			}
+		},
+	
+		editMark: (req, res) => {
+			db.Mark.findByPk(+req.params.id).then((mark) => {
+				console.log(mark);
+				res.render("./admin/editMark", {
+					userInSession: req.session.user ? req.session.user : "",
+					mark,
+	
+				})
+			}).catch(err => console.log(err))
+	
+	
+		},
+		markUpdate: (req, res) => {
+			let errors = validationResult(req);
+	
+			if (errors.isEmpty()) {
+				let { name } = req.body;
+	
+				db.Mark.update({
+					name
+				}, {
+					where: {
+						id: +req.params.id
+					}
+				}).then(() => {
+					res.redirect("/admin/marks")
+				}).catch(errors => console.log(errors))
+			} else {
+				db.Mark.findByPk(+req.params.id).then((mark) => {
+					console.log(mark);
+					res.render("./admin/editMark", {
+						errors: errors.mapped(),
+						old: req.body,
+						userInSession: req.session.user ? req.session.user : "",
+						mark,
+		
+					})
+				}).catch(err => console.log(err))
+			}
+		},
+		markDelete: (req, res) => {
+
+				db.Mark.destroy({
+					where: {
+						id: +req.params.id
+					}
+				}).then(() => {
+					res.redirect("/admin/marks")
+				}).catch(errors => console.log(errors))
+			
+		},
 };

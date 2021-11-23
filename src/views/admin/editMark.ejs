@@ -8,22 +8,22 @@
         <%- include('../partials/header') %>
 
             <main class="main-admin">
-                <form action="/admin/category/create" method="POST" id="formCategory">
+                <form action="/admin/mark/edit/<%= mark.id %>?_method=PUT " method="POST" id="formMark">
                 <div>
                     <div class="volver">
-                        <a href="/admin/categories">
+                        <a href="/admin/marks">
                             <i class="fas fa-arrow-left"></i>
                         </a>
                     </div>
                 </div>
                 <section class="charge">
-                    <h2>Agregar nueva categoría</h2>
+                    <h2>Agregar nueva marca</h2>
                     <div class="freight">
                         <div class="formAdmin">
                             <div class="flex">
-                                <label for="name">Nombre de la Categoría</label>
+                                <label for="name">Nombre de la marca</label>
                                 <div class="input">
-                                    <input type="text" placeholder="Consolas" id="name" name="name" value="<%= locals.old && old.name %>" />
+                                    <input type="text" placeholder="Intel" id="name" name="name" value="<%= locals.old && old.name ? old.name : mark.name %>" />
                                     <% if(locals.errors && errors.name) { %>
                                         <small class="text-danger">
                                             <%= errors.name.msg %>
@@ -34,7 +34,7 @@
                             </div>
                         </div>
                     </div>
-                    <small class="text-danger" id="categoryErrors"></small>
+                    <small class="text-danger" id="markErrors"></small>
                     <div class="btn-publish">                        
                         <button class="publish" type="submit">Guardar</button>
                     </div>
@@ -42,7 +42,7 @@
                 </section>
             </form>
             </main>
-        <script src="/js/validationsFront/categoryValidations.js"></script>
+        
     </body>
 
 </html>

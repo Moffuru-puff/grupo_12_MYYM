@@ -16,12 +16,12 @@
         </div>
         <!-- Lista de los productos -->
         <section class="welcome">
-          <h2>Lista de las categorías</h2>
+          <h2>Lista de marcas</h2>
         </section>
 
         <section class="productsList">
           <div class="btn-agregarProducto">
-            <a href="/admin/category/create" class="publish">Agregar categoría</a>
+            <a href="/admin/mark/create" class="publish">Agregar marca</a>
           </div>
 
           <!-- Tabla para Desktop -->
@@ -38,12 +38,12 @@
               </thead>
 
               <tbody>
-                <% categories.forEach(category => { %>
+                <% marks.forEach(mark => { %>
                 <tr>
-                  <td class="visible"><%- category.id %></td>
-                  <td class="visible"><%- category.name %></td>
+                  <td class="visible"><%- mark.id %></td>
+                  <td class="visible"><%- mark.name %></td>
                   <td>
-                    <a href="/admin/category/edit/<%= category.id %>">
+                    <a href="/admin/mark/edit/<%= mark.id %>">
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-pencil-square" viewBox="0 0 16 16">
                         <path
@@ -53,7 +53,7 @@
                       </svg>
                     </a>
                     
-                      <button type="submit" class="btn btn-danger" onclick="javascript:return deleteShow(`<%= category.id %>`)">
+                      <button type="submit" class="btn btn-danger" onclick="javascript:return deleteShow(`<%= mark.id %>`)">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                           class="bi bi-trash" viewBox="0 0 16 16">
                           <path
@@ -86,10 +86,10 @@
     function deleteShow(id) {
        modal.innerHTML = `<div class="modal">
                             <p>
-                                ¿Seguro que desea eliminar esta categoría?
+                                ¿Seguro que desea eliminar esta marca?
                             </p>
                             <div class="modal-buttons">
-                                <form action="/admin/category/deletecategory/${id}?_method=DELETE" method="POST">
+                                <form action="/admin/mark/deletemark/${id}?_method=DELETE" method="POST">
                                     <button type="submit" id="delete">ELIMINAR</button>
                                 </form>
                                 <button  onclick="javascript:return hiddenDelete()" id="dontDelete">Cancelar</button>
