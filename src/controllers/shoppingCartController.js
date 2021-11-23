@@ -8,7 +8,17 @@ module.exports = {
           },
           include: [
             {
-              association: "Item"
+              association: "Item",
+              include: [
+                {
+                  association: "Product",
+                  include: [
+                    {
+                      association: "productimage"
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }).then(cart =>{
@@ -56,18 +66,18 @@ module.exports = {
 
       db.Cart.findOne({
         where: {
-          userId: req.session.user.id
+          id: req.params.id
         }
       }).then((userProduct) => {
         console.log(userProduct)
         db.Cart.destroy({
           where: {
-            id: userProduct.itemsId
+            id: req.params.id
           }
         }).then(() => {
           db.Item.destroy({
             where: {
-              id: userProduct.id,
+              id: userProduct.itemsId,
             },
           });
         })

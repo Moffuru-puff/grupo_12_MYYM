@@ -38,14 +38,17 @@
                   <tr>
                 <td>
                     <div class="cart-info">
-                        <a href="/detalleDelProducto/<%- product.Item.ProductId %>"> <img src="/img/<%- product.productimage %>"></a>
+                        <a href="/detalleDelProducto/<%- product.Item.productId %>"> <img src="/img/Productos Gamers/<%- product.Item.Product.productimage[0].url %>"></a>
+                        <% console.log(product.Item.Product.productimage[0])%>
+
                         <div>
                             <p>
                             <h4><%- product.Item.name %></h4>
+                            <% console.log(product)%>
                          
                             </p>
                             <small>$<%- product.Item.price %></small><br>
-                            <form action="/shoppingCart/deleteOne/<%- product.Item.ProductId %>?_method=DELETE" method="POST">
+                            <form action="/shoppingCart/deleteOne/<%- product.id %>?_method=DELETE" method="POST">
                             <button type="submit" style="background: none; border: none; cursor: pointer;"><i style="margin-right: 10px; color: red; cursor: pointer;" class="fas fa-trash">Eliminar</i></button>
                             </form>
                           </div>

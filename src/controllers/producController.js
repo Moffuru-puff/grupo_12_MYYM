@@ -32,40 +32,70 @@ module.exports = {
 
   },
   cart: (req, res) => {
-    db.Product.findOne({
+    db.Cart.findAll({
       where: {
-        id: req.params.id
-      },
-      include: [
-        {
-          association: "productimage"
-        }, 
-        {
-          association: "Mark"
-        }, 
-        {
-          association: "Subcategorie"
+        userId: req.session.user.id
+      }
+    }).then((itemsCart) => {
+      itemsCart.forEach(itemCart => {
+        console.log(itemCart)
+        if(itemCart.itemsId == req.params.id ){
+          db.Item.findOne({
+            where: {
+              id: itemCart.itemsId
+            }
+          }).then((item) => {
+            db.Item.update({
+              quantity: quantity++
+            },
+            {
+              where: {
+                id: item.id
+              }
+            }).then(() => {
+              res.redirect('/shoppingCart')
+            })
+          })
+        } else {
+          db.Product.findOne({
+            where: {
+              id: req.params.id
+            },
+            include: [
+              {
+                association: "productimage"
+              }, 
+              {
+                association: "Mark"
+              }, 
+              {
+                association: "Subcategorie"
+              }
+            ]
+          }).then((product) => {
+            db.Item.create({
+              productId: product.id,
+              price: product.price,
+              quantity: 1,
+              discount: product.discount ? product.discount : 0,
+              name: product.name,
+              barcode: product.barcode
+            })
+            .then((item) => {
+              db.Cart.create({
+                userId: req.session.user.id,
+                itemsId: item.id
+              })
+              .then(() => {
+                res.redirect('/shoppingCart')
+              })
+            })
+            })
         }
-      ]
-    }).then((product) => {
-      db.Item.create({
-        productId: product.id,
-        price: product.price,
-        quantity: 1,
-        discount: product.discount ? product.discount : 0,
-        name: product.name,
-        barcode: product.barcode
       })
-      .then((item) => {
-        db.Cart.create({
-          userId: req.session.user.id,
-          itemsId: item.id
-        })
-        .then(() => {
-          res.redirect('/shoppingCart')
-        })
-      })
-      })
+    })
+
+    
 
   },
 };
