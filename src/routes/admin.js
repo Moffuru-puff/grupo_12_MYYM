@@ -68,6 +68,9 @@ let adminCheck = require('../middlewares/adminCheck');
 let sucursalValidator = require('../validations/sucursalValidator');
 let userAdminValidator = require('../validations/userAdminValidator');
 let productValidator = require('../validations/productCreateValidator')
+let categoryValidator = require('../validations/categoryValidator')
+let subcategoryValidator = require('../validations/subcategoryValidator')
+let marksValidator = require('../validations/marksValidator')
 
 
 /* GET  */
@@ -109,10 +112,10 @@ router.delete('/user/deleteUser/:id', userDelete);
 router.get('/categories', adminCheck, categoryList);
 /* Create category */
 router.get('/category/create', adminCheck, categoryAdd);
-router.post('/category/create', createCategory);
+router.post('/category/create', categoryValidator, createCategory);
 /* Edit category */
 router.get('/category/edit/:id', adminCheck, editCategory);
-router.put('/category/edit/:id', categoryUpdate);
+router.put('/category/edit/:id', categoryValidator, categoryUpdate);
 /* Delete category */
 router.delete('/category/deletecategory/:id', categoryDelete);
 
@@ -120,10 +123,10 @@ router.delete('/category/deletecategory/:id', categoryDelete);
 router.get('/subcategories', adminCheck, subcategoryList);
 /* Create subcategory */
 router.get('/subcategory/create', adminCheck, subcategoryAdd);
-router.post('/subcategory/create', createSubcategory);
+router.post('/subcategory/create', subcategoryValidator, createSubcategory);
 /* Edit subcategory */
 router.get('/subcategory/edit/:id', adminCheck, editSubcategory);
-router.put('/subcategory/edit/:id', subcategoryUpdate);
+router.put('/subcategory/edit/:id', subcategoryValidator, subcategoryUpdate);
 /* Delete subcategory */
 router.delete('/subcategory/deletesubcategory/:id', subcategoryDelete);
 
@@ -131,10 +134,10 @@ router.delete('/subcategory/deletesubcategory/:id', subcategoryDelete);
 router.get('/marks', adminCheck, markList);
 /* Create mark */
 router.get('/mark/create', adminCheck, markAdd);
-router.post('/mark/create', createMark);
+router.post('/mark/create', marksValidator, createMark);
 /* Edit mark */
 router.get('/mark/edit/:id', adminCheck, editMark);
-router.put('/mark/edit/:id', markUpdate);
+router.put('/mark/edit/:id', marksValidator, markUpdate);
 /* Delete mark */
 router.delete('/mark/deletemark/:id', markDelete);
 

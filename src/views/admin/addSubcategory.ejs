@@ -45,9 +45,9 @@
                                             <% }) %>                                                   
                                     </select>
                                     <small class="text-danger" id="categoryErrors"></small>
-                                    <% if(locals.errors && errors.category) { %>
+                                    <% if(locals.errors && errors.categoryId) { %>
                                         <small class="text-danger" id="categoryErrors">
-                                            <%= errors.category.msg %>
+                                            <%= errors.categoryId.msg %>
                                         </small>
                                         <% } %>
                             </div>
@@ -62,6 +62,7 @@
             </form>
             </main>
             <script src="/js/adminCategories.js"></script>
+            <script src="/js/validationsFront/subcategoryValidations.js"></script>
     </body>
 
 </html>

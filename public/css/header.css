@@ -334,7 +334,6 @@ nav.navbar {
         padding: 30px;
         border-radius: 15px;
         text-align: center;
-        right: 10px;
         margin-top: 2px;
         transition: all 1s ease;
         order: 3;
@@ -392,6 +391,12 @@ nav.navbar {
     }
 
     nav.navbar ul.container-principal li.item:hover {
+        border-style: solid;
+        border-width: 3px;
+        border-image: linear-gradient(to left, rgb(252, 176, 69) 0%, rgb(253, 29, 29) 50%, rgb(131, 58, 180) 100%) 100% 0 100% 0/0px 0 3px 0 stretch;
+    }
+
+    .selectItem{
         border-style: solid;
         border-width: 3px;
         border-image: linear-gradient(to left, rgb(252, 176, 69) 0%, rgb(253, 29, 29) 50%, rgb(131, 58, 180) 100%) 100% 0 100% 0/0px 0 3px 0 stretch;
@@ -459,17 +464,21 @@ nav.navbar {
         left: -5px;
         height: 16rem;
         overflow: auto;
+        height: inherit;
     }
 
     nav.navbar ul.container-principal li.item-categoria div.general div.dropdown-rigth div.img-desplegables{
-        width: 160px;
+        width: 145px;
         position: absolute;
         right: 10px;
-        top: 115px;
+        top: 77px;
+        max-height: 69%;
+        overflow: hidden;
     }
 
     nav.navbar ul.container-principal li.item-categoria div.general div.dropdown-rigth div.img-desplegables img{
-        width: 100%;       
+        width: 100%;      
+        opacity: 85%; 
     }
 
     nav.navbar ul.container-principal li.item-categoria div.general div.dropdown-rigth div.todo,
@@ -482,6 +491,7 @@ nav.navbar {
         background: linear-gradient(90deg, rgba(55, 4, 96, 1) 0%, rgba(255, 163, 0, 1) 100%);
         padding: 0 10px;
         border-radius: 2px;
+        height: inherit;
     }
     
     nav.navbar ul.container-principal li.item-categoria div.general div.dropdown-rigth h4 a,
@@ -496,7 +506,8 @@ nav.navbar {
 
     nav.navbar ul.container-principal li.item-categoria div.general div.dropdown-rigth .row {
         padding: 1rem;
-        border-bottom: solid 1px;
+      /*   border-bottom: solid 1px;
+        height: inherit; */
     }
 
 
@@ -558,17 +569,18 @@ nav.navbar {
         text-decoration: none;
     }
 
-    nav.navbar ul.container-principal li.item-marcas div.dropdown-rigth {
+    nav.navbar ul.container-principal li.item-marcas div.drop-rigth {
         background-color: var(--blue);
         height: 15rem;
         overflow: auto;
+        width: 10rem;
     }
 
-    nav.navbar ul.container-principal li.item-marcas div.dropdown-rigth .column {
+    nav.navbar ul.container-principal li.item-marcas div.drop-rigth .column {
         padding: 1rem;
     }
 
-    nav.navbar ul.container-principal li.item-marcas div.dropdown-rigth .column h4 a {
+    nav.navbar ul.container-principal li.item-marcas div.drop-rigth .column h4 a {
         background-color: var(--lilac1);
         color: var(--cream);
         display: block;
@@ -578,7 +590,7 @@ nav.navbar {
         padding-left: 5px;
     }
 
-    nav.navbar ul.container-principal li.item-marcas div.dropdown-rigth .column ul li {
+    nav.navbar ul.container-principal li.item-marcas div.drop-rigth .column ul li {
         padding: 3px 5px;
     }
 
@@ -603,6 +615,7 @@ nav.navbar {
         justify-content: space-around;
         background-color: rgba(196, 196, 196, 0.25);
         border-radius: 10px;
+        position: relative;
     }
 
     div.account .avatar {
@@ -633,7 +646,6 @@ nav.navbar {
 
      /* Desplegable de mi cuenta */
      div.drop-account{
-         right: 100px;
         margin-top: 35px;
     }
 
@@ -692,6 +704,11 @@ nav.navbar {
         width: 213px;
         right: 40px;
         top: 40px;
+        max-height: 84%;
+    }
+
+    nav.navbar ul.container-principal li.item-marcas div.drop-rigth {
+        width: 20rem;
     }
 
 

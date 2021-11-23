@@ -8,6 +8,7 @@ const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser');
 const localsCheck = require('./middlewares/localsCheck')
 let categoriesHeader = require('./middlewares/categoriesHeader')
+let marksHeader = require('./middlewares/marksHeader')
 
 
 /* Enrutadores */
@@ -43,6 +44,7 @@ app.use(express.json());
 app.use(methodOverride('_method'));
 
 app.use(categoriesHeader)
+app.use(marksHeader)
 
 /* Rutas */
 app.use('/', homeRouter);

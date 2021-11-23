@@ -105,6 +105,8 @@ module.exports = {
 						categories,
 						subcategories,
 						marks,
+						errors: errors.mapped(),
+						old: req.body,
 						userInSession: req.session.user ? req.session.user : "",
 					});
 				})
@@ -461,6 +463,8 @@ module.exports = {
 			}).catch((err) => console.log(err));
 		} else {
 			res.render("./admin/addUser", {
+				errors: errors.mapped(),
+				old: req.body,
 				userInSession: req.session.user ? req.session.user : "",
 			});
 		}
@@ -479,12 +483,7 @@ module.exports = {
 				{
 					association: "Role"
 				}
-			],
-			/* include: [
-				{
-					association: "Role"
-				}
-			], */
+			]
 		}).then(user => {
 			res.render("./admin/editUser", {
 				user,
@@ -539,6 +538,8 @@ module.exports = {
 			});
 		} else {
 			res.render("./admin/editUser", {
+				errors: errors.mapped(),
+				old: req.body,
 				userInSession: req.session.user ? req.session.user : "",
 			});
 		}
@@ -568,7 +569,9 @@ module.exports = {
 	/* Categories */
 
 	categoryList: (req, res) => {
-		db.Categorie.findAll().then(categories => {
+		db.Categorie.findAll({
+			include: [{association: "subcategories"}]
+		}).then(categories => {
 			res.render("./admin/CategoriesList", {
 				categories,
 				userInSession: req.session.user ? req.session.user : "",
@@ -593,7 +596,9 @@ module.exports = {
 				res.redirect("/admin/categories")
 			}).catch(errors => console.log(errors))
 		} else {
-			res.redirect("/category/create", {
+			res.render("./admin/addCategory", {
+				errors: errors.mapped(),
+          		old: req.body,
 				userInSession: req.session.user ? req.session.user : "",
 			})
 		}
@@ -608,8 +613,6 @@ module.exports = {
 
 			})
 		}).catch(err => console.log(err))
-
-
 	},
 	categoryUpdate: (req, res) => {
 		let errors = validationResult(req);
@@ -627,7 +630,16 @@ module.exports = {
 				res.redirect("/admin/categories")
 			}).catch(errors => console.log(errors))
 		} else {
-			res.redirect("/category/edit/:id")
+			db.Categorie.findByPk(+req.params.id).then((category) => {
+				console.log(category);
+				res.render("./admin/editCategory", {
+					errors: errors.mapped(),
+         			old: req.body,
+					userInSession: req.session.user ? req.session.user : "",
+					category,
+	
+				})
+			}).catch(err => console.log(err))
 		}
 	},
 	categoryDelete: (req, res) => {
@@ -681,9 +693,10 @@ module.exports = {
 				res.redirect("/admin/subcategories")
 			}).catch(errors => console.log(errors))
 		} else {
-			res.redirect("/subcategory/create", {
+			res.render("./admin/addSubcategory", {
+				errors: errors.mapped(),
+         		old: req.body,
 				userInSession: req.session.user ? req.session.user : "",
-				old: req.body
 			})
 		}
 	},
@@ -716,9 +729,15 @@ module.exports = {
 				res.redirect("/admin/subcategories")
 			}).catch(errors => console.log(errors))
 		} else {
-			res.redirect("/subcategory/edit/:id", {
-				old: req.body
-			})
+			db.Subcategorie.findByPk(+req.params.id).then((subcategory) => {
+				console.log(subcategory);
+				res.render("./admin/editSubcategory", {
+					errors: errors.mapped(),
+					old: req.body,
+					userInSession: req.session.user ? req.session.user : "",
+					subcategory
+				})
+			}).catch(err => console.log(err))
 		}
 	},
 	subcategoryDelete: (req, res) => {
@@ -843,7 +862,9 @@ module.exports = {
 					res.redirect("/admin/marks")
 				}).catch(errors => console.log(errors))
 			} else {
-				res.redirect("/mark/create", {
+				res.render("./admin/addMark", {
+					errors: errors.mapped(),
+          			old: req.body,
 					userInSession: req.session.user ? req.session.user : "",
 				})
 			}
@@ -877,7 +898,16 @@ module.exports = {
 					res.redirect("/admin/marks")
 				}).catch(errors => console.log(errors))
 			} else {
-				res.redirect("/mark/edit/:id")
+				db.Mark.findByPk(+req.params.id).then((mark) => {
+					console.log(mark);
+					res.render("./admin/editMark", {
+						errors: errors.mapped(),
+						old: req.body,
+						userInSession: req.session.user ? req.session.user : "",
+						mark,
+		
+					})
+				}).catch(err => console.log(err))
 			}
 		},
 		markDelete: (req, res) => {
