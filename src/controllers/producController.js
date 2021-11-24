@@ -11,10 +11,10 @@ module.exports = {
       include: [
         {
           association: "productimage"
-        }, 
+        },
         {
           association: "Mark"
-        }, 
+        },
         {
           association: "Subcategorie"
         }
@@ -35,67 +35,98 @@ module.exports = {
     db.Cart.findAll({
       where: {
         userId: req.session.user.id
-      }
+      }, 
+      include: [
+        {
+          association: "Item"
+        }
+      ]
     }).then((itemsCart) => {
-      itemsCart.forEach(itemCart => {
-        console.log(itemCart)
-        if(itemCart.itemsId == req.params.id ){
-          db.Item.findOne({
-            where: {
-              id: itemCart.itemsId
+      console.log(itemsCart, "itemsCarts es")
+      db.Product.findOne({
+        where: {
+          id: +req.params.id
+        },
+        include: [
+          {
+            association: "productimage"
+          },
+          {
+            association: "Mark"
+          },
+          {
+            association: "Subcategorie"
+          }
+        ]
+      }).then((product) => {
+        if (itemsCart.length > 0) {
+          itemsCart.forEach(itemCart => {
+            console.log(itemCart.Item, "itemCart.item");
+            if (itemCart.Item.productId === +req.params.id) {
+              console.log(itemCart, "item cart coincidente")
+              db.Item.findOne({
+                where: {
+                  id: itemCart.Item.id
+                }
+              }).then((item) => {
+                db.Item.update({
+                  quantity: item.quantity + 1
+                },
+                  {
+                    where: {
+                      id: item.id
+                    }
+                  }).then((a) => {
+
+                    return res.redirect('/shoppingCart')
+                    console.log(a, "actualizado");
+                  }).catch(error => console.log(error))
+              }).catch(error => console.log(error))
+            } else if (itemCart.Item.productId !== +req.params.id || !itemCart.id ){
+              function cartCreate() {
+                return db.Item.create({
+                  productId: product.id,
+                  price: product.price,
+                  quantity: 1,
+                  discount: product.discount ? product.discount : 0,
+                  name: product.name,
+                  barcode: product.barcode
+                })
+                  .then((item) => {
+                    db.Cart.create({
+                      userId: req.session.user.id,
+                      itemsId: item.id
+                    })
+                      .then(() => {
+                       return res.redirect('/shoppingCart')
+                      })
+                  })
+              }
+              cartCreate()
             }
-          }).then((item) => {
-            db.Item.update({
-              quantity: quantity++
-            },
-            {
-              where: {
-                id: item.id
-              }
-            }).then(() => {
-              res.redirect('/shoppingCart')
-            })
           })
+        
         } else {
-          db.Product.findOne({
-            where: {
-              id: req.params.id
-            },
-            include: [
-              {
-                association: "productimage"
-              }, 
-              {
-                association: "Mark"
-              }, 
-              {
-                association: "Subcategorie"
-              }
-            ]
-          }).then((product) => {
-            db.Item.create({
-              productId: product.id,
-              price: product.price,
-              quantity: 1,
-              discount: product.discount ? product.discount : 0,
-              name: product.name,
-              barcode: product.barcode
-            })
+          db.Item.create({
+            productId: product.id,
+            price: product.price,
+            quantity: 1,
+            discount: product.discount ? product.discount : 0,
+            name: product.name,
+            barcode: product.barcode
+          })
             .then((item) => {
               db.Cart.create({
                 userId: req.session.user.id,
                 itemsId: item.id
               })
-              .then(() => {
-                res.redirect('/shoppingCart')
-              })
-            })
+                .then(() => {
+                  res.redirect('/shoppingCart')
+                })
             })
         }
       })
-    })
-
-    
+    }).catch(error => console.log(error))
 
   },
 };
