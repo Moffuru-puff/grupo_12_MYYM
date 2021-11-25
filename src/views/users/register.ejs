@@ -11,7 +11,7 @@
                 <a href="/"><img class="myym" src="/img/logo-form.png" alt=""></a>
               </div>
             <div style="order: -1" class="form-content">
-                <form id="form" action="/register" method="POST" novalidate>
+                <form id="formRe" action="/register" method="POST" novalidate>
                 <div class="iniciar">
                     <h2>
                         Registrarse
@@ -22,39 +22,27 @@
                 </div>
                 <div class="form">
                     <div class="input-container">
-                        <input class="input-style" type="text" id="user" name="user" value="<%= locals.old && old.user %>" placeholder="usuario">
-                        <% if(locals.errors && errors.user) { %>
-                        <span class="error-message"><%= errors.user.msg %></span>
-                        <% } %>
-                        <span class="error-message" id="userError"></span>
+                        <input class="input-style" type="text" id="userRe" name="user" value="<%= locals.old && old.user %>" placeholder="usuario">
+                        <span class="error-message" id="userErrorRe"><%= (locals.errors  && errors.user) ? errors.user.msg : "" %></span>
                     </div>
                     <div class="form">
                         <div class="input-container">
-                            <input class="input-style" type="email" id="email" name="email" value="<%= locals.old && old.email %>" placeholder="email">
-                            <% if(locals.errors && errors.email) { %>
-                                <span class="error-message"><%= errors.email.msg %></span>
-                                <% } %>                        
-                                <span class="error-message" id="emailError"></span>
+                            <input class="input-style" type="email" id="emailRe" name="email" value="<%= locals.old && old.email %>" placeholder="email">
+                                <span class="error-message" id="emailErrorRe"><%= (locals.errors  && errors.email) ? errors.email.msg : "" %></span>
                             </div>
                         <div class="form">
                             <div class="input-container">
-                                <input class="input-style" type="password" id="password" name="password" value="<%= locals.old && old.password %>" placeholder="contraseña">
-                                <% if(locals.errors && errors.password) { %>
-                                    <span class="error-message"><%= errors.password.msg %></span>
-                                    <% } %>                            
-                                    <span class="error-message" id="passwordError"></span>
+                                <input class="input-style" type="password" id="passwordRe" name="password" value="<%= locals.old && old.password %>" placeholder="contraseña">
+                                    <span class="error-message" id="passwordErrorRe"><%= (locals.errors  && errors.password) ? errors.password.msg : "" %></span>                     
                                 </div>
                             <div class="form">
                                 <div class="input-container">
-                                    <input class="input-style" type="password" id="repassword" name="repassword" value="<%= locals.old && old.repassword %>" placeholder="confirmar contraseña">
-                                    <% if(locals.errors && errors.repassword) { %>
-                                        <span class="error-message"><%= errors.repassword.msg %></span>
-                                        <% } %>                                
-                                        <span class="error-message" id="repasswordError"></span>
+                                    <input class="input-style" type="password" id="repasswordRe" name="repassword" value="<%= locals.old && old.repassword %>" placeholder="confirmar contraseña">
+                                        <span class="error-message" id="repasswordErrorRe"><%= (locals.errors  && errors.repassword) ? errors.repassword.msg : "" %></span>                
                                     </div>
                                 </div>
                                 <div>
-                                    <span class="error-message" id="submitError"></span>
+                                    <span class="error-message" id="submitErrorRe"></span>
                                     <button id="btn-submit" type="submit" style="color: white" class="btn btn-submit">Crear cuenta</button>
                                 </div>
                         </div>

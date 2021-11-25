@@ -8,7 +8,7 @@
         <%- include('../partials/header') %>
 
             <main class="main-admin">
-                <form action="/admin/sucursal/create" method="POST">
+                <form action="/admin/sucursal/create" method="POST" id="formSucursal">
                 <div>
                     <div class="volver">
                         <a href="/admin/sucursals">
@@ -29,16 +29,18 @@
                                             <%= errors.location.msg %>
                                         </small>
                                         <% } %>
+                                        <small class="text-danger" id="locationErrors"></small>
                                 </div>
 
                                 <label for="direction">Dirección</label>
                                 <div class="input">
-                                    <input type="text" placeholder="Calle falsa 123" id="location" name="direction" value="<%= locals.old && old.direction %>" />
+                                    <input type="text" placeholder="Calle falsa 123" id="direction" name="direction" value="<%= locals.old && old.direction %>" />
                                     <% if(locals.errors && errors.direction) { %>
                                         <small class="text-danger">
                                             <%= errors.direction.msg %>
                                         </small>
                                         <% } %>
+                                        <small class="text-danger" id="directionErrors"></small>
                                 </div>
 
                                 <label for="telephone">Teléfono</label>
@@ -49,6 +51,18 @@
                                             <%= errors.telephone.msg %>
                                         </small>
                                         <% } %>
+                                        <small class="text-danger" id="telephoneErrors"></small>
+                                </div>
+
+                                <label for="postalCode">Código Postal</label>
+                                <div class="input">
+                                    <input type="number" name="postalCode" id="postalCode" placeholder="1629" value="<%= locals.old && old.postalCode %>" />
+                                    <% if(locals.errors && errors.postalCode) { %>
+                                        <small class="text-danger">
+                                            <%= errors.postalCode.msg %>
+                                        </small>
+                                        <% } %>
+                                        <small class="text-danger" id="postalCodeErrors"></small>
                                 </div>
                             </div>
                             <div class="flex">
@@ -61,13 +75,15 @@
                             </div>
                         </div>
                     </div>
-                    <div class="btn-publish">
+                    <small class="text-danger" id="sucursalsErrors"></small>
+                    <div class="btn-publish">                        
                         <button class="publish" type="submit">Guardar</button>
                     </div>
 
                 </section>
             </form>
             </main>
+            <script src="/js/validationsFront/sucursalsValidations.js"></script>
     </body>
 
 </html>

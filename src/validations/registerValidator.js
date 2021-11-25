@@ -7,7 +7,9 @@ module.exports = [
     .notEmpty()
     .withMessage("Debe ingresar un nombre de usuario").bail()
     .isLength({min: 4, max: 8})
-    .withMessage("Ingrese un usuario de min 4 o max 8 caracteres"),
+    .withMessage("Ingrese un usuario de min 4 o max 8 caracteres")
+    .isAlpha()
+    .withMessage("Ingrese solamente caracteres alfabeticos"),
 
 
     body('user')
@@ -24,20 +26,8 @@ module.exports = [
         })
         
     })
+    .withMessage('Este nombre de usuario ya está en uso') ,
 
-/*     body('user')
-    .custom(function(value){
-
-    let usuario = getUsers.filter(user=>{ 
-        return user.user == value 
-    })
-    if(usuario == false){ 
-        return true 
-    }else{
-        return false 
-    }
- 
-}).withMessage('Este nombre de usuario ya está en uso') */,
 
     check('email')
     .notEmpty()
@@ -58,21 +48,9 @@ module.exports = [
             }
         })
         
-    })
+    }).withMessage('Este email ya está en uso'),
 
-/*     body('email')
-    .custom(function(value){
 
-    let usuario = getUsers.filter(user=>{ 
-        return user.email == value 
-    })
-    if(usuario == false){ 
-        return true 
-    }else{
-        return false 
-    }
- 
-}).withMessage('Este email ya está en uso') */,
     
     check('password')
     .notEmpty()

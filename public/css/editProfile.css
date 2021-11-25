@@ -165,6 +165,10 @@
     .inputs-container {
         position: relative;
         display: flex;
+        flex-direction: row;
+        align-content: center;
+        justify-content: center;
+        align-items: flex-end;
     }
     
     .profileData {

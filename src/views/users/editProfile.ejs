@@ -5,7 +5,7 @@
     <body>
         <%- include('../partials/header')%>
             <main class="userProfile">
-                <form action="/profile/editprofile/<%= user.id %>?_method=PUT" method="POST"
+                <form id="formPro" action="/profile/editprofile/<%= user.id %>?_method=PUT" method="POST"
                     enctype="multipart/form-data">
                     <div class="profile-container">
                         <div style="width: fit-content;height: fit-content;display: contents;" alt="">
@@ -18,13 +18,17 @@
                         <div class="inputs-container">
                             <div class="profileData">
                                 <div class="form">
+                                    <div class="form">
                                     <h3 class="profile-title">Datos personales</h3>
+                                    </div>
                                     <div class="input-container">
-                                        <input class="input-style" type="text" name="user" placeholder="usuario"
-                                           readonly value="<%= user.user ? user.user : "" %>">
-                                        <% if (locals.errors && errors.user) { %>
-                                            <span class="error-message"><%= errors.user.msg %></span>
-                                            <% } %>
+                                        <input class="input-style" id="userPro" type="text" name="user"
+                                            placeholder="usuario" value="<%= user.user ? user.user : "" %>">
+
+                                            <span class="error-message" id="userErrorPro">
+                                                <%= (locals.errors && errors.user) ? errors.user.msg : ""%>
+                                            </span>
+
                                     </div>
                                     <div class="form">
                                         <div class="input-container">
@@ -77,82 +81,78 @@
                             <div class="profileDatax">
                                 <div class="form">
                                     <h3 class="profile-title">Datos de contacto</h3>
+                                    <div class="form">
                                     <div class="input-container">
-                                        <input class="input-style" type="text" name="address" placeholder="direccion"
-                                        <% if (user.addressesId != null) { %>
-                                            value="<%= user.Addresse.address ? user.Addresse.address : "" %>">
+                                        <input class="input-style" type="text" name="address" placeholder="direccion" <% if (user.addressesId !=null) { %> value="<%= user.Addresse.address ? user.Addresse.address : "" %>">
                                             <% } else { %>
                                                 value="">
-                                            <% } %>   
-                                            
-                                        <% if (locals.errors && errors.address) { %>
-                                            <span class="error-message">
-                                                <%= errors.address.msg %>
-                                            </span>
-                                            <% } %>
+                                                <% } %>
+
+                                                    <% if (locals.errors && errors.address) { %>
+                                                        <span class="error-message">
+                                                            <%= errors.address.msg %>
+                                                        </span>
+                                                        <% } %>
+                                    </div>
                                     </div>
                                     <div class="form">
                                         <div class="input-container">
-                                            <input class="input-style" type="text" name="state"
-                                                placeholder="estado"
-                                                <% if (user.addressesId != null) { %>
-                                                    value="<%= user.Addresse.state ? user.Addresse.state : "" %>">
-                                                    <% } else { %>
-                                                        value="">
-                                                    <% } %>   
-                                            <% if (locals.errors && errors.state) { %>
-                                                <span class="error-message">
-                                                    <%= errors.state.msg %>
-                                                </span>
-                                                <% } %>
+                                            <input class="input-style" type="text" name="state" placeholder="estado" <%
+                                                if (user.addressesId !=null) { %>
+                                            value="<%= user.Addresse.state ? user.Addresse.state : "" %>">
+                                                <% } else { %>
+                                                    value="">
+                                                    <% } %>
+                                                        <% if (locals.errors && errors.state) { %>
+                                                            <span class="error-message">
+                                                                <%= errors.state.msg %>
+                                                            </span>
+                                                            <% } %>
                                         </div>
                                     </div>
                                     <div class="form">
                                         <div class="input-container">
-                                            <input class="input-style" type="text" name="city"
-                                                placeholder="ciudad"
-                                                <% if (user.addressesId != null) { %>
-                                                    value="<%= user.Addresse.city ? user.Addresse.city : "" %>">
-                                                    <% } else { %>
-                                                        value="">
-                                                    <% } %> 
-                                            <% if (locals.errors && errors.city) { %>
-                                                <span class="error-message">
-                                                    <%= errors.city.msg %>
-                                                </span>
-                                                <% } %>
+                                            <input class="input-style" type="text" name="city" placeholder="ciudad" <%
+                                                if (user.addressesId !=null) { %>
+                                            value="<%= user.Addresse.city ? user.Addresse.city : "" %>">
+                                                <% } else { %>
+                                                    value="">
+                                                    <% } %>
+                                                        <% if (locals.errors && errors.city) { %>
+                                                            <span class="error-message">
+                                                                <%= errors.city.msg %>
+                                                            </span>
+                                                            <% } %>
                                         </div>
                                     </div>
                                     <div class="form">
                                         <div class="input-container">
-                                            <input class="input-style" type="text" name="country"
-                                                placeholder="pais"
-                                                <% if (user.addressesId != null) { %>
-                                                    value="<%= user.Addresse.country ? user.Addresse.country : "" %>">
-                                                    <% } else { %>
-                                                        value="">
-                                                    <% } %> 
-                                            <% if (locals.errors && errors.country) { %>
-                                                <span class="error-message">
-                                                    <%= errors.country.msg %>
-                                                </span>
-                                                <% } %>
+                                            <input class="input-style" type="text" name="country" placeholder="pais" <%
+                                                if (user.addressesId !=null) { %>
+                                            value="<%= user.Addresse.country ? user.Addresse.country : "" %>">
+                                                <% } else { %>
+                                                    value="">
+                                                    <% } %>
+                                                        <% if (locals.errors && errors.country) { %>
+                                                            <span class="error-message">
+                                                                <%= errors.country.msg %>
+                                                            </span>
+                                                            <% } %>
                                         </div>
                                     </div>
                                     <div class="form">
                                         <div class="input-container">
                                             <input class="input-style" type="text" name="postalCode"
-                                                placeholder="codigo postal"
-                                                <% if (user.addressesId != null) { %>
-                                                    value="<%= user.Addresse.postalCode ? user.Addresse.postalCode : "" %>">
-                                                    <% } else { %>
-                                                        value="">
-                                                    <% } %> 
-                                                    <% if (locals.errors && errors.postalCode) { %>
-                                                <span class="error-message">
-                                                    <%= errors.postalCode.msg %>
-                                                </span>
-                                                <% } %>
+                                                placeholder="codigo postal" <% if (user.addressesId !=null) { %>
+                                            value="<%= user.Addresse.postalCode ? user.Addresse.postalCode : "" %>">
+                                                <% } else { %>
+                                                    value="">
+                                                    <% } %>
+                                                        <% if (locals.errors && errors.postalCode) { %>
+                                                            <span class="error-message">
+                                                                <%= errors.postalCode.msg %>
+                                                            </span>
+                                                            <% } %>
                                         </div>
                                     </div>
                                 </div>
@@ -160,6 +160,7 @@
 
                         </div>
                         <div>
+                            <span class="error-message" id="submitErrorPro"></span>
                             <button id="btn-submit2" type="submit" style="color: white" class="btn btn-submit">Guardar
                                 Datos</button>
                         </div>

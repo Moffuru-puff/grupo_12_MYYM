@@ -4,164 +4,190 @@ function qs (element) {
 
 
 window.addEventListener("load", function(){
-    let $user = qs('#user'),
-    $userError = qs('#userError'),
-    $email = qs('#email'),
-    $emailError = qs('#emailError'),
-    $password = qs('#password'),
-    $passwordError = qs('#passwordError'),
-    $repassword = qs('#repassword'),
-    $repasswordError = qs('#repasswordError'),
-    $form = qs("#form"),
-    $submitError = qs("#submitError"),
-    error = false,
-    errores = []
-    regExAlpha = /^[a-zA-Z\sñáéíóúü ]*$/,
-    regExEmail = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i,
-    regExPass = /^([a-z])([A-Z]).{4,10}$/,
-    expreg = /"^[A-Za-z]{4,8}$/;
+    let $userRe = qs('#userRe'),
+    $userErrorRe = qs('#userErrorRe'),
+    $emailRe = qs('#emailRe'),
+    $emailErrorRe = qs('#emailErrorRe'),
+    $passwordRe = qs('#passwordRe'),
+    $passwordErrorRe = qs('#passwordErrorRe'),
+    $repasswordRe = qs('#repasswordRe'),
+    $repasswordErrorRe = qs('#repasswordErrorRe'),
+    $formRe = qs("#formRe"),
+    $submitErrorRe = qs("#submitErrorRe");
+    let errores;
 
 
-    $user.addEventListener("blur", function(){
-        switch(true){
-            case !$user.value.trim():
-                errores.push()
-                $userError.innerHTML = "El campo usuario es obligatorio"
-                $user.classList.remove("input-style")
-                $user.classList.add("is-invalid")
-                break;
-            case !expreg.test($user.value):
-                errores.push()
-                let cenx = $user.value.length
-                $userError.innerHTML = "Ingrese un usuario de min 4 o max 8 caracteres"
-                $user.classList.remove("input-style")
-                $user.classList.add("is-invalid")
-                if(cenx >= 4 && cenx <= 8){
-                    $user.classList.remove("is-invalid")
-                    $user.classList.add("is-valid")
-                    $userError.innerHTML = ""
-                }
-                break;
-            case !regExAlpha.test($user.value):
-                errores.push()
-                $userError.innerHTML = "El campo usuario es obligatorio"
-                $user.classList.remove("input-style")
-                $user.classList.add("is-invalid")
-                break;
-            default:
-                $user.classList.remove("is-invalid")
-                $user.classList.add("is-valid")
-                $userError.innerHTML = ""
+    function addAndRemoveClass(element, classToAdd, classToRemove){
+        element.classList.add(classToAdd)
+        element.classList.remove(classToRemove)
+    }
+
+    inputUser = document.getElementById("userRe")
+    inputUser.addEventListener("keyup", function(event){
+    if(inputUser.value.length > 0){
+        if(/^[A-Z]{4,8}$/i.test(inputUser.value)){
+            addAndRemoveClass(inputUser, "is-valid", "is-invalid")
+            $userErrorRe.innerHTML = ""
+            errores = false
+        } else {
+            addAndRemoveClass(inputUser, "is-invalid", "input-style")
+            $userErrorRe.innerHTML = "Ingrese un usuario de min 4 o max 8 caracteres alfabeticos"
+            errores = true
         }
+    } else {
+        addAndRemoveClass(inputUser,"is-invalid" ,"input-style")
+        inputUser.classList.remove("is-valid")
+        $userErrorRe.innerHTML = "El campo usuario es obligatorio"
+        errores = true
+    }
+
+        
     })
 
-    $email.addEventListener('blur', function() {
-        switch (true) {
-            case !$email.value.trim():
-                errores.push()
-                $emailError.innerHTML = 'El campo email es obligatorio';
-                $email.classList.remove("input-style")
-                $email.classList.add('is-invalid')
-                break;
-            case !regExEmail.test($email.value):
-                errores.push()
-                $emailError.innerHTML = 'Debe ingresar un email válido';
-                $email.classList.remove("input-style")
-                $email.classList.add('is-invalid')
-                break
-            default:
-                $email.classList.remove('is-invalid');
-                $email.classList.add('is-valid');
-                $emailError.innerHTML = ''
+    inputUser.addEventListener("blur", function(){
+        if(inputUser.value.length === 0){
+            addAndRemoveClass(inputUser,"is-invalid" ,"input-style")
+            inputUser.classList.remove("is-valid")
+            $userErrorRe.innerHTML = "El campo usuario es obligatorio"
+            errores = true
+        } 
+
+    })
+
+    inputEmail = document.getElementById("emailRe")
+    inputEmail.addEventListener("keyup", function(event){
+    if(inputEmail.value.length > 0){
+        if(/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i.test(inputEmail.value)){
+            addAndRemoveClass(inputEmail, "is-valid", "is-invalid")
+            $emailErrorRe.innerHTML = ""
+            errores = false
+        } else {
+            addAndRemoveClass(inputEmail, "is-invalid", "input-style")
+            $emailErrorRe.innerHTML = 'Debe ingresar un email válido';
+            errores = true
         }
+    } else {
+        addAndRemoveClass(inputEmail,"is-invalid" ,"input-style")
+        inputEmail.classList.remove("is-valid")
+        $emailErrorRe.innerHTML = "El campo email es obligatorio"
+        errores = true
+        
+    }
+
+        
+    })
+
+    inputEmail.addEventListener("blur", function(){
+        if(inputEmail.value.length === 0){
+            addAndRemoveClass(inputEmail,"is-invalid" ,"input-style")
+            inputEmail.classList.remove("is-valid")
+            $emailErrorRe.innerHTML = "El campo email es obligatorio"
+            errores = true
+        } else{
+            addAndRemoveClass(inputEmail, "is-valid", "is-invalid")
+            $emailErrorRe.innerHTML = ""
+            errores = false
+        }
+
+
+    })
+
+    inputPass = document.getElementById("passwordRe")
+    inputPass.addEventListener("keyup", function(event){
+    if(inputPass.value.length > 0){
+        if(/^[a-zA-ZÀ-ÿ\d\u00f1\u00d1]{4,8}$/.test(inputPass.value)){
+            addAndRemoveClass(inputPass, "is-valid", "is-invalid")
+            $passwordErrorRe.innerHTML = ""
+            errores = false
+        } else {
+            addAndRemoveClass(inputPass, "is-invalid", "input-style")
+            $passwordErrorRe.innerHTML = 'Debe ingresar una contraseña de 4-10 caracteres';
+            errores = true
+        }
+    } else {
+        addAndRemoveClass(inputPass,"is-invalid" ,"input-style")
+        inputPass.classList.remove("is-valid")
+        $passwordErrorRe.innerHTML = 'El campo contraseña es obligatorio';
+        errores = true
+        
+    }
+
+        
+    })
+
+    inputPass.addEventListener("blur", function(){
+        if(inputPass.value.length === 0){
+            addAndRemoveClass(inputPass,"is-invalid" ,"input-style")
+            inputPass.classList.remove("is-valid")
+            $passwordErrorRe.innerHTML = "El campo contraseña es obligatorio"
+            errores = true
+        } 
+
+    })
+
+    inputRePass = document.getElementById("repasswordRe")
+    inputRePass.addEventListener("keyup", function(event){
+    if(inputRePass.value.length > 0){
+        if(inputRePass.value === inputPass.value){
+            addAndRemoveClass(inputRePass, "is-valid", "is-invalid")
+            $repasswordErrorRe.innerHTML = ""
+            errores = false
+        } else {
+            addAndRemoveClass(inputRePass, "is-invalid", "input-style")
+            $repasswordErrorRe.innerHTML = 'Las contraseñas no coinciden';
+            errores = true
+            
+        }
+    } else {
+        addAndRemoveClass(inputRePass,"is-invalid" ,"input-style")
+        inputRePass.classList.remove("is-valid")
+        $repasswordErrorRe.innerHTML = 'El campo contraseña es obligatorio';
+        errores = true
+        
+    }
+
+        
+    })
+
+    inputRePass.addEventListener("blur", function(){
+        if(inputRePass.value.length === 0){
+            addAndRemoveClass(inputRePass,"is-invalid" ,"input-style")
+            inputRePass.classList.remove("is-valid")
+            $repasswordErrorRe.innerHTML = 'Las contraseñas no coinciden';
+            errores = true
+        } 
+
     })
 
 
 
-    $password.addEventListener('blur', function() {
-        switch (true) {
-            case !$password.value.trim():
-                errores.push()
-                $passwordError.innerHTML = 'El campo contraseña es obligatorio';
-                $password.classList.remove("input-style")
-                $password.classList.add('is-invalid')
-                break;
-            case !regExPass.test($password.value):
-                errores.push()
-                let cenx = $password.value.length
-                $passwordError.innerHTML = 'Debe ingresar una contraseña de 4-10 caracteres';
-                $password.classList.remove("input-style")
-                $password.classList.add('is-invalid')
-                if(cenx >= 4 && cenx <= 10){
-                    $password.classList.remove("is-invalid")
-                    $password.classList.add("is-valid")
-                    $passwordError.innerHTML = ""
-                }
-                break
-            default:
-                $password.classList.remove('is-invalid');
-                $password.classList.add('is-valid');
-                $passwordError.innerHTML = ''
-                break;
-        }
-    })
-
-    $repassword.addEventListener('blur', function(){
-        switch (true) {
-            case !$repassword.value.trim():
-                errores.push()
-                $repasswordError.innerHTML = 'Debes reingresar la contraseña';
-                $repassword.classList.remove('input-style')
-                $repassword.classList.add('is-invalid')
-                break;
-            case $repassword.value != $password.value:
-                errores.push()
-                $repasswordError.innerHTML = 'Las contraseñas no coinciden';
-                $repassword.classList.remove('input-style')
-                $repassword.classList.add('is-invalid')
-                break;
-            default:
-                $repassword.classList.remove('is-invalid');
-                $repassword.classList.add('is-valid');
-                $repasswordError.innerHTML = ''
-                break;
-        }
-    })
-
-    $form.addEventListener('submit',function(event){
+    $formRe.addEventListener('submit',function(event){
         event.preventDefault()
-        console.log($form.elements)
+        console.log($formRe.elements)
         let elementosForm = this.elements
 
         for (let index = 0; index < elementosForm.length-1; index++) {
             if(elementosForm[index].value == ""){
                 elementosForm[index].classList.remove('input-style');
                 elementosForm[index].classList.add('is-invalid');
-                $submitError.innerHTML = "Los campos señalados son obligatorios";
-                error = true;
-            }  
-        }
-
-        if(errores.length > 0){
-            for (let index = 0; index < elementosForm.length-1; index++) {
-                if(elementosForm[index].value === "" && errores.length > 0){
-                    elementosForm[index].classList.remove('input-style');
-                    elementosForm[index].classList.add('is-invalid');
-                    $submitError.innerHTML = "Los campos señalados son obligatorios";
-                    error = true;
-                    
+                $submitErrorRe.innerHTML = "Los campos señalados son obligatorios";
+                errores = true
+            } /*  else {
+                errores = false
+                $submitErrorRe.innerHTML = ""
+                $formRe.submit()
     
-                } 
-                
-            }
-            
-        } else if($user.classList.contains('is-valid') && $email.classList.contains('is-valid') && $password.classList.contains('is-valid') && $repassword.classList.contains('is-valid')){
-
-            $submitError.classList.remove('is-invalid');
-            $submitError.innerHTML = ""
-            $form.submit()
-
+            } */
         }
+        if(!errores){
+            $submitErrorRe.innerHTML = ""
+            errores = false
+            $formRe.submit()
+            }else{
+                errores = true;
+            }
+
+        
 
 
 
