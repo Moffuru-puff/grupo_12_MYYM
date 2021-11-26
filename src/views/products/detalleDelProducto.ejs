@@ -155,125 +155,15 @@
           <div class="tituloMini">
             <!--tarjetas de otros articulos-->
             <h4>Otros productos que pueden interesarte:</h4>
+            
           </div>
-          <div class="cajasmini">
-            <article class="productosInteresantes">
-              <div class="star" id="starFlotante">
-                <img id="myImage" onclick="changeImage()" src="/img/iconos-png/star-desactivada.png"
-                  alt="botón favoritos">
-              </div>
-              <div class="img-producto">
-                <a href="">
-                  <img src="/img/Productos Gamers/fortnite-xboxOne.jpg " alt="Nintendo reto" />
-                </a>
-              </div>
-              <div class="puntuacion" id="puntosDeEstrellas">
-                <img src="/img/iconos-png/4.5.png" alt="puntuacion" />
-                <p>4.2</p>
-              </div>
-              <div class="textoOtrosProductos">
-
-                <h4>Lorem ipsum dolor sit amet.</h4>
-                <p>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. A,
-                  excepturi!
-                </p>
-                <h3>$5.000</h3>
-              </div>
-            </article>
-            <article class="productosInteresantes">
-              <div class="star" id="starFlotante">
-                <img id="myImage" onclick="changeImage()" src="/img/iconos-png/star-desactivada.png"
-                  alt="botón favoritos">
-              </div>
-              <div class="img-producto">
-                <a href="">
-                  <img src="/img/Productos Gamers/playStation5.jpg " alt="Nintendo reto" />
-                </a>
-              </div>
-              <div class="puntuacion" id="puntosDeEstrellas">
-                <img src="/img/iconos-png/4.5.png" alt="puntuacion" />
-                <p>4.05</p>
-              </div>
-              <div class="">
-                <h4>Lorem ipsum dolor sit amet.</h4>
-                <p>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. A,
-                  excepturi!
-                </p>
-                <h3>$5.000</h3>
-              </div>
-            </article>
-            <article class="productosInteresantes">
-              <div class="star" id="starFlotante">
-                <img id="myImage" onclick="changeImage()" src="/img/iconos-png/star-desactivada.png"
-                  alt="botón favoritos">
-              </div>
-              <div class="img-producto">
-                <a href="">
-                  <img src="/img/Productos Gamers/PS4s.jpg" alt="Nintendo reto" />
-                </a>
-              </div>
-              <div class="puntuacion" id="puntosDeEstrellas">
-                <img src="/img/iconos-png/4.5.png" alt="puntuacion" />
-                <p>4.05</p>
-              </div>
-              <div class="">
-                <h4>Lorem ipsum dolor sit amet.</h4>
-                <p>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. A,
-                  excepturi!
-                </p>
-                <h3>$5.000</h3>
-              </div>
-            </article>
-            <article class="productosInteresantes">
-              <div class="star" id="starFlotante">
-                <img id="myImage" onclick="changeImage()" src="/img/iconos-png/star-desactivada.png"
-                  alt="botón favoritos">
-              </div>
-              <div class="img-producto">
-                <a href="">
-                  <img src="/img/Productos Gamers/miniArcade.png " alt="Nintendo reto" />
-                </a>
-              </div>
-              <div class="puntuacion" id="puntosDeEstrellas">
-                <img src="/img/iconos-png/4.5.png" alt="puntuacion" />
-                <p>4.05</p>
-              </div>
-              <div class="">
-                <h4>Lorem ipsum dolor sit amet.</h4>
-                <p>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. A,
-                  excepturi!
-                </p>
-                <h3>$5.000</h3>
-              </div>
-            </article>
-            <article class="productosInteresantes">
-              <div class="star" id="starFlotante">
-                <img id="myImage" onclick="changeImage()" src="/img/iconos-png/star-desactivada.png"
-                  alt="botón favoritos">
-              </div>
-              <div class="img-producto">
-                <a href="">
-                  <img src="/img/Productos Gamers/PS2.jpg " alt="Nintendo reto" />
-                </a>
-              </div>
-              <div class="puntuacion" id="puntosDeEstrellas">
-                <img src="/img/iconos-png/4.5.png" alt="puntuacion" />
-                <p>4.05</p>
-              </div>
-              <div class="">
-                <h4>Lorem ipsum dolor sit amet.</h4>
-                <p>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. A,
-                  excepturi!
-                </p>
-                <h3>$5.000</h3>
-              </div>
-            </article>
-          </div>
+          <section class="container-products">
+            
+            <!-- /* Slider */ -->
+            <%- include('./slider.ejs') %>
+          
+          </section>
+       
         </div>
 
       </div>
@@ -284,7 +174,7 @@
       <%- include('../partials/footer.ejs') %>
 
         <!-- FIN DEL FOOTER-->
-
+<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
   </body>
 
 
