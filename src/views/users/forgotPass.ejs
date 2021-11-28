@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+
+  <%- include('../partials/head.ejs') %> 
+
+<body class="forms-form">
+  <main>
+    <div class="contain3r">
+    <div class="form-container">
+      <div style="order: 1" class="logo-container">
+        <a href="/"><img class="myym" src="/img/logo-form.png" alt=""></a>
+      </div>
+      <div style="order: -1" class="form-content">
+        <form action="/forgotPassword" method="POST" >
+            <div class="iniciar">
+              <h2>
+                Recupera tu cuenta
+              </h2>
+              <h3>
+                ㅤㅤㅤㅤㅤㅤㅤㅤㅤ
+              </h3>
+              <h3>
+                <a class="a" href="/login">Volver al login</a>
+              </h3>
+              <h3>
+                ㅤㅤㅤㅤㅤㅤㅤㅤㅤ
+              </h3>
+              <h3>
+                Ingresa tus Datos
+              </h3>
+            </div>
+            <div class="form">
+              <div class="input-container">
+                <input class="input-style" id="email" type="email" name="email" placeholder="email">
+    
+                <span class="error-message" id="emailError"><%= (locals.errors && errors.email) ? errors.email.msg : "" %></span>
+    
+              </div>
+              <div class="form">
+                <div class="input-container">
+                    <input class="input-style" id="userPro" type="text" name="user"
+                        placeholder="usuario">
+                    <span class="error-message" id="userErrorPro">
+                        <%= (locals.errors && errors.user) ? errors.user.msg : "" %>
+                    </span>
+    
+                </div>
+                </div>
+            <div class="form">
+                <div>
+                    <button id="btn-submit1" type="submit" style="color: white; background-color: #1f53c5;" class="btn btn-submit">Buscar</button>
+                </div>
+              </div>
+            </div>
+          </form>
+      </div>
+
+    </div>
+  </div>
+  </main>
+</body>
+
+</html>

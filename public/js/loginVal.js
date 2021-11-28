@@ -10,12 +10,11 @@ window.addEventListener("load", function(){
     $passwordErrorLog = qs('#passwordErrorLog')
     $form = qs("#formLog"),
     $submitErrorLog = qs("#submitErrorLog"),
-    error = false,
-    errores = []
     regExAlpha = /^[a-zA-Z\sñáéíóúü ]*$/,
     regExEmail = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i,
     regExPass = /^([a-z])([A-Z]).{4,10}$/,
     expreg = /"^[A-Za-z]{4,8}$/;
+    let errores;
 
     function addAndRemoveClass(element, classToAdd, classToRemove){
         element.classList.add(classToAdd)
@@ -27,15 +26,17 @@ window.addEventListener("load", function(){
         if(/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i.test($email.value)){
             addAndRemoveClass($email, "is-valid", "is-invalid")
             $emailErrorLog.innerHTML = ""
+            errores = false
         } else {
             addAndRemoveClass($email, "is-invalid", "input-style")
             $emailErrorLog.innerHTML = 'Debe ingresar un email válido';
+            errores = true
         }
     } else {
         addAndRemoveClass($email,"is-invalid" ,"input-style")
         $email.classList.remove("is-valid")
         $emailErrorLog.innerHTML = "El campo email es obligatorio"
-        
+        errores = true
     }
 
         
@@ -46,10 +47,11 @@ window.addEventListener("load", function(){
             addAndRemoveClass($email,"is-invalid" ,"input-style")
             $email.classList.remove("is-valid")
             $emailErrorLog.innerHTML = "El campo email es obligatorio"
+            errores = true
         } else{
             addAndRemoveClass($email, "is-valid", "is-invalid")
             $emailErrorLog.innerHTML = ""
-           
+            errores = false
         }
 
     })
@@ -60,15 +62,17 @@ window.addEventListener("load", function(){
         if(/^[a-zA-ZÀ-ÿ\d\u00f1\u00d1]{4,8}$/.test($password.value)){
             addAndRemoveClass($password, "is-valid", "is-invalid")
             $passwordErrorLog.innerHTML = ""
+            errores = false
         } else {
             addAndRemoveClass($password, "is-invalid", "input-style")
             $passwordErrorLog.innerHTML = 'Debe ingresar una contraseña de 4-10';
+            errores = true
         }
     } else {
         addAndRemoveClass($password,"is-invalid" ,"input-style")
         $password.classList.remove("is-valid")
         $passwordErrorLog.innerHTML = 'El campo contraseña es obligatorio';
-        
+        errores = true
     }
 
         
@@ -79,6 +83,7 @@ window.addEventListener("load", function(){
             addAndRemoveClass($password,"is-invalid" ,"input-style")
             $password.classList.remove("is-valid")
             $passwordErrorLog.innerHTML = "El campo contraseña es obligatorio"
+            errores = true
         } 
 
     })
@@ -93,30 +98,19 @@ window.addEventListener("load", function(){
                 elementosForm[index].classList.remove('input-style');
                 elementosForm[index].classList.add('is-invalid');
                 $submitErrorLog.innerHTML = "Los campos señalados son obligatorios";
-                error = true;
+                errores = true;
             }  
         }
 
-        if(errores.length > 0){
-            for (let index = 0; index < elementosForm.length-1; index++) {
-                if(elementosForm[index].value === "" && errores.length > 0){
-                    elementosForm[index].classList.remove('input-style');
-                    elementosForm[index].classList.add('is-invalid');
-                    $submitErrorLog.innerHTML = "Los campos señalados son obligatorios";
-                    error = true;
-                    
-    
-                } 
-                
-            }
-            
-        } else if($email.classList.contains('is-valid') && $password.classList.contains('is-valid')){
-
-            $submitErrorLog.classList.remove('is-invalid');
+        if(!errores){
             $submitErrorLog.innerHTML = ""
+            errores = false
             $form.submit()
+            }else{
+                errores = true;
+            }
 
-        }
+        
 
 
 

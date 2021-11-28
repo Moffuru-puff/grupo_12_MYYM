@@ -9,11 +9,15 @@ const {
     loginUser, 
     updateProfile,
     logout,
-    deleteProfile
+    deleteProfile,
+    forgotPassword,
+    fpFindEmail,
+    changePassword
     } = require('../controllers/usersController');
 const reValidator = require('../validations/registerValidator')
 const loValidator = require('../validations/loginValidator')
 const editProValidator = require('../validations/editProfileValidator')
+const forgotPassValidator = require('../validations/forgotPassValidator')
 const uploadUserAvatar = require('../middlewares/uploadUserAvatar')
 const sessionCheck = require('../middlewares/sessionCheck')
 const userLoginCheck = require('../middlewares/userLoginCheck')
@@ -23,6 +27,11 @@ router.get('/login', userLoginCheck ,login)
 router.post('/login', loValidator ,loginUser)
 router.get('/logout', sessionCheck, logout)
 
+/* GET - Forgot Password */
+router.get('/forgotPassword', forgotPassword)
+router.post('/forgotPassword', forgotPassValidator,fpFindEmail)
+router.get('/forgotPassword/changePassword', changePassword)
+
 /* GET - Register */
 router.get('/register', userLoginCheck , register)
 router.post('/register', reValidator , registerNewUser)
@@ -30,7 +39,7 @@ router.post('/register', reValidator , registerNewUser)
 
 /* GET - Profile */
 router.get('/profile', sessionCheck ,profile)
-router.get('/profile/editprofile/:id', sessionCheck ,editProfile)
+router.get('/profile/editprofile/:id', /* sessionCheck , */editProfile)
 router.put('/profile/editprofile/:id',uploadUserAvatar.single('avatar'), editProValidator ,updateProfile)
 router.delete('/profile/delete/:id' ,deleteProfile)
 
