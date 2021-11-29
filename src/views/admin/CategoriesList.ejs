@@ -18,7 +18,21 @@
         <section class="welcome">
           <h2>Lista de las categorías</h2>
         </section>
-
+        <section class="filters">
+          <h5>Ordenar por: </h5>
+          <form action="/admin/categories" method="POST">
+            <select name="filters" id="">
+              <option value="" hidden selected>Seleccionar filtro </option>
+              <option value="idAsc">Id ascendente</option>
+              <option value="idDesc">Id descendente</option>
+              <option value="nameAsc">Nombre ascendente</option>
+              <option value="nameDesc">Nombre descendente</option>
+            </select>
+            <button type="submit">
+              Aplicar filtro
+            </button>
+          </form>
+        </section>
         <section class="productsList">
           <div class="btn-agregarProducto">
             <a href="/admin/category/create" class="publish">Agregar categoría</a>

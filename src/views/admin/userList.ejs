@@ -17,7 +17,27 @@
       <section class="welcome">
         <h2>Lista de Usuarios</h2>
       </section>
-
+      <!-- Sección de filtros -->
+      <section class="filters">
+        <h5>Ordenar por: </h5>
+        <form action="/admin/userList" method="POST">
+          <select name="filters" id="">
+            <option value="" hidden selected>Seleccionar filtro </option>
+            <option value="idAsc">Id ascendente</option>
+            <option value="idDesc">Id descendente</option>
+            <option value="nameAsc">Nombre ascendente</option>
+            <option value="nameDesc">Nombre descendente</option>
+            <option value="lastNameAsc">Apellido ascendente</option>
+            <option value="lastNameDesc">Apellido descendente</option>
+            <option value="userAsc">Usuario ascendente</option>
+            <option value="userDesc">Usuario descendente</option>
+          </select>
+          <button type="submit">
+            Aplicar filtro
+          </button>
+        </form>
+      </section>
+      <!-- Fin de sección de filtros -->
       <section class="productsList"> 
         <% if (userInSession.rolesId === 2) { %>
           <div class="btn-agregarProducto">

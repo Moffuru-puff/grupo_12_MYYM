@@ -9,15 +9,18 @@
         <%- include('../partials/header.ejs') %>
             <!-- Fin del header -->
 
-            <!------cart items details------->
-
-
-
             <div class="fav-container cart-page">
                 <div class="mi_carrito">
-                    <h3>Mis Favoritos</h3>
-
-                    <button class="btn-vaciar">Vaciar Favoritos</button>
+                    <h3>Mis Favoritos</h3>                
+                        <% productsFavorites.forEach( product => { %>
+                    <form action="/favorites/deleteAll?_method=DELETE" method="POST">                       
+                        <% }) %>
+                        <% if (productsFavorites.length != 0) { %>
+                            <button type="submit" class="btn-vaciar">Vaciar Favoritos</button>                                      
+                    <% } else { %> 
+                        <button type="submit" class="btn-vaciar">Vaciar Favoritos</button> 
+                        <% } %>                     
+                    </form> 
                 </div>
                 <table class="favorites">
                     <thead>
@@ -55,7 +58,10 @@
                              
                                                      <% } %>
                                             <br>
-                                               <a href="" id="<%- product.id %>" ><i style="margin-right: 10px;" class="fas fa-trash"></i>Eliminar</a>
+                                            <form action="/favorites/deleteOne/<%- product.id %>?_method=DELETE" method="POST">
+                                                <button type="submit" id="<%- product.id %>" class="btnRemove"><i style="margin-right: 10px;" class="fas fa-trash"></i>Eliminar</a></button>
+                                            </form>
+                                               
                                            </div>
                                        </div>
                                    </td>

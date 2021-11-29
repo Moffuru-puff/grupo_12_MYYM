@@ -1,67 +1,62 @@
 let express = require('express');
 let router = express.Router();
-let {  
-    index,
-    productsList, 
+
+let { index } = require('../controllers/adminController');
+let { productsList, 
+    productsAdminFilters,
+    productsAdminSearch,
     addProduct,
     charge,
     editProduct,
     productUpdate,
-    productDelete,
+    productDelete, } = require('../controllers/adminProductsController');
+
+let {
     sucursalList, 
+    sucursalFilters,
     addSucursal,
     createSucursal,
     editSucursal,
     sucursalUpdate,
-    sucursalDelete,
+    sucursalDelete, } = require('../controllers/adminSucursalsController');   
+
+let {
     userList,
+    usersAdminFilters,
     addUser,
     createUser,
     editUser,
     userUpdate,
-    userDelete,
-    categoryList,
+    userDelete } = require('../controllers/adminUserController');
+
+let {
+     categoryList,
+    categoryFilters,
     categoryAdd,
     createCategory,
     editCategory,
     categoryUpdate,
-    categoryDelete,
+    categoryDelete, } = require('../controllers/adminCategoryController');
+
+let {
     subcategoryList,
+    subcategoryFilters,
     subcategoryAdd,
     createSubcategory,
     editSubcategory,
     subcategoryUpdate,
-    subcategoryDelete,
+    subcategoryDelete, } = require('../controllers/adminSubcategoryController');
+
+let {
     markList,
+    marksFilters,
     markAdd,
     createMark,
     editMark,
     markUpdate,
-    markDelete,
- } = require('../controllers/adminController');
-/* let index = require('../controllers/admin/adminController');
-let { productsList, 
-    addProduct,
-    charge,
-    editProduct,
-    productUpdate,
-    productDelete } = require('../controllers/admin/adminProductsController');
+    markDelete } = require('../controllers/adminMarksController');
 
-let {
-    sucursalList, 
-    addSucursal,
-    createSucursal,
-    editSucursal,
-    sucursalUpdate,
-    sucursalDelete } = require('../controllers/admin/adminSucursalsController');   
 
-let {
-    userList,
-    addUser,
-    createUser,
-    editUser,
-    userUpdate,
-    userDelete } = require('../controllers/admin/adminUserController'); */
 
 let uploadFile = require('../middlewares/productUploadImage');
 let adminCheck = require('../middlewares/adminCheck');
@@ -77,6 +72,8 @@ let marksValidator = require('../validations/marksValidator')
 router.get('/', adminCheck, index);
 /* Get - Admin products */
 router.get('/products', adminCheck, productsList);
+router.post('/products', adminCheck, productsAdminFilters);
+router.post('/productsSearch', adminCheck, productsAdminSearch);
 /* Create Product */
 router.get('/products/create', adminCheck, addProduct);
 router.post('/products/create', uploadFile.array("image"), productValidator, charge);
@@ -86,8 +83,9 @@ router.put('/products/edit/:id', uploadFile.array("image"), productValidator, pr
 /* Delete Product */
 router.delete('/products/delete/:id', productDelete);
 
-/* Sucursales */
+/********* Sucursales ********/
 router.get('/sucursals', adminCheck, sucursalList);
+router.post('/sucursals', adminCheck, sucursalFilters);
 /* Create Sucursal */
 router.get('/sucursal/create', adminCheck, addSucursal);
 router.post('/sucursal/create', sucursalValidator, createSucursal);
@@ -97,8 +95,9 @@ router.put('/sucursals/edit/:id', sucursalValidator, sucursalUpdate);
 /* Delete Sucursal */
 router.delete('/sucursal/deleteSucursal/:id', sucursalDelete);
 
-/* Usuarios */
+/************ Usuarios **********/
 router.get('/userList', adminCheck, userList);
+router.post('/userList', adminCheck, usersAdminFilters);
 /* Create User */
 router.get('/user/create', adminCheck, addUser);
 router.post('/user/create', userAdminValidator, createUser);
@@ -108,8 +107,9 @@ router.put('/users/edit/:id', userAdminValidator, userUpdate);
 /* Delete User */
 router.delete('/user/deleteUser/:id', userDelete);
 
-/* Categorías */
+/********* Categorías **********/
 router.get('/categories', adminCheck, categoryList);
+router.post('/categories', adminCheck, categoryFilters);
 /* Create category */
 router.get('/category/create', adminCheck, categoryAdd);
 router.post('/category/create', categoryValidator, createCategory);
@@ -119,8 +119,9 @@ router.put('/category/edit/:id', categoryValidator, categoryUpdate);
 /* Delete category */
 router.delete('/category/deletecategory/:id', categoryDelete);
 
-/* Subcategorías */
+/************ Subcategorías ************/
 router.get('/subcategories', adminCheck, subcategoryList);
+router.post('/subcategories', adminCheck, subcategoryFilters);
 /* Create subcategory */
 router.get('/subcategory/create', adminCheck, subcategoryAdd);
 router.post('/subcategory/create', subcategoryValidator, createSubcategory);
@@ -130,8 +131,9 @@ router.put('/subcategory/edit/:id', subcategoryValidator, subcategoryUpdate);
 /* Delete subcategory */
 router.delete('/subcategory/deletesubcategory/:id', subcategoryDelete);
 
-/* Marcas */
+/********* Marcas ********/
 router.get('/marks', adminCheck, markList);
+router.post('/marks', adminCheck, marksFilters);
 /* Create mark */
 router.get('/mark/create', adminCheck, markAdd);
 router.post('/mark/create', marksValidator, createMark);

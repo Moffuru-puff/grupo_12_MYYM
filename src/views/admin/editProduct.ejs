@@ -111,12 +111,12 @@
                                 <div class="flex">
                                     <label for="categoria-form">Categoría</label>
                                     <div class="input">
-                                        <select name="categorie" id="categoria-form">
-                                            <option value="" hidden>Categorias</option>                                            
-                                                <% for( let i = 0; i < locals.subcategories.length; i++ ) { %>
-                                                <option value="<%- categories[i].id %>" <%- locals.old && old.categories[i] == categories[i].id ? "selected" : categories[i].id == subcategories[i].categoryId ? `selected` : "" %>><%- categories[i].name %>
-                                                </option>
-                                                <% } %> 
+                                        <select name="categorie" id="categoria-form" class="categorySelect">
+                                            <option value="" hidden>Categorias</option>
+                                                <% locals.categories.forEach(category => { %>
+                                                <option value="<%- category.id %>" <%- locals.old && old.category == category.id ? "selected" : category.id == categoryProduct ? "selected" : "" %>><%- category.name %></option>
+                                             <% }) %>     
+                                               
                                         </select>
                                         <small class="text-danger" id="categoryErrors"></small>
                                         <% if(locals.errors && errors.category) { %>
@@ -128,12 +128,9 @@
 
                                     <label for="subCategoria-form">Subcategoría</label>
                                     <div class="input">
-                                        <select name="subcategorie" id="subcategoria-form">
+                                        <select name="subcategorie" id="subcategoria-form" class="subcategorySelect">
                                             <option value="" selected disabled>Subcategorías</option>
-                                            <% locals.subcategories.forEach(subcategory => { %>
-                                                <option value="<%- subcategory.id %>" <%= locals.old && old.subcategory == subcategory.id ? "selected" : subcategory.id == product.subcategoryId ? "selected" : "" %> ><%- subcategory.name %>
-                                                </option>
-                                                <% }) %>
+                                           
                                         </select>
                                         <% if (locals.errors && errors.subcategory) { %>
                                             <small class="text-danger">
@@ -186,6 +183,7 @@
                 </form>
             </main>
             <script src="/js/prevDeImg.js" defer></script>
+            <script src="/js/adminCategories.js" defer></script>
             <script src="/js/validationsFront/cargaDeProductos.js"></script>
     </body>
 
