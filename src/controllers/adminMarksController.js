@@ -1,6 +1,6 @@
 const { validationResult } = require("express-validator");
 const db = require("../database/models");
-const { Op } = db.Sequelize.Op;
+const { Op } = require('sequelize')
 
 module.exports = {    
     /* Marcas */
@@ -15,7 +15,6 @@ module.exports = {
 	},
 	marksFilters: (req, res) => {
 		let { filters } = req.body
-		console.log(filters, req.body);
 		if (filters) {
 			let order;
 			let property;
@@ -37,7 +36,6 @@ module.exports = {
 					property = 'name';
 					break;
 				default:
-					console.log(filters);
 					break;
 			}
 				db.Mark.findAll({
@@ -50,6 +48,49 @@ module.exports = {
 						userInSession: req.session.user ? req.session.user : "",
 					})
 				}).catch(errors => console.log(errors))
+		}
+	},
+	marksAdminSearch: (req, res) => {		
+		let { searchAdmin, keyword } = req.query
+		if (searchAdmin) {			
+
+			switch (searchAdmin) {
+				case 'id':
+				
+					db.Mark.findAll({
+						where: {
+							id: {
+								[Op.like]: `${keyword}%`,
+							},
+						}
+					}).then(marks => {
+						res.render("./admin/MarksList", {
+							marks,
+							userInSession: req.session.user ? req.session.user : "",
+						})
+					}).catch(errors => console.log(errors))
+
+					break;
+				case 'name':
+					
+					db.Mark.findAll({
+						where: {
+							name: {
+								[Op.like]: `${keyword}%`,
+							},
+						}
+					}).then(marks => {
+						res.render("./admin/MarksList", {
+							marks,
+							userInSession: req.session.user ? req.session.user : "",
+						})
+					}).catch(errors => console.log(errors))
+					break;
+				
+				default:
+					alert('Error' + req.query);
+					break;
+			}
 		}
 	},
 	markAdd: (req, res) => {
@@ -79,7 +120,6 @@ module.exports = {
 
 	editMark: (req, res) => {
 		db.Mark.findByPk(+req.params.id).then((mark) => {
-			console.log(mark);
 			res.render("./admin/editMark", {
 				userInSession: req.session.user ? req.session.user : "",
 				mark,
@@ -106,7 +146,6 @@ module.exports = {
 			}).catch(errors => console.log(errors))
 		} else {
 			db.Mark.findByPk(+req.params.id).then((mark) => {
-				console.log(mark);
 				res.render("./admin/editMark", {
 					errors: errors.mapped(),
 					old: req.body,

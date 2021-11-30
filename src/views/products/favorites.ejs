@@ -31,12 +31,11 @@
 
                     <tbody>
                         <% if (productsFavorites.length > 0) { %>
-                            <% productsFavorites.forEach( product => { %>
-                                <% console.log(product) %> 
+                            <% productsFavorites.forEach( product => { %>                                
                                 <tr>
                                    <td>
                                        <div class="fav-info">
-                                           <a href=""> <img src="/img/Productos Gamers/<%- product.productimage[0]?.url %>" alt="<%- product.name %>" /></a>
+                                           <a href="/detalleDelProducto/<%- product.id %>"> <img src="/img/Productos Gamers/<%- product.productimage[0]?.url %>" alt="<%- product.name %>" /></a>
                                            <div>
                                                <p>
                                                <h4> <%- product.name%></h4>

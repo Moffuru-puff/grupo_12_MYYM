@@ -17,7 +17,8 @@ module.exports = {
         }, 
         {
           association: "Subcategorie"
-        }
+        }, 
+        { association: "Favorite"}
       ],
     }).then((product) => {
       res.render("./products/detalleDelProducto", {

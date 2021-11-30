@@ -1,7 +1,7 @@
 const { validationResult } = require("express-validator");
 let bcrypt = require('bcryptjs')
 const db = require("../database/models");
-const { Op } = db.Sequelize.Op;
+const { Op } = require('sequelize')
 
 module.exports = {
   /* Usuarios */
@@ -23,7 +23,6 @@ module.exports = {
 	},
 	usersAdminFilters: (req, res) => {
 		let { filters } = req.body
-		console.log(filters, req.body);
 		if (filters) {
 			let order;
 			let property;
@@ -61,7 +60,6 @@ module.exports = {
 					property = 'user';
 					break;
 				default:
-					console.log(filters);
 					break;
 			}
 				db.User.findAll({
@@ -80,6 +78,102 @@ module.exports = {
 						userInSession: req.session.user ? req.session.user : "",
 					});
 				}).catch((error) => console.log(error))
+		}
+	},
+	usersAdminSearch: (req, res) => {
+		
+		let { searchAdmin, keyword } = req.query
+		if (searchAdmin) {			
+
+			switch (searchAdmin) {
+				case 'id':
+				
+					db.User.findAll({
+						where: {
+							id: {
+								[Op.like]: `${keyword}%`,
+							},
+						},
+						include: [{
+							association: "Addresse"
+						},
+						{
+							association: "Role"
+						}]
+					}).then((users) => {
+						res.render("./admin/userList", {
+							users,
+							userInSession: req.session.user ? req.session.user : "",
+						});
+					}).catch((error) => console.log(error))
+
+					break;
+				case 'name':
+					
+					db.User.findAll({
+						where: {
+							name: {
+								[Op.like]: `${keyword}%`,
+							},
+						},
+						include: [{
+							association: "Addresse"
+						},
+						{
+							association: "Role"
+						}]
+					}).then((users) => {
+						res.render("./admin/userList", {
+							users,
+							userInSession: req.session.user ? req.session.user : "",
+						});
+					}).catch((error) => console.log(error))
+					break;
+				case 'lastName':
+					db.User.findAll({
+						where: {
+							lastName: {
+								[Op.like]: `${keyword}%`,
+							},
+						},
+						include: [{
+							association: "Addresse"
+						},
+						{
+							association: "Role"
+						}]
+					}).then((users) => {
+						res.render("./admin/userList", {
+							users,
+							userInSession: req.session.user ? req.session.user : "",
+						});
+					}).catch((error) => console.log(error))
+
+					break;
+				case 'user':
+					db.User.findAll({
+						where: {
+							user: {
+								[Op.like]: `${keyword}%`,
+							},
+						},
+						include: [{
+							association: "Addresse"
+						},
+						{
+							association: "Role"
+						}]
+					}).then((users) => {
+						res.render("./admin/userList", {
+							users,
+							userInSession: req.session.user ? req.session.user : "",
+						});
+					}).catch((error) => console.log(error))
+					break;				
+				default:
+					alert('Error' + req.query);
+					break;
+			}
 		}
 	},
 	addUser: (req, res) => {

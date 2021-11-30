@@ -1,6 +1,7 @@
 const { validationResult } = require("express-validator");
 const db = require("../database/models");
 const fs = require("fs");
+const { Op } = require('sequelize')
 
 module.exports = {
     
@@ -19,7 +20,6 @@ module.exports = {
 	},
 	subcategoryFilters: (req, res) => {
 		let { filters } = req.body
-		console.log(filters, req.body);
 		if (filters) {
 			let order;
 			let property;
@@ -41,7 +41,6 @@ module.exports = {
 					property = 'name';
 					break;
 				default:
-					console.log(filters);
 					break;
 			}
 			db.Subcategorie.findAll({
@@ -57,6 +56,73 @@ module.exports = {
 					userInSession: req.session.user ? req.session.user : "",
 				})
 			}).catch(errors => console.log(errors))
+		}
+	},
+	subcategoryAdminSearch: (req, res) => {		
+		let { searchAdmin, keyword } = req.query
+		if (searchAdmin) {			
+
+			switch (searchAdmin) {
+				case 'id':
+				
+					db.Subcategorie.findAll({
+						where: {
+							id: {
+								[Op.like]: `${keyword}%`,
+							},
+						},
+						include: [{ association: "category" }]
+					}).then(subcategories => {
+						res.render("./admin/SubcategoryList", {
+							subcategories,
+							userInSession: req.session.user ? req.session.user : "",
+						})
+					}).catch(errors => console.log(errors))
+					break;
+				case 'name':
+
+					db.Subcategorie.findAll({
+						where: {
+							name: {
+								[Op.like]: `${keyword}%`,
+							},
+						},
+						include: [{ association: "category" }]
+					}).then(subcategories => {
+						res.render("./admin/SubcategoryList", {
+							subcategories,
+							userInSession: req.session.user ? req.session.user : "",
+						})
+					}).catch(errors => console.log(errors))
+					break;
+				case 'category':
+					db.Categorie.findOne({
+						where: {
+							name: {
+								[Op.like]: `${keyword}%`,
+							},
+						},
+						include: [{ association: "subcategories" }]
+					}).then(category => {
+						db.Subcategorie.findAll({
+							where: {
+								categoryId: category.id
+							},
+							include: [{ association: "category" }]
+						}).then(subcategories => {						
+							res.render("./admin/SubcategoryList", {
+								subcategories,
+								userInSession: req.session.user ? req.session.user : "",
+							})
+						}).catch(errors => console.log(errors))
+					}).catch(errors => console.log(errors))
+					
+					break;
+				
+				default:
+					alert('Error' + req.query);
+					break;
+			}
 		}
 	},
 	subcategoryAdd: (req, res) => {

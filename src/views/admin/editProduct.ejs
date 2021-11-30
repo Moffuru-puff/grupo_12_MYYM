@@ -32,7 +32,6 @@
                                 </label>
                                 <input type="file" name="image" accept=".jpg, .png" multiple id="seleccionArchivos"
                                 <% locals.product.productimage.forEach(image => { %>
-                                    <% console.log(image.url) %> 
                                     value="<%= locals.old ? old.image : image.url %>" />
                                 <% }) %>
                                     

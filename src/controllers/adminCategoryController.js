@@ -1,6 +1,7 @@
 const { validationResult } = require("express-validator");
 const db = require("../database/models");
 const fs = require("fs");
+const { Op } = require('sequelize')
 
 module.exports = {
    	/* Categories */
@@ -17,7 +18,6 @@ module.exports = {
 	},
 	categoryFilters: (req, res) => {
 		let { filters } = req.body
-		console.log(filters, req.body);
 		if (filters) {
 			let order;
 			let property;
@@ -39,7 +39,6 @@ module.exports = {
 					property = 'name';
 					break;
 				default:
-					console.log(filters);
 					break;
 			}
 			db.Categorie.findAll({
@@ -53,6 +52,50 @@ module.exports = {
 					userInSession: req.session.user ? req.session.user : "",
 				})
 			}).catch(errors => console.log(errors))
+		}
+	},
+	categoryAdminSearch: (req, res) => {		
+		let { searchAdmin, keyword } = req.query
+		if (searchAdmin) {			
+
+			switch (searchAdmin) {
+				case 'id':
+				
+					db.Categorie.findAll({
+						where: {
+							id: {
+								[Op.like]: `${keyword}%`,
+							},
+						},
+						include: [{ association: "subcategories" }]
+					}).then(categories => {
+						res.render("./admin/CategoriesList", {
+							categories,
+							userInSession: req.session.user ? req.session.user : "",
+						})
+					}).catch(errors => console.log(errors))
+					break;
+				case 'name':
+
+					db.Categorie.findAll({
+						where: {
+							name: {
+								[Op.like]: `${keyword}%`,
+							},
+						},
+						include: [{ association: "subcategories" }]
+					}).then(categories => {
+						res.render("./admin/CategoriesList", {
+							categories,
+							userInSession: req.session.user ? req.session.user : "",
+						})
+					}).catch(errors => console.log(errors))
+					break;
+				
+				default:
+					alert('Error' + req.query);
+					break;
+			}
 		}
 	},
 	categoryAdd: (req, res) => {
@@ -81,8 +124,7 @@ module.exports = {
 	},
 
 	editCategory: (req, res) => {
-		db.Categorie.findByPk(+req.params.id).then((category) => {
-			console.log(category);
+		db.Categorie.findByPk(+req.params.id).then((category) => {			
 			res.render("./admin/editCategory", {
 				userInSession: req.session.user ? req.session.user : "",
 				category,
@@ -107,7 +149,7 @@ module.exports = {
 			}).catch(errors => console.log(errors))
 		} else {
 			db.Categorie.findByPk(+req.params.id).then((category) => {
-				console.log(category);
+				
 				res.render("./admin/editCategory", {
 					errors: errors.mapped(),
 					old: req.body,

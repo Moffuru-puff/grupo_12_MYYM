@@ -16,7 +16,6 @@ module.exports = {
 	},
 	sucursalFilters: (req, res) => {
 		let { filters } = req.body
-		console.log(filters, req.body);
 		if (filters) {
 			let order;
 			let property;

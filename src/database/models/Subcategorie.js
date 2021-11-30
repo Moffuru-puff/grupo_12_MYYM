@@ -32,7 +32,7 @@ module.exports = function (sequelize, dataTypes) {
 
         Subcategorie.hasMany(models.Product, {
             as: "Products",
-            foreignKey: "SubcategoryId"
+            foreignKey: "subcategoryId"
 
         })
         Subcategorie.belongsTo(models.Categorie, {

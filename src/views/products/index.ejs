@@ -153,38 +153,30 @@
               <article id="article">
                 <div class="star" id="btnFav">
                   <form action="favorites/addOrDelete/<%- producto.id %>" method="POST">                  
-                    <button type="submit" class="btnStar">
-                      <figure userid="<%- userInSession.id  %>" <% if(userInSession.favorites != undefined ) { %>
-                      <% userInSession.favorites.forEach(favorite => { %>                      
-                       <% if (favorite.productId == producto.id) { %>
+                    <button type="submit" class="btnStar" <% if(!userInSession || userInSession == undefined || userInSession == "") { %> 
+                      disabled                      
+                      <% } %>>                      
+                      <% if( producto.Favorite !== null && userInSession) { %> 
+                       
+                      <figure userid="<%- userInSession.id  %>"    
+                       <% if (producto.Favorite.productId == producto.id && producto.Favorite.userId == userInSession.id) { %>
                           class="myImage activated"
                           <% } else { %>
                             class="myImage"
                             <% } %>
-                            <%  }) %>   
-                    <% } %>
                      id="<%- producto.id %>">
                     </figure>
+                    <% } else { %>
+                      <figure userid="" class="myImage" id="<%- producto.id %>"></figure>
+                    <% } %>
                     </button>                  
                   </form>
                 </div>
-                <!-- <div class="star" id="btnFav"> 
-                    <figure 
-                    userid="<- userInSession.id  %>"
-                    < if (userInSession.Favorite[0].productId == producto.id) { %>
-                      class="myImage activated"
-                      < } else { %>
-                        class="myImage"
-                    < } %>
-                    id="<- producto.id %>">
-                    </figure>
-                   
-                    
-                  </div>  -->
-                  
-                <a href="/detalleDelProducto/<%- producto.id %>">
+                    <a href="/detalleDelProducto/<%- producto.id %>">
+              
                   <div class="img-producto">
-                    
+                    <img src="/img/Productos Gamers/<%- producto.productimage[0]?.url %>"
+													alt="<%- producto.name %>" />
                   </div>
                   <div class="puntuacion">
                     <img src="/img/iconos-png/4.5.png" alt="puntuacion" />
@@ -238,28 +230,27 @@
             <a href="#"><img src="/img/iconos-png/arrow-top.png" alt="" /></a>
           </div>
           <section class="sectionPagination">
-            <div class="pagination">
-              <% for( let i = 0; i <= ((Products.length / 18) + 1); i++ ) { %>
-                <form action="/<%= i + 1 %>" method="get" class="pagination">
-                  <input id="dot-<%= i + 1 %>" type="radio" name="dots"> 
-                <label for="dot-<%= i + 1 %>" id="<%= i + 1 %>"></label>
+            <div class="pagination" id="paginationContainer">            
+              <% for( let i = 1; i <= num_pages; i++ ) { %>
+                
+                <form action="/pagination/<%= i %>" method="get" <% if (i === num_page) { %>
+                  class="pagination formPagination click"
+                 <% } else { %>
+                  class="pagination formPagination"
+                <% } %> id="formPagination<%= i %>">                 
               <button type="submit" class="num-page"> </button>
               </form>
               <% } %>
               <div class="pacman"></div>
             </div>
           </section>
-
-        <!--   <div id="spinner" class="spinner-border text-light" role="status">
-            <span class="visually-hidden">Loading...</span>
-          </div> -->
         </section>
       </main>
 
       <!-- Comienzo del footer -->
       <%- include('../partials/footer.ejs') %>
         <!-- Fin del footer -->
-       <!--  <script src="/js/paginationHome.js" defer></script>   -->   
+        <script src="/js/paginationHome.js" defer></script>     
   </body>
 
 </html>

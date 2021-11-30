@@ -9,7 +9,6 @@ const bodyParser = require('body-parser');
 const localsCheck = require('./middlewares/localsCheck')
 let categoriesHeader = require('./middlewares/categoriesHeader')
 let marksHeader = require('./middlewares/marksHeader')
-let userApp = require('./middlewares/userApp')
 
 
 /* Enrutadores */

@@ -23,6 +23,7 @@ let {
 let {
     userList,
     usersAdminFilters,
+    usersAdminSearch,
     addUser,
     createUser,
     editUser,
@@ -36,7 +37,8 @@ let {
     createCategory,
     editCategory,
     categoryUpdate,
-    categoryDelete, } = require('../controllers/adminCategoryController');
+    categoryDelete,
+    categoryAdminSearch, } = require('../controllers/adminCategoryController');
 
 let {
     subcategoryList,
@@ -45,11 +47,13 @@ let {
     createSubcategory,
     editSubcategory,
     subcategoryUpdate,
-    subcategoryDelete, } = require('../controllers/adminSubcategoryController');
+    subcategoryDelete,
+    subcategoryAdminSearch, } = require('../controllers/adminSubcategoryController');
 
 let {
     markList,
     marksFilters,
+    marksAdminSearch,
     markAdd,
     createMark,
     editMark,
@@ -73,7 +77,7 @@ router.get('/', adminCheck, index);
 /* Get - Admin products */
 router.get('/products', adminCheck, productsList);
 router.post('/products', adminCheck, productsAdminFilters);
-router.post('/productsSearch', adminCheck, productsAdminSearch);
+router.get('/productsSearch', adminCheck, productsAdminSearch);
 /* Create Product */
 router.get('/products/create', adminCheck, addProduct);
 router.post('/products/create', uploadFile.array("image"), productValidator, charge);
@@ -106,10 +110,14 @@ router.get('/users/edit/:id', adminCheck, editUser);
 router.put('/users/edit/:id', userAdminValidator, userUpdate);
 /* Delete User */
 router.delete('/user/deleteUser/:id', userDelete);
+/* Search User */
+router.get('/userListSearch', adminCheck, usersAdminSearch);
 
 /********* Categorías **********/
 router.get('/categories', adminCheck, categoryList);
+/* Filters categories */
 router.post('/categories', adminCheck, categoryFilters);
+router.get('/categorySearch', adminCheck, categoryAdminSearch);
 /* Create category */
 router.get('/category/create', adminCheck, categoryAdd);
 router.post('/category/create', categoryValidator, createCategory);
@@ -121,7 +129,9 @@ router.delete('/category/deletecategory/:id', categoryDelete);
 
 /************ Subcategorías ************/
 router.get('/subcategories', adminCheck, subcategoryList);
+/* Filters subcategory */
 router.post('/subcategories', adminCheck, subcategoryFilters);
+router.get('/subcategorySearch', adminCheck, subcategoryAdminSearch);
 /* Create subcategory */
 router.get('/subcategory/create', adminCheck, subcategoryAdd);
 router.post('/subcategory/create', subcategoryValidator, createSubcategory);
@@ -133,7 +143,9 @@ router.delete('/subcategory/deletesubcategory/:id', subcategoryDelete);
 
 /********* Marcas ********/
 router.get('/marks', adminCheck, markList);
+/* Filters marks */
 router.post('/marks', adminCheck, marksFilters);
+router.get('/marksSearch', adminCheck, marksAdminSearch);
 /* Create mark */
 router.get('/mark/create', adminCheck, markAdd);
 router.post('/mark/create', marksValidator, createMark);

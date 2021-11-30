@@ -7,7 +7,8 @@
     align-items: center;
     flex-direction: column;
     background: linear-gradient(103deg, rgba(0, 0, 0, 1) 0%, rgba(55, 4, 96, 1) 100%);
-
+    margin: 1rem 0.5rem 0;
+    border-radius: 5px;
   }
   
   .sectionPagination .pagination {
@@ -20,15 +21,6 @@
     --pm: #ffff03;
   }
   
-  .sectionPagination label {
-    content: '';
-    margin: 0 10px;
-    height: var(--ddim);
-    width: var(--ddim);
-    background: #f7b997;
-    cursor: pointer;
-  }
-
   .sectionPagination .num-page {
     content: '';
     margin: 0 10px;
@@ -36,6 +28,7 @@
     width: var(--ddim);
     background: #f7b997;
     cursor: pointer;
+    border: none;
   }
   
   .sectionPagination label:first-child {margin-left: 0;}
@@ -85,23 +78,29 @@
     100% {}
   }
   
-  .sectionPagination input[type="radio"]:hover ~ .pacman:before,
-  .sectionPagination input[type="radio"]:hover ~ .pacman:after {
+  .sectionPagination .formPagination:hover ~ .pacman:before,
+  .sectionPagination .formPagination:hover ~ .pacman:after {
     animation: waka 500ms infinite;
   }
 
-  .sectionPagination .num-page:hover ~ .pacman:before,
-  .sectionPagination .num-page:hover ~ .pacman:after {
-    animation: waka 500ms infinite;
-  }
-  
-  .sectionPagination input[id="dot-1"]:checked ~ .pacman {transform: translateX(var(--ddim));}
-  .sectionPagination input[id="dot-2"]:checked ~ .pacman {transform: translateX(calc(var(--ddim) + var(--rdim)));}
-  .sectionPagination input[id="dot-3"]:checked ~ .pacman {transform: translateX(calc(var(--ddim) + var(--rdim)*2));}
-  .sectionPagination input[id="dot-4"]:checked ~ .pacman {transform: translateX(calc(var(--ddim) + var(--rdim)*3));}
-  .sectionPagination input[id="dot-5"]:checked ~ .pacman {transform: translateX(calc(var(--ddim) + var(--rdim)*4));}
-  .sectionPagination input[id="dot-6"]:checked ~ .pacman {transform: translateX(calc(var(--ddim) + var(--rdim)*5));}
-  .sectionPagination input[id="dot-7"]:checked ~ .pacman {transform: translateX(calc(var(--ddim) + var(--rdim)*6));}
-  .sectionPagination input[id="dot-8"]:checked ~ .pacman {transform: translateX(calc(var(--ddim) + var(--rdim)*7));}
+  .sectionPagination #formPagination1.click ~ .pacman {transform: translateX(var(--ddim));}
+  .sectionPagination #formPagination2.click ~ .pacman {transform: translateX(calc(var(--ddim) + var(--rdim)));}
+  .sectionPagination #formPagination3.click ~ .pacman {transform: translateX(calc(var(--ddim) + var(--rdim)*2));}
+  .sectionPagination #formPagination4.click ~ .pacman {transform: translateX(calc(var(--ddim) + var(--rdim)*3));}
+  .sectionPagination #formPagination5.click ~ .pacman {transform: translateX(calc(var(--ddim) + var(--rdim)*4));}
+  .sectionPagination #formPagination6.click ~ .pacman {transform: translateX(calc(var(--ddim) + var(--rdim)*5));}
+  .sectionPagination #formPagination7.click ~ .pacman {transform: translateX(calc(var(--ddim) + var(--rdim)*6));}
+  .sectionPagination #formPagination8.click ~ .pacman {transform: translateX(calc(var(--ddim) + var(--rdim)*7));}
+  .sectionPagination #formPagination1.click ~ .pacman {transform: translateX(var(--ddim));}
+
+ /*  .sectionPagination #formPagination2:active ~ .pacman {transform: translateX(calc(var(--ddim) + var(--rdim)));}
+  .sectionPagination #formPagination3:active ~ .pacman {transform: translateX(calc(var(--ddim) + var(--rdim)*2));}
+  .sectionPagination #formPagination4:active ~ .pacman {transform: translateX(calc(var(--ddim) + var(--rdim)*3));}
+  .sectionPagination #formPagination5:active ~ .pacman {transform: translateX(calc(var(--ddim) + var(--rdim)*4));}
+  .sectionPagination #formPagination6:active ~ .pacman {transform: translateX(calc(var(--ddim) + var(--rdim)*5));}
+  .sectionPagination #formPagination7:active ~ .pacman {transform: translateX(calc(var(--ddim) + var(--rdim)*6));}
+  .sectionPagination #formPagination8:active ~ .pacman {transform: translateX(calc(var(--ddim) + var(--rdim)*7));} */
+
+
   
   

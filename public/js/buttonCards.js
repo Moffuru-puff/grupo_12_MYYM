@@ -78,8 +78,7 @@ function qsA(element) {
     modal.style.display = "flex";
         break;
 
-      default:
-          console.log(id);
+      default:          
         break;
     }
     return modal;

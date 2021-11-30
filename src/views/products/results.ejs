@@ -20,9 +20,25 @@
 									<!--    <a href="/detalleDelProducto/<%- producto.id %>"> -->
 									<article id="article">
 										<div class="star" id="btnFav">
-											<figure class="myImage" id="<%- producto.id %>">
-											</figure>
-										</div>
+											<form action="favorites/addOrDelete/<%- producto.id %>" method="POST">                  
+											  <button type="submit" class="btnStar" <% if(!userInSession || userInSession == undefined || userInSession == "") { %> 
+												disabled                      
+												<% } %>>                      
+												<% if( producto.Favorite !== null && userInSession) { %> 
+												<figure userid="<%- userInSession.id  %>"    
+												 <% if (producto.Favorite.productId == producto.id && producto.Favorite.userId == userInSession.id) { %>
+													class="myImage activated"
+													<% } else { %>
+													  class="myImage"
+													  <% } %>
+											   id="<%- producto.id %>">
+											  </figure>
+											  <% } else { %>
+												<figure userid="" class="myImage" id="<%- producto.id %>"></figure>
+											  <% } %>
+											  </button>                  
+											</form>
+										  </div>
 										<a href="/detalleDelProducto/<%- producto.id %>">
 											<div class="img-producto">
 												<img src="/img/Productos Gamers/<%- producto.productimage[0]?.url  %>"

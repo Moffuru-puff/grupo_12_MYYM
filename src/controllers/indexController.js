@@ -6,77 +6,67 @@ const toThousand = (n) => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
 module.exports = {
   index: (req, res) => {
-    db.Product.findAll({ include: [{ association: "productimage" }] }).then(
-      (Products) => {
-        res.render("./products/index.ejs", {
-          Products,
-          toThousand,
-          favorites: req.session.user ? req.session.user.favorites : "",
-          userInSession: req.session.user ? req.session.user : "",
-        });
-      }
-    ).catch(error => console.error(error))
+    
+      let num_page = 1
+
+      let skip_page = (num_page - 1) * 18
+  
+      db.Product.findAll().then(
+        (products) => {
+          let num_pages = parseInt((products.length / 18) + 1);        
+          db.Product.findAll({
+            offset: skip_page,
+            limit: 18,
+            include: [{
+              association: "productimage"
+            },
+            {
+              association: "Favorite"
+            },
+            ]
+          }).then((Products) => {
+            res.render("./products/index.ejs", {
+              Products,
+              toThousand,
+              favorites: req.session.user ? req.session.user.favorites : "",
+              userInSession: req.session.user ? req.session.user : "",
+              num_page: num_page,
+              num_pages: num_pages
+            })
+  
+          }).catch(error => console.error(error)) 
+        }
+      ).catch(error => console.error(error))
   },
   paginationProducts: (req, res) => {
     let num_page = +req.params.num_page
 
     let skip_page = (num_page - 1) * 18
 
-    let images = []
-    
     db.Product.findAll().then(
       (products) => {
-        let num_pages = parseInt((products.length / 18) + 1);
-        console.log(num_pages);
+        let num_pages = parseInt((products.length / 18) + 1);        
         db.Product.findAll({
           offset: skip_page,
           limit: 18,
+          include: [{
+            association: "productimage"
+          },
+          {
+            association: "Favorite"
+          },
+          ]
         }).then((Products) => {
-          
-          Products.forEach(product => {
-            db.Productsimage.findAll({
-              where: {
-                productId: product.id
-              }
-            }).then((image) => {
-              image.forEach(img => {
-                let ProductAndImage = {
-                  id: product.id,
-                  name: product.name,
-                  mainFeatures: product.mainFeatures,
-                  price: product.price,
-                  discount: product.discount,
-                  barcode: product.barcode,
-                  stock: product.stock,
-                  description: product.description,
-                  subcategoryId: product.subcategoryId,
-                  markId: product.markId,
-                  image: img.dataValues.url
-                }
-                images = images.concat(ProductAndImage)
-                //images.push(ProductAndImage)
-                //console.log(img.dataValues, product);
-              })
-              //images = image[0]
-              /* images.push(image[0]) */
-              //console.log(images);
-
-            })
-          })
-          console.log(images);
           res.render("./products/index.ejs", {
             Products,
-            images,
             toThousand,
             favorites: req.session.user ? req.session.user.favorites : "",
             userInSession: req.session.user ? req.session.user : "",
             num_page: num_page,
             num_pages: num_pages
           })
-          
-        }).catch(error => console.error(error))
-        //console.log(images);
 
+        }).catch(error => console.error(error)) 
       }
     ).catch(error => console.error(error))
   },
@@ -90,10 +80,13 @@ module.exports = {
           order: [
             ['discount', 'DESC']
           ],
-          include: [{ association: "productimage" }]
+          include: [{ association: "productimage" }, 
+          { association: "Favorite"}]
         }).then((Products) => {
+          let num_pages = parseInt((Products.length / 18) + 1);
           res.render("./products/index.ejs", {
             Products,
+            num_pages,
             toThousand,
             favorites: req.session.user ? req.session.user.favorites : "",
             userInSession: req.session.user ? req.session.user : "",
@@ -104,10 +97,13 @@ module.exports = {
           order: [
             ['price', order]
           ],
-          include: [{ association: "productimage" }]
+          include: [{ association: "productimage" }, 
+          { association: "Favorite"}]
         }).then((Products) => {
+          let num_pages = parseInt((Products.length / 18) + 1);
           res.render("./products/index.ejs", {
             Products,
+            num_pages,
             toThousand,
             favorites: req.session.user ? req.session.user.favorites : "",
             userInSession: req.session.user ? req.session.user : "",
@@ -140,6 +136,7 @@ module.exports = {
         {
           association: "productimage",
         },
+        { association: "Favorite"}
       ],
     }).then((result) => {
       res.render("./products/results.ejs", {
@@ -165,6 +162,7 @@ module.exports = {
         {
           association: "productimage",
         },
+        { association: "Favorite"}
       ],
     }).then((withDiscount) => {
       res.render("./products/offers.ejs", {
@@ -183,7 +181,9 @@ module.exports = {
       },
       {
         association: "productimage",
-      }],
+      }, 
+      { association: "Favorite"}
+    ],
       where: {
         [Op.or]: [
           {
@@ -241,7 +241,8 @@ module.exports = {
       },
       {
         association: "productimage",
-      }],
+      }, 
+      { association: "Favorite"}],
       where: {
         subcategoryId: +req.params.id
       },
@@ -271,7 +272,8 @@ module.exports = {
       },
       {
         association: "Mark"
-      }],
+      }, 
+      { association: "Favorite"}],
       where: {
         markId: +req.params.id
       },

@@ -1,6 +1,6 @@
 const { validationResult } = require("express-validator");
 const db = require("../database/models");
-const { Op } = db.Sequelize.Op;
+const { Op } = require('sequelize')
 const toThousand = (n) => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 const fs = require("fs");
 
@@ -25,7 +25,6 @@ module.exports = {
 	},
 	productsAdminFilters: (req, res) => {
 		let { filters } = req.body
-		console.log(filters, req.body);
 		if (filters) {
 			let order;
 			let property;
@@ -55,7 +54,6 @@ module.exports = {
 					property = 'price';
 					break;
 				default:
-					console.log(filters);
 					break;
 			}
 			db.Product.findAll({
@@ -76,19 +74,39 @@ module.exports = {
 		}
 	},
 	productsAdminSearch: (req, res) => {
-		let { searchAdmin, keyword } = req.body
-		//let keyword = req.query.keyword
-		console.log(keyword, req.body);
+		
+		let { searchAdmin, keyword } = req.query
 		if (searchAdmin) {
 			let property;
-			let value = keyword
+
 			switch (searchAdmin) {
 				case 'id':
 					property = 'id';
-					console.log(keyword, req.body);
+				
 					db.Product.findAll({
 						where: {
 							id: {
+								[Op.like]: `${keyword}%`,
+							},
+						},
+						include: [
+							{ association: "Subcategorie", include: [{ association: "category" }] },
+							{ association: "Mark" }
+						],
+					}).then((getProducts) => {
+						res.render("./admin/productsList", {
+							getProducts,
+							userInSession: req.session.user ? req.session.user : ""
+						});
+					}).catch(error => console.log(error))
+
+					break;
+				case 'name':
+					property = 'name';
+					
+					db.Product.findAll({
+						where: {
+							name: {
 								[Op.like]: `%${keyword}%`,
 							},
 						},
@@ -103,90 +121,83 @@ module.exports = {
 						});
 					}).catch(error => console.log(error))
 					break;
-				case 'name':
-					property = 'name';
-					break;
 				case 'barcode':
 					property = 'barcode';
+					
+					db.Product.findAll({
+						where: {
+							barcode: {
+								[Op.like]: `%${keyword}%`,
+							},
+						},
+						include: [
+							{ association: "Subcategorie", include: [{ association: "category" }] },
+							{ association: "Mark" }
+						],
+					}).then((getProducts) => {
+						res.render("./admin/productsList", {
+							getProducts,
+							userInSession: req.session.user ? req.session.user : ""
+						});
+					}).catch(error => console.log(error))
+
 					break;
 				case 'mark':
 					property = 'mark';
+					db.Mark.findAll({
+						where: {
+							name: {
+								[Op.like]: `%${keyword}%`,
+							},
+						}
+					}).then(marks => {
+						db.Product.findAll({
+							where: {
+								markId: marks[0].id
+							},
+							include: [
+								{ association: "Subcategorie", include: [{ association: "category" }] },
+								{ association: "Mark" }
+							],
+						}).then((getProducts) => {
+							res.render("./admin/productsList", {
+								getProducts,
+								userInSession: req.session.user ? req.session.user : ""
+							});
+						}).catch(error => console.log(error))
+					})
+
 					break;
 				case 'subcategory':
+
 					property = 'subcategory';
+					db.Subcategorie.findAll({
+						where: {
+							name: {
+								[Op.like]: `%${keyword}%`,
+							},
+						}
+					}).then(subcategory => {
+						db.Product.findAll({
+							where: {
+								subcategoryId: subcategory[0].id
+							},
+							include: [
+								{ association: "Subcategorie", include: [{ association: "category" }] },
+								{ association: "Mark" }
+							],
+						}).then((getProducts) => {
+							res.render("./admin/productsList", {
+								getProducts,
+								userInSession: req.session.user ? req.session.user : ""
+							});
+						}).catch(error => console.log(error))
+					})
+
 					break;
 				default:
-					console.log(searchAdmin);
+					alert('Error' + req.query);
 					break;
-			}
-			if (property !== 'mark' && property !== 'subcategory') {
-				console.log(keyword, req.body);
-				db.Product.findAll({
-					where: {
-						property: {
-							[Op.like]: `%${value}%`,
-						},
-					},
-					include: [
-						{ association: "Subcategorie", include: [{ association: "category" }] },
-						{ association: "Mark" }
-					],
-				}).then((getProducts) => {
-					res.render("./admin/productsList", {
-						getProducts,
-						userInSession: req.session.user ? req.session.user : ""
-					});
-				}).catch(error => console.log(error))
-			} else if (property === 'mark') {
-				db.Mark.findAll({
-					where: {
-						name: {
-							[Op.like]: `%${value}%`,
-						},
-					}
-				}).then(marks => {
-					console.log(marks);
-					db.Product.findAll({
-						where: {
-							markId: marks.id
-						},
-						include: [
-							{ association: "Subcategorie", include: [{ association: "category" }] },
-							{ association: "Mark" }
-						],
-					}).then((getProducts) => {
-						res.render("./admin/productsList", {
-							getProducts,
-							userInSession: req.session.user ? req.session.user : ""
-						});
-					}).catch(error => console.log(error))
-				})
-			} else if (property === 'subcategory') {
-				db.Subcategorie.findAll({
-					where: {
-						name: {
-							[Op.like]: `%${value}%`,
-						},
-					}
-				}).then(subcategory => {
-					console.log(subcategory);
-					db.Product.findAll({
-						where: {
-							subcategoryId: subcategory.id
-						},
-						include: [
-							{ association: "Subcategorie", include: [{ association: "category" }] },
-							{ association: "Mark" }
-						],
-					}).then((getProducts) => {
-						res.render("./admin/productsList", {
-							getProducts,
-							userInSession: req.session.user ? req.session.user : ""
-						});
-					}).catch(error => console.log(error))
-				})
-			} else {
-				alert('Error' + req.body)
 			}
 		}
 	},
