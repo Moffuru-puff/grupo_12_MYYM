@@ -12,7 +12,8 @@ const {
     deleteProfile,
     forgotPassword,
     fpFindEmail,
-    changePassword
+    changePassword,
+    changeProcess
     } = require('../controllers/usersController');
 const reValidator = require('../validations/registerValidator')
 const loValidator = require('../validations/loginValidator')
@@ -31,6 +32,7 @@ router.get('/logout', sessionCheck, logout)
 router.get('/forgotPassword', forgotPassword)
 router.post('/forgotPassword', forgotPassValidator,fpFindEmail)
 router.get('/forgotPassword/changePassword', changePassword)
+router.post('/forgotPassword/changePassword/:id', changeProcess)
 
 /* GET - Register */
 router.get('/register', userLoginCheck , register)

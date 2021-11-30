@@ -191,6 +191,21 @@ module.exports = {
       })
     },
 
+    changeProcess: (req, res) => {
+      let { password } = req.body
+
+      db.User.update({
+        password: bcrypt.hashSync(password, 12)
+      }, {
+        where: {
+          id: userPromise[0].id
+        }
+      }).then(() => {
+        userPromise.pop()
+        res.redirect("/login")
+      })
+    },
+
     register: (req, res) => {
       res.render("users/register")
 

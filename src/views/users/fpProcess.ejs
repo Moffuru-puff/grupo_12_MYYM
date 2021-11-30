@@ -11,7 +11,7 @@
         <a href="/"><img class="myym" src="/img/logo-form.png" alt=""></a>
       </div>
       <div style="order: -1" class="form-content">
-        <form action="/forgotPassword" method="POST" >
+        <form action="/forgotPassword/changePassword/<%- userPromise[0].id%>" method="POST" >
             <div class="iniciar">
               <h2>
                 ¡Hola de nuevo <%- userPromise[0].user%>!
