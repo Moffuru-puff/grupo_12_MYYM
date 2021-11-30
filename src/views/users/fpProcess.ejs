@@ -5,47 +5,80 @@
 
 <body class="forms-form">
   <main>
-    <div class="contain3r">
-    <div class="form-container">
-      <div style="order: 1" class="logo-container">
-        <a href="/"><img class="myym" src="/img/logo-form.png" alt=""></a>
-      </div>
-      <div style="order: -1" class="form-content">
-        <form action="/forgotPassword/changePassword/<%- userPromise[0].id%>" method="POST" >
-            <div class="iniciar">
-              <h2>
-                ¡Hola de nuevo <%- userPromise[0].user%>!
-              </h2>
-              <div class="userProfile1" style="padding: 0px; margin: 0px">
-                <div class="avatarContainer">
-                  <div class="avatar">
-                      <img src="/img/userAvatars/<%- userPromise[0].avatar %>" alt="">
-                  </div>
-                  </div>
-                  </div>
-                <h3>
-                ㅤㅤㅤㅤㅤㅤㅤㅤㅤ
-              </h3>
-              <h3>
-                Ingresa una nueva contraseña
-              </h3>
-            </div>
-            <div class="form">
-                <div class="input-container">
-                    <input class="input-style" type="password" id="password" name="password" placeholder="contraseña">
-                        <span class="error-message" id="passwordErrorRe"><%= (locals.errors  && errors.password) ? errors.password.msg : "" %></span>                     
-                    </div>
-            <div class="form">
-                <div>
-                    <button id="btn-submit1" type="submit" style="color: white; background-color: #1f53c5;" class="btn btn-submit">Enviar</button>
+    <% if (userPromise.length > 0) { %>
+      <div class="contain3r">
+        <div class="form-container">
+          <div style="order: 1" class="logo-container">
+            <a href="/"><img class="myym" src="/img/logo-form.png" alt=""></a>
+          </div>
+          <div style="order: -1" class="form-content">
+            <% console.log(userPromise.length)%>
+            <form action="/forgotPassword/changePassword/<%- userPromise[0].id%>" method="POST" >
+                <div class="iniciar">
+                  <h2>
+                    ¡Hola de nuevo <%- userPromise[0].user%>!
+                  </h2>
+                  <div class="userProfile1" style="padding: 0px; margin: 0px">
+                    <div class="avatarContainer">
+                      <div class="avatar">
+                          <img src="/img/userAvatars/<%- userPromise[0].avatar %>" alt="">
+                      </div>
+                      </div>
+                      </div>
+                    <h3>
+                    ㅤㅤㅤㅤㅤㅤㅤㅤㅤ
+                  </h3>
+                  <h3>
+                    Ingresa una nueva contraseña
+                  </h3>
                 </div>
-              </div>
-            </div>
-          </form>
+                <div class="form">
+                    <div class="input-container">
+                        <input class="input-style" type="password" id="password" name="password" placeholder="contraseña">
+                            <span class="error-message" id="passwordError"><%= (locals.errors  && errors.password) ? errors.password.msg : "" %></span>                     
+                        </div>
+                <div class="form">
+                    <div>
+                        <button id="btn-submit1" type="submit" style="color: white; background-color: #1f53c5;" class="btn btn-submit">Enviar</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+          </div>
+    
+        </div>
       </div>
+      <% } else { %>
+        <div class="contain3r" style="box-shadow: 0px; display: flex; justify-content: center; align-items: center;">
 
-    </div>
-  </div>
+
+            <div class="form-content" style="box-shadow: 10px 10px 30px black">
+              
+                  <div class="iniciar">
+                    <h2>
+                      No hay nada que recuperar...
+                    </h2>
+                    <div class="userProfile1" style="padding: 0px; margin: 0px">
+                      <div class="avatarContainer">
+                        <div class="avatar">
+                            <img src="/img/cheems-samurai.gif" alt="">
+                        </div>
+                        </div>
+                        </div>
+                  </div>
+
+                  <div class="form">
+                      <div>
+                          <a href="/login"><button id="btn-submit1" style="color: white; background-color: #1f53c5;" class="btn btn-submit">Volver al login</button></a>
+                      </div>
+                    </div>
+                  
+            </div>
+      
+          
+        </div>
+      <%} %>
+
   </main>
 </body>
 

@@ -31,7 +31,7 @@ router.get('/logout', sessionCheck, logout)
 /* GET - Forgot Password */
 router.get('/forgotPassword', forgotPassword)
 router.post('/forgotPassword', forgotPassValidator,fpFindEmail)
-router.get('/forgotPassword/changePassword', changePassword)
+router.get('/forgotPassword/changePassword' ,changePassword)
 router.post('/forgotPassword/changePassword/:id', changeProcess)
 
 /* GET - Register */

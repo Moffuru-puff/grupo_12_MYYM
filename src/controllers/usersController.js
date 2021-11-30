@@ -149,7 +149,12 @@ module.exports = {
     },
 
     forgotPassword: (req, res) => {
-      res.render("users/forgotPass")
+      if(userPromise.length > 0) {
+        res.redirect("/forgotPassword/changePassword")
+      } else {
+        res.render("users/forgotPass")
+      }
+      
     },
 
     fpFindEmail: (req, res) => {
