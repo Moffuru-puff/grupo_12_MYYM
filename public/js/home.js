@@ -1,6 +1,6 @@
 let changeFav =
     document.addEventListener('click', (e) => {
-        var id =  e.target.id
+        var id = e.target.id
         if (e.target && e.target.tagName === "FIGURE" && e.target.id == id) {
             userId = e.target.attributes.userid.value
             //
@@ -9,8 +9,8 @@ let changeFav =
                     method: 'POST',
                     cache: 'no-cache',
                     headers: {
-                        'Content-Type':'application/json'
-                    }, 
+                        'Content-Type': 'application/json'
+                    },
                 })
                     .then(function (response) {
                         if (response.status !== 200) {
@@ -25,14 +25,14 @@ let changeFav =
                     .catch(function (error) {
                         console.log("Fetch error: " + error);
                     });
-                
-            }else{
+
+            } else {
                 fetch(`${window.location.origin}/api/favorite?userId=${userId}&productId=${id}`, {
                     method: 'DELETE',
                     cache: 'no-cache',
                     headers: {
-                        'Content-Type':'application/json'
-                    }, 
+                        'Content-Type': 'application/json'
+                    },
                 })
                     .then(function (response) {
                         if (response.status !== 200) {
@@ -50,43 +50,26 @@ let changeFav =
             }
         }
     })
-;
+    ;
+/* Función para flecha de ir arriba */
+$(document).ready(function () {
 
+    $('.arrow-top').click(function () {
+        $('body, html').animate({
+            scrollTop: '0px'
+        }, 300);
+    });
 
-/* function favoritosUpdate(id){
-    let activo = false;
-    for(i = 0; i < favoritos.length; i++){
-        if (id == favoritos[i]) {
-          cambiarEstadoFavorito(id, false)
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 0) {
+            $('.arrow-top').slideDown(300);
+        } else {
+            $('.arrow-top').slideUp(300);
         }
-    }
-    if (id) {
-        
-    }
-}  */
+    });
 
-function cambiarEstadoFavorito(id, bolean){
-    var image = document.getElementById();
-    if (image && true) {
-        image.classList.toggle('activated')
-    } /* else {
-        image.src = "/img/iconos-png/star-active.png";
-    } */
-}
+});
 
-/* window.onload = () => {
-    document.addEventListener("click", (event) => {
-        elementClass = event.target.className;
-        elementId = event.target.Id;
 
-        console.log(event);
-        if(elementClass == "MyImage"){
-            favoritosUpdate(elementId);
-            changeFav
-        }
-    } )
 
-} */
 
-/* array.splice(index, 1)
- */

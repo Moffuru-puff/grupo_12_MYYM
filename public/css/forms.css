@@ -46,20 +46,12 @@ body.forms-form {
 }
 
 .form-container {
-    /* background: linear-gradient(0deg, #C3A6F6 0%, #AA84EA 0.01%, #6A2ECC 100%); */
-    /* background: black; */
-    /* background-image: url(/img/form-container.jpg); */
-    /* border-radius: 45px; */
     margin: 0 auto;
-/*     width: 100%;
-    height: fit-content;
-    height: -moz-fit-content; */
     font-family: var(--font-roboto);
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
     display: flex;
-    /* flex-direction: column; */
     position: relative;
     flex-wrap: nowrap;
     align-items: center;
@@ -94,9 +86,6 @@ input.input-style {
     padding: 0.5rem;
 }
 
-/* input#repassword {
-    display: none;
-} */
 
 .displayNone {
     display: none;

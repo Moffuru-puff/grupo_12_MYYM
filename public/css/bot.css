@@ -1,0 +1,11 @@
+df-messenger {
+    --df-messenger-bot-message:rgba(55, 4, 96, 0.774);
+    --df-messenger-button-titlebar-color:  linear-gradient(33deg, rgba(2,0,36,1) 0%, rgba(55,4,96,1) 35%, rgba(208,0,96,1) 94%, rgba(255,0,95,1) 100%);
+    --df-messenger-chat-border-radius: 15px;
+    --df-messenger-chat-background-color: #c3a6f6;
+    --df-messenger-font-color: white;
+    --df-messenger-send-icon: #010127;
+    --df-messenger-user-message: #d00060;
+    --df-messenger-send-icon: #ffa300;
+   }
+ 

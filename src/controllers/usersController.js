@@ -2,6 +2,7 @@ const { getUsers, writeJsonUsers } = require('../db/dataB')
 const { validationResult , check, body} = require('express-validator')
 let bcrypt = require('bcryptjs')
 let db = require("../database/models")
+let userPromise = [];
 
 module.exports = {
     profile: (req, res) => {
@@ -58,10 +59,10 @@ module.exports = {
         })
         .then((address) => {
           db.User.update({
-            user,
-            name,
-            lastName,
-            telephone,
+            user: user.trim(),
+            name: name.trim(),
+            lastName: lastName.trim(),
+            telephone: telephone.trim(),
             avatar: req.file ? req.file.filename : db.User.avatar,
             addressesId: address.id
 
@@ -145,6 +146,78 @@ module.exports = {
              userInSession : req.session.user ? req.session.user : ''
           })
         }
+    },
+
+    forgotPassword: (req, res) => {
+      if(userPromise.length > 0) {
+        res.redirect("/forgotPassword/changePassword")
+      } else {
+        res.render("users/forgotPass")
+      }
+      
+    },
+
+    fpFindEmail: (req, res) => {
+
+      let errors = validationResult(req)
+
+      if(errors.isEmpty()){
+        let {
+          email,
+          user
+          } = req.body;
+
+          db.User.findOne({
+            where: {
+              email: email
+            },
+            where: {
+              user: user
+            },
+            include: [{
+              association: "Favorite"
+            }],
+          }).then((userData) => {
+            userPromise.push(userData)
+            res.redirect("/forgotPassword/changePassword")
+        })
+        .catch((err) => console.log(err))
+
+  } else {
+      res.render("users/forgotPass", {
+          errors: errors.mapped()
+      })
+  }
+    },
+
+    changePassword: (req, res) => {
+      res.render("users/fpProcess", {
+        userPromise
+      })
+    },
+
+    changeProcess: (req, res) => {
+      let errors = validationResult(req)
+
+      if(errors.isEmpty()){
+      let { password } = req.body
+
+      db.User.update({
+        password: bcrypt.hashSync(password, 12)
+      }, {
+        where: {
+          id: userPromise[0].id
+        }
+      }).then(() => {
+        userPromise.pop()
+        res.redirect("/login")
+      })
+    } else {
+      res.render("users/fpProcess", {
+        userPromise,
+        errors: errors.mapped()
+    })
+    } 
     },
 
     register: (req, res) => {

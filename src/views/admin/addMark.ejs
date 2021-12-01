@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<%- include('../partials/head.ejs') %>
+
+    <body>
+        <!-- header para el administrador -->
+        <%- include('../partials/header') %>
+
+            <main class="main-admin">
+                <form action="/admin/mark/create" method="POST" id="formMark">
+                <div>
+                    <div class="volver">
+                        <a href="/admin/marks">
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </div>
+                </div>
+                <section class="charge">
+                    <h2>Agregar nueva marca</h2>
+                    <div class="freight">
+                        <div class="formAdmin">
+                            <div class="flex">
+                                <label for="name">Nombre de la marca</label>
+                                <div class="input">
+                                    <input type="text" placeholder="Consolas" id="name" name="name" value="<%= locals.old && old.name %>" />
+                                    <% if(locals.errors && errors.name) { %>
+                                        <small class="text-danger">
+                                            <%= errors.name.msg %>
+                                        </small>
+                                        <% } %>
+                                        <small class="text-danger" id="nameErrors"></small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <small class="text-danger" id="markErrors"></small>
+                    <div class="btn-publish">                        
+                        <button class="publish" type="submit">Guardar</button>
+                    </div>
+
+                </section>
+            </form>
+            </main>
+        
+    </body>
+
+</html>

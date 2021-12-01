@@ -17,7 +17,7 @@
                         </a>
                     </div>
                 </div>
-                <% console.log(user) %> 
+                
                 <section class="charge">
                     <h2>Editar Usuario</h2>
                     <div class="freight">
@@ -51,31 +51,31 @@
 
                                 <label for="direction">Dirección</label>
                                 <div class="input">
-                                    <input type="text" value="<%= user.Addresse.address %>" id="direction"
+                                    <input type="text" value="<%= user.Addresse ? user.Addresse.address : "" %>" id="direction"
                                         name="address" />
                                 </div>
 
                                 <label for="location">Localidad</label>
                                 <div class="input">
                                     <input type="text" placeholder="Ej: Pilar" id="location"
-                                        name="location" value="<%= user.Addresse.state %>" />
+                                        name="location" value="<%= user.Addresse ? user.Addresse.state : "" %>" />
                                 </div>
                                
                             </div>
                             <div class="flex">
                                 <label for="country">País</label>
                                 <div class="input">
-                                    <input type="text" placeholder="Ej: Argentina" id="country" name="country" value="<%= user.Addresse.country %>"/>
+                                    <input type="text" placeholder="Ej: Argentina" id="country" name="country" value="<%= user.Addresse ? user.Addresse.country : ""%>"/>
                                 </div>
 
                                 <label for="province">Provincia</label>
                                 <div class="input">
-                                    <input type="text" value="<%= user.Addresse.city %>" id="province" name="province" />
+                                    <input type="text" value="<%= user.Addresse ? user.Addresse.city : ""%>" id="province" name="province" />
                                 </div>
 
                                 <label for="postalCode">Código Postal</label>
                                 <div class="input">
-                                    <input type="number" placeholder="Ej: 1629" id="postalCode" name="postalCode" value="<%= user.Addresse.postalCode %>"/>
+                                    <input type="number" placeholder="Ej: 1629" id="postalCode" name="postalCode" value="<%= user.Addresse ? user.Addresse.postalCode : ""%>"/>
                                     <% if(locals.errors && errors.postalCode) { %>
                                         <small class="text-danger">
                                             <%= errors.postalCode.msg %>
@@ -117,7 +117,7 @@
                 </section>
             </form>
             </main>
-            <script src="/js/validationsFront/usersAdminValidations.js"></script>
+            <script src="/js/validationsFront/usersEditAdminValidations.js"></script>
     </body>
 
 </html>

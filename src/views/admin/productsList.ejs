@@ -18,7 +18,43 @@
         <section class="welcome">
           <h2>Lista de los productos</h2>
         </section>
-
+        <section class="filtersAdmin">
+          <section class="filters">
+            <h5>Buscar por: </h5>
+            <form action="/admin/productsSearch" method="GET">
+              <select name="searchAdmin" id="">
+                <option value="" disabled selected>Seleccionar filtro </option>
+                <option value="id">Id</option>
+                <option value="name">Nombre</option>
+                <option value="mark">Marca</option>
+                <option value="barcode">Código del producto</option>
+               <!--  <option value="category">Categoría</option>-->
+                <option value="subcategory">Subcategoría</option> 
+              </select>
+              <input type="search" name="keyword" class="searchAdmin">
+              <button type="submit">
+                Buscar
+              </button>
+            </form>
+          </section>
+          <section class="filters">
+            <h5>Ordenar por: </h5>
+            <form action="/admin/products" method="POST">
+              <select name="filters" id="">
+                <option value="" hidden selected>Seleccionar filtro </option>
+                <option value="idAsc">Id ascendente</option>
+                <option value="idDesc">Id descendente</option>
+                <option value="nameAsc">Nombre ascendente</option>
+                <option value="nameDesc">Nombre descendente</option>
+                <option value="lowerPrice">Precio ascendente</option>
+                <option value="higherPrice">Precio descendente</option>
+              </select>
+              <button type="submit">
+                Aplicar filtro
+              </button>
+            </form>
+          </section>
+        </section>
         <section class="productsList">
           <div class="btn-agregarProducto">
             <a href="/admin/products/create" class="publish">Agregar producto</a>
@@ -34,6 +70,7 @@
                   <th class="visible">ID</th>
                   <th class="visible">Código</th>
                   <th class="visible">Nombre</th>
+                  <th class="invisible">Marca</th>
                   <th class="invisible">Categoría</th>
                   <th class="invisible">Subcategoría</th>
                   <th class="invisible">Precio</th>
@@ -49,6 +86,7 @@
                     <td class="visible"><%- product.id %> </td>
                     <td class="visible"><%- product.barcode %></td>
                     <td class="visible"><%- product.name %></td>
+                    <td class="invisible"><%- product.Mark ? product.Mark.name : "" %></td>                   
                     <td class="invisible"><%- product.Subcategorie.category ? product.Subcategorie.category.name : "" %></td>                   
                     <td class="invisible"><%- product.Subcategorie ? product.Subcategorie.name : "" %></td>
                     <td class="invisible"><%- product.price %></td>
