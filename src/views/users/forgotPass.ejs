@@ -2,7 +2,7 @@
 <html lang="es">
 
   <%- include('../partials/head.ejs') %> 
-
+  <script src="/js/forgotPassVal.js" defer></script>
 <body class="forms-form">
   <main>
     <div class="contain3r">
@@ -11,7 +11,7 @@
         <a href="/"><img class="myym" src="/img/logo-form.png" alt=""></a>
       </div>
       <div style="order: -1" class="form-content">
-        <form action="/forgotPassword" method="POST" >
+        <form id="formFp" action="/forgotPassword" method="POST" >
             <div class="iniciar">
               <h2>
                 Recupera tu cuenta
@@ -38,9 +38,9 @@
               </div>
               <div class="form">
                 <div class="input-container">
-                    <input class="input-style" id="userPro" type="text" name="user"
+                    <input class="input-style" id="user" type="text" name="user"
                         placeholder="usuario">
-                    <span class="error-message" id="userErrorPro">
+                    <span class="error-message" id="userError">
                         <%= (locals.errors && errors.user) ? errors.user.msg : "" %>
                     </span>
     
@@ -48,6 +48,7 @@
                 </div>
             <div class="form">
                 <div>
+                  <span class="error-message" id="submitError"></span>
                     <button id="btn-submit1" type="submit" style="color: white; background-color: #1f53c5;" class="btn btn-submit">Buscar</button>
                 </div>
               </div>

@@ -197,6 +197,9 @@ module.exports = {
     },
 
     changeProcess: (req, res) => {
+      let errors = validationResult(req)
+
+      if(errors.isEmpty()){
       let { password } = req.body
 
       db.User.update({
@@ -209,6 +212,12 @@ module.exports = {
         userPromise.pop()
         res.redirect("/login")
       })
+    } else {
+      res.render("users/fpProcess", {
+        userPromise,
+        errors: errors.mapped()
+    })
+    } 
     },
 
     register: (req, res) => {

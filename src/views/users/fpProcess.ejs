@@ -2,7 +2,7 @@
 <html lang="es">
 
   <%- include('../partials/head.ejs') %> 
-
+  <script src="/js/fpProcessVal.js" defer></script>
 <body class="forms-form">
   <main>
     <% if (userPromise.length > 0) { %>
@@ -13,7 +13,7 @@
           </div>
           <div style="order: -1" class="form-content">
             <% console.log(userPromise.length)%>
-            <form action="/forgotPassword/changePassword/<%- userPromise[0].id%>" method="POST" >
+            <form id="formFp" action="/forgotPassword/changePassword/<%- userPromise[0].id%>" method="POST" >
                 <div class="iniciar">
                   <h2>
                     ¡Hola de nuevo <%- userPromise[0].user%>!
@@ -39,6 +39,7 @@
                         </div>
                 <div class="form">
                     <div>
+                      <span class="error-message" id="submitError"></span>
                         <button id="btn-submit1" type="submit" style="color: white; background-color: #1f53c5;" class="btn btn-submit">Enviar</button>
                     </div>
                   </div>

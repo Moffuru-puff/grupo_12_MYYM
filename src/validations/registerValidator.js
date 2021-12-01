@@ -60,13 +60,7 @@ module.exports = [
 
     body('repassword')
     .custom((value, {req}) => value !== req.body.password ? false : true)
-    .withMessage("Las contraseñas no coinciden"),
-
-    /*check('repassword')
-    .notEmpty()
-    .withMessage('Debe re-ingresar la contraseña') 
-    .equals('password', 'repassword')
-    .withMessage('Las contraseñas no coinciden') */
+    .withMessage("Las contraseñas no coinciden")
     
 
 ]
