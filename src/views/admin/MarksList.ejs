@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('../partials/head') %>
+
+  <body>
+    <!-- header para el administrador -->
+    <%- include('../partials/header') %>
+
+      <main>
+        <div>
+          <div class="volver">
+            <a href="/admin/">
+              <i class="fas fa-arrow-left"></i>
+            </a>
+          </div>
+        </div>
+        <!-- Lista de los productos -->
+        <section class="welcome">
+          <h2>Lista de marcas</h2>
+        </section>
+        <!-- Sección de filtros -->
+        <section class="filtersAdmin">
+          <section class="filters">
+            <h5>Buscar por: </h5>
+            <form action="/admin/marksSearch" method="GET">
+              <select name="searchAdmin" id="">
+                <option value="" disabled selected>Seleccionar filtro </option>
+                <option value="id">Id</option>
+                <option value="name">Nombre</option>
+              </select>
+              <input type="search" name="keyword" class="searchAdmin">
+              <button type="submit">
+                Buscar
+              </button>
+            </form>
+          </section>
+          <section class="filters">
+            <h5>Ordenar por: </h5>
+            <form action="/admin/marks" method="POST">
+              <select name="filters" id="">
+                <option value="" hidden selected>Seleccionar filtro </option>
+                <option value="idAsc">Id ascendente</option>
+                <option value="idDesc">Id descendente</option>
+                <option value="nameAsc">Nombre ascendente</option>
+                <option value="nameDesc">Nombre descendente</option>
+              </select>
+              <button type="submit">
+                Aplicar filtro
+              </button>
+            </form>
+          </section>
+        </section>
+        <!-- Fin de la sección de filtros -->
+        <section class="productsList">
+          <div class="btn-agregarProducto">
+            <a href="/admin/mark/create" class="publish">Agregar marca</a>
+          </div>
+
+          <!-- Tabla para Desktop -->
+          <div class="tableProducts">
+            <!-- Tabla de todos los productos -->
+            <table>
+              <colgroup span="4" class="columns"></colgroup>
+              <thead>
+                <tr>
+                  <th class="visible">ID</th>
+                  <th class="visible">Nombre</th>
+                  <th></th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% marks.forEach(mark=> { %>
+                  <tr>
+                    <td class="visible">
+                      <%- mark.id %>
+                    </td>
+                    <td class="visible">
+                      <%- mark.name %>
+                    </td>
+                    <td>
+                      <a href="/admin/mark/edit/<%= mark.id %>">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                          class="bi bi-pencil-square" viewBox="0 0 16 16">
+                          <path
+                            d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                          <path fill-rule="evenodd"
+                            d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                        </svg>
+                      </a>
+
+                      <button type="submit" class="btn btn-danger"
+                        onclick="javascript:return deleteShow(`<%= mark.id %>`)">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                          class="bi bi-trash" viewBox="0 0 16 16">
+                          <path
+                            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                          <path fill-rule="evenodd"
+                            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                        </svg>
+                      </button>
+                      <div class="modal-background">
+
+                      </div>
+
+                    </td>
+                  </tr>
+                  <% }) %>
+              </tbody>
+            </table>
+          </div>
+          <!-- fin de tabla para desktop -->
+        </section>
+        <div class="arrow-top">
+          <a href="#"><img src="/img/iconos-png/arrow-top.png" alt="" /></a>
+        </div>
+      </main>
+      <script>
+        let $borrar = document.querySelector('#delete');
+        let $dontDelete = document.querySelector('#dontDelete');
+        let modal = document.querySelector('.modal-background')
+
+        function deleteShow(id) {
+          modal.innerHTML = `<div class="modal">
+                            <p>
+                                ¿Seguro que desea eliminar esta marca?
+                            </p>
+                            <div class="modal-buttons">
+                                <form action="/admin/mark/deletemark/${id}?_method=DELETE" method="POST">
+                                    <button type="submit" id="delete">ELIMINAR</button>
+                                </form>
+                                <button  onclick="javascript:return hiddenDelete()" id="dontDelete">Cancelar</button>
+                            </div>
+                        </div>`
+          modal.style.display = "flex";
+          return modal
+        }
+
+        function hiddenDelete() {
+          modal.style.display = "none";
+        }
+      </script>
+
+  </body>
+
+</html>

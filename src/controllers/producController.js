@@ -17,7 +17,8 @@ module.exports = {
         },
         {
           association: "Subcategorie"
-        }
+        }, 
+        { association: "Favorite"}
       ],
     })
       .then((product) => {
@@ -47,25 +48,3 @@ module.exports = {
       })
   },
 };
-
-
-
-/* .then((product) => {
-  db.Product.findAll({
-    where: {
-      subcategoryId: product.subcategoryId,
-    },
-    include: [
-      {
-        association: "productimage",
-      },
-    ],
-  }).then((products) => {
-    res.render("productDetail", {
-      sliderTitle: "Productos relacionados",
-      sliderProducts: products,
-      product,
-      session: req.session,
-    });
-  });
-}) */

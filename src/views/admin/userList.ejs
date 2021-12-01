@@ -17,7 +17,45 @@
       <section class="welcome">
         <h2>Lista de Usuarios</h2>
       </section>
-
+      <!-- Sección de filtros -->
+      <section class="filtersAdmin">
+        <section class="filters">
+          <h5>Buscar por: </h5>
+          <form action="/admin/userListSearch" method="GET">
+            <select name="searchAdmin" id="">
+              <option value="" disabled selected>Seleccionar filtro </option>
+              <option value="id">Id</option>
+              <option value="name">Nombre</option>
+              <option value="lastName">Apellido</option>
+              <option value="user">Usuario</option>
+            </select>
+            <input type="search" name="keyword" class="searchAdmin">
+            <button type="submit">
+              Buscar
+            </button>
+          </form>
+        </section>
+      <section class="filters">
+        <h5>Ordenar por: </h5>
+        <form action="/admin/userList" method="POST">
+          <select name="filters" id="">
+            <option value="" hidden selected>Seleccionar filtro </option>
+            <option value="idAsc">Id ascendente</option>
+            <option value="idDesc">Id descendente</option>
+            <option value="nameAsc">Nombre ascendente</option>
+            <option value="nameDesc">Nombre descendente</option>
+            <option value="lastNameAsc">Apellido ascendente</option>
+            <option value="lastNameDesc">Apellido descendente</option>
+            <option value="userAsc">Usuario ascendente</option>
+            <option value="userDesc">Usuario descendente</option>
+          </select>
+          <button type="submit">
+            Aplicar filtro
+          </button>
+        </form>
+      </section>
+    </section>
+      <!-- Fin de sección de filtros -->
       <section class="productsList"> 
         <% if (userInSession.rolesId === 2) { %>
           <div class="btn-agregarProducto">

@@ -106,13 +106,12 @@
 
                                     <label for="categoria-form">Categoría</label>
                                     <div class="input">
-                                        <select name="categorie" id="categoria-form">
+                                        <select name="categorie" id="categoria-form" class="categorySelect">
                                             <option value="" selected disabled>Categorías</option>
-                                            <% categories.forEach(category => { %>
-                                                <option value="<%- category.id %>" <%=locals.old &&
-                                                    old.category == category.id ? "selected" : null %> ><%- category.name %>
-                                                </option>
-                                                <% }) %>                                                   
+                                            <% locals.categories.forEach(category => { %>
+                                                <option value="<%- category.id %>" <%= locals.old && old.category == category.id ? "selected" : "" %> ><%- category.name %></option>
+                                             <% }) %>
+                                                                                               
                                         </select>
                                         <small class="text-danger" id="categoryErrors"></small>
                                         <% if(locals.errors && errors.category) { %>
@@ -124,13 +123,9 @@
 
                                     <label for="subCategoria-form">Subcategoría</label>
                                     <div class="input">
-                                        <select name="subcategorie" id="subcategoria-form">
+                                        <select name="subcategorie" id="subcategoria-form" class="subcategorySelect">
                                             <option value="" selected disabled>Subcategorías</option>
-                                            <% subcategories.forEach(subcategory => { %>
-                                                <option value="<%- subcategory.id %>" <%=locals.old &&
-                                                    old.subcategory==subcategory.id ? "selected" : null %> ><%- subcategory.name %>
-                                                </option>
-                                                <% }) %>
+                                            
                                                     
                                         </select>
                                         <% if(locals.errors && errors.subcategory) { %>
@@ -178,6 +173,7 @@
                 </form>
             </main>
             <script src="/js/prevDeImg.js" defer></script>
+            <script src="/js/adminCategories.js" defer></script>
             <script src="/js/validationsFront/cargaDeProductos.js"></script>
     </body>
 
