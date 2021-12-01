@@ -21,3 +21,10 @@ th.favProduct {
 .favorites td {
     border-bottom: solid 1px var(--darkBlue);
 }
+
+.btnRemove {
+    border: none;
+    background: rgba(0, 0, 0, 0);
+    cursor: pointer;
+    color: crimson;
+}

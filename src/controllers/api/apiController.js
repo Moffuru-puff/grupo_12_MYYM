@@ -41,14 +41,35 @@ module.exports = {
     /* Favoritos */
     addFavorite : (req, res) =>{
      user =  fav.addUserFavorite(req.query.userId, req.query.productId)
-     req.session.user = user
+     req.session.user = user;
+     req.locals.user = user;
        res.send({status: "ok"})
     },
     deleteFavorite: (req, res) => {
        user = fav.deleteUserFavorite(req.query.userId, req.query.productId)
-       req.session.user = user
+       req.session.user = user;
+       req.locals.user = user;
         res.send({status: "oki"})
     },
+    allFavorites: (req, res) => {
+        db.Favorite.findAll({
+            where: {
+                userId: +req.session.user.id
+            },
+            include: [{
+                association: "Product"
+            }]
+        }).then((favorites) => {
+            res.status(200).json({
+                meta: {
+                    status: 200,
+                    total: favorites.length
+                },
+                data: favorites
+            })
+        })
+    },
+    
     /* Categorías */
     allCategories: (req, res)=>{
         db.Categorie.findAll({

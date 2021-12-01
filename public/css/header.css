@@ -1,7 +1,7 @@
 @import url(variants.css);
 
 /* header */
- header {
+header {
     position: sticky;
     top: 0;
     z-index: 999;
@@ -27,33 +27,40 @@ header .main-header {
 }
 
 .bars {
-  width: 40px;
-  cursor: pointer;
+    width: 40px;
+    cursor: pointer;
 }
+
 .bars .line {
-  fill: none;
-  stroke: var(--grey);
-  stroke-width: 4;
-  stroke-linecap: square;
-  transition: stroke-dasharray 1s,  stroke-dashoffset 1s;
+    fill: none;
+    stroke: var(--grey);
+    stroke-width: 4;
+    stroke-linecap: square;
+    transition: stroke-dasharray 1s, stroke-dashoffset 1s;
 }
+
 .bars .line.top {
-  stroke-dasharray: 40 172;
+    stroke-dasharray: 40 172;
 }
+
 .bars .line.middle {
-  stroke-dasharray: 40 111;
+    stroke-dasharray: 40 111;
 }
+
 .bars .line.bottom {
-  stroke-dasharray: 40 172;
+    stroke-dasharray: 40 172;
 }
+
 .bars.active .top {
-  stroke-dashoffset: -132px;
+    stroke-dashoffset: -132px;
 }
+
 .bars.active .middle {
-  stroke-dashoffset: -71px;
+    stroke-dashoffset: -71px;
 }
+
 .bars.active .bottom {
-  stroke-dashoffset: -132px;
+    stroke-dashoffset: -132px;
 }
 
 li {
@@ -61,7 +68,7 @@ li {
 }
 
 header nav.menu {
-    display: none;  
+    display: none;
     position: absolute;
     background: rgb(195, 166, 246);
     background: linear-gradient(180deg, rgba(195, 166, 246, 1) 0%, rgba(106, 46, 204, 1) 100%);
@@ -73,7 +80,7 @@ header nav.menu {
 
 header nav.menu.show {
     display: block;
-   
+
 }
 
 
@@ -287,14 +294,15 @@ nav.navbar {
 
     /* Cuenta */
     div.account {
+        display: inline-flex;
+        position: relative;
+    }
+
+    div.account:hover>div.drop-account {
         display: block;
     }
 
-    div.account:hover > div.drop-account {
-        display: block;
-    }
-
-  /*   div.account:hover > div.drop-account.show {
+    /*   div.account:hover > div.drop-account.show {
         display: block;
     } */
 
@@ -316,7 +324,7 @@ nav.navbar {
         height: 34px;
     }
 
-    div.account .avatar:hover{
+    div.account .avatar:hover {
         color: var(--ligthBlue);
         border: solid 1px var(--ligthBlue);
     }
@@ -326,28 +334,29 @@ nav.navbar {
     }
 
     /* Desplegable de mi cuenta */
-    div.drop-account{
-        display: none; 
+    div.drop-account {
+        display: none;
         position: absolute;
         background: rgb(195, 166, 246);
         background: linear-gradient(180deg, rgba(195, 166, 246, 1) 0%, rgba(106, 46, 204, 1) 100%);
         padding: 30px;
         border-radius: 15px;
         text-align: center;
-        margin-top: 2px;
         transition: all 1s ease;
         order: 3;
+        margin: 35px 0px 0 -107px;
+        width: max-content;
     }
 
-    div.drop-account.show{
+    div.drop-account.show {
         display: block;
     }
 
-    div.drop-account li{  
-       margin: 5px;
+    div.drop-account li {
+        margin: 5px;
     }
 
-    div.drop-account a{
+    div.drop-account a {
         text-decoration: none;
         color: var(--cream);
         padding: 5px;
@@ -381,10 +390,19 @@ nav.navbar {
     }
 
     nav.navbar ul.container-principal li.item {
+        /* text-decoration: none;
+        color: var(--cream); */
         transition: all 1s ease;
     }
 
-    nav.navbar ul.container-principal li.item a{
+    nav.navbar ul.container-principal li.item div.drop {
+        text-decoration: none;
+        color: var(--cream);
+        height: 100%;
+        transition: all 1s ease;
+    }
+
+    nav.navbar ul.container-principal li.item a {
         text-decoration: none;
         color: var(--cream);
         transition: all 1s ease;
@@ -396,7 +414,7 @@ nav.navbar {
         border-image: linear-gradient(to left, rgb(252, 176, 69) 0%, rgb(253, 29, 29) 50%, rgb(131, 58, 180) 100%) 100% 0 100% 0/0px 0 3px 0 stretch;
     }
 
-    .selectItem{
+    .selectItem {
         border-style: solid;
         border-width: 3px;
         border-image: linear-gradient(to left, rgb(252, 176, 69) 0%, rgb(253, 29, 29) 50%, rgb(131, 58, 180) 100%) 100% 0 100% 0/0px 0 3px 0 stretch;
@@ -407,12 +425,12 @@ nav.navbar {
     nav.navbar ul.container-principal li.item-categoria div.general {
         display: none;
         position: absolute;
-        padding: 10px;
+        margin-top: 5px;
         height: 16rem;
         width: 430px;
     }
 
-    nav.navbar ul.container-principal li.item-categoria:hover > div.general {
+    nav.navbar ul.container-principal li.item-categoria:hover>div.general {
         display: flex;
     }
 
@@ -421,25 +439,26 @@ nav.navbar {
     }
 
     nav.navbar ul.container-principal li.item-categoria div.general div.sub-category {
-        height: 16rem;
+        /*  height: 16rem; */
         transition: all 0.5s ease-in;
+        height: auto;
     }
 
-    nav.navbar ul.container-principal li.item-categoria div.general div.sub-category li, nav.navbar ul.container-principal li.item-categoria div.general div.sub-category li
-    {
+    nav.navbar ul.container-principal li.item-categoria div.general div.sub-category li,
+    nav.navbar ul.container-principal li.item-categoria div.general div.sub-category li {
         background-color: white;
         border: solid 1px var(--purple);
         border-radius: 5px;
         color: var(--purple);
         margin: 2px;
-        text-align: center;  
+        text-align: center;
         width: 9rem;
         height: 3.8rem;
         transition: all 0.5s ease-in;
         user-select: none;
     }
 
-    nav.navbar ul.container-principal li.item-categoria div.general div.sub-category li a{
+    nav.navbar ul.container-principal li.item-categoria div.general div.sub-category li a {
         color: var(--purple);
         display: block;
         padding: 18px;
@@ -447,12 +466,13 @@ nav.navbar {
 
     }
 
-    nav.navbar ul.container-principal li.item-categoria div.general div.sub-category li:hover , nav.navbar ul.container-principal li.item-categoria div.general div.sub-category li a:hover{
+    nav.navbar ul.container-principal li.item-categoria div.general div.sub-category li:hover,
+    nav.navbar ul.container-principal li.item-categoria div.general div.sub-category li a:hover {
         background-color: var(--purple);
         color: var(--cream);
     }
 
-    nav.navbar ul.container-principal li.item-categoria div.general div.sub-category li #todo:hover ~ .dropdown-rigth .todo {
+    nav.navbar ul.container-principal li.item-categoria div.general div.sub-category li #todo:hover~.dropdown-rigth .todo {
         display: block;
     }
 
@@ -467,7 +487,7 @@ nav.navbar {
         height: inherit;
     }
 
-    nav.navbar ul.container-principal li.item-categoria div.general div.dropdown-rigth div.img-desplegables{
+    nav.navbar ul.container-principal li.item-categoria div.general div.dropdown-rigth div.img-desplegables {
         width: 145px;
         position: absolute;
         right: 10px;
@@ -476,9 +496,9 @@ nav.navbar {
         overflow: hidden;
     }
 
-    nav.navbar ul.container-principal li.item-categoria div.general div.dropdown-rigth div.img-desplegables img{
-        width: 100%;      
-        opacity: 85%; 
+    nav.navbar ul.container-principal li.item-categoria div.general div.dropdown-rigth div.img-desplegables img {
+        width: 100%;
+        opacity: 85%;
     }
 
     nav.navbar ul.container-principal li.item-categoria div.general div.dropdown-rigth div.todo,
@@ -486,14 +506,14 @@ nav.navbar {
     .videojuegos,
     .accesorios,
     .zonaRetro {
-        background: rgb(55, 4, 96);        
+        background: rgb(55, 4, 96);
         background: -moz-linear-gradient(90deg, rgba(55, 4, 96, 1) 0%, rgba(255, 163, 0, 1) 100%);
         background: linear-gradient(90deg, rgba(55, 4, 96, 1) 0%, rgba(255, 163, 0, 1) 100%);
         padding: 0 10px;
         border-radius: 2px;
-        height: inherit;
+        height: 100%;
     }
-    
+
     nav.navbar ul.container-principal li.item-categoria div.general div.dropdown-rigth h4 a,
     h4#title {
         font-family: var(--font-poppins);
@@ -506,12 +526,12 @@ nav.navbar {
 
     nav.navbar ul.container-principal li.item-categoria div.general div.dropdown-rigth .row {
         padding: 1rem;
-      /*   border-bottom: solid 1px;
+        /*   border-bottom: solid 1px;
         height: inherit; */
     }
 
 
-   /*  nav.navbar ul.container-principal li.item-categoria div.general div.dropdown-rigth .row h4 a i,
+    /*  nav.navbar ul.container-principal li.item-categoria div.general div.dropdown-rigth .row h4 a i,
     h4#title {
         margin-left: 5rem;
     } */
@@ -533,12 +553,11 @@ nav.navbar {
         display: flex;
         margin-top: 5px;
         display: none;
-        padding: 5px;
     }
 
-    nav.navbar ul.container-principal li.item-marcas:hover > div.general {
+    nav.navbar ul.container-principal li.item-marcas:hover>div.general {
         display: flex;
-    } 
+    }
 
     nav.navbar ul.container-principal li.item-marcas div.general .sub-category {
         background-color: var(--purple);
@@ -603,7 +622,7 @@ nav.navbar {
         flex-wrap: nowrap;
     }
 
-    form button.btn-search{
+    form button.btn-search {
         background-color: rgba(196, 196, 196, 0.0);
     }
 
@@ -644,9 +663,9 @@ nav.navbar {
         cursor: pointer;
     }
 
-     /* Desplegable de mi cuenta */
-     div.drop-account{
-        margin-top: 35px;
+    /* Desplegable de mi cuenta */
+    div.drop-account {
+        margin: 35px 0 0 0;
     }
 
     /* Carrito */
@@ -663,7 +682,7 @@ nav.navbar {
 
     .cart {
         background-color: rgba(196, 196, 196, 0);
-        border: none; 
+        border: none;
     }
 
     div.shoppingCart h4.total {
@@ -674,7 +693,7 @@ nav.navbar {
         user-select: none;
     }
 
-    div.shoppingCart .btn-cart{
+    div.shoppingCart .btn-cart {
         color: var(--grey);
         display: inline-flex;
         justify-content: center;
@@ -682,22 +701,24 @@ nav.navbar {
         width: 30px;
         cursor: pointer;
     }
-    
+
     /* Desplegables del navBar */
     nav.navbar ul.container-principal li.item-categoria div.general {
-        height: 270px;
+        /*  height: 270px; */
         width: 700px;
+        height: auto;
     }
 
-    nav.navbar ul.container-principal li.item-categoria div.general div.sub-category li, nav.navbar ul.container-principal li.item-categoria div.general div.sub-category li
-    {
-        text-align: center;  
+    nav.navbar ul.container-principal li.item-categoria div.general div.sub-category li,
+    nav.navbar ul.container-principal li.item-categoria div.general div.sub-category li {
+        text-align: center;
         width: 9rem;
     }
 
     nav.navbar ul.container-principal li.item-categoria div.general div.dropdown-rigth {
-        height: 16rem;
+        /* height: 16rem; */
         overflow: auto;
+        height: auto;
     }
 
     nav.navbar ul.container-principal li.item-categoria div.general div.dropdown-rigth div.img-desplegables {

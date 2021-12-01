@@ -18,7 +18,40 @@
         <section class="welcome">
           <h2>Lista de las subcategorías</h2>
         </section>
-
+        <!-- Sección de filtros -->
+        <section class="filtersAdmin">
+          <section class="filters">
+            <h5>Buscar por: </h5>
+            <form action="/admin/subcategorySearch" method="GET">
+              <select name="searchAdmin" id="">
+                <option value="" disabled selected>Seleccionar filtro </option>
+                <option value="id">Id</option>
+                <option value="name">Subcategoría</option>
+                <option value="category">Categoría</option>
+              </select>
+              <input type="search" name="keyword" class="searchAdmin">
+              <button type="submit">
+                Buscar
+              </button>
+            </form>
+          </section>
+          <section class="filters">
+            <h5>Ordenar por: </h5>
+            <form action="/admin/subcategories" method="POST">
+              <select name="filters" id="">
+                <option value="" hidden selected>Seleccionar filtro </option>
+                <option value="idAsc">Id ascendente</option>
+                <option value="idDesc">Id descendente</option>
+                <option value="nameAsc">Nombre ascendente</option>
+                <option value="nameDesc">Nombre descendente</option>
+              </select>
+              <button type="submit">
+                Aplicar filtro
+              </button>
+            </form>
+          </section>
+        </section>
+        <!-- Fin de la sección de filtros -->
         <section class="productsList">
           <div class="btn-agregarProducto">
             <a href="/admin/subcategory/create" class="publish">Agregar subcategoría</a>
@@ -39,23 +72,31 @@
               </thead>
 
               <tbody>
-                <% subcategories.forEach(subcategory => { %>
-                <tr>
-                  <td class="visible"><%- subcategory.id %></td>
-                  <td class="visible"><%- subcategory.name %></td>
-                  <td class="visible"><%- subcategory.category && subcategory.categoryId === subcategory.category.id ? subcategory.category.name : "" %></td>
-                  <td>
-                    <a href="/admin/subcategory/edit/<%= subcategory.id %>">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-pencil-square" viewBox="0 0 16 16">
-                        <path
-                          d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                        <path fill-rule="evenodd"
-                          d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-                      </svg>
-                    </a>
-                    
-                      <button type="submit" class="btn btn-danger" onclick="javascript:return deleteShow(`<%= subcategory.id %>`)">
+                <% subcategories.forEach(subcategory=> { %>
+                  <tr>
+                    <td class="visible">
+                      <%- subcategory.id %>
+                    </td>
+                    <td class="visible">
+                      <%- subcategory.name %>
+                    </td>
+                    <td class="visible">
+                      <%- subcategory.category && subcategory.categoryId===subcategory.category.id ?
+                        subcategory.category.name : "" %>
+                    </td>
+                    <td>
+                      <a href="/admin/subcategory/edit/<%= subcategory.id %>">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                          class="bi bi-pencil-square" viewBox="0 0 16 16">
+                          <path
+                            d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                          <path fill-rule="evenodd"
+                            d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                        </svg>
+                      </a>
+
+                      <button type="submit" class="btn btn-danger"
+                        onclick="javascript:return deleteShow(`<%= subcategory.id %>`)">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                           class="bi bi-trash" viewBox="0 0 16 16">
                           <path
@@ -65,12 +106,12 @@
                         </svg>
                       </button>
                       <div class="modal-background">
-                          
+
                       </div>
-                   
-                  </td>
-                </tr>
-                <% }) %>
+
+                    </td>
+                  </tr>
+                  <% }) %>
               </tbody>
             </table>
           </div>
@@ -85,8 +126,8 @@
         let $dontDelete = document.querySelector('#dontDelete');
         let modal = document.querySelector('.modal-background')
 
-    function deleteShow(id) {
-       modal.innerHTML = `<div class="modal">
+        function deleteShow(id) {
+          modal.innerHTML = `<div class="modal">
                             <p>
                                 ¿Seguro que desea eliminar esta subcategoría?
                             </p>
@@ -100,14 +141,14 @@
                                 <button  onclick="javascript:return hiddenDelete()" id="dontDelete">Cancelar</button>
                             </div>
                         </div>`
-        modal.style.display = "flex";
-        return modal
-    }
+          modal.style.display = "flex";
+          return modal
+        }
 
-    function hiddenDelete() {
-      modal.style.display = "none";
-    }
-  </script>
+        function hiddenDelete() {
+          modal.style.display = "none";
+        }
+      </script>
 
   </body>
 

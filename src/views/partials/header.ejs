@@ -1,3 +1,13 @@
+<% if(userInSession !== undefined && userInSession.rolesId === 1) { %> 
+  <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+  <df-messenger
+intent="WELCOME"
+chat-icon="/img/iconos-png/pikabot.png"
+chat-title="MYYM-GAMERS"
+agent-id="4e3c88d6-e2b6-4fc8-9b61-c4b5050384ab"
+language-code="es"
+></df-messenger>
+  <% } %> 
 <header>
   <div class="main-header">
     <!-- Menu hamburguesa -->
@@ -127,7 +137,7 @@
   <nav class="navbar" id="navigation-bar-mobile">
     <ul id="list-menu" class="container-principal">
       <li class="item-categoria item">
-        <a href="#" onclick="dropNav(`categ`)">Categorías</a>
+        <div class="drop" onclick="dropNav(`categ`)"> Categorías</div>       
         <div class="general" id="categ">
           <div class="sub-category">
             <ul class="sub-item">
@@ -146,7 +156,7 @@
                 <ul>
                   <% if (category.subcategories && category.subcategories.length > 0) { %>
                       <% category.subcategories.forEach(subcategory => { %>
-                      <li><a href=""><%- subcategory.name %> </a></li>
+                      <li><a href="/filteredProducts/<%- subcategory.id %> "><%- subcategory.name %> </a></li>
                       <% }) %>
                       <li><a href="">Ver todas...</a></li>
                   <% } else { %>
@@ -168,7 +178,7 @@
           <%  }) %> 
         </div>
       </li>
-      <li class="item-marcas item"><a href="#" onclick="dropNav(`marcas`)">Marcas</a>
+      <li class="item-marcas item"><div class="drop" onclick="dropNav(`marcas`)">Marcas</div>
         <div class="general" id="marcas">
           <div class="sub-category">
             <ul class="sub-item ul-mark">
@@ -206,7 +216,7 @@
               <% locals.marks.forEach(mark => { %>
                 <ul>
                   <% if (mark.name.startsWith('A', 0)) { %>
-                    <li><a href=""><%- mark.name %> </a></li>
+                    <li><a href="/filteredMarksProducts/<%- mark.id %>"><%- mark.name %> </a></li>
                   <% } %>
                 </ul>
               <% }) %>
@@ -216,7 +226,7 @@
               <% locals.marks.forEach(mark => { %>
                 <ul>
                   <% if (mark.name.startsWith('B', 0)) { %>
-                    <li><a href=""><%- mark.name %> </a></li>
+                    <li><a href="/filteredMarksProducts/<%- mark.id %>"><%- mark.name %> </a></li>
                   <% } %>
                 </ul>
               <% }) %>
@@ -226,7 +236,7 @@
               <% locals.marks.forEach(mark => { %>
                 <ul>
                   <% if (mark.name.startsWith('C', 0)) { %>
-                    <li><a href=""><%- mark.name %> </a></li>
+                    <li><a href="/filteredMarksProducts/<%- mark.id %>"><%- mark.name %> </a></li>
                   <% } %>
                 </ul>
               <% }) %>
@@ -236,7 +246,7 @@
               <% locals.marks.forEach(mark => { %>
                 <ul>
                   <% if (mark.name.startsWith('D', 0)) { %>
-                    <li><a href=""><%- mark.name %> </a></li>
+                    <li><a href="/filteredMarksProducts/<%- mark.id %>"><%- mark.name %> </a></li>
                   <% } %>
                 </ul>
               <% }) %>
@@ -246,7 +256,7 @@
               <% locals.marks.forEach(mark => { %>
                 <ul>
                   <% if (mark.name.startsWith('E', 0)) { %>
-                    <li><a href=""><%- mark.name %> </a></li>
+                    <li><a href="/filteredMarksProducts/<%- mark.id %>"><%- mark.name %> </a></li>
                   <% } %>
                 </ul>
               <% }) %>
@@ -256,7 +266,7 @@
               <% locals.marks.forEach(mark => { %>
                 <ul>
                   <% if (mark.name.startsWith('F', 0)) { %>
-                    <li><a href=""><%- mark.name %> </a></li>
+                    <li><a href="/filteredMarksProducts/<%- mark.id %>"><%- mark.name %> </a></li>
                   <% } %>
                 </ul>
               <% }) %>
@@ -266,7 +276,7 @@
               <% locals.marks.forEach(mark => { %>
                 <ul>
                   <% if (mark.name.startsWith('G', 0)) { %>
-                    <li><a href=""><%- mark.name %> </a></li>
+                    <li><a href="/filteredMarksProducts/<%- mark.id %>"><%- mark.name %> </a></li>
                   <% } %>
                 </ul>
               <% }) %>
@@ -276,7 +286,7 @@
               <% locals.marks.forEach(mark => { %>
                 <ul>
                   <% if (mark.name.startsWith('H', 0)) { %>
-                    <li><a href=""><%- mark.name %> </a></li>
+                    <li><a href="/filteredMarksProducts/<%- mark.id %>"><%- mark.name %> </a></li>
                   <% } %>
                 </ul>
               <% }) %>
@@ -286,7 +296,7 @@
               <% locals.marks.forEach(mark => { %>
                 <ul>
                   <% if (mark.name.startsWith('I', 0)) { %>
-                    <li><a href=""><%- mark.name %> </a></li>
+                    <li><a href="/filteredMarksProducts/<%- mark.id %>"><%- mark.name %> </a></li>
                   <% } %>
                 </ul>
               <% }) %>
@@ -296,7 +306,7 @@
               <% locals.marks.forEach(mark => { %>
                 <ul>
                   <% if (mark.name.startsWith('J', 0)) { %>
-                    <li><a href=""><%- mark.name %> </a></li>
+                    <li><a href="/filteredMarksProducts/<%- mark.id %>"><%- mark.name %> </a></li>
                   <% } %>
                 </ul>
               <% }) %>
@@ -306,7 +316,7 @@
               <% locals.marks.forEach(mark => { %>
                 <ul>
                   <% if (mark.name.startsWith('K', 0)) { %>
-                    <li><a href=""><%- mark.name %> </a></li>
+                    <li><a href="/filteredMarksProducts/<%- mark.id %>"><%- mark.name %> </a></li>
                   <% } %>
                 </ul>
               <% }) %>
@@ -316,7 +326,7 @@
               <% locals.marks.forEach(mark => { %>
                 <ul>
                   <% if (mark.name.startsWith('L', 0)) { %>
-                    <li><a href=""><%- mark.name %> </a></li>
+                    <li><a href="/filteredMarksProducts/<%- mark.id %>"><%- mark.name %> </a></li>
                   <% } %>
                 </ul>
               <% }) %>
@@ -326,7 +336,7 @@
               <% locals.marks.forEach(mark => { %>
                 <ul>
                   <% if (mark.name.startsWith('M', 0)) { %>
-                    <li><a href=""><%- mark.name %> </a></li>
+                    <li><a href="/filteredMarksProducts/<%- mark.id %>"><%- mark.name %> </a></li>
                   <% } %>
                 </ul>
               <% }) %>
@@ -336,7 +346,7 @@
               <% locals.marks.forEach(mark => { %>
                 <ul>
                   <% if (mark.name.startsWith('N', 0)) { %>
-                    <li><a href=""><%- mark.name %> </a></li>
+                    <li><a href="/filteredMarksProducts/<%- mark.id %>"><%- mark.name %> </a></li>
                   <% } %>
                 </ul>
               <% }) %>
@@ -346,7 +356,7 @@
               <% locals.marks.forEach(mark => { %>
                 <ul>
                   <% if (mark.name.startsWith('P', 0)) { %>
-                    <li><a href=""><%- mark.name %> </a></li>
+                    <li><a href="/filteredMarksProducts/<%- mark.id %>"><%- mark.name %> </a></li>
                   <% } %>
                 </ul>
               <% }) %>
@@ -356,7 +366,7 @@
               <% locals.marks.forEach(mark => { %>
                 <ul>
                   <% if (mark.name.startsWith('Q', 0)) { %>
-                    <li><a href=""><%- mark.name %> </a></li>
+                    <li><a href="/filteredMarksProducts/<%- mark.id %>"><%- mark.name %> </a></li>
                   <% } %>
                 </ul>
               <% }) %>
@@ -366,7 +376,7 @@
               <% locals.marks.forEach(mark => { %>
                 <ul>
                   <% if (mark.name.startsWith('R', 0)) { %>
-                    <li><a href=""><%- mark.name %> </a></li>
+                    <li><a href="/filteredMarksProducts/<%- mark.id %>"><%- mark.name %> </a></li>
                   <% } %>
                 </ul>
               <% }) %>
@@ -376,7 +386,7 @@
               <% locals.marks.forEach(mark => { %>
                 <ul>
                   <% if (mark.name.startsWith('S', 0)) { %>
-                    <li><a href=""><%- mark.name %> </a></li>
+                    <li><a href="/filteredMarksProducts/<%- mark.id %>"><%- mark.name %> </a></li>
                   <% } %>
                 </ul>
               <% }) %>
@@ -386,7 +396,7 @@
               <% locals.marks.forEach(mark => { %>
                 <ul>
                   <% if (mark.name.startsWith('T', 0)) { %>
-                    <li><a href=""><%- mark.name %> </a></li>
+                    <li><a href="/filteredMarksProducts/<%- mark.id %>"><%- mark.name %> </a></li>
                   <% } %>
                 </ul>
               <% }) %>
@@ -396,7 +406,7 @@
               <% locals.marks.forEach(mark => { %>
                 <ul>
                   <% if (mark.name.startsWith('U', 0)) { %>
-                    <li><a href=""><%- mark.name %> </a></li>
+                    <li><a href="/filteredMarksProducts/<%- mark.id %>"><%- mark.name %> </a></li>
                   <% } %>
                 </ul>
               <% }) %>
@@ -406,7 +416,7 @@
               <% locals.marks.forEach(mark => { %>
                 <ul>
                   <% if (mark.name.startsWith('V', 0)) { %>
-                    <li><a href=""><%- mark.name %> </a></li>
+                    <li><a href="/filteredMarksProducts/<%- mark.id %>"><%- mark.name %> </a></li>
                   <% } %>
                 </ul>
               <% }) %>
@@ -416,7 +426,7 @@
               <% locals.marks.forEach(mark => { %>
                 <ul>
                   <% if (mark.name.startsWith('W', 0)) { %>
-                    <li><a href=""><%- mark.name %> </a></li>
+                    <li><a href="/filteredMarksProducts/<%- mark.id %>"><%- mark.name %> </a></li>
                   <% } %>
                 </ul>
               <% }) %>
@@ -426,17 +436,17 @@
               <% locals.marks.forEach(mark => { %>
                 <ul>
                   <% if (mark.name.startsWith('X', 0)) { %>
-                    <li><a href=""><%- mark.name %> </a></li>
+                    <li><a href="/filteredMarksProducts/<%- mark.id %>"><%- mark.name %> </a></li>
                   <% } %>
                 </ul>
               <% }) %>
             </div>
             <div class="column">
-              <h4 id="Y"><a href="">Z</a></h4>              
+              <h4 id="Y"><a href="">Y</a></h4>              
               <% locals.marks.forEach(mark => { %>
                 <ul>
                   <% if (mark.name.startsWith('Y', 0)) { %>
-                    <li><a href=""><%- mark.name %> </a></li>
+                    <li><a href="/filteredMarksProducts/<%- mark.id %>"><%- mark.name %> </a></li>
                   <% } %>
                 </ul>
               <% }) %>            
@@ -446,7 +456,7 @@
               <% locals.marks.forEach(mark => { %>
                 <ul>
                   <% if (mark.name.startsWith('Z', 0)) { %>
-                    <li><a href=""><%- mark.name %> </a></li>
+                    <li><a href="/filteredMarksProducts/<%- mark.id %>"><%- mark.name %> </a></li>
                   <% } %>
                 </ul>
               <% }) %>            
