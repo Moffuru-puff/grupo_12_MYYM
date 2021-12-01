@@ -252,8 +252,7 @@ module.exports = {
 	},
 
 	userUpdate: (req, res) => {
-		let errors = validationResult(req);
-		console.log(+req.params.id);
+		let errors = validationResult(req);		
 		if (errors.isEmpty()) {
 			let {
 				user,
@@ -268,8 +267,7 @@ module.exports = {
 				postalCode
 			} = req.body;
 
-			db.User.findByPk(+req.params.id).then(usuario => {
-				console.log(usuario);
+			db.User.findByPk(+req.params.id).then(usuario => {				
 				db.Addresse.update({
 					address,
 					city: province,
@@ -291,8 +289,7 @@ module.exports = {
 						where: {
 							id: usuario.id
 						}
-					}).then((user) => {
-						console.log(user);
+					}).then(() => {
 						res.redirect('/admin/userList')
 					}).catch((err) => console.log(err))
 				})

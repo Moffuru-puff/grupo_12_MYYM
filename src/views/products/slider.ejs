@@ -1,0 +1,80 @@
+
+   
+    <!-- Product Slider -->
+
+    <div class="gallery productSlider js-flickity"
+    data-flickity-options='{ "wrapAround": true }' >
+        <% sliderProducts.forEach(product => { %>
+            <div class="carousel-cell  productSlide">
+               <div class="products">
+
+
+                <article id="article">
+                    <div class="star" id="btnFav"> 
+                      <figure 
+                      userid="<%- userInSession.id  %>"
+                       <% if(userInSession.favorites != undefined ) { %>
+                        <% if (userInSession.favorites.productId == producto.id) { %>
+                           class="myImage activated"                              
+                        <% } else { %>
+                          class="myImage"
+                          <% } %>
+                      <% } %>
+                      id="<%- product.id %>">
+                      </figure>                              
+                    </div>
+                     
+                    <a href="/detalleDelProducto/<%- product.id %>">
+                    <div class="img-producto">
+                      <img src="/img/Productos Gamers/<%- product.productimage[0]?.url %>" alt="<%- product.name %>" />
+                    </div>
+                    <div class="puntuacion">
+                      <img src="/img/iconos-png/4.5.png" alt="puntuacion" />
+                      <p>4.05</p>
+                    </div>
+                    <div class="description-product">
+                     
+                      <h4>
+                        <% if (product.name.length > 20) { %>
+                        <% let productoSlice = product.name.slice(0,20) %> 
+                          <%= productoSlice %>... 
+                      
+                      <% } else { %>
+                        <%- product.name %>
+                        <% } %>
+                      </h4>
+                      <p>
+                        <% if (product.mainFeatures.length > 40) { %>
+                          <% let descriptionSlice = product.mainFeatures.slice(0,40) %> 
+                            <%= descriptionSlice %>... 
+                        
+                        <% } else { %>
+                        <%- product.mainFeatures %>
+                        <% } %>
+                      </p>
+                      <% if (product.discount !== 0) { %>
+                        <div class="withDiscount">
+                          <small>$<%- toThousand(product.price) %></small>
+                          <span>
+                            <%- product.discount !== 0 ? `${product.discount}% OFF` : '' %>
+                          </span>
+                          </div>
+                          <h3>$<%- toThousand(product.price - product.price * product.discount / 100) %>
+                          </h3>
+                        
+                        <% } else { %>
+                          <h3>
+                            $<%- toThousand(product.price) %>
+                          </h3>
+  
+                          <% } %>
+  
+                    </div>
+                    </a>
+                  </article>
+                </div>
+
+
+            </div>
+        <% }) %>
+    </div>

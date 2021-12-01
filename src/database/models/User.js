@@ -34,10 +34,6 @@ module.exports = function (sequelize, dataTypes) {
             type: dataTypes.STRING(200),
             allowNull: false
         },
- /*        favoritesId: {
-            type: dataTypes.INTEGER(5).UNSIGNED,
-            allowNull: false
-        }, */
         rolesId: {
             type: dataTypes.TINYINT(4),
             allowNull: false
@@ -45,15 +41,7 @@ module.exports = function (sequelize, dataTypes) {
         addressesId: {
             type: dataTypes.INTEGER(11).UNSIGNED
 
-        },
- /*        cartId: {
-            type: dataTypes.INTEGER(11).UNSIGNED,
-            allowNull: false
-        },
-        creditCardsId: {
-            type: dataTypes.INTEGER(11).UNSIGNED
-
-        } */
+        }
 
 
     }
@@ -74,7 +62,7 @@ module.exports = function (sequelize, dataTypes) {
         }),
         User.hasMany(models.Cart, {
             as: "Cart",
-            foreignKey:/* "cartId"*/  "userId"
+            foreignKey: "userId"
         }), 
         User.belongsTo(models.Addresse, {
             as: "Addresse",
@@ -82,11 +70,11 @@ module.exports = function (sequelize, dataTypes) {
         }),
         User.hasMany(models.Favorite, {
             as: "Favorite",
-            foreignKey:/* "favoritesId" */ "userId" 
+            foreignKey: "userId" 
         }),
         User.hasMany(models.Creditcard, {
             as: "Creditcard",
-            foreignKey: /* "creditCardsId"  */ "userId" 
+            foreignKey: "userId" 
         }), 
        User.hasOne(models.Valorationproduct, {
             as: "Valorationproduct",

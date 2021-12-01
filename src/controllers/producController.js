@@ -11,25 +11,40 @@ module.exports = {
       include: [
         {
           association: "productimage"
-        }, 
+        },
         {
           association: "Mark"
-        }, 
+        },
         {
           association: "Subcategorie"
         }, 
         { association: "Favorite"}
       ],
-    }).then((product) => {
-      res.render("./products/detalleDelProducto", {
-
-        product,
-        toThousand,
-
-        userInSession: req.session.user ? req.session.user : ''
-      })
     })
-      .catch(error => console.log(error))
+      .then((product) => {
+        db.Product.findAll({
+          where: {
+            subcategoryId: product.subcategoryId,
+          },
+          include: [
+            {
+              association: "productimage",
+            },
+          ],
+        }).then((products) => {
+          res.render("./products/detalleDelProducto", {
 
+            product,
+            toThousand,
+            sliderTitle: "Productos relacionados",
+            sliderProducts: products,
+
+
+            userInSession: req.session.user ? req.session.user : ''
+          })
+        })
+          .catch(error => console.log(error))
+
+      })
   },
 };
