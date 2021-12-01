@@ -17,6 +17,10 @@ module.exports = {
         },
         {
           association: "Subcategorie"
+        },
+        {
+            association: "Valorationproduct"
+           
         }, 
         { association: "Favorite"}
       ],
@@ -145,4 +149,44 @@ module.exports = {
     }).catch(error => console.log(error))
 
   },
+  valorationProduct:(req,res)=>{
+    let {opinions,rating}= req.body
+    
+    db.User.findOne({ where:{id:+req.session.user.id}})
+    .then(user =>{ 
+      db.Product.findOne({
+        where:{id:+req.params.id},
+        include: [
+          {
+            association: "productimage"
+          },
+          {
+            association: "Mark"
+          },
+          {
+            association: "Subcategorie"
+          },
+          {
+            association: "Valorationproduct"
+          }
+        ],
+      }).then(product => {
+        db.Valorationproduct.create({
+          opinions: opinions? opinions : " ",
+          score:rating,
+          userId: user.id,
+          productId:product.id
+        }).then(valorationProduct => {
+          res.redirect(`/detalleDelProducto/${product.id}`
+          
+         
+           
+          )
+        })
+  
+
+      })
+    })
+   
+  }
 };
