@@ -93,13 +93,13 @@
   .sectionPagination #formPagination8.click ~ .pacman {transform: translateX(calc(var(--ddim) + var(--rdim)*7));}
   .sectionPagination #formPagination1.click ~ .pacman {transform: translateX(var(--ddim));}
 
- /*  .sectionPagination #formPagination2:active ~ .pacman {transform: translateX(calc(var(--ddim) + var(--rdim)));}
+  .sectionPagination #formPagination2:active ~ .pacman {transform: translateX(calc(var(--ddim) + var(--rdim)));}
   .sectionPagination #formPagination3:active ~ .pacman {transform: translateX(calc(var(--ddim) + var(--rdim)*2));}
   .sectionPagination #formPagination4:active ~ .pacman {transform: translateX(calc(var(--ddim) + var(--rdim)*3));}
   .sectionPagination #formPagination5:active ~ .pacman {transform: translateX(calc(var(--ddim) + var(--rdim)*4));}
   .sectionPagination #formPagination6:active ~ .pacman {transform: translateX(calc(var(--ddim) + var(--rdim)*5));}
   .sectionPagination #formPagination7:active ~ .pacman {transform: translateX(calc(var(--ddim) + var(--rdim)*6));}
-  .sectionPagination #formPagination8:active ~ .pacman {transform: translateX(calc(var(--ddim) + var(--rdim)*7));} */
+  .sectionPagination #formPagination8:active ~ .pacman {transform: translateX(calc(var(--ddim) + var(--rdim)*7));}
 
 
   

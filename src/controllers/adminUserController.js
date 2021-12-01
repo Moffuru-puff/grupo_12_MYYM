@@ -253,7 +253,7 @@ module.exports = {
 
 	userUpdate: (req, res) => {
 		let errors = validationResult(req);
-
+		console.log(+req.params.id);
 		if (errors.isEmpty()) {
 			let {
 				user,
@@ -269,6 +269,7 @@ module.exports = {
 			} = req.body;
 
 			db.User.findByPk(+req.params.id).then(usuario => {
+				console.log(usuario);
 				db.Addresse.update({
 					address,
 					city: province,
@@ -290,7 +291,8 @@ module.exports = {
 						where: {
 							id: usuario.id
 						}
-					}).then(() => {
+					}).then((user) => {
+						console.log(user);
 						res.redirect('/admin/userList')
 					}).catch((err) => console.log(err))
 				})
@@ -308,7 +310,8 @@ module.exports = {
 		db.User.findByPk(+req.params.id)
 			.then((user) => {
 				let $addressesId = user.addressesId;
-
+				db.Favorite.destroy({where: {userId: user.id}}).then(() => {})
+				db.Cart.destroy({where: { userId: user.id}}).then(() => {})
 				db.User.destroy({
 					where: {
 						id: +req.params.id,

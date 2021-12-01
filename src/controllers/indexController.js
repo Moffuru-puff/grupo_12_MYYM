@@ -72,6 +72,7 @@ module.exports = {
   },
   productsFilters: (req, res) => {
     let { filters } = req.body
+    let num_page = 1
     if (filters) {
       let order;
       filters === 'lowerPrice' ? order = 'ASC' : filters === 'higherPrice' ? order = 'DESC' : ""
@@ -87,6 +88,7 @@ module.exports = {
           res.render("./products/index.ejs", {
             Products,
             num_pages,
+            num_page: num_page,
             toThousand,
             favorites: req.session.user ? req.session.user.favorites : "",
             userInSession: req.session.user ? req.session.user : "",
@@ -104,6 +106,7 @@ module.exports = {
           res.render("./products/index.ejs", {
             Products,
             num_pages,
+            num_page: num_page,
             toThousand,
             favorites: req.session.user ? req.session.user.favorites : "",
             userInSession: req.session.user ? req.session.user : "",

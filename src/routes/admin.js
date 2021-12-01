@@ -66,6 +66,7 @@ let uploadFile = require('../middlewares/productUploadImage');
 let adminCheck = require('../middlewares/adminCheck');
 let sucursalValidator = require('../validations/sucursalValidator');
 let userAdminValidator = require('../validations/userAdminValidator');
+let editUserAdminValidator = require('../validations/editUserAdminValidator');
 let productValidator = require('../validations/productCreateValidator')
 let categoryValidator = require('../validations/categoryValidator')
 let subcategoryValidator = require('../validations/subcategoryValidator')
@@ -107,7 +108,7 @@ router.get('/user/create', adminCheck, addUser);
 router.post('/user/create', userAdminValidator, createUser);
 /* Edit User */
 router.get('/users/edit/:id', adminCheck, editUser);
-router.put('/users/edit/:id', userAdminValidator, userUpdate);
+router.put('/users/edit/:id', editUserAdminValidator, userUpdate);
 /* Delete User */
 router.delete('/user/deleteUser/:id', userDelete);
 /* Search User */
