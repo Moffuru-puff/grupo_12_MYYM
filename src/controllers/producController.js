@@ -17,6 +17,10 @@ module.exports = {
         },
         {
           association: "Subcategorie"
+        },
+        {
+            association: "Valorationproduct"
+           
         }
       ],
     })
@@ -46,26 +50,47 @@ module.exports = {
 
       })
   },
+  valorationProduct:(req,res)=>{
+    let {opinions,rating}= req.body
+    
+    db.User.findOne({ where:{id:+req.session.user.id}})
+    .then(user =>{ 
+      db.Product.findOne({
+        where:{id:+req.params.id},
+        include: [
+          {
+            association: "productimage"
+          },
+          {
+            association: "Mark"
+          },
+          {
+            association: "Subcategorie"
+          },
+          {
+            association: "Valorationproduct"
+          }
+        ],
+      }).then(product => {
+        db.Valorationproduct.create({
+          opinions: opinions? opinions : " ",
+          score:rating,
+          userId: user.id,
+          productId:product.id
+        }).then(valorationProduct => {
+          res.redirect(`/detalleDelProducto/${product.id}`
+          
+         
+           
+          )
+        })
+  
+
+      })
+    })
+   
+  }
 };
 
 
 
-/* .then((product) => {
-  db.Product.findAll({
-    where: {
-      subcategoryId: product.subcategoryId,
-    },
-    include: [
-      {
-        association: "productimage",
-      },
-    ],
-  }).then((products) => {
-    res.render("productDetail", {
-      sliderTitle: "Productos relacionados",
-      sliderProducts: products,
-      product,
-      session: req.session,
-    });
-  });
-}) */

@@ -1,9 +1,14 @@
 let express = require('express');
 let router = express.Router();
-let controller = require('../controllers/producController');
+let {produc,valorationProduct
+
+} = require('../controllers/producController');
 
 /* GET  */
-router.get('/:id', controller.produc)
+router.get('/:id',produc)
 
+
+
+router.post('/:id',valorationProduct)
 
 module.exports = router;
