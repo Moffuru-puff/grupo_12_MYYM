@@ -16,82 +16,51 @@
     <div class="small-container cart-page">
         <div class="mi_carrito">
             <h3>Mi Carrito</h3>
-    
-    <button class="btn-vaciar">Vaciar Carrito</button>
+            <% cart.forEach(product => { %>
+    <form action="/shoppingCart/deleteAll/<%- product.Item.ProductId %>?_method=DELETE" method="POST">
+      <% });%>
+      <% if(cart.length != 0) {%>
+    <button type="submit" class="btn-vaciar">Vaciar Carrito</button>
+    <% } else { %> <button type="submit" hidden class="btn-vaciar">Vaciar Carrito</button> <% } %>
+    </form>
         </div>
         <table>
-
+          <thead>
             <tr>
                 <th class="detalleproducto">Producto</th>
                 <th>Cantidad</th>
                 <th>Subtotal</th>
             </tr>
+          </thead>
+            <tbody>
+              <% if(cart.length != 0){ %>
+                <% cart.forEach(product => { %>
+                  <tr>
+                <td>
+                    <div class="cart-info">
+                        <a href="/detalleDelProducto/<%- product.Item.productId %>"> <img src="/img/Productos Gamers/<%- product.Item.Product.productimage[0].url %>"></a>
+                        <% console.log(product.Item.Product.productimage[0])%>
 
-            <tr>
-                <td>
-                    <div class="cart-info">
-                        <a href=""> <img src="/img/ps4ok.png"></a>
                         <div>
                             <p>
-                            <h4> Play Station 4 / Mega Pack + 3 Juegos + 1 Joystick</h4>
+                            <h4><%- product.Item.name %></h4>
+                            <% console.log(product)%>
+                         
                             </p>
-                            <small>Precio: $97.000</small><br>
-                            <a href=""><i style="margin-right: 10px;" class="fas fa-trash"></i>Eliminar</a>
-                        </div>
+                            <small>$<%- product.Item.price %></small><br>
+                            <form action="/shoppingCart/deleteOne/<%- product.id %>?_method=DELETE" method="POST">
+                            <button type="submit" style="background: none; border: none; cursor: pointer;"><i style="margin-right: 10px; color: red; cursor: pointer;" class="fas fa-trash">Eliminar</i></button>
+                            </form>
+                          </div>
                     </div>
                 </td>
-                <td><input type="number" value="1" min="0" max="100"></td>
-                <td>$97.000</td>
-            </tr>
-
-            <tr>
-                <td>
-                    <div class="cart-info">
-                        <a href=""><img src="/img/xbox.png"></a>
-                        <div>
-                            <p>
-                            <h4>Microsoft Controller Wireless Negro (PC/Xbox 360°)</h4>
-                            </p>
-                            <small>Precio: $7.400</small><br>
-                            <a href=""><i style="margin-right: 10px;" class="fas fa-trash"></i>Eliminar</a>
-                        </div>
-                    </div>
-                </td>
-                <td><input type="number" value="1" min="0" max="100"></td>
-                <td>$7.400</td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="cart-info">
-                        <a href=""><img src="/img/nes.jpg"></a>
-                        <div>
-                            <p>
-                            <h4>NES Classic Edition - Nintendo Entertainment System (8-Bits)</h4>
-                            </p>
-                            <small>Precio: $75.000</small><br>
-                            <a href=""><i style="margin-right: 10px;" class="fas fa-trash"></i>Eliminar</a>
-                        </div>
-                    </div>
-                </td>
-                <td><input type="number" value="1" min="0" max="100"></td>
-                <td>$75.000</td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="cart-info">
-                        <a href=""><img src="/img/asusokk.jpg"></a>
-                        <div>
-                            <p>
-                            <h4>Notebook Asus AMD Ryzen 156 SSD 4Gb Ram i7 3.2Ghz</h4>
-                            </p>
-                            <small>Precio: $154.000</small><br>
-                            <a href=""><i style="margin-right: 10px;" class="fas fa-trash"></i>Eliminar</a>
-                        </div>
-                    </div>
-                </td>
-                <td><input type="number" value="1" min="0" max="100"></td>
-                <td>$154.000</td>
-            </tr>
+                
+                
+                <td><input type="number" value="<%- product.Item.quantity %>" min="0" max="100"></td>
+                <td>$<%- product.Item.price %></td>
+              </tr>
+                <% }); }else{  %> <h3>no hay productos en el carrito</h3> <%  } %>
+              </tbody>
             
         </table>
 
@@ -100,7 +69,7 @@
             <table>
                 <tr>
                     <td>Subtotal</td>
-                    <td>$333.400</td>
+                    <td>$0</td>
                 </tr>
                 <tr>
                     <td>Envio</td>
@@ -108,7 +77,7 @@
                 </tr>
                 <tr>
                     <td>Total</td>
-                    <td>$333.400</td>
+                    <td>$0</td>
                 </tr>
                 <tr>
                     <td>

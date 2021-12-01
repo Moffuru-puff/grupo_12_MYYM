@@ -172,12 +172,7 @@ window.addEventListener("load", function(){
                 elementosForm[index].classList.add('is-invalid');
                 $submitErrorRe.innerHTML = "Los campos señalados son obligatorios";
                 errores = true
-            } /*  else {
-                errores = false
-                $submitErrorRe.innerHTML = ""
-                $formRe.submit()
-    
-            } */
+            } 
         }
         if(!errores){
             $submitErrorRe.innerHTML = ""
