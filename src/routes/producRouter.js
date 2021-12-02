@@ -5,7 +5,7 @@ const sessionCheck = require('../middlewares/sessionCheck')
 
 /* GET  */
 router.get('/:id', produc)
-router.post('/:id', sessionCheck,cart)
+router.post('/addProduct/:id', sessionCheck,cart)
 
 router.post('/:id',valorationProduct)
 
