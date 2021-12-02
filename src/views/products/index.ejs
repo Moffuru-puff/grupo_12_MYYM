@@ -86,7 +86,7 @@
 
         <!-- Tarjetitas -->
         <section class="section-cards">
-          <div class="tarjetitas">
+          <div class="tarjetitas" id="cardDelivery" onclick="modalButtonCard('cardDelivery')">
             <div class="icon-cards">
               <i class="fas fa-truck"></i>
             </div>
@@ -95,7 +95,7 @@
               <p>a todo el país</p>
             </div>
           </div>
-          <div class="tarjetitas">
+          <div class="tarjetitas" id="cardCuotas" onclick="modalButtonCard('cardCuotas')">
             <div class="icon-cards">
               <i class="far fa-credit-card"></i>
             </div>
@@ -104,7 +104,7 @@
               <p>con todas las tarjetas de crédito</p>
             </div>
           </div>
-          <div class="tarjetitas">
+          <div class="tarjetitas" id="cardDiscount" onclick="modalButtonCard('cardDiscount')">
             <div class="icon-cards">
               <i class="fas fa-percent"></i>
             </div>
@@ -113,7 +113,7 @@
               <p>pagando en efectivo</p>
             </div>
           </div>
-          <div class="tarjetitas">
+          <div class="tarjetitas" id="cardFacilities" onclick="modalButtonCard('cardFacilities')">
             <div class="icon-cards">
               <i class="fas fa-hand-holding-usd"></i>
             </div>
@@ -122,81 +122,96 @@
               <p>abonando desde la web</p>
             </div>
           </div>
+          <div class="modal-background">
+
+          </div>
         </section>
 
         <!-- Sección de productos -->
-        <section class="container-products">
+        <section class="container-products Product-container">
           <h2>Productos Destacados</h2>
+          <!-- Sección de filtros -->
+          <section class="filters">
+            <h5>Ordenar por: </h5>
+            <form action="/" method="POST">
+              <select name="filters" id="">
+                <option value="" hidden selected>Seleccionar filtro </option>
+                <option value="lowerPrice">Menor precio</option>
+                <option value="higherPrice">Mayor precio</option>
+                <option value="mostRelevant">Más relevantes</option>
+              </select>
+              <button type="submit">
+                Aplicar filtro
+              </button>
+            </form>
+          </section>
 
-          <div class="products"> 
+          <div class="products">
             <% for (producto of Products) { %>
-               
-           <!--    <a href="/detalleDelProducto/<- producto.Product.id %>"> -->
-                <article id="article">
-                  <div class="star" id="btnFav"> 
-                    <figure 
-                    userid="<%- userInSession.id  %>"
-                     <% if(userInSession.favorites != undefined ) { %>
-                      <% if (userInSession.favorites.productId == producto.id) { %>
-                         class="myImage activated"                              
-                      <% } else { %>
-                        class="myImage"
-                        <% } %>
-                    <% } %>
-                    id="<%- producto.id %>">
-                    </figure>                              
-                  </div>
-                   <!-- <div class="star" id="btnFav"> 
-                    <figure 
-                    userid="<- userInSession.id  %>"
-                    < if (userInSession.Favorite[0].productId == producto.id) { %>
-                      class="myImage activated"
-                      < } else { %>
-                        class="myImage"
-                    < } %>
-                    id="<- producto.id %>">
+
+              <!--    <a href="/detalleDelProducto/<- producto.Product.id %>"> -->
+              <article id="article">
+                <div class="star" id="btnFav">
+                  <form action="favorites/addOrDelete/<%- producto.id %>" method="POST">                  
+                    <button type="submit" class="btnStar" <% if(!userInSession || userInSession == undefined || userInSession == "") { %> 
+                      disabled                      
+                      <% } %>>                      
+                      <% if( producto.Favorite !== null && userInSession) { %> 
+                       
+                      <figure userid="<%- userInSession.id  %>"    
+                       <% if (producto.Favorite.productId == producto.id && producto.Favorite.userId == userInSession.id) { %>
+                          class="myImage activated"
+                          <% } else { %>
+                            class="myImage"
+                            <% } %>
+                     id="<%- producto.id %>">
                     </figure>
-                   
-                    
-                  </div>  -->
-                  <a href="/detalleDelProducto/<%- producto.id %>">
+                    <% } else { %>
+                      <figure userid="" class="myImage" id="<%- producto.id %>"></figure>
+                    <% } %>
+                    </button>                  
+                  </form>
+                </div>
+                    <a href="/detalleDelProducto/<%- producto.id %>">
+              
                   <div class="img-producto">
-                    <img src="/img/Productos Gamers/<%- producto.productimage[0]?.url %>" alt="<%- producto.name %>" />
+                    <img src="/img/Productos Gamers/<%- producto.productimage[0]?.url %>"
+													alt="<%- producto.name %>" />
                   </div>
                   <div class="puntuacion">
                     <img src="/img/iconos-png/4.5.png" alt="puntuacion" />
                     <p>4.05</p>
                   </div>
                   <div class="description-product">
-                   
+
                     <h4>
-                      <% if (producto.name.length > 20) { %>
-                      <% let productoSlice = producto.name.slice(0,20) %> 
-                        <%= productoSlice %>... 
-                    
-                    <% } else { %>
-                      <%- producto.name %>
-                      <% } %>
+                      <% if (producto.name.length> 20) { %>
+                        <% let productoSlice=producto.name.slice(0,20) %>
+                          <%= productoSlice %>...
+
+                            <% } else { %>
+                              <%- producto.name %>
+                                <% } %>
                     </h4>
                     <p>
-                      <% if (producto.mainFeatures.length > 40) { %>
-                        <% let descriptionSlice = producto.mainFeatures.slice(0,40) %> 
-                          <%= descriptionSlice %>... 
-                      
-                      <% } else { %>
-                      <%- producto.mainFeatures %>
-                      <% } %>
+                      <% if (producto.mainFeatures.length> 40) { %>
+                        <% let descriptionSlice=producto.mainFeatures.slice(0,40) %>
+                          <%= descriptionSlice %>...
+
+                            <% } else { %>
+                              <%- producto.mainFeatures %>
+                                <% } %>
                     </p>
-                    <% if (producto.discount !== 0) { %>
+                    <% if (producto.discount !==0) { %>
                       <div class="withDiscount">
                         <small>$<%- toThousand(producto.price) %></small>
                         <span>
-                          <%- producto.discount !== 0 ? `${producto.discount}% OFF` : '' %>
+                          <%- producto.discount !==0 ? `${producto.discount}% OFF` : '' %>
                         </span>
-                        </div>
-                        <h3>$<%- toThousand(producto.price - producto.price * producto.discount / 100) %>
-                        </h3>
-                      
+                      </div>
+                      <h3>$<%- toThousand(producto.price - producto.price * producto.discount / 100) %>
+                      </h3>
+
                       <% } else { %>
                         <h3>
                           $<%- toThousand(producto.price) %>
@@ -205,8 +220,8 @@
                         <% } %>
 
                   </div>
-                  </a>
-                </article>
+                </a>
+              </article>
               <!-- </a> -->
               <% } %>
 
@@ -214,12 +229,28 @@
           <div class="arrow-top">
             <a href="#"><img src="/img/iconos-png/arrow-top.png" alt="" /></a>
           </div>
+          <section class="sectionPagination">
+            <div class="pagination" id="paginationContainer">            
+              <% for( let i = 1; i <= num_pages; i++ ) { %>
+                
+                <form action="/pagination/<%= i %>" method="get" <% if (i === num_page) { %>
+                  class="pagination formPagination click"
+                 <% } else { %>
+                  class="pagination formPagination"
+                <% } %> id="formPagination<%= i %>">                 
+              <button type="submit" class="num-page"> </button>
+              </form>
+              <% } %>
+              <div class="pacman"></div>
+            </div>
+          </section>
         </section>
       </main>
 
       <!-- Comienzo del footer -->
       <%- include('../partials/footer.ejs') %>
         <!-- Fin del footer -->
+        <script src="/js/paginationHome.js" defer></script>     
   </body>
 
 </html>

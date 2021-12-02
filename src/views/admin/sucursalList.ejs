@@ -18,7 +18,21 @@
         <section class="welcome">
           <h2>Lista de las sucursales</h2>
         </section>
-
+        <!-- Sección de filtros -->
+        <section class="filters">
+          <h5>Ordenar por: </h5>
+          <form action="/admin/sucursals" method="POST">
+            <select name="filters" id="">
+              <option value="" hidden selected>Seleccionar filtro </option>
+              <option value="idAsc">Id ascendente</option>
+              <option value="idDesc">Id descendente</option>
+            </select>
+            <button type="submit">
+              Aplicar filtro
+            </button>
+          </form>
+        </section>
+        <!-- Fin de la sección de filtros -->
         <section class="productsList">
           <div class="btn-agregarProducto">
             <a href="/admin/sucursal/create" class="publish">Agregar sucursal</a>
@@ -32,8 +46,9 @@
               <thead>
                 <tr>
                   <th class="visible">ID</th>
+                  <th class="invisible">Código Postal</th>
                   <th class="visible">Localidad</th>
-                  <th class="visible">Dirección</th>
+                  <th class="visible">Dirección</th>                 
                   <th class="invisible">Tel</th>
                   <th class="invisible">Horarios</th>
                   <th></th>
@@ -44,8 +59,9 @@
                 <% sucursales.forEach(sucursal => { %>
                 <tr>
                   <td class="visible"><%- sucursal.id %></td>
-                  <td class="visible"><%- sucursal.location %></td>
-                  <td class="visible"><%- sucursal.direction %></td>
+                  <td class="invisible"><%- sucursal.Address.postalCode %></td>
+                  <td class="visible"><%- sucursal.Address.state %></td>
+                  <td class="visible"><%- sucursal.Address.address %></td>
                   <td class="invisible"><%- sucursal.telephone %></td>
                   <td class="invisible"><%- sucursal.schedule %></td>
                   <td>
@@ -58,8 +74,8 @@
                           d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
                       </svg>
                     </a>
-                    <form action="/admin/sucursal/deleteSucursal/<%= sucursal.id %>?_method=DELETE" method="POST">
-                      <button type="submit" class="btn btn-danger">
+                    
+                      <button type="submit" class="btn btn-danger" onclick="javascript:return deleteShow(`<%= sucursal.id %>`)">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                           class="bi bi-trash" viewBox="0 0 16 16">
                           <path
@@ -68,7 +84,10 @@
                             d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
                         </svg>
                       </button>
-                    </form>
+                      <div class="modal-background">
+                          
+                      </div>
+                   
                   </td>
                 </tr>
                 <% }) %>
@@ -81,6 +100,32 @@
           <a href="#"><img src="/img/iconos-png/arrow-top.png" alt="" /></a>
         </div>
       </main>
+      <script>
+        let $borrar = document.querySelector('#delete');
+        let $dontDelete = document.querySelector('#dontDelete');
+        let modal = document.querySelector('.modal-background')
+
+    function deleteShow(id) {
+       modal.innerHTML = `<div class="modal">
+                            <p>
+                                ¿Seguro que desea eliminar esta sucursal?
+                            </p>
+                            <div class="modal-buttons">
+                                <form action="/admin/sucursal/deleteSucursal/${id}?_method=DELETE" method="POST">
+                                    <button type="submit" id="delete">ELIMINAR</button>
+                                </form>
+                                <button  onclick="javascript:return hiddenDelete()" id="dontDelete">Cancelar</button>
+                            </div>
+                        </div>`
+        modal.style.display = "flex";
+        return modal
+    }
+
+    function hiddenDelete() {
+      modal.style.display = "none";
+    }
+  </script>
+
   </body>
 
 </html>

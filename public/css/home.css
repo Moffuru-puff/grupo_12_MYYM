@@ -14,6 +14,8 @@ section.section-cards {
     grid-template-columns: repeat(4, 1fr);
     justify-content: space-around;
     background-color: rgba(196, 196, 196, 0.25);
+    gap: 5px;
+    padding: 10px 15px 0 10px;
 }
 
 section div.tarjetitas {
@@ -50,6 +52,44 @@ section div.tarjetitas .description-cards p {
     display: none;
 }
 
+/* Sección filtros */
+.filters {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding: 1rem;
+}
+
+.filters h5 {
+    margin-right: 5px;
+}
+
+.filters select {
+    margin: 0 10x;
+    color: var(--blue);
+    font-family: var(--font-poppins);
+    font-size: 12px;
+    padding: 5px;
+    border: solid 1px var(--purple);
+    border-radius: 5px;
+    transition: all 1.5s ease-out;
+}
+
+.filters button {
+    color: var(--blue);
+    font-family: var(--font-poppins);
+    font-size: 12px;
+    padding: 5px;
+    border: solid 1px var(--purple);
+    border-radius: 5px;
+    transition: all 1.5s ease-out;
+}
+
+.filters button:hover {
+    color: var(--cream);
+    background: linear-gradient(88.29deg, rgba(0, 0, 115, 0.911) 3.94%, rgba(201, 1, 98, 0.904) 96.6%);
+}
+
 /* Sección de Productos */
 main section.container-products,
 .otros-productos {
@@ -69,7 +109,6 @@ main section.container-products div.products,
 .otros-productos {
     display: grid;
     gap: 1rem;
-    /*     grid-auto-rows: 22rem; */
     grid-template-columns: 1fr;
     grid-auto-flow: dense;
 }
@@ -92,6 +131,12 @@ main section.container-products div.products article,
     height: 370px;
 }
 
+div.star .btnStar {
+    border: none;
+    background: rgba(0, 0, 0, 0);
+    cursor: pointer;
+}
+
 main section.container-products div.products article div.star,
 .cajasmini article div.star {
     display: inline-block;
@@ -99,18 +144,17 @@ main section.container-products div.products article div.star,
     right: 1rem;
     width: 35px;
     height: 35px;
-   /*  background-image: url("/img/iconos-png/star-desactivada.png");
-    background-size: contain; */
-    
+
 }
- 
-main section.container-products div.products article div.star figure{
+
+main section.container-products div.products article div.star figure {
     background-image: url("/img/iconos-png/star-desactivada.png");
     background-size: contain;
     width: 35px;
     height: 35px;
-} 
-main section.container-products div.products article div.star figure.activated{
+}
+
+main section.container-products div.products article div.star figure.activated {
     background-image: url("/img/iconos-png/star-active.png");
     background-size: contain;
     width: 31px;
@@ -197,14 +241,20 @@ main section.container-products div.products article div.description-product h3 
 .arrow-top {
     position: relative;
     z-index: 2;
+    display: none;
 }
 
 .arrow-top a {
     display: inline-block;
     position: absolute;
-    right: 3rem;
-    top: 85vh;
+    right: 6rem;
+    top: 88vh;
     position: fixed;
+}
+
+.arrow-top a img:hover {
+    border-radius: 15px;
+    box-shadow: 2px 2px 2px var(--orange);
 }
 
 @media screen and (min-width: 481px) {
@@ -237,6 +287,7 @@ main section.container-products div.products article div.description-product h3 
         grid-auto-flow: dense;
         user-select: none;
     }
+
     .dBlock {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
@@ -269,6 +320,7 @@ main section.container-products div.products article div.description-product h3 
     section div.tarjetitas .description-cards p {
         display: inline-block;
         margin-left: 10px;
+        text-align: center;
     }
 
     /* Artículos */

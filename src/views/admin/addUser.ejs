@@ -8,7 +8,7 @@
         <%- include('../partials/header') %>
 
             <main class="main-admin">
-                <form action="/admin/user/create" method="POST">
+                <form action="/admin/user/create" method="POST" id="formUser">
                 <div>
                     <div class="volver">
                         <a href="/admin/userList">
@@ -29,6 +29,7 @@
                                             <%= errors.user.msg %>
                                         </small>
                                         <% } %>
+                                        <small class="text-danger" id="userErrors"></small>
                                 </div>
 
                                 <label for="name">Nombre</label>
@@ -48,17 +49,38 @@
 
                                 <label for="direction">Dirección</label>
                                 <div class="input">
-                                    <input type="text" placeholder="Ej: Calle falsa 123" id="location"
+                                    <input type="text" placeholder="Ej: Calle falsa 123" id="direction"
                                         name="address" />
                                 </div>
 
+                                <label for="location">Localidad</label>
+                                <div class="input">
+                                    <input type="text" placeholder="Ej: Pilar" id="location"
+                                        name="location" />
+                                </div>
                                
                             </div>
                             <div class="flex">
 
+                                <label for="country">País</label>
+                                <div class="input">
+                                    <input type="text" placeholder="Ej: Argentina" id="country" name="country" />
+                                </div>
+
                                 <label for="province">Provincia</label>
                                 <div class="input">
                                     <input type="text" placeholder="Ej: Buenos Aires" id="province" name="province" />
+                                </div>
+
+                                <label for="postalCode">Código Postal</label>
+                                <div class="input">
+                                    <input type="number" placeholder="Ej: 1629" id="postalCode" name="postalCode" value="<%= locals.old && old.postalCode %>"/>
+                                    <% if(locals.errors && errors.postalCode) { %>
+                                        <small class="text-danger">
+                                            <%= errors.postalCode.msg %>
+                                        </small>
+                                        <% } %>
+                                    <small class="text-danger" id="postalCodeErrors"></small>
                                 </div>
                                 
                                 <label for="email">E-mail</label>
@@ -69,6 +91,7 @@
                                             <%= errors.email.msg %>
                                         </small>
                                         <% } %>
+                                        <small class="text-danger" id="emailErrors"></small>
                                 </div>
 
                                 <label for="password">Contraseña</label>
@@ -80,6 +103,7 @@
                                                 <%= errors.password.msg %>
                                             </small>
                                             <% } %>
+                                            <small class="text-danger" id="passwordErrors"></small>
                                 </div>
 
                                 <label for="rol">Rol</label>
@@ -87,12 +111,15 @@
                                     <select name="rol" id="rol">
                                         <option value="2">Administrador</option>
                                         <option value="1" selected>Usuario</option>
+                                        <option value="3" >Encargado</option>
                                     </select>
+                                    <small class="text-danger" id="rolErrors"></small>
                                 </div>
 
                             </div>
                         </div>
                     </div>
+                    <small class="text-danger" id="formErrors"></small>
                     <div class="btn-publish">
                         <button class="publish" type="submit">Guardar</button>
                     </div>
@@ -100,6 +127,7 @@
                 </section>
             </form>
             </main>
+            <script src="/js/validationsFront/usersAdminValidations.js"></script>
     </body>
 
 </html>

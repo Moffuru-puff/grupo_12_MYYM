@@ -57,12 +57,12 @@
                   <button class="boton-compra1">
 
                     Comprar Ahora</button></a>  
-                    <a class="boton-compra2" href="/shoppingCart">
+                    <form action="/detalleDelProducto/addProduct/<%- product.id%>" method="POST" class="boton-compra2">
 
 
                   <button class="boton-compra2">
                      Agregar al carrito
-                  </button></a>
+                  </button></form>
               </div>
             </div>
           </div>
@@ -150,130 +150,67 @@
             Opiniones Positivas
           </button>
         </div>
+
+        <hr>
+
+        <!--Calificacion de articulos con hasta 5 estrellas-->
+
+        <div class="estrellita-puntaje"> 
+          <p>Tu opinión es importante para nosotros </p>
+     <h1 class="estrellita-puntaje">Califica este producto</h1>
+     <div class="rating-css hover-effect">
+         <input type="radio" value="1" id="rating3-1" name="rating3" checked>
+         <label for="rating3-1" class="mdi mdi-star"></label>
+         <input type="radio" value="2" id="rating3-2" name="rating3">
+         <label for="rating3-2" class="mdi mdi-star"></label>
+         <input type="radio" value="3" id="rating3-3" name="rating3">
+         <label for="rating3-3" class="mdi mdi-star"></label>
+         <input type="radio" value="4" id="rating3-4" name="rating3">
+         <label for="rating3-4" class="mdi mdi-star"></label>
+         <input type="radio" value="5" id="rating3-5" name="rating3">
+         <label for="rating3-5" class="mdi mdi-star"></label>
+     </div>
+    
+
+     </div> 
+     <div>
+      <form action="/detalleDelProducto/<%- product.id %> " method="post">
+       <div class="rating-css hover-effect">
+         <input type="radio" value="1" id="rating3-1" name="rating" checked>
+         <label for="rating3-1" class="mdi mdi-star"></label>
+         <input type="radio" value="2" id="rating3-2" name="rating">
+         <label for="rating3-2" class="mdi mdi-star"></label>
+         <input type="radio" value="3" id="rating3-3" name="rating">
+         <label for="rating3-3" class="mdi mdi-star"></label>
+         <input type="radio" value="4" id="rating3-4" name="rating">
+         <label for="rating3-4" class="mdi mdi-star"></label>
+         <input type="radio" value="5" id="rating3-5" name="rating">
+         <label for="rating3-5" class="mdi mdi-star"></label>
+         
+         
+         
+     </div>
+     <div>
+       <textarea name="opinions" id="" cols="30" rows="10"></textarea></div>
+     <button type="submit">Enviar</button>
+
+      </form>
+    </div>
+
         <hr>
         <div class="otrosProductos">
           <div class="tituloMini">
             <!--tarjetas de otros articulos-->
             <h4>Otros productos que pueden interesarte:</h4>
+            
           </div>
-          <div class="cajasmini">
-            <article class="productosInteresantes">
-              <div class="star" id="starFlotante">
-                <img id="myImage" onclick="changeImage()" src="/img/iconos-png/star-desactivada.png"
-                  alt="botón favoritos">
-              </div>
-              <div class="img-producto">
-                <a href="">
-                  <img src="/img/Productos Gamers/fortnite-xboxOne.jpg " alt="Nintendo reto" />
-                </a>
-              </div>
-              <div class="puntuacion" id="puntosDeEstrellas">
-                <img src="/img/iconos-png/4.5.png" alt="puntuacion" />
-                <p>4.2</p>
-              </div>
-              <div class="textoOtrosProductos">
-
-                <h4>Lorem ipsum dolor sit amet.</h4>
-                <p>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. A,
-                  excepturi!
-                </p>
-                <h3>$5.000</h3>
-              </div>
-            </article>
-            <article class="productosInteresantes">
-              <div class="star" id="starFlotante">
-                <img id="myImage" onclick="changeImage()" src="/img/iconos-png/star-desactivada.png"
-                  alt="botón favoritos">
-              </div>
-              <div class="img-producto">
-                <a href="">
-                  <img src="/img/Productos Gamers/playStation5.jpg " alt="Nintendo reto" />
-                </a>
-              </div>
-              <div class="puntuacion" id="puntosDeEstrellas">
-                <img src="/img/iconos-png/4.5.png" alt="puntuacion" />
-                <p>4.05</p>
-              </div>
-              <div class="">
-                <h4>Lorem ipsum dolor sit amet.</h4>
-                <p>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. A,
-                  excepturi!
-                </p>
-                <h3>$5.000</h3>
-              </div>
-            </article>
-            <article class="productosInteresantes">
-              <div class="star" id="starFlotante">
-                <img id="myImage" onclick="changeImage()" src="/img/iconos-png/star-desactivada.png"
-                  alt="botón favoritos">
-              </div>
-              <div class="img-producto">
-                <a href="">
-                  <img src="/img/Productos Gamers/PS4s.jpg" alt="Nintendo reto" />
-                </a>
-              </div>
-              <div class="puntuacion" id="puntosDeEstrellas">
-                <img src="/img/iconos-png/4.5.png" alt="puntuacion" />
-                <p>4.05</p>
-              </div>
-              <div class="">
-                <h4>Lorem ipsum dolor sit amet.</h4>
-                <p>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. A,
-                  excepturi!
-                </p>
-                <h3>$5.000</h3>
-              </div>
-            </article>
-            <article class="productosInteresantes">
-              <div class="star" id="starFlotante">
-                <img id="myImage" onclick="changeImage()" src="/img/iconos-png/star-desactivada.png"
-                  alt="botón favoritos">
-              </div>
-              <div class="img-producto">
-                <a href="">
-                  <img src="/img/Productos Gamers/miniArcade.png " alt="Nintendo reto" />
-                </a>
-              </div>
-              <div class="puntuacion" id="puntosDeEstrellas">
-                <img src="/img/iconos-png/4.5.png" alt="puntuacion" />
-                <p>4.05</p>
-              </div>
-              <div class="">
-                <h4>Lorem ipsum dolor sit amet.</h4>
-                <p>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. A,
-                  excepturi!
-                </p>
-                <h3>$5.000</h3>
-              </div>
-            </article>
-            <article class="productosInteresantes">
-              <div class="star" id="starFlotante">
-                <img id="myImage" onclick="changeImage()" src="/img/iconos-png/star-desactivada.png"
-                  alt="botón favoritos">
-              </div>
-              <div class="img-producto">
-                <a href="">
-                  <img src="/img/Productos Gamers/PS2.jpg " alt="Nintendo reto" />
-                </a>
-              </div>
-              <div class="puntuacion" id="puntosDeEstrellas">
-                <img src="/img/iconos-png/4.5.png" alt="puntuacion" />
-                <p>4.05</p>
-              </div>
-              <div class="">
-                <h4>Lorem ipsum dolor sit amet.</h4>
-                <p>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. A,
-                  excepturi!
-                </p>
-                <h3>$5.000</h3>
-              </div>
-            </article>
-          </div>
+          <section class="container-products">
+            
+            <!-- /* Slider */ -->
+            <%- include('./slider.ejs') %>
+          
+          </section>
+       
         </div>
 
       </div>
@@ -284,7 +221,7 @@
       <%- include('../partials/footer.ejs') %>
 
         <!-- FIN DEL FOOTER-->
-
+<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
   </body>
 
 

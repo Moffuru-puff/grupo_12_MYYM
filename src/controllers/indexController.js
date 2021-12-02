@@ -1,20 +1,120 @@
 const { getProducts, users } = require("../db/dataB");
 const db = require("../database/models");
 const { Op } = require("sequelize");
+const Productsimage = require("../database/models/Productsimage");
 const toThousand = (n) => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
 module.exports = {
   index: (req, res) => {
-    db.Product.findAll({ include: [{ association: "productimage" }] }).then(
-      (Products) => {
-        res.render("./products/index.ejs", {
-          Products,
-          toThousand,
-          favorites: req.session.user ? req.session.user.favorites : "",
-          userInSession: req.session.user ? req.session.user : "",
-        });
+    
+      let num_page = 1
+
+      let skip_page = (num_page - 1) * 18
+  
+      db.Product.findAll().then(
+        (products) => {
+          let num_pages = parseInt((products.length / 18) + 1);        
+          db.Product.findAll({
+            offset: skip_page,
+            limit: 18,
+            include: [{
+              association: "productimage"
+            },
+            {
+              association: "Favorite"
+            },
+            ]
+          }).then((Products) => {
+            res.render("./products/index.ejs", {
+              Products,
+              toThousand,
+              favorites: req.session.user ? req.session.user.favorites : "",
+              userInSession: req.session.user ? req.session.user : "",
+              num_page: num_page,
+              num_pages: num_pages
+            })
+  
+          }).catch(error => console.error(error)) 
+        }
+      ).catch(error => console.error(error))
+  },
+  paginationProducts: (req, res) => {
+    let num_page = +req.params.num_page
+
+    let skip_page = (num_page - 1) * 18
+
+    db.Product.findAll().then(
+      (products) => {
+        let num_pages = parseInt((products.length / 18) + 1);        
+        db.Product.findAll({
+          offset: skip_page,
+          limit: 18,
+          include: [{
+            association: "productimage"
+          },
+          {
+            association: "Favorite"
+          },
+          ]
+        }).then((Products) => {
+          res.render("./products/index.ejs", {
+            Products,
+            toThousand,
+            favorites: req.session.user ? req.session.user.favorites : "",
+            userInSession: req.session.user ? req.session.user : "",
+            num_page: num_page,
+            num_pages: num_pages
+          })
+
+        }).catch(error => console.error(error)) 
       }
-    );
+    ).catch(error => console.error(error))
+  },
+  productsFilters: (req, res) => {
+    let { filters } = req.body
+    let num_page = 1
+    if (filters) {
+      let order;
+      filters === 'lowerPrice' ? order = 'ASC' : filters === 'higherPrice' ? order = 'DESC' : ""
+      if (filters === 'mostRelevant') {
+        db.Product.findAll({
+          order: [
+            ['discount', 'DESC']
+          ],
+          include: [{ association: "productimage" }, 
+          { association: "Favorite"}]
+        }).then((Products) => {
+          let num_pages = parseInt((Products.length / 18) + 1);
+          res.render("./products/index.ejs", {
+            Products,
+            num_pages,
+            num_page: num_page,
+            toThousand,
+            favorites: req.session.user ? req.session.user.favorites : "",
+            userInSession: req.session.user ? req.session.user : "",
+          });
+        }).catch(error => console.log(error))
+      } else if (order !== "") {
+        db.Product.findAll({
+          order: [
+            ['price', order]
+          ],
+          include: [{ association: "productimage" }, 
+          { association: "Favorite"}]
+        }).then((Products) => {
+          let num_pages = parseInt((Products.length / 18) + 1);
+          res.render("./products/index.ejs", {
+            Products,
+            num_pages,
+            num_page: num_page,
+            toThousand,
+            favorites: req.session.user ? req.session.user.favorites : "",
+            userInSession: req.session.user ? req.session.user : "",
+          });
+        }).catch(error => console.log(error))
+      }
+
+    }
   },
   search: (req, res) => {
     db.Product.findAll({
@@ -39,6 +139,7 @@ module.exports = {
         {
           association: "productimage",
         },
+        { association: "Favorite"}
       ],
     }).then((result) => {
       res.render("./products/results.ejs", {
@@ -64,6 +165,7 @@ module.exports = {
         {
           association: "productimage",
         },
+        { association: "Favorite"}
       ],
     }).then((withDiscount) => {
       res.render("./products/offers.ejs", {
@@ -75,27 +177,31 @@ module.exports = {
     });
   },
   retroZone: (req, res) => {
-
     db.Product.findAll({
+      include: [{
+        association: 'Subcategorie',
+        include: [{ association: 'category' }]
+      },
+      {
+        association: "productimage",
+      }, 
+      { association: "Favorite"}
+    ],
       where: {
         [Op.or]: [
           {
             subcategoryId: {
               [Op.eq]: 3,
-            },
+            }
           },
           {
             name: {
               [Op.like]: `%retro%`,
-            },
-          },
-        ],
+            }
+          }
+        ]
       },
-      include: [{ association : 'Subcategorie', 
-      include: [{ association : 'category'}] },
-      {
-        association: "productimage",
-      },]
+
     }).then((retro) => {
       res.render("./products/retro.ejs", {
         retro,
@@ -103,13 +209,12 @@ module.exports = {
         favorites: req.session.user ? req.session.user.favorites : "",
         userInSession: req.session.user ? req.session.user : "",
       });
-    })   
+    })
   },
-  favorite: (req, res) => {
+  favorite: async (req, res) => {
     productsFavorites = [];
-    console.log(req.session.user);
 
-    db.Favorite.findAll({
+    await db.Favorite.findAll({
       where: {
         userId: req.session.user.id,
       },
@@ -129,5 +234,66 @@ module.exports = {
         userInSession: req.session.user ? req.session.user : "",
       });
     });
+  },
+
+  subcategoriesFilter: (req, res) => {
+    db.Product.findAll({
+      include: [{
+        association: 'Subcategorie',
+        include: [{ association: 'category' }]
+      },
+      {
+        association: "productimage",
+      }, 
+      { association: "Favorite"}],
+      where: {
+        subcategoryId: +req.params.id
+      },
+
+    }).then((result) => {
+      let subcategoryName
+      result.forEach((product) => {
+        product.Subcategorie.id === +req.params.id ? subcategoryName = product.Subcategorie.name : "subcategoría"
+      })
+      res.render("./products/results.ejs", {
+        result,
+        search: subcategoryName,
+        toThousand,
+        favorites: req.session.user ? req.session.user.favorites : "",
+        userInSession: req.session.user ? req.session.user : "",
+      });
+    })
+  },
+  marksFilter: (req, res) => {
+    db.Product.findAll({
+      include: [{
+        association: 'Subcategorie',
+        include: [{ association: 'category' }]
+      },
+      {
+        association: "productimage",
+      },
+      {
+        association: "Mark"
+      }, 
+      { association: "Favorite"}],
+      where: {
+        markId: +req.params.id
+      },
+
+    }).then((result) => {
+      let markName
+      result.forEach((product) => {
+        product.Mark.id === +req.params.id ? markName = product.Mark.name : "Marca"
+      })
+      console.log(result.Subcategorie);
+      res.render("./products/results.ejs", {
+        result,
+        search: markName,
+        toThousand,
+        favorites: req.session.user ? req.session.user.favorites : "",
+        userInSession: req.session.user ? req.session.user : "",
+      });
+    })
   },
 };

@@ -11,13 +11,22 @@ module.exports = [
     .notEmpty()
     .withMessage("Este campo es obligatorio").bail()
     .isEmail()
-    .withMessage("Debe ingresar un email valido")
-    ,
+    .withMessage("Debe ingresar un email valido"),
     
     check('password')
     .notEmpty()
     .withMessage('Debe ingresar una contraseña').bail()
     .isLength({min: 4, max: 10})
-    .withMessage('Debe ingresar una contraseña de 4-10 caracteres')
+    .withMessage('Debe ingresar una contraseña de 4-10 caracteres'),
+
+    check('postalCode')    
+    .notEmpty().bail()
+    .withMessage("El campo de código postal no puede estar vacío")
+    .isNumeric()
+    .withMessage("Debes ingresar un código postal válido"),
+
+    check('rol')    
+    .notEmpty().bail()
+    .withMessage("Debe asignarle un rol al usuario"),
 
 ]

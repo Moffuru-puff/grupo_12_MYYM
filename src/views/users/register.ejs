@@ -2,6 +2,7 @@
 <html lang="es">
 
 <%- include('../partials/head.ejs') %> 
+<script src="/js/registerVal.js" defer></script>
 
 <body class="forms-form">
     <main>
@@ -23,34 +24,22 @@
                 <div class="form">
                     <div class="input-container">
                         <input class="input-style" type="text" id="userRe" name="user" value="<%= locals.old && old.user %>" placeholder="usuario">
-                        <% if(locals.errors && errors.user) { %>
-                        <span class="error-message"><%= errors.user.msg %></span>
-                        <% } %>
-                        <span class="error-message" id="userErrorRe"></span>
+                        <span class="error-message" id="userErrorRe"><%= (locals.errors  && errors.user) ? errors.user.msg : "" %></span>
                     </div>
                     <div class="form">
                         <div class="input-container">
                             <input class="input-style" type="email" id="emailRe" name="email" value="<%= locals.old && old.email %>" placeholder="email">
-                            <% if(locals.errors && errors.email) { %>
-                                <span class="error-message"><%= errors.email.msg %></span>
-                                <% } %>                        
-                                <span class="error-message" id="emailErrorRe"></span>
+                                <span class="error-message" id="emailErrorRe"><%= (locals.errors  && errors.email) ? errors.email.msg : "" %></span>
                             </div>
                         <div class="form">
                             <div class="input-container">
                                 <input class="input-style" type="password" id="passwordRe" name="password" value="<%= locals.old && old.password %>" placeholder="contraseña">
-                                <% if(locals.errors && errors.password) { %>
-                                    <span class="error-message"><%= errors.password.msg %></span>
-                                    <% } %>                            
-                                    <span class="error-message" id="passwordErrorRe"></span>
+                                    <span class="error-message" id="passwordErrorRe"><%= (locals.errors  && errors.password) ? errors.password.msg : "" %></span>                     
                                 </div>
                             <div class="form">
                                 <div class="input-container">
                                     <input class="input-style" type="password" id="repasswordRe" name="repassword" value="<%= locals.old && old.repassword %>" placeholder="confirmar contraseña">
-                                    <% if(locals.errors && errors.repassword) { %>
-                                        <span class="error-message"><%= errors.repassword.msg %></span>
-                                        <% } %>                                
-                                        <span class="error-message" id="repasswordErrorRe"></span>
+                                        <span class="error-message" id="repasswordErrorRe"><%= (locals.errors  && errors.repassword) ? errors.repassword.msg : "" %></span>                
                                     </div>
                                 </div>
                                 <div>

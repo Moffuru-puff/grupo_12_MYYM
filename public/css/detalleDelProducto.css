@@ -4,6 +4,18 @@
     box-sizing: border-box;
 }
 
+div .puntuacion{
+    display: flex;
+justify-content: center;
+align-items: center;
+font-size: x-small;
+
+}
+a{text-decoration: none;
+    color:rgb(104, 101, 101)
+
+}
+
 
 
 .cuerpo {
@@ -100,11 +112,12 @@ div .foto-principal {
     align-items: center;
     border-radius: 15px;
     box-shadow: 3px 3px 5px rgb(61, 60, 60);
+    justify-content: center;
 }
 
 
 .cuerpo img {
-    width: 100%;
+    width: 60%;
 }
 h3.descuentoOferta{
     color:var(--lyftPink);
@@ -362,6 +375,9 @@ div .opinion {
         
     }
     div .foto-principal{
+        display: flex;
+        justify-content: center;
+        align-items: center;
         width: 60%;
     }
    
@@ -394,3 +410,4 @@ div .opinion {
     }
    
 }
+

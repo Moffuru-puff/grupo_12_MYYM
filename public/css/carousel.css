@@ -182,7 +182,7 @@ div.wrap {
 
     .slider {
         position: relative;
-        z-index: 200;
+        z-index: 10;
         padding: 0 0px;
         margin: 5rem auto;
         max-width: 1180px;

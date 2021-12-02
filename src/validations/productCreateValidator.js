@@ -27,6 +27,12 @@ module.exports = [
     .isNumeric()
     .withMessage("Solo puedes ingresar números"),
 
+    check('barcode')
+    .notEmpty()
+    .withMessage("Debes ingresar el código el producto")
+    .isNumeric()
+    .withMessage("Solo puedes ingresar números"),
+
     check('mark')
     .notEmpty()
     .withMessage("Por favor ingrese la marca del producto")

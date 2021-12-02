@@ -2,6 +2,7 @@
 <html lang="es">
 
   <%- include('../partials/head.ejs') %> 
+  <script src="/js/loginVal.js" defer></script>
 
 <body class="forms-form">
   <main>
@@ -23,25 +24,24 @@
         <div class="form">
           <div class="input-container">
             <input class="input-style" id="emailLog" type="email" name="email" placeholder="email">
-            <% if(locals.errors && errors.email) {%>
-            <span class="error-message"><%= errors.email.msg %></span>
-            <% } %>
-            <span class="error-message" id="emailErrorLog"></span>
+
+            <span class="error-message" id="emailErrorLog"><%= (locals.errors && errors.email) ? errors.email.msg : "" %></span>
+
+
           </div>
         <div class="form">
             <div class="input-container">
               <input class="input-style" id="passwordLog" type="password" name="password" placeholder="contraseña">
-              <% if(locals.errors && errors.password) { %>
-              <span class="error-message"><%= errors.password.msg %></span>
-              <% } %>
-              <span class="error-message" id="passwordErrorLog"></span>
+
+              <span class="error-message" id="passwordErrorLog"><%= (locals.errors && errors.password) ? errors.password.msg : "" %></span>
+
             </div>
           <div class="check">
               <input type="checkbox" name="recordar" id="recordar">
               <label style="color: white;" for="recordar">Recordarme</label>
           </div>
           <div class="old">
-              <span><a class="a" href="">¿Olvidaste tu contraseña?</a></span>
+              <span><a class="a" href="/forgotPassword">¿Olvidaste tu contraseña?</a></span>
             </div>
             <span class="error-message" id="submitErrorLog"></span>
             <button id="btn-submit" type="submit" class="btn btn-submit">Ingresar</button>

@@ -1,0 +1,60 @@
+*,*:after,*:before{
+    box-sizing: border-box;
+    outline: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body{
+    margin: 0;
+    padding: 0;
+  }
+  /*Title Default*/
+  div.estrellita-puntaje{
+    background: #36085e;
+    color: rgb(187, 184, 184);
+    text-align: center;
+    font-family: arial;
+    padding: 5px;
+    
+    
+
+  }
+  
+  h1.estrellita-puntaje{
+    margin: 0;
+    
+    padding-bottom: 8px;
+    font-weight: lighter;
+  }
+  
+  .rating-css {
+    cursor: pointer;
+    height: 30px;
+    font-size: 0;
+    margin-bottom: 15px;
+  }
+  
+  .rating-css input {
+    display: none;
+  }
+  
+  .rating-css input + label {
+    text-align: center;
+    font-size: 24px;
+    color: #FFC107;
+    cursor: pointer;
+  }
+  
+  .rating-css input:checked + label ~ label {
+    color: #555;
+  }
+  
+  .rating-css.hover-effect input:checked + label ~ label,
+  .rating-css.hover-effect:hover input:hover + label ~ label {
+    opacity: 0.5;
+  }
+  
+  .rating-css.hover-effect:hover input + label ~ label {
+    opacity: 1;
+  }

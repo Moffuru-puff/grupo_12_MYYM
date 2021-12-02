@@ -38,7 +38,7 @@ module.exports = function (sequelize, dataTypes) {
 
         Branchoffice.belongsTo(models.Addresse, {
 
-            as: "Branchoffice",
+            as: "Address",
             foreignKey: "addressId"
         })
 
