@@ -22,16 +22,31 @@
                     <div class="freight">
                         <div class="formAdmin">
                             <div class="flex">
-                                <label for="location">Localidad</label>
-                                <div class="input">
-                                    <input type="text" value="<%= sucursal.Address.state %>" id="location" name="location" />
-                                    <% if(locals.errors && errors.location) { %>
-                                        <small class="text-danger">
-                                            <%= errors.location.msg %>
-                                        </small>
-                                        <% } %>
-                                        <small class="text-danger" id="locationErrors"></small>
-                                </div>
+                                <label for="city">Provincia</label>
+                                    <div class="input">
+                                        <select name="city" id="city" class="citySelect">
+                                            <option value="" selected disabled>Provincias</option>
+                                        </select>
+                                        <% if(locals.errors && errors.location) { %>
+                                            <small class="text-danger">
+                                                <%= errors.location.msg %>
+                                            </small>
+                                            <% } %>
+                                                <small class="text-danger" id="cityErrors"></small>
+                                    </div>
+
+                                    <label for="location">Localidad</label>
+                                    <div class="input">
+                                        <select name="location" id="location" class="locationSelect">
+                                            <option value="<%= sucursal.Address.state %>" selected disabled>Localidades</option>                                           
+                                        </select>
+                                        <% if(locals.errors && errors.location) { %>
+                                            <small class="text-danger">
+                                                <%= errors.location.msg %>
+                                            </small>
+                                            <% } %>
+                                                <small class="text-danger" id="locationErrors"></small>
+                                    </div>                                
 
                                 <label for="direction">Dirección</label>
                                 <div class="input">
@@ -42,17 +57,6 @@
                                         </small>
                                         <% } %>
                                         <small class="text-danger" id="directionErrors"></small>
-                                </div>
-
-                                <label for="telephone">Teléfono</label>
-                                <div class="input">
-                                    <input type="text" name="telephone" id="telephone" value="<%= sucursal.telephone %>"  />
-                                    <% if(locals.errors && errors.telephone) { %>
-                                        <small class="text-danger">
-                                            <%= errors.telephone.msg %>
-                                        </small>
-                                        <% } %>
-                                        <small class="text-danger" id="telephoneErrors"></small>
                                 </div>
 
                                 <label for="postalCode">Código Postal</label>
@@ -71,10 +75,22 @@
                                             <small class="text-danger" id="postalCodeErrors"></small>
                                     </div>
                             </div>
-                            <div class="flex"> 
+                            <div class="flex">                                
+
+                                <label for="telephone">Teléfono</label>
+                                <div class="input">
+                                    <input type="text" name="telephone" id="telephone" value="<%= sucursal.telephone %>"  />
+                                    <% if(locals.errors && errors.telephone) { %>
+                                        <small class="text-danger">
+                                            <%= errors.telephone.msg %>
+                                        </small>
+                                        <% } %>
+                                        <small class="text-danger" id="telephoneErrors"></small>
+                                </div>
+
                                 <label for="schedule">Horarios</label>
                                 <div class="input">
-                                    <textarea name="schedule" id="schedule" cols="30" rows="12"
+                                    <textarea name="schedule" id="schedule" cols="30" rows="9"
                                     value="<%= sucursal.schedule %>" ><%= sucursal.schedule %></textarea>
                                 </div>
                             </div>
@@ -89,6 +105,7 @@
                 </form>
             </main>
             <script src="/js/validationsFront/sucursalsValidations.js"></script>
+            <script src="/js/addresses.js" defer></script>
     </body>
 
 </html>
