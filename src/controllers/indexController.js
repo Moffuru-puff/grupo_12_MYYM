@@ -72,7 +72,62 @@ module.exports = {
   },
   productsFilters: (req, res) => {
     let { filters } = req.body
+    let num_page = +req.params.num_page
+
+    let skip_page = (num_page - 1) * 18
+
+    console.log(req.params.id);
+    if (filters) {
+      let order;
+      filters === 'lowerPrice' ? order = 'ASC' : filters === 'higherPrice' ? order = 'DESC' : ""
+      if (filters === 'mostRelevant') {
+        db.Product.findAll({
+          order: [
+            ['discount', 'DESC']
+          ],
+          offset: skip_page,
+          limit: 18,
+          include: [{ association: "productimage" }, 
+          { association: "Favorite"}]
+        }).then((Products) => {
+          let num_pages = parseInt((Products.length / 18) + 1);
+          res.render("./products/index.ejs", {
+            Products,
+            num_pages,
+            num_page: num_page,
+            toThousand,
+            favorites: req.session.user ? req.session.user.favorites : "",
+            userInSession: req.session.user ? req.session.user : "",
+          });
+        }).catch(error => console.log(error))
+      } else if (order !== "") {
+        db.Product.findAll({
+          order: [
+            ['price', order]
+          ], 
+          offset: skip_page,
+          limit: 18,
+          include: [{ association: "productimage" }, 
+          { association: "Favorite"}]
+        }).then((Products) => {
+          let num_pages = parseInt((Products.length / 18) + 1);
+          res.render("./products/index.ejs", {
+            Products,
+            num_pages,
+            num_page: num_page,
+            toThousand,
+            favorites: req.session.user ? req.session.user.favorites : "",
+            userInSession: req.session.user ? req.session.user : "",
+          });
+        }).catch(error => console.log(error))
+      }
+    }
+  },
+  /* ,
+  productsFilters: (req, res) => {
+    let { filters } = req.body
     let num_page = 1
+    console.log(req.params.id);
     if (filters) {
       let order;
       filters === 'lowerPrice' ? order = 'ASC' : filters === 'higherPrice' ? order = 'DESC' : ""
@@ -115,7 +170,7 @@ module.exports = {
       }
 
     }
-  },
+  }, */
   search: (req, res) => {
     db.Product.findAll({
       where: {

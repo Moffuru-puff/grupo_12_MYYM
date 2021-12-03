@@ -1,43 +1,27 @@
 @import url(variants.css);
 
-/* div.tarjetitas .icon-cards {
-    display: inline-flex;
-    border: solid 1px var(--grey);
-    border-radius: 50%;
-    height: 32px;
-    width: 35px;
-    justify-content: center;
-    align-items: center;
-}
-
-div.tarjetitas .icon-cards i {
-    text-align: center;
-    font-size: 1.2rem;
-    color: var(--darkBlue);
-    padding: 10px;
-} */
 /* Tarjetitas */
-.modalHome div.description-cards h4{
+.modalHome div.description-cards h4 {
     font-family: var(--font-poppins);
     font-size: medium;
     font-weight: normal;
-} 
+}
 
 .modalHome div.icon-cards {
-    display: inline-flex;    
-    border-radius: 50%;        
+    display: inline-flex;
+    border-radius: 50%;
     justify-content: center;
     align-items: center;
 }
 
-.modalHome .icon-cards i {      
+.modalHome .icon-cards i {
     font-size: 3rem;
-    background: rgb(2,0,36);
-    background: linear-gradient(33deg, rgba(2,0,36,1) 0%, rgba(55,4,96,1) 35%, rgba(208,0,96,1) 94%, rgba(255,0,95,1) 100%);  
+    background: rgb(2, 0, 36);
+    background: linear-gradient(33deg, rgba(2, 0, 36, 1) 0%, rgba(55, 4, 96, 1) 35%, rgba(208, 0, 96, 1) 94%, rgba(255, 0, 95, 1) 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    
+
 }
 
 
@@ -58,26 +42,27 @@ div.tarjetitas .icon-cards i {
 
 .modalHome {
     /* background-color: white; */
-    background: rgb(238,174,202);
-    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%); 
+    background: rgb(238, 174, 202);
+    background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
     width: 15rem;
     padding: 2rem;
     border-radius: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;  
+    align-items: center;
     text-align: center;
     margin-top: 4rem;
+    position: relative;
 }
 
-.modalHome p{
-   text-align: center;  
-   padding: 0.25rem;
-   font-size: 14px;
+.modalHome p {
+    text-align: center;
+    padding: 0.25rem;
+    font-size: 14px;
 }
 
-div.lorem p{
+div.lorem p {
     font-size: 12px;
 }
 
@@ -88,44 +73,79 @@ div.lorem p{
 }
 
 #dontDelete {
-     color: var(--darkBlue);
-     padding: 1rem;
-     background-color: var(--eef1c6);
-     border: 1px solid var(--purple);
-     border-radius: 5px;
-     transition: all 1s;
+    color: var(--darkBlue);
+    padding: 1rem;
+    background-color: var(--eef1c6);
+    border: 1px solid var(--purple);
+    border-radius: 5px;
+    transition: all 1s;
 }
 
-#dontDelete:hover {
+#buttonSubmit {
+    color: var(--darkBlue);
+    padding: 1rem;
+    background-color: var(--eef1c6);
+    border: 1px solid var(--purple);
+    border-radius: 5px;
+    transition: all 1s;
+}
+
+#buttonSubmit:hover {
     background-color: var(--lilac1);
     color: var(--cream);
     box-shadow: var(--purple) 2px 2px 2px;
 }
 
+#buttonCloseX {
+    color: var(--darkBlue);
+    padding: 0.6rem;
+    background-color: var(--eef1c6);
+    border: 1px solid var(--purple);
+    border-radius: 35%;
+    transition: all 1s;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+#buttonCloseX:hover {
+    background-color: var(--lilac1);
+    color: var(--cream);
+    box-shadow: var(--purple) 2px 2px 2px;
+}
+
+.textarea {
+    margin: 0 0 1rem 0;
+}
+
+.textarea textarea{
+    padding: 1rem;
+}
+
 @media screen and (min-width: 769px) {
 
     /* Tarjetitas */
-     .modalHome div.description-cards h4{
+    .modalHome div.description-cards h4 {
         font-family: var(--font-poppins);
         font-size: x-large;
         font-weight: normal;
-    } 
+    }
 
     .modalHome div.icon-cards {
-        display: inline-flex;    
-        border-radius: 50%;        
+        display: inline-flex;
+        border-radius: 50%;
         justify-content: center;
         align-items: center;
     }
 
-    .modalHome .icon-cards i {      
+    .modalHome .icon-cards i {
         font-size: 4rem;
-        background: rgb(2,0,36);
-        background: linear-gradient(33deg, rgba(2,0,36,1) 0%, rgba(55,4,96,1) 35%, rgba(208,0,96,1) 94%, rgba(255,0,95,1) 100%);  
+        background: rgb(2, 0, 36);
+        background: linear-gradient(33deg, rgba(2, 0, 36, 1) 0%, rgba(55, 4, 96, 1) 35%, rgba(208, 0, 96, 1) 94%, rgba(255, 0, 95, 1) 100%);
         background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        
+
     }
 
 
@@ -143,31 +163,30 @@ div.lorem p{
         display: none;
         z-index: 1000;
     }
-    
+
     .modalHome {
-        /* background-color: white; */
-        background: rgb(238,174,202);
-        background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%); 
+        background: rgb(238, 174, 202);
+        background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
         width: 30rem;
         padding: 2rem;
         border-radius: 1rem;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;  
+        align-items: center;
         text-align: center;
         margin-top: 4rem;
     }
 
-    .modalHome p{
-       text-align: center;  
-       padding: 0.5rem;
+    .modalHome p {
+        text-align: center;
+        padding: 0.5rem;
     }
 
-    div.lorem p{
+    div.lorem p {
         font-size: small;
     }
-    
+
     .modal-buttons {
         display: flex;
         width: 100%;
@@ -175,12 +194,12 @@ div.lorem p{
     }
 
     #dontDelete {
-         color: var(--darkBlue);
-         padding: 1rem;
-         background-color: var(--eef1c6);
-         border: 1px solid var(--purple);
-         border-radius: 5px;
-         transition: all 1s;
+        color: var(--darkBlue);
+        padding: 1rem;
+        background-color: var(--eef1c6);
+        border: 1px solid var(--purple);
+        border-radius: 5px;
+        transition: all 1s;
     }
 
     #dontDelete:hover {

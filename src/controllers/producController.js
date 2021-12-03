@@ -19,7 +19,8 @@ module.exports = {
           association: "Subcategorie"
         },
         {
-            association: "Valorationproduct"
+            association: "Valorationproduct",
+            include:[{association:'User'}] 
            
         }, 
         { association: "Favorite"}
@@ -188,5 +189,30 @@ module.exports = {
       })
     })
    
-  }
+  },
+ /*  allValorationProduct:(req,res)=>{
+    
+    
+    db.Valorationproduct.findAll({
+      where:{
+        productId: req.params.id 
+
+      },
+      include:[{
+        association:'User'
+      },
+    {association: 'Product'}
+    ]
+    })
+   
+   .then(valoration => {
+        res.render(`./products/detalleDelProducto/${req.params.id}`,{
+          valoration,
+          userInSession: req.session.user ? req.session.user : ''
+        })
+         
+           
+    })
+   
+  } */
 };
