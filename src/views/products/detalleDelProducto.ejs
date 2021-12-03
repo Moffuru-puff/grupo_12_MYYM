@@ -150,7 +150,35 @@
             Opiniones Positivas
           </button>
         </div>
+<section class="sectionOfOpinion" > 
+  <% product.Valorationproduct.forEach((valoration)=>{ %>
+    <% console.log(valoration) %> 
+    <article>
+      <div>
+        <img src="" alt="">
+      
+      </div>
+      <div>
+        <h4><%- valoration.User.user %> </h4>
+        <p><%- valoration.opinions %>  </p>
+        <p>numero de estrellas: <%- valoration.score %></p>
+      </div>
+    </article>
+    <% }) %> 
+  <!-- <article>
+    <div>
+      <img src="" alt="">
+    
+    </div>
+    <div>
+      <h4>usuario</h4>
+      <p>opinion bla bla bla</p>
+      <p>numero de estrellas</p>
+    </div>
+  </article> -->
 
+
+</section>
         <hr>
 
         <!--Calificacion de articulos con hasta 5 estrellas-->
@@ -158,7 +186,7 @@
         <div class="estrellita-puntaje"> 
           <p>Tu opinión es importante para nosotros </p>
      <h1 class="estrellita-puntaje">Califica este producto</h1>
-     <div class="rating-css hover-effect">
+     <div class="rating-css hover-effect" onclick="modalButtonForm(`<%-product.id %>`)">
          <input type="radio" value="1" id="rating3-1" name="rating3" checked>
          <label for="rating3-1" class="mdi mdi-star"></label>
          <input type="radio" value="2" id="rating3-2" name="rating3">
@@ -170,11 +198,11 @@
          <input type="radio" value="5" id="rating3-5" name="rating3">
          <label for="rating3-5" class="mdi mdi-star"></label>
      </div>
-    
+    </div>
 
-     </div> 
-     <div>
-      <form action="/detalleDelProducto/<%- product.id %> " method="post">
+    
+    <!--  <div>
+      <form action="/detalleDelProducto/" method="post">
        <div class="rating-css hover-effect">
          <input type="radio" value="1" id="rating3-1" name="rating" checked>
          <label for="rating3-1" class="mdi mdi-star"></label>
@@ -195,6 +223,9 @@
      <button type="submit">Enviar</button>
 
       </form>
+    </div> -->
+    <div class="modal-background">
+
     </div>
 
         <hr>
@@ -222,6 +253,7 @@
 
         <!-- FIN DEL FOOTER-->
 <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+<script src="/js/buttonFormStar.js"></script>
   </body>
 
 
