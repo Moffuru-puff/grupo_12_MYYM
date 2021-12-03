@@ -309,6 +309,7 @@ module.exports = {
 				let $addressesId = user.addressesId;
 				db.Favorite.destroy({where: {userId: user.id}}).then(() => {})
 				db.Cart.destroy({where: { userId: user.id}}).then(() => {})
+				db.Valorationproduct.destroy({where: { userId: user.id}}).then(() => {})
 				db.User.destroy({
 					where: {
 						id: +req.params.id,
