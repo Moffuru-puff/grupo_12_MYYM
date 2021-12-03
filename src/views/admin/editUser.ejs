@@ -48,41 +48,6 @@
                                 <div class="input">
                                     <input type="text" name="telephone" id="telephone" value="<%= user.telephone %>" />
                                 </div>
-
-                                <label for="direction">Dirección</label>
-                                <div class="input">
-                                    <input type="text" value="<%= user.Addresse ? user.Addresse.address : "" %>" id="direction"
-                                        name="address" />
-                                </div>
-
-                                <label for="location">Localidad</label>
-                                <div class="input">
-                                    <input type="text" placeholder="Ej: Pilar" id="location"
-                                        name="location" value="<%= user.Addresse ? user.Addresse.state : "" %>" />
-                                </div>
-                               
-                            </div>
-                            <div class="flex">
-                                <label for="country">País</label>
-                                <div class="input">
-                                    <input type="text" placeholder="Ej: Argentina" id="country" name="country" value="<%= user.Addresse ? user.Addresse.country : ""%>"/>
-                                </div>
-
-                                <label for="province">Provincia</label>
-                                <div class="input">
-                                    <input type="text" value="<%= user.Addresse ? user.Addresse.city : ""%>" id="province" name="province" />
-                                </div>
-
-                                <label for="postalCode">Código Postal</label>
-                                <div class="input">
-                                    <input type="number" placeholder="Ej: 1629" id="postalCode" name="postalCode" value="<%= user.Addresse ? user.Addresse.postalCode : ""%>"/>
-                                    <% if(locals.errors && errors.postalCode) { %>
-                                        <small class="text-danger">
-                                            <%= errors.postalCode.msg %>
-                                        </small>
-                                        <% } %>
-                                    <small class="text-danger" id="postalCodeErrors"></small>
-                                </div>
                                 
                                 <label for="email">E-mail</label>
                                 <div class="input">
@@ -94,6 +59,46 @@
                                         <% } %>
                                         <small class="text-danger" id="emailErrors"></small>
                                 </div>
+                               
+                            </div>
+                            <div class="flex">                                
+
+                                <label for="province">Provincia</label>
+                                <div class="input">
+                                    <select name="province" id="province" class="citySelect">
+                                        <option value="" selected disabled>Provincias</option>
+                                    </select>
+                                </div>
+
+                                <label for="location">Localidad</label>
+                                    <div class="input">
+                                        <select name="location" id="location" class="locationSelect">
+                                            <option value="" selected disabled>Localidades</option>
+                                        </select>
+                                        <% if(locals.errors && errors.location) { %>
+                                            <small class="text-danger">
+                                                <%= errors.location.msg %>
+                                            </small>
+                                            <% } %>
+                                                <small class="text-danger" id="locationErrors"></small>
+                                    </div>
+
+                                <label for="postalCode">Código Postal</label>
+                                <div class="input">
+                                    <input type="number" placeholder="Ej: 1629" id="postalCode" name="postalCode" value="<%= user.Addresse ? user.Addresse.postalCode : ""%>"/>
+                                    <% if(locals.errors && errors.postalCode) { %>
+                                        <small class="text-danger">
+                                            <%= errors.postalCode.msg %>
+                                        </small>
+                                        <% } %>
+                                    <small class="text-danger" id="postalCodeErrors"></small>
+                                </div>   
+
+                                <label for="direction">Dirección</label>
+                                <div class="input">
+                                    <input type="text" value="<%= user.Addresse ? user.Addresse.address : "" %>" id="direction"
+                                        name="address" />
+                                </div>                           
 
                                 <label for="rol">Rol</label>
                                 <div class="input">
@@ -118,6 +123,7 @@
             </form>
             </main>
             <script src="/js/validationsFront/usersEditAdminValidations.js"></script>
+            <script src="/js/addresses.js" defer></script>
     </body>
 
 </html>

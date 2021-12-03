@@ -9,81 +9,100 @@
 
             <main class="main-admin">
                 <form action="/admin/sucursal/create" method="POST" id="formSucursal">
-                <div>
-                    <div class="volver">
-                        <a href="/admin/sucursals">
-                            <i class="fas fa-arrow-left"></i>
-                        </a>
+                    <div>
+                        <div class="volver">
+                            <a href="/admin/sucursals">
+                                <i class="fas fa-arrow-left"></i>
+                            </a>
+                        </div>
                     </div>
-                </div>
-                <section class="charge">
-                    <h2>Agregar nueva sucursal</h2>
-                    <div class="freight">
-                        <div class="formAdmin">
-                            <div class="flex">
-                                <label for="location">Localidad</label>
-                                <div class="input">
-                                    <input type="text" placeholder="Pilar" id="location" name="location" value="<%= locals.old && old.location %>" />
-                                    <% if(locals.errors && errors.location) { %>
-                                        <small class="text-danger">
-                                            <%= errors.location.msg %>
-                                        </small>
-                                        <% } %>
-                                        <small class="text-danger" id="locationErrors"></small>
-                                </div>
+                    <section class="charge">
+                        <h2>Agregar nueva sucursal</h2>
+                        <div class="freight">
+                            <div class="formAdmin">
+                                <div class="flex">
+                                    <label for="city">Provincia</label>
+                                    <div class="input">
+                                        <select name="city" id="city" class="citySelect">
+                                            <option value="" selected disabled>Provincias</option>
+                                        </select>
+                                        <% if(locals.errors && errors.location) { %>
+                                            <small class="text-danger">
+                                                <%= errors.location.msg %>
+                                            </small>
+                                            <% } %>
+                                                <small class="text-danger" id="cityErrors"></small>
+                                    </div>
 
-                                <label for="direction">Dirección</label>
-                                <div class="input">
-                                    <input type="text" placeholder="Calle falsa 123" id="direction" name="direction" value="<%= locals.old && old.direction %>" />
-                                    <% if(locals.errors && errors.direction) { %>
-                                        <small class="text-danger">
-                                            <%= errors.direction.msg %>
-                                        </small>
-                                        <% } %>
-                                        <small class="text-danger" id="directionErrors"></small>
-                                </div>
+                                    <label for="location">Localidad</label>
+                                    <div class="input">
+                                        <select name="location" id="location" class="locationSelect">
+                                            <option value="" selected disabled>Localidades</option>
+                                        </select>
+                                        <% if(locals.errors && errors.location) { %>
+                                            <small class="text-danger">
+                                                <%= errors.location.msg %>
+                                            </small>
+                                            <% } %>
+                                                <small class="text-danger" id="locationErrors"></small>
+                                    </div>
 
-                                <label for="telephone">Teléfono</label>
-                                <div class="input">
-                                    <input type="text" name="telephone" id="telephone" placeholder="0800-0000" value="<%= locals.old && old.telephone %>" />
-                                    <% if(locals.errors && errors.telephone) { %>
-                                        <small class="text-danger">
-                                            <%= errors.telephone.msg %>
-                                        </small>
-                                        <% } %>
-                                        <small class="text-danger" id="telephoneErrors"></small>
-                                </div>
+                                    <label for="direction">Dirección</label>
+                                    <div class="input">
+                                        <input type="text" placeholder="Calle falsa 123" id="direction" name="direction"
+                                            value="<%= locals.old && old.direction %>" />
+                                        <% if(locals.errors && errors.direction) { %>
+                                            <small class="text-danger">
+                                                <%= errors.direction.msg %>
+                                            </small>
+                                            <% } %>
+                                                <small class="text-danger" id="directionErrors"></small>
+                                    </div>
 
-                                <label for="postalCode">Código Postal</label>
-                                <div class="input">
-                                    <input type="number" name="postalCode" id="postalCode" placeholder="1629" value="<%= locals.old && old.postalCode %>" />
-                                    <% if(locals.errors && errors.postalCode) { %>
-                                        <small class="text-danger">
-                                            <%= errors.postalCode.msg %>
-                                        </small>
-                                        <% } %>
-                                        <small class="text-danger" id="postalCodeErrors"></small>
+                                    <label for="postalCode">Código Postal</label>
+                                    <div class="input">
+                                        <input type="number" name="postalCode" id="postalCode" placeholder="1629"
+                                            value="<%= locals.old && old.postalCode %>" />
+                                        <% if(locals.errors && errors.postalCode) { %>
+                                            <small class="text-danger">
+                                                <%= errors.postalCode.msg %>
+                                            </small>
+                                            <% } %>
+                                                <small class="text-danger" id="postalCodeErrors"></small>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="flex">
+                                <div class="flex">
 
-                                <label for="schedule">Horarios</label>
-                                <div class="input">
-                                    <textarea name="schedule" id="schedule" cols="30" rows="10"
-                                        placeholder="Lunes-Jueves: 9:00 AM - 5:30 PM"><%= locals.old && old.schedule %></textarea>
+                                    <label for="telephone">Teléfono</label>
+                                    <div class="input">
+                                        <input type="text" name="telephone" id="telephone" placeholder="0800000888"
+                                            value="<%= locals.old && old.telephone %>" />
+                                        <% if(locals.errors && errors.telephone) { %>
+                                            <small class="text-danger">
+                                                <%= errors.telephone.msg %>
+                                            </small>
+                                            <% } %>
+                                                <small class="text-danger" id="telephoneErrors"></small>
+                                    </div>
+
+                                    <label for="schedule">Horarios</label>
+                                    <div class="input">
+                                        <textarea name="schedule" id="schedule" cols="30" rows="9"
+                                            placeholder="Lunes-Jueves: 9:00 AM - 5:30 PM"><%= locals.old && old.schedule %></textarea>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <small class="text-danger" id="sucursalsErrors"></small>
-                    <div class="btn-publish">                        
-                        <button class="publish" type="submit">Guardar</button>
-                    </div>
+                        <small class="text-danger" id="sucursalsErrors"></small>
+                        <div class="btn-publish">
+                            <button class="publish" type="submit">Guardar</button>
+                        </div>
 
-                </section>
-            </form>
+                    </section>
+                </form>
             </main>
             <script src="/js/validationsFront/sucursalsValidations.js"></script>
+            <script src="/js/addresses.js" defer></script>
     </body>
 
 </html>

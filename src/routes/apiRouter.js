@@ -2,7 +2,7 @@ let express = require('express');
 let router = express.Router();
 let { addFavorite, deleteFavorite, allCategories, oneCategory, allFavorites } = require('../controllers/api/apiController');
 const { allProducts } = require('../controllers/api/apiHomeController');
-const { Allprovinces, localidades, prueba } = require('../controllers/api/apiLocalidades');
+const { allProvinces, allLocalidades, oneProvinces, oneLocalidades, allMunicipalities , oneMunicipality, allStreets } = require('../controllers/api/apiLocalidades');
 
 /* Favorites */
 /* router.get('/allfavorites', allFavorites)
@@ -14,8 +14,19 @@ router.get('/categories', allCategories);
 router.get('/categories/:id', oneCategory);
 
 /* Localidades */
-router.get('/provinces', prueba);
-/* router.get('/categories/:id', oneCategory); */
+router.get('/localities', allLocalidades);
+router.get('/localities/:id', oneLocalidades);
+
+/* Provinces */
+router.get('/provinces', allProvinces);
+router.get('/provinces/:id', oneProvinces);
+
+/* Municipalities */
+router.get('/municipalities', allMunicipalities);
+router.get('/municipalities/:id', oneMunicipality);
+
+/* Streets */
+router.get('/streets', allStreets);
 
 /* Products */
 router.get('/products', allProducts)
