@@ -10,7 +10,6 @@ const localsCheck = require('./middlewares/localsCheck')
 let categoriesHeader = require('./middlewares/categoriesHeader')
 let marksHeader = require('./middlewares/marksHeader')
 
-
 /* Enrutadores */
 let homeRouter = require("./routes/index");
 let usersRouter = require("./routes/users");
@@ -45,8 +44,6 @@ app.use(methodOverride('_method'));
 
 app.use(categoriesHeader)
 app.use(marksHeader)
-//app.use(userApp)
-
 
 /* Rutas */
 app.use('/', homeRouter);

@@ -1,6 +1,4 @@
 let navBarFooter = document.getElementById("navBarFooter");
-/* let searchBar = document.getElementById("search");
-let navTablet = document.getElementById("list-menu"); */
 
 function dropInfo() {
   let subcategoryMenu = document.querySelector(".show");
@@ -9,7 +7,6 @@ function dropInfo() {
     subcategoryMenu.classList.remove("show");
   } else {
     navBarFooter.style.display = "block";
-    /*    searchBar.style.display = "none"; */
     subcategoryMenu ? subcategoryMenu.classList.remove("show") : "";
   }
 }

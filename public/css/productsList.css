@@ -147,7 +147,13 @@ section.productsList .tableProducts table tbody td {
     border: solid 1px var(--purple);
     border-radius: 5px;
     background-color: #c3a6f685;
-    /* background: linear-gradient(90deg, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%) */ 
+    /* background: linear-gradient(90deg, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%) */
+}
+
+.sectionButtonsAdminList {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 @media screen and (min-width: 769px) {

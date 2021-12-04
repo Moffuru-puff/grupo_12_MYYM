@@ -6,7 +6,7 @@ let cookieCheck = require('../middlewares/cookieCheck')
 
 /* GET  */
 router.get('/', cookieCheck, index);
-router.post('/', cookieCheck, productsFilters);
+router.post('/pagination/:num_page', cookieCheck, productsFilters);
 router.get('/pagination/:num_page', cookieCheck, paginationProducts); 
 router.get('/search', search); 
 router.get('/offers', offers); 

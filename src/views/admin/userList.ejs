@@ -97,7 +97,7 @@
                   <td class="visible"><%- user.email %></td>
                   <td class="visible"><%- user.Role.name %></td>
                   <% if(userInSession.rolesId === 2) { %>
-                    <td>
+                    <td class="sectionButtonsAdminList">
                       <a href="/admin/users/edit/<%= user.id %> ">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                           class="bi bi-pencil-square" viewBox="0 0 16 16">

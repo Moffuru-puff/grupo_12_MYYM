@@ -21,10 +21,27 @@
                 <%- product.name %>
               </h2>
             </div>
-            <div class="estrellita">
-              <img id="myImage" onclick="changeImage()" src="/img/iconos-png/star-desactivada.png">
+            <div class="star" id="btnFav">
+              <form action="favorites/addOrDelete/<%- product.id %>" method="POST">                  
+                <button type="submit" class="btnStar" <% if(!userInSession || userInSession == undefined || userInSession == "") { %> 
+                  disabled                      
+                  <% } %>>                      
+                  <% if( product.Favorite !== null && userInSession) { %> 
+                   
+                <figure userid="<%- userInSession.id  %>"    
+                   <% if (product.Favorite.productId == product.id && product.Favorite.userId == userInSession.id) { %>
+                      class="myImage activated"
+                      <% } else { %>
+                        class="myImage"
+                        <% } %>
+                  id="<%- product.id %>">
+                </figure>
+                <% } else { %>
+                  <figure userid="" class="myImage" id="<%- product.id %>"></figure>
+                <% } %>
+                </button>                  
+              </form>
             </div>
-
 
           </div>
           <div class="fotoMasdetalle">
@@ -130,27 +147,95 @@
               <%- product.nombre %>
             </h4>
           </div>
-          <div class="cuatroEstrellas">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star-half-alt"></i>
-            <i class="far fa-star"></i>
-          </div>
-          <div class="numero">
-            <h2>4.2</h2>
-          </div>
-          <button class="opinion">
-            Todas las Opiniones
-          </button>
-          <button class="opinion">
-            Opiniones Negativas
-          </button>
-          <button class="opinion">
-            Opiniones Positivas
-          </button>
+              <% if (product.Valorationproduct.length > 0) { %>
+                <% let suma = 0  %>  
+                <% for( let i = 0; i < product.Valorationproduct.length ; i++ ) { %>               
+                  <% suma = suma + parseInt(product.Valorationproduct[i].score) %>
+                <% } %>
+                <% let porcentaje = Math.round(suma / product.Valorationproduct.length) %> 
+                <div class="cuatroEstrellas">
+                <% for( let i = 0; i < porcentaje ; i++ ) { %>               
+                  <i class="fas fa-star"></i>
+                <% } %>
+                 </div>
+                <div class="numero">
+                  <h2><%= porcentaje %> </h2>
+                </div>
+                <% } else { %>
+                  <p>Aún no hay calificaciones para este producto</p>
+                  <br>
+              <% } %>              
+                <div class="buttonsOpinions">
+                  <button class="opinion" id="allOpinions">
+                    Todas las Opiniones
+                  </button>
+                  <button class="opinion" id="negative">
+                    Opiniones Negativas
+                  </button>
+                  <button class="opinion" id="positive">
+                    Opiniones Positivas
+                  </button>
+                </div>         
         </div>
-
+<section class="sectionOfOpinion" id="all"> 
+  <% product.Valorationproduct.forEach((valoration)=>{ %>
+    <article class="opinionsUsers">
+      <div class="avatarUserOpinion">
+        <img src="/img/userAvatars/<%- valoration.User.avatar %>" alt="avatar" class="imgUserOpinion">      
+      </div>
+      <div class="textsUserOpinions">
+         <div class="puntuacionContainerStars">
+        <% for( let i = 0; i < valoration.score ; i++ ) { %>
+         <img src="/img/iconos-png/Star-puntuacion1.png" alt="" class="valorationStarUser">        
+        <% } %>
+      </div>
+        <h4><%- valoration.User.user %> </h4>
+        <p><%- valoration.opinions %></p>
+      </div>
+    </article>
+    <% }) %> 
+</section>
+<section class="sectionOfOpinion" id="bads">   
+  <% product.Valorationproduct.forEach((valoration)=>{ %>
+    <% if (valoration.score < 3) { %>
+    <article class="opinionsUsers">
+      <div class="avatarUserOpinion">
+        <img src="/img/userAvatars/<%- valoration.User.avatar %>" alt="avatar" class="imgUserOpinion">      
+      </div>
+      <div class="textsUserOpinions">
+         <div class="puntuacionContainerStars">
+        <% for( let i = 0; i < valoration.score ; i++ ) { %>
+         <img src="/img/iconos-png/Star-puntuacion1.png" alt="" class="valorationStarUser">        
+        <% } %>
+      </div>
+        <h4><%- valoration.User.user %> </h4>
+        <p><%- valoration.opinions %>  </p>
+      </div>
+    </article>
+    <% } %>
+    <% }) %> 
+</section>
+<section class="sectionOfOpinion" id="goods"> 
+  <% product.Valorationproduct.forEach((valoration)=>{ %>
+    <% if (valoration.score >= 3) { %>
+     <article class="opinionsUsers">
+      <div class="avatarUserOpinion">
+        <img src="/img/userAvatars/<%- valoration.User.avatar %>" alt="avatar" class="imgUserOpinion">      
+      </div>
+      <div class="textsUserOpinions">
+         <div class="puntuacionContainerStars">
+        <% for( let i = 0; i < valoration.score ; i++ ) { %>
+         <img src="/img/iconos-png/Star-puntuacion1.png" alt="" class="valorationStarUser">        
+        <% } %>
+      </div>
+        <h4><%- valoration.User.user %> </h4>
+        <p><%- valoration.opinions %>  </p>
+      </div>
+    </article>
+    <% } %>
+    
+    <% }) %> 
+</section>
         <hr>
 
         <!--Calificacion de articulos con hasta 5 estrellas-->
@@ -158,7 +243,7 @@
         <div class="estrellita-puntaje"> 
           <p>Tu opinión es importante para nosotros </p>
      <h1 class="estrellita-puntaje">Califica este producto</h1>
-     <div class="rating-css hover-effect">
+     <div class="rating-css hover-effect" onclick="modalButtonForm(`<%-product.id %>`)">
          <input type="radio" value="1" id="rating3-1" name="rating3" checked>
          <label for="rating3-1" class="mdi mdi-star"></label>
          <input type="radio" value="2" id="rating3-2" name="rating3">
@@ -170,11 +255,11 @@
          <input type="radio" value="5" id="rating3-5" name="rating3">
          <label for="rating3-5" class="mdi mdi-star"></label>
      </div>
-    
+    </div>
 
-     </div> 
-     <div>
-      <form action="/detalleDelProducto/<%- product.id %> " method="post">
+    
+    <!--  <div>
+      <form action="/detalleDelProducto/" method="post">
        <div class="rating-css hover-effect">
          <input type="radio" value="1" id="rating3-1" name="rating" checked>
          <label for="rating3-1" class="mdi mdi-star"></label>
@@ -195,6 +280,9 @@
      <button type="submit">Enviar</button>
 
       </form>
+    </div> -->
+    <div class="modal-background">
+
     </div>
 
         <hr>
@@ -222,6 +310,7 @@
 
         <!-- FIN DEL FOOTER-->
 <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+<script src="/js/buttonFormStar.js"></script>
   </body>
 
 

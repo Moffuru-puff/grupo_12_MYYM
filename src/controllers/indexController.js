@@ -72,7 +72,11 @@ module.exports = {
   },
   productsFilters: (req, res) => {
     let { filters } = req.body
-    let num_page = 1
+    let num_page = +req.params.num_page
+
+    let skip_page = (num_page - 1) * 18
+
+    console.log(req.params.id);
     if (filters) {
       let order;
       filters === 'lowerPrice' ? order = 'ASC' : filters === 'higherPrice' ? order = 'DESC' : ""
@@ -81,6 +85,8 @@ module.exports = {
           order: [
             ['discount', 'DESC']
           ],
+          offset: skip_page,
+          limit: 18,
           include: [{ association: "productimage" }, 
           { association: "Favorite"}]
         }).then((Products) => {
@@ -98,7 +104,9 @@ module.exports = {
         db.Product.findAll({
           order: [
             ['price', order]
-          ],
+          ], 
+          offset: skip_page,
+          limit: 18,
           include: [{ association: "productimage" }, 
           { association: "Favorite"}]
         }).then((Products) => {
@@ -113,7 +121,6 @@ module.exports = {
           });
         }).catch(error => console.log(error))
       }
-
     }
   },
   search: (req, res) => {
