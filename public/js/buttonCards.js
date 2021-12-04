@@ -26,7 +26,6 @@ function qsA(element) {
                                 </div>
                              </div>`;
         modal.style.display = "flex";
-       // return modal;
         break;
       case "cardCuotas":
            modal.innerHTML = `<div class="modalHome">

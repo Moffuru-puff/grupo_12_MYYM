@@ -3,7 +3,6 @@ let changeFav =
         var id = e.target.id
         if (e.target && e.target.tagName === "FIGURE" && e.target.id == id) {
             userId = e.target.attributes.userid.value
-            //
             if (e.target.classList.value.indexOf('activated') == -1) {
                 fetch(`${window.location.origin}/api/favorite?userId=${userId}&productId=${id}`, {
                     method: 'POST',
@@ -18,7 +17,6 @@ let changeFav =
                             return;
                         }
                         response.json().then(function (data) {
-                            //console.log(data); Acá recibimos la respuesta en la variable data
                             e.target.classList.value = "myImage activated"
                         });
                     })
@@ -40,7 +38,6 @@ let changeFav =
                             return;
                         }
                         response.json().then(function (data) {
-                            //console.log(data); Acá recibimos la respuesta en la variable data
                             e.target.classList.value = "myImage"
                         });
                     })

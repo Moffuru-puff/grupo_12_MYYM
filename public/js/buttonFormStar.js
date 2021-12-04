@@ -66,10 +66,7 @@ function modalButtonForm(id) {
                                     <button onclick="hiddenDelete()" id="buttonCloseX">X</button>
                                 </div>
                              </div>`;
-      modal.style.display = "flex";
-      // return modal;
-      
-   
+      modal.style.display = "flex";   
   return modal;
 }
 

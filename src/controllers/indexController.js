@@ -123,54 +123,6 @@ module.exports = {
       }
     }
   },
-  /* ,
-  productsFilters: (req, res) => {
-    let { filters } = req.body
-    let num_page = 1
-    console.log(req.params.id);
-    if (filters) {
-      let order;
-      filters === 'lowerPrice' ? order = 'ASC' : filters === 'higherPrice' ? order = 'DESC' : ""
-      if (filters === 'mostRelevant') {
-        db.Product.findAll({
-          order: [
-            ['discount', 'DESC']
-          ],
-          include: [{ association: "productimage" }, 
-          { association: "Favorite"}]
-        }).then((Products) => {
-          let num_pages = parseInt((Products.length / 18) + 1);
-          res.render("./products/index.ejs", {
-            Products,
-            num_pages,
-            num_page: num_page,
-            toThousand,
-            favorites: req.session.user ? req.session.user.favorites : "",
-            userInSession: req.session.user ? req.session.user : "",
-          });
-        }).catch(error => console.log(error))
-      } else if (order !== "") {
-        db.Product.findAll({
-          order: [
-            ['price', order]
-          ],
-          include: [{ association: "productimage" }, 
-          { association: "Favorite"}]
-        }).then((Products) => {
-          let num_pages = parseInt((Products.length / 18) + 1);
-          res.render("./products/index.ejs", {
-            Products,
-            num_pages,
-            num_page: num_page,
-            toThousand,
-            favorites: req.session.user ? req.session.user.favorites : "",
-            userInSession: req.session.user ? req.session.user : "",
-          });
-        }).catch(error => console.log(error))
-      }
-
-    }
-  }, */
   search: (req, res) => {
     db.Product.findAll({
       where: {
