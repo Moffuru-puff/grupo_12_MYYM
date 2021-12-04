@@ -4,16 +4,17 @@
     box-sizing: border-box;
 }
 
-div .puntuacion{
+div .puntuacion {
     display: flex;
-justify-content: center;
-align-items: center;
-font-size: x-small;
+    justify-content: center;
+    align-items: center;
+    font-size: x-small;
 
 }
-a{text-decoration: none;
-    color:rgb(104, 101, 101)
 
+a {
+    text-decoration: none;
+    color: rgb(104, 101, 101)
 }
 
 
@@ -64,7 +65,7 @@ h4 {
     justify-content: center;
     font-size: 20px;
     padding: 5px;
-    
+
 }
 
 hr {
@@ -81,11 +82,12 @@ hr {
     cursor: pointer;
 
 }
-#starFlotante{
+
+#starFlotante {
     position: absolute;
     top: 10px;
-    right:3px;
-    
+    right: 3px;
+
 }
 
 .fa-star:before {
@@ -119,11 +121,13 @@ div .foto-principal {
 .cuerpo img {
     width: 60%;
 }
-h3.descuentoOferta{
-    color:var(--lyftPink);
+
+h3.descuentoOferta {
+    color: var(--lyftPink);
     margin-top: 10px;
-    
+
 }
+
 #boton-compra {
     display: flex;
     flex-direction: column;
@@ -197,8 +201,9 @@ div.envio {
     align-items: center;
     margin-top: 10px;
 }
-div.envio h4{
-    
+
+div.envio h4 {
+
     margin-left: 8px;
 }
 
@@ -293,21 +298,24 @@ div .opinion {
     margin-bottom: 5px;
     cursor: pointer;
 }
-.otrosProductos{
+
+.otrosProductos {
     text-align: center;
-   
+
     flex-direction: column;
-    
-   
+
+
 }
-.cajasmini{
+
+.cajasmini {
     flex-wrap: wrap;
     display: flex;
     justify-content: center;
-    
+
 
 }
-.productosInteresantes{
+
+.productosInteresantes {
     display: block;
     cursor: pointer;
     max-width: 200px;
@@ -320,42 +328,95 @@ div .opinion {
     box-shadow: 3px 3px 4px #363434;
     font-family: var(--font-inter);
     background-color: #000000;
-    
+
 }
 
 
-.imagenMini{
-   height: auto;
-   width: auto;
-   max-width: 100%;
-   justify-content: center;
-   box-sizing: border-box;
+.imagenMini {
+    height: auto;
+    width: auto;
+    max-width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
 }
 
-.estrellamini{
+.estrellamini {
     width: 20px;
     height: 20px;
     background-color: blue;
-    
-    
+
+
 }
-.tituloCajitasMini{
-   
+
+.tituloCajitasMini {
+
     flex-direction: row;
     display: block;
 }
-#puntosDeEstrellas{
-   
-   font-size: 20px;
-    
- 
+
+#puntosDeEstrellas {
+
+    font-size: 20px;
+
+
 }
 
+.sectionOfOpinion article.opinionsUsers {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    border-bottom: solid 1px rgba(0, 0, 0, 0.4);
+    margin: 1rem;
+    color: #4c4c4d;
+}
 
-@media (min-width: 350px){
-    div .nombredelproducto{
+article.opinionsUsers .avatarUserOpinion {
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+article.opinionsUsers .avatarUserOpinion img.imgUserOpinion {
+    width: 100%;
+    object-fit: contain;
+}
+
+.textsUserOpinions {
+    padding: 1rem;
+}
+
+div .puntuacionContainerStars {
+    display: flex;
+    align-items: center;
+}
+
+div .puntuacionContainerStars .valorationStarUser{
+   width: 1.3rem;
+}
+.sectionOfOpinion{
+    display: none;
+}
+
+article div.star figure {
+    background-image: url("/img/iconos-png/star-desactivada.png");
+    background-size: contain;
+    width: 35px;
+    height: 35px;
+}
+
+article div.star figure.activated {
+    background-image: url("/img/iconos-png/star-active.png");
+    background-size: contain;
+    width: 31px;
+    height: 31px;
+}
+
+@media (min-width: 350px) {
+    div .nombredelproducto {
         font-size: 16px;
-    } 
+    }
 }
 
 
@@ -363,24 +424,25 @@ div .opinion {
 /*TABLET*/
 
 @media (min-width: 480px) {
-   
-    div .nombredelproducto{
+
+    div .nombredelproducto {
         font-size: 18px;
-    }   
-    
-    
-    .fotoMasdetalle{
-        
-        display: flex;
-        
     }
-    div .foto-principal{
+
+
+    .fotoMasdetalle {
+
+        display: flex;
+
+    }
+
+    div .foto-principal {
         display: flex;
         justify-content: center;
         align-items: center;
         width: 60%;
     }
-   
+
     .detallesPrecio {
         width: 40%;
         height: auto;
@@ -389,25 +451,29 @@ div .opinion {
         padding-top: 10%;
         display: flex;
         flex-direction: column;
-        
+
 
     }
+
     .calificacion {
-        
+
         border-radius: 8px;
-        
-    };
-   
-    .numero{font-size: 25px;}
-    
+
+    }
+
+    ;
+
+    .numero {
+        font-size: 25px;
+    }
+
     div .opinion {
         color: rgb(34, 6, 59);
         font-family: Verdana, Geneva, Tahoma, sans-serif;
         width: 30%;
         height: 35px;
-        
-       
-    }
-   
-}
 
+
+    }
+
+}
