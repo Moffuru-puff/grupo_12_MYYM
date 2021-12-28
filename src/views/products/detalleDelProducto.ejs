@@ -22,24 +22,25 @@
               </h2>
             </div>
             <div class="star" id="btnFav">
-              <form action="favorites/addOrDelete/<%- product.id %>" method="POST">                  
-                <button type="submit" class="btnStar" <% if(!userInSession || userInSession == undefined || userInSession == "") { %> 
-                  disabled                      
-                  <% } %>>                      
-                  <% if( product.Favorite !== null && userInSession) { %> 
-                   
-                <figure userid="<%- userInSession.id  %>"    
-                   <% if (product.Favorite.productId == product.id && product.Favorite.userId == userInSession.id) { %>
-                      class="myImage activated"
+              <form action="favorites/addOrDelete/<%- product.id %>" method="POST">
+                <button type="submit" class="btnStar" <% if(!userInSession || userInSession==undefined ||
+                  userInSession=="" ) { %>
+                  disabled
+                  <% } %>>
+                    <% if( product.Favorite !==null && userInSession) { %>
+
+                      <figure userid="<%- userInSession.id  %>" <% if (product.Favorite.productId==product.id &&
+                        product.Favorite.userId==userInSession.id) { %>
+                        class="myImage activated"
+                        <% } else { %>
+                          class="myImage"
+                          <% } %>
+                            id="<%- product.id %>">
+                      </figure>
                       <% } else { %>
-                        class="myImage"
+                        <figure userid="" class="myImage" id="<%- product.id %>"></figure>
                         <% } %>
-                  id="<%- product.id %>">
-                </figure>
-                <% } else { %>
-                  <figure userid="" class="myImage" id="<%- product.id %>"></figure>
-                <% } %>
-                </button>                  
+                </button>
               </form>
             </div>
 
@@ -53,8 +54,10 @@
                 <div id="precio">
                   <h2>$<%- product.price - product.price * product.discount / 100 %>
                   </h2>
-                  
-                  <h3 class="descuentoOferta"><%- product.discount !== 0 ? `${product.discount}% OFF` : '' %></h3>
+
+                  <h3 class="descuentoOferta">
+                    <%- product.discount !==0 ? `${product.discount}% OFF` : '' %>
+                  </h3>
                 </div>
 
 
@@ -73,13 +76,12 @@
                 <a class="boton-compra1" href="/shoppingCart">
                   <button class="boton-compra1">
 
-                    Comprar Ahora</button></a>  
-                    <form action="/detalleDelProducto/addProduct/<%- product.id%>" method="POST" class="boton-compra2">
-
-
+                    Comprar Ahora</button></a>
+                <form action="/detalleDelProducto/addProduct/<%- product.id%>" method="POST" class="boton-compra2">
                   <button class="boton-compra2">
-                     Agregar al carrito
-                  </button></form>
+                    Agregar al carrito
+                  </button>
+                </form>
               </div>
             </div>
           </div>
@@ -147,118 +149,132 @@
               <%- product.nombre %>
             </h4>
           </div>
-              <% if (product.Valorationproduct.length > 0) { %>
-                <% let suma = 0  %>  
-                <% for( let i = 0; i < product.Valorationproduct.length ; i++ ) { %>               
-                  <% suma = suma + parseInt(product.Valorationproduct[i].score) %>
-                <% } %>
-                <% let porcentaje = Math.round(suma / product.Valorationproduct.length) %> 
-                <div class="cuatroEstrellas">
-                <% for( let i = 0; i < porcentaje ; i++ ) { %>               
-                  <i class="fas fa-star"></i>
-                <% } %>
-                 </div>
-                <div class="numero">
-                  <h2><%= porcentaje %> </h2>
-                </div>
-                <% } else { %>
-                  <p>Aún no hay calificaciones para este producto</p>
-                  <br>
-              <% } %>              
-                <div class="buttonsOpinions">
-                  <button class="opinion" id="allOpinions">
-                    Todas las Opiniones
-                  </button>
-                  <button class="opinion" id="negative">
-                    Opiniones Negativas
-                  </button>
-                  <button class="opinion" id="positive">
-                    Opiniones Positivas
-                  </button>
-                </div>         
+          <% if (product.Valorationproduct.length> 0) { %>
+            <% let suma=0 %>
+              <% for( let i=0; i < product.Valorationproduct.length ; i++ ) { %>
+                <% suma=suma + parseInt(product.Valorationproduct[i].score) %>
+                  <% } %>
+                    <% let porcentaje=Math.round(suma / product.Valorationproduct.length) %>
+                      <div class="cuatroEstrellas">
+                        <% for( let i=0; i < porcentaje ; i++ ) { %>
+                          <i class="fas fa-star"></i>
+                          <% } %>
+                      </div>
+                      <div class="numero">
+                        <h2>
+                          <%= porcentaje %>
+                        </h2>
+                      </div>
+                      <% } else { %>
+                        <p>Aún no hay calificaciones para este producto</p>
+                        <br>
+                        <% } %>
+                          <div class="buttonsOpinions">
+                            <button class="opinion" id="allOpinions">
+                              Todas las Opiniones
+                            </button>
+                            <button class="opinion" id="negative">
+                              Opiniones Negativas
+                            </button>
+                            <button class="opinion" id="positive">
+                              Opiniones Positivas
+                            </button>
+                          </div>
         </div>
-<section class="sectionOfOpinion" id="all"> 
-  <% product.Valorationproduct.forEach((valoration)=>{ %>
-    <article class="opinionsUsers">
-      <div class="avatarUserOpinion">
-        <img src="/img/userAvatars/<%- valoration.User.avatar %>" alt="avatar" class="imgUserOpinion">      
-      </div>
-      <div class="textsUserOpinions">
-         <div class="puntuacionContainerStars">
-        <% for( let i = 0; i < valoration.score ; i++ ) { %>
-         <img src="/img/iconos-png/Star-puntuacion1.png" alt="" class="valorationStarUser">        
-        <% } %>
-      </div>
-        <h4><%- valoration.User.user %> </h4>
-        <p><%- valoration.opinions %></p>
-      </div>
-    </article>
-    <% }) %> 
-</section>
-<section class="sectionOfOpinion" id="bads">   
-  <% product.Valorationproduct.forEach((valoration)=>{ %>
-    <% if (valoration.score < 3) { %>
-    <article class="opinionsUsers">
-      <div class="avatarUserOpinion">
-        <img src="/img/userAvatars/<%- valoration.User.avatar %>" alt="avatar" class="imgUserOpinion">      
-      </div>
-      <div class="textsUserOpinions">
-         <div class="puntuacionContainerStars">
-        <% for( let i = 0; i < valoration.score ; i++ ) { %>
-         <img src="/img/iconos-png/Star-puntuacion1.png" alt="" class="valorationStarUser">        
-        <% } %>
-      </div>
-        <h4><%- valoration.User.user %> </h4>
-        <p><%- valoration.opinions %>  </p>
-      </div>
-    </article>
-    <% } %>
-    <% }) %> 
-</section>
-<section class="sectionOfOpinion" id="goods"> 
-  <% product.Valorationproduct.forEach((valoration)=>{ %>
-    <% if (valoration.score >= 3) { %>
-     <article class="opinionsUsers">
-      <div class="avatarUserOpinion">
-        <img src="/img/userAvatars/<%- valoration.User.avatar %>" alt="avatar" class="imgUserOpinion">      
-      </div>
-      <div class="textsUserOpinions">
-         <div class="puntuacionContainerStars">
-        <% for( let i = 0; i < valoration.score ; i++ ) { %>
-         <img src="/img/iconos-png/Star-puntuacion1.png" alt="" class="valorationStarUser">        
-        <% } %>
-      </div>
-        <h4><%- valoration.User.user %> </h4>
-        <p><%- valoration.opinions %>  </p>
-      </div>
-    </article>
-    <% } %>
-    
-    <% }) %> 
-</section>
+        <section class="sectionOfOpinion" id="all">
+          <% product.Valorationproduct.forEach((valoration)=>{ %>
+            <article class="opinionsUsers">
+              <div class="avatarUserOpinion">
+                <img src="/img/userAvatars/<%- valoration.User.avatar %>" alt="avatar" class="imgUserOpinion">
+              </div>
+              <div class="textsUserOpinions">
+                <div class="puntuacionContainerStars">
+                  <% for( let i=0; i < valoration.score ; i++ ) { %>
+                    <img src="/img/iconos-png/Star-puntuacion1.png" alt="" class="valorationStarUser">
+                    <% } %>
+                </div>
+                <h4>
+                  <%- valoration.User.user %>
+                </h4>
+                <p>
+                  <%- valoration.opinions %>
+                </p>
+              </div>
+            </article>
+            <% }) %>
+        </section>
+        <section class="sectionOfOpinion" id="bads">
+          <% product.Valorationproduct.forEach((valoration)=>{ %>
+            <% if (valoration.score < 3) { %>
+              <article class="opinionsUsers">
+                <div class="avatarUserOpinion">
+                  <img src="/img/userAvatars/<%- valoration.User.avatar %>" alt="avatar" class="imgUserOpinion">
+                </div>
+                <div class="textsUserOpinions">
+                  <div class="puntuacionContainerStars">
+                    <% for( let i=0; i < valoration.score ; i++ ) { %>
+                      <img src="/img/iconos-png/Star-puntuacion1.png" alt="" class="valorationStarUser">
+                      <% } %>
+                  </div>
+                  <h4>
+                    <%- valoration.User.user %>
+                  </h4>
+                  <p>
+                    <%- valoration.opinions %>
+                  </p>
+                </div>
+              </article>
+              <% } %>
+                <% }) %>
+        </section>
+        <section class="sectionOfOpinion" id="goods">
+          <% product.Valorationproduct.forEach((valoration)=>{ %>
+            <% if (valoration.score>= 3) { %>
+              <article class="opinionsUsers">
+                <div class="avatarUserOpinion">
+                  <img src="/img/userAvatars/<%- valoration.User.avatar %>" alt="avatar" class="imgUserOpinion">
+                </div>
+                <div class="textsUserOpinions">
+                  <div class="puntuacionContainerStars">
+                    <% for( let i=0; i < valoration.score ; i++ ) { %>
+                      <img src="/img/iconos-png/Star-puntuacion1.png" alt="" class="valorationStarUser">
+                      <% } %>
+                  </div>
+                  <h4>
+                    <%- valoration.User.user %>
+                  </h4>
+                  <p>
+                    <%- valoration.opinions %>
+                  </p>
+                </div>
+              </article>
+              <% } %>
+
+                <% }) %>
+        </section>
         <hr>
 
         <!--Calificacion de articulos con hasta 5 estrellas-->
 
-        <div class="estrellita-puntaje"> 
+        <div class="estrellita-puntaje">
           <p>Tu opinión es importante para nosotros </p>
-     <h1 class="estrellita-puntaje">Califica este producto</h1>
-     <div class="rating-css hover-effect" onclick="modalButtonForm(`<%-product.id %>`)">
-         <input type="radio" value="1" id="rating3-1" name="rating3" checked>
-         <label for="rating3-1" class="mdi mdi-star"></label>
-         <input type="radio" value="2" id="rating3-2" name="rating3">
-         <label for="rating3-2" class="mdi mdi-star"></label>
-         <input type="radio" value="3" id="rating3-3" name="rating3">
-         <label for="rating3-3" class="mdi mdi-star"></label>
-         <input type="radio" value="4" id="rating3-4" name="rating3">
-         <label for="rating3-4" class="mdi mdi-star"></label>
-         <input type="radio" value="5" id="rating3-5" name="rating3">
-         <label for="rating3-5" class="mdi mdi-star"></label>
-     </div>
-    </div>
+          <h1 class="estrellita-puntaje">Califica este producto</h1>
+          <div class="rating-css hover-effect" onclick="modalButtonForm(`<%-product.id %>`)">
+            <input type="radio" value="1" id="rating3-1" name="rating3" checked>
+            <label for="rating3-1" class="mdi mdi-star"></label>
+            <input type="radio" value="2" id="rating3-2" name="rating3">
+            <label for="rating3-2" class="mdi mdi-star"></label>
+            <input type="radio" value="3" id="rating3-3" name="rating3">
+            <label for="rating3-3" class="mdi mdi-star"></label>
+            <input type="radio" value="4" id="rating3-4" name="rating3">
+            <label for="rating3-4" class="mdi mdi-star"></label>
+            <input type="radio" value="5" id="rating3-5" name="rating3">
+            <label for="rating3-5" class="mdi mdi-star"></label>
+          </div>
+        </div>
 
-    
-    <!--  <div>
+
+        <!--  <div>
       <form action="/detalleDelProducto/" method="post">
        <div class="rating-css hover-effect">
          <input type="radio" value="1" id="rating3-1" name="rating" checked>
@@ -281,24 +297,24 @@
 
       </form>
     </div> -->
-    <div class="modal-background">
+        <div class="modal-background">
 
-    </div>
+        </div>
 
         <hr>
         <div class="otrosProductos">
           <div class="tituloMini">
             <!--tarjetas de otros articulos-->
             <h4>Otros productos que pueden interesarte:</h4>
-            
+
           </div>
           <section class="container-products">
-            
+
             <!-- /* Slider */ -->
             <%- include('./slider.ejs') %>
-          
+
           </section>
-       
+
         </div>
 
       </div>
@@ -309,8 +325,8 @@
       <%- include('../partials/footer.ejs') %>
 
         <!-- FIN DEL FOOTER-->
-<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
-<script src="/js/buttonFormStar.js"></script>
+        <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+        <script src="/js/buttonFormStar.js"></script>
   </body>
 
 
