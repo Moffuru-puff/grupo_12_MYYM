@@ -1,77 +1,80 @@
 /*-----cart items-----*/
 
 .mi_carrito {
-display: flex;
-justify-content: space-between;
-align-items: center;
-font-size: x-large;
-width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: x-large;
+    width: 100%;
 
 }
 
 
-.small-container{
-
+.small-container {
     width: 95%;
-   
+}
 
+.cartDiscount {
+    text-decoration: line-through;
+    color: var(--grey);
+    margin-right: 5px;
 }
 
 
-
-.cart-page{
+.cart-page {
 
     margin: 80px auto;
-  
+
 }
 
-table{
+table {
     width: 100%;
     border-collapse: collapse;
 
 }
 
-.cart-info{
+.cart-info {
 
     display: flex;
     flex-wrap: wrap;
- 
+
 }
 
 .detalleproducto {
 
     width: 70%;
-    
+
 }
-th{
-   
+
+th {
+
     text-align: left;
     padding: 5px;
-    color: #fff ;
+    color: #fff;
     background-color: #0a0a2c;
     font-weight: normal;
 
 }
 
-td{
+td {
     padding: 10px 5px;
-  
+
 }
 
-td input{
+td input {
     width: 40px;
     height: 30px;
     padding: 5px;
     border-radius: 15px;
     border-style: groove;
-    border-color: rgb(176, 175, 228) ;
+    border-color: rgb(176, 175, 228);
 
 }
 
 td a {
     color: #ff523b;
     font-size: 12px;
- 
+
 }
 
 
@@ -88,21 +91,24 @@ td img {
     display: flex;
     justify-content: flex-end;
 }
+
 .total-price table {
 
-    border-top: 3px solid #0a0a2c;;
+    border-top: 3px solid #0a0a2c;
+    ;
     width: 100%;
     max-width: 350px;
 }
 
-td:last-child{
-    text-align:right;
+td:last-child {
+    text-align: right;
 }
 
 th:last-child {
-    text-align:right;
+    text-align: right;
 }
-.pay-btn-shcart{
+
+.pay-btn-shcart {
     width: 130px;
     color: #fff;
     margin-top: 10px;
@@ -111,7 +117,8 @@ th:last-child {
     border: none;
     cursor: pointer;
 }
-.btn-vaciar{
+
+.btn-vaciar {
 
     width: 95px;
     color: #fff;
@@ -122,7 +129,8 @@ th:last-child {
     border: none;
     cursor: pointer;
 }
-.btn-seguirComprando{
+
+.btn-seguirComprando {
 
     width: 303px;
     color: #fff;
@@ -134,4 +142,3 @@ th:last-child {
     cursor: pointer;
     padding-bottom: 29px;
 }
-

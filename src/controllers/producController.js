@@ -63,7 +63,6 @@ module.exports = {
         }
       ]
     }).then((itemsCart) => {
-      console.log(itemsCart, "itemsCarts es")
       db.Product.findOne({
         where: {
           id: +req.params.id
@@ -97,10 +96,9 @@ module.exports = {
                     where: {
                       id: item.id
                     }
-                  }).then((a) => {
+                  }).then(() => {
 
                     return res.redirect('/shoppingCart')
-                    console.log(a, "actualizado");
                   }).catch(error => console.log(error))
               }).catch(error => console.log(error))
             } else if (itemCart.Item.productId !== +req.params.id || !itemCart.id ){
